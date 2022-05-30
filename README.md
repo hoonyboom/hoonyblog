@@ -1,11 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## 넥스트 도칵
+## 뉴ㅔ엑스트
 ```
 yarn dev
 ```
 
-## 가보자고! (공부자료들 계속해서 추가 -ing)
+## 가보자고 (공부자료들 계속해서 추가 -ing)
 [공식 튜토리얼](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs)
 [혜자로운 예제들](https://github.com/vercel/next.js/tree/canary/examples)
 [왜 css-in-Js가 아닐까?](https://fe-developers.kakaoent.com/2022/220210-css-in-kakaowebtoon/)
