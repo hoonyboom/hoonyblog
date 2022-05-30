@@ -11,14 +11,17 @@ yarn dev
 [[카카오FE] 왜 css-in-Js가 아닐까?](https://fe-developers.kakaoent.com/2022/220210-css-in-kakaowebtoon/)  
 [[카카오FE] SWR & React-Query](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)  
 [SWR 공식 튜토리얼](https://swr.vercel.app/ko/docs/getting-started)  
-[SWR 초깔끔 정리ㅜㅜ](https://min9nim.vercel.app/2020-10-05-swr-intro2/)
+[SWR 초깔끔 정리](https://min9nim.vercel.app/2020-10-05-swr-intro2/)
 
 ## 🛠 기술 스택 (일단 확정된 것!!?)
 
 ```json
-  "axios": "^0.27.2",
   "recoil": "^0.7.3-alpha.2",
+  "axios": "^0.27.2",
   "swr": "^1.3.0"
+  "tailwindcss": "^3.0.24",
+  "react-rough-notation": "^1.0.2",
+
 ```
 
 <br />
