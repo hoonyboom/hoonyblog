@@ -6,19 +6,18 @@ yarn dev
 ```
 
 ## 가보자고 (공부자료들 계속해서 추가 -ing)
-[공식 튜토리얼](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs)
-[혜자로운 예제들](https://github.com/vercel/next.js/tree/canary/examples)
-[왜 css-in-Js가 아닐까?](https://fe-developers.kakaoent.com/2022/220210-css-in-kakaowebtoon/)
-[SWR & React-Query](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)
-
+[Next 공식 튜토리얼](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs)  
+[Next 혜자로운 예제들](https://github.com/vercel/next.js/tree/canary/examples)  
+[[카카오FE] 왜 css-in-Js가 아닐까?](https://fe-developers.kakaoent.com/2022/220210-css-in-kakaowebtoon/)  
+[[카카오FE] SWR & React-Query](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)  
+[SWR 공식 튜토리얼](https://swr.vercel.app/ko/docs/getting-started)  
 
 ## 🛠 기술 스택 (일단 확정된 것!!?)
 
 ```json
-"axios": "^0.27.2",
-"react-redux": "^8.0.2",
-"@reduxjs/toolkit": "^1.8.1",
-"styled-components": "^5.3.5",
+  "axios": "^0.27.2",
+  "recoil": "^0.7.3-alpha.2",
+  "swr": "^1.3.0"
 ```
 
 <br />
