@@ -1,16 +1,17 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## 뉴ㅔ엑스트
+## 야미~
 ```
 yarn dev
 ```
 
-## 가보자고 (공부자료들 계속해서 추가 -ing)
+## 가보자고! (공부자료들 계속해서 추가 -ing)
 [Next 공식 튜토리얼](https://nextjs.org/learn/foundations/about-nextjs/what-is-nextjs)  
 [Next 혜자로운 예제들](https://github.com/vercel/next.js/tree/canary/examples)  
 [[카카오FE] 왜 css-in-Js가 아닐까?](https://fe-developers.kakaoent.com/2022/220210-css-in-kakaowebtoon/)  
 [[카카오FE] SWR & React-Query](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)  
 [SWR 공식 튜토리얼](https://swr.vercel.app/ko/docs/getting-started)  
+[SWR 초깔끔 정리ㅜㅜ](https://min9nim.vercel.app/2020-10-05-swr-intro2/)
 
 ## 🛠 기술 스택 (일단 확정된 것!!?)
 
