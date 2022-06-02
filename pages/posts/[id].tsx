@@ -10,7 +10,7 @@ interface IdProps {
     id: string
   },
   postData: {
-    id: string | number,
+    id: string,
     title: string,
     date: string,
     contentHtml: string
