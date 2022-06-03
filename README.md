@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## 시작
 ```bash
-yarn dev
+$ yarn dev
 ```
 
 ## 가보자GO! (공부자료들 계속해서 추가 -ing)
