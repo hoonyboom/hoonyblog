@@ -11,10 +11,10 @@ $ yarn dev
 [[카카오FE] 왜 css-in-Js가 아닐까?](https://fe-developers.kakaoent.com/2022/220210-css-in-kakaowebtoon/)  
 [[카카오FE] SWR & React-Query](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)  
 [SWR 공식 튜토리얼](https://swr.vercel.app/ko/docs/getting-started)  
-[SWR 초깔끔 정리](https://min9nim.vercel.app/2020-10-05-swr-intro2/)
-[MD 파일에 리액트를! MDX](https://mdxjs.com)
-[Next MDX Guide](https://nextjs.org/docs/advanced-features/using-mdx)
-[MDX 간단소개 velog](https://velog.io/@juunini/mdx라는-매우-멋진것을-발견하였습니다)
+[SWR 초깔끔 정리](https://min9nim.vercel.app/2020-10-05-swr-intro2/)  
+[MD 파일에 리액트를! MDX](https://mdxjs.com)  
+[Next MDX Guide](https://nextjs.org/docs/advanced-features/using-mdx)  
+[MDX 간단소개 velog](https://velog.io/@juunini/mdx라는-매우-멋진것을-발견하였습니다)  
 
 ## 🛠 기술 스택 (일단 확정된 것!!?)
 
