@@ -1,7 +1,7 @@
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "/src/pages/**/*.{js,ts,jsx,tsx}",
+    "/src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
@@ -9,17 +9,12 @@ module.exports = {
       sm: '465px',
       md: '768px',
       lg: '1024px',
-      xl: '1640px',
+      xl: '1440px',
     },
     fontSize: {
-      // Set in Major Third typescale (1.25)
-      base: '1em',
-      lg: '1.25em',
-      xl: '1.563em',
-      '2xl': '1.953em',
-      '3xl': '2.441em',
-      '4xl': '3.052em',
-      '5xl': '3.815em',
+      base: 'clamp(0.75rem, calc(0.63rem + 0.41vw), 1.00rem)',
+      lg: 'clamp(0.84rem, calc(0.65rem + 0.67vw), 1.25rem)',
+      xl: 'clamp(0.95rem, calc(0.66rem + 1.01vw), 1.56rem)',
     },
   },
   plugins: [],
