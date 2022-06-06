@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Layout, Date } from '@/components';
 import { siteTitle } from '@/components/layout';
-import { getSortedPostsData } from '@/lib/posts.js';
+import { getSortedPostsData } from '@/lib/posts';
 import utilStyles from '@/styles/utils.module.css';
 
 
@@ -44,6 +44,7 @@ export default function Home({ allPostsData }: PostsProps) {
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
               </small>
+              <h1 className="text-xl">바보</h1>
             </li>          ))}
         </ul>
       </section>

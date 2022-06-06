@@ -30,21 +30,39 @@ img {
   display: block;
 }
 
+
 @font-face {
-  font-family: 'LeferiPoint-BlackA';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff') format('woff');
+  font-family: 'IBM';
+  src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
   font-weight: normal;
-  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arita';
+  src: url('/fonts/Arita.woff2') format('woff2');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Gowun';
+  src: url('/fonts/GowunDodum.woff2') format('woff2');
+  font-weight: normal;
 }
 
 
 h1,h2,h3,h4,h5,h6 {
-  font-family: 'LeferiPoint-BlackA';
+  font-family: 'IBM', 'Gowun';
 }
 
-
-
 p {
-  font-family: 'LeferiPoint-BlackA';
-  font-size: 1em;
+  font-family: 'IBM', 'Gowun';
+}
+
+p, blockquote {
+	font-weight:500;
+	line-height:1.82;
+	word-break:keep-all;
+	letter-spacing:-0.025em;
+	word-spacing:0.1em;
+	margin: 1em!important;
 }
