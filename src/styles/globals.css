@@ -2,32 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
-    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  line-height: 1.6;
-  font-size: 18px;
-}
 
-* {
-  box-sizing: border-box;
-}
-
-a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-img {
-  max-width: 100%;
-  display: block;
+@layer base {
+  html, body {
+    @apply p-0 m-0 font-sans;
+  },
+  * {
+    @apply box-border
+  },
+  a {
+    @apply decoration-0
+  },
+  a:hover {
+    @apply decoration-wavy decoration-green-300
+  },
+  img {
+    @apply max-w-full block
+  },
+  p, blockquote {
+    @apply font-custom text-lg break-words leading-7 tracking-tight m-4 antialiased
+  },
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-custom
+  }
 }
 
 
@@ -49,20 +46,3 @@ img {
   font-weight: normal;
 }
 
-
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'IBM', 'Gowun';
-}
-
-p {
-  font-family: 'IBM', 'Gowun';
-}
-
-p, blockquote {
-	font-weight:500;
-	line-height:1.82;
-	word-break:keep-all;
-	letter-spacing:-0.025em;
-	word-spacing:0.1em;
-	margin: 1em!important;
-}

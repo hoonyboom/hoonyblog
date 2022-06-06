@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/layout.module.css';
 import utilStyles from '@/styles/utils.module.css';
-
+import { Navbar } from '@/components'
 interface LayoutProps {
   children: React.ReactNode,
   home?: boolean,
@@ -31,6 +31,7 @@ export default function Layout({ children, home }: LayoutProps) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
+        <Navbar />
         {
           home
           ? (
@@ -39,8 +40,8 @@ export default function Layout({ children, home }: LayoutProps) {
                 priority
                 src="/images/profile.jpg"
                 className={utilStyles.borderCircle}
-                height={144}
-                width={144}
+                height={100}
+                width={100}
                 alt={name}
               />
               <h1 className={utilStyles.heading2Xl}>{name}</h1>
@@ -54,8 +55,8 @@ export default function Layout({ children, home }: LayoutProps) {
                     priority
                     src="/images/profile.jpg"
                     className={utilStyles.borderCircle}
-                    height={108}
-                    width={108}
+                    height={100}
+                    width={100}
                     alt={name}
                   />
                 </a>
