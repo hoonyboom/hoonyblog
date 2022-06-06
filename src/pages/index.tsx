@@ -11,7 +11,7 @@ interface PostsProps {
     {
       id: string,
       date: string,
-      title: string,
+      title: string, 
     }
   ]
 }
