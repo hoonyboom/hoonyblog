@@ -36,5 +36,3 @@ yarn-error.log*
 
 # 제외
 /src/pages/api/*
-/src/lib/*
-/posts/*
