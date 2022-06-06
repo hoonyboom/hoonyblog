@@ -33,3 +33,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# 제외
+/src/pages/api/*
+/src/lib/*
