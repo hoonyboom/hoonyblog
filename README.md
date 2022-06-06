@@ -12,6 +12,9 @@ $ yarn dev
 [[카카오FE] SWR & React-Query](https://fe-developers.kakaoent.com/2022/220224-data-fetching-libs/)  
 [SWR 공식 튜토리얼](https://swr.vercel.app/ko/docs/getting-started)  
 [SWR 초깔끔 정리](https://min9nim.vercel.app/2020-10-05-swr-intro2/)
+[MD 파일에 리액트를! MDX](https://mdxjs.com)
+[Next MDX Guide](https://nextjs.org/docs/advanced-features/using-mdx)
+[MDX 간단소개 velog](https://velog.io/@juunini/mdx라는-매우-멋진것을-발견하였습니다)
 
 ## 🛠 기술 스택 (일단 확정된 것!!?)
 
@@ -21,7 +24,7 @@ $ yarn dev
   "swr": "^1.3.0"
   "tailwindcss": "^3.0.24",
   "react-rough-notation": "^1.0.2",
-
+  
 ```
 
 <br />
