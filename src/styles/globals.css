@@ -20,11 +20,12 @@
     @apply max-w-full block
   },
   p, blockquote {
-    @apply font-custom text-base break-words leading-7 tracking-tight m-4 antialiased
+    @apply font-custom text-base break-words leading-10 tracking-tight m-4 antialiased
   },
   h1, h2, h3, h4, h5, h6 {
-    @apply font-custom
-  }
+    @apply font-custom m-4 leading-10 subpixel-antialiased
+  },
+  h1{ @apply text-xxxl }, h2{ @apply text-xxl }, h3 { @apply text-xl }
 }
 
 
@@ -45,4 +46,3 @@
   src: url('/fonts/GowunDodum.woff2') format('woff2');
   font-weight: normal;
 }
-
