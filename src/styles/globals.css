@@ -20,7 +20,7 @@
     @apply max-w-full block
   },
   p, blockquote {
-    @apply font-custom text-lg break-words leading-7 tracking-tight m-4 antialiased
+    @apply font-custom text-base break-words leading-7 tracking-tight m-4 antialiased
   },
   h1, h2, h3, h4, h5, h6 {
     @apply font-custom
