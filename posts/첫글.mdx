@@ -3,10 +3,16 @@ title: '첫글'
 date: '2022-06-03'
 ---
 
-오늘은 금요일
-내일은 토요일입니다.  
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+
+
+
+<RoughNotationGroup show={true}>
+오늘은 <RoughNotation type="highlight" color="palevioletred" order="3" >금요일</RoughNotation>
+내일은 <RoughNotation type="circle" color="#a3fbf6" order="2" >토요일</RoughNotation>입니다.  
 마크다운 문법이 왜 적용 안되는지
-모르겠네요
+<RoughNotation type="crossed-off" color="darkorange" order="1">모르겠네요</RoughNotation>
+</RoughNotationGroup>
 
 # 헤드1  
 ## 헤드2 
@@ -14,4 +20,5 @@ date: '2022-06-03'
 **강조**  
 *기울어짐*  
 _밑줄_  
-<span style={{color:"red"}}>dkslsepdy</span>
+<span style={{color:"red"}}>dkslsepdy</span>  
+<span className="text-blue-600">아무것도 아닌데예</span>
