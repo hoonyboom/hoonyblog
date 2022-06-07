@@ -60,7 +60,8 @@ export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.mdx`);
   const source = fs.readFileSync(fullPath, 'utf8');
 
-  const { code, frontmatter } = await bundleMDX({source: source, 
+  const { code, frontmatter } = await bundleMDX({
+    source,
     mdxOptions(options) {
       options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm],
       options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]
