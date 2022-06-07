@@ -37,7 +37,7 @@ export default function Home({ allPostsData }: PostsProps) {
         <ul>
           {allPostsData.map(({ id, date, title }) => (
             <li className="mb-8 text-lg font-custom first:mt-5" key={id}>
-              <RoughNotation type="circle" color="#0d47a1" padding={10} strokeWidth={2} show={true}>
+              <RoughNotation type="box" color="#62caf6" animationDuration={2000}  padding={10} strokeWidth={2} show={true}>
                 <Link href={`/posts/${id}`}>
                   <a>{title}</a>
                 </Link>
