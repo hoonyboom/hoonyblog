@@ -1,22 +1,20 @@
-import { Layout, Date } from '@/components';
-import { useMemo } from 'react';
-import { getMDXComponent } from 'mdx-bundler/client'
-import { getAllPostIds, getPostData } from '@/lib/posts';
-
-
+import { Layout, Date } from "@/components";
+import { useMemo } from "react";
+import { getMDXComponent } from "mdx-bundler/client";
+import { getAllPostIds, getPostData } from "@/lib/posts";
 
 interface IdProps {
   params: {
-    id: string
-  }
-};
+    id: string;
+  };
+}
 
 interface mdxProps {
-  code: string,
+  code: string;
   frontmatter: {
-    [keys: string]: string
-  }
-};
+    [keys: string]: string;
+  };
+}
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -24,7 +22,7 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-};
+}
 
 export async function getStaticProps({ params }: IdProps) {
   const postData = await getPostData(params.id);
@@ -33,22 +31,21 @@ export async function getStaticProps({ params }: IdProps) {
       ...postData,
     },
   };
-};
-
+}
 
 export default function BlogPost({ code, frontmatter }: mdxProps) {
-  const Component = useMemo(
-    () => getMDXComponent(code), [code]
-  )
-  
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+
   return (
     <Layout>
       <h1 className="text-xxxl text-center">{frontmatter.title}</h1>
       <p>{frontmatter.description}</p>
-      <span className="text-base flex justify-center"><Date dateString={frontmatter.date} /></span>
+      <span className="text-base flex justify-center">
+        <Date dateString={frontmatter.date} />
+      </span>
       <article className="text-base font-custom m-10">
         <Component />
       </article>
     </Layout>
-  )
-};
+  );
+}

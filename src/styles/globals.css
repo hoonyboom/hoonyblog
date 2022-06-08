@@ -1,8 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
 @layer base {
   html, body {
     @apply p-0 m-0 font-sans;
@@ -27,6 +23,11 @@
   },
   h1{ @apply text-xxxl }, h2{ @apply text-xxl }, h3 { @apply text-xl }
 }
+
+@tailwind components;
+@tailwind utilities;
+
+
 
 
 @font-face {

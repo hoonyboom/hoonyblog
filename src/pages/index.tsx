@@ -43,7 +43,7 @@ export default function Home({ allPostsData }: PostsProps) {
                 </Link>
               </RoughNotation>
               <br />
-              <small className='card'>
+              <small>
                 <Date dateString={date} />
               </small>
             </li>          ))}
