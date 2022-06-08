@@ -5,7 +5,7 @@ import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { remarkCodeHike } from "@code-hike/mdx";
-const theme = require("shiki/themes/poimandres.json");
+import theme from "shiki/themes/poimandres.json";
 
 interface meta {
   [key: string]: string;
