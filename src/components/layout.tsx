@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "@/styles/layout.module.css";
-import utilStyles from "@/styles/utils.module.css";
 import { Navbar } from "@/components";
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,7 +12,7 @@ export const siteTitle = "후니로그";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className={styles.container}>
+    <div className="container max-w-xl mx-auto">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -50,7 +48,7 @@ export default function Layout({ children, home }: LayoutProps) {
       <main className="mt-24">{children}</main>
 
       {!home && (
-        <div className="m-1">
+        <div className="mt-12 mb-20">
           <Link href="/">
             <a>← Back to home</a>
           </Link>
