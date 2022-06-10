@@ -10,6 +10,8 @@ interface PostsProps {
       id: string;
       date: string;
       title: string;
+      description?: string;
+      tag?: string;
     },
   ];
 }
