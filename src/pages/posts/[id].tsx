@@ -42,7 +42,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
       <span className="text-base flex justify-center">
         <Date dateString={frontmatter.date} />
       </span>
-      <article className="text-base m-10 leading-7">
+      <article className="text-base m-10 md:m-7 leading-7">
         <Component />
       </article>
     </Layout>

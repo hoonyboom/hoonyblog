@@ -32,8 +32,8 @@ export default function Home({ allPostsData }: PostsProps) {
         <title>{siteTitle}</title>
       </Head>
 
-      <section>
-        <h2 className="text-xxl ">Blog</h2>
+      <section className="mx-10 md:mx-0">
+        <h2 className="text-xxl">Blog</h2>
         <ul>
           {allPostsData.map(({ id, date, title }) => (
             <li className="mb-8 text-lg font-custom first:mt-5" key={id}>

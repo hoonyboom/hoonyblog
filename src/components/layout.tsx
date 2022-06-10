@@ -12,7 +12,7 @@ export const siteTitle = "후니로그";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="container max-w-xl mx-auto">
+    <div className="container mx-auto max-w-xl">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -48,7 +48,7 @@ export default function Layout({ children, home }: LayoutProps) {
       <div className="mt-24">{children}</div>
 
       {!home && (
-        <div className="mt-12 mb-20">
+        <div className="mt-12 mb-20 ml-5 md:ml-1">
           <Link href="/">
             <a>← Back to home</a>
           </Link>
