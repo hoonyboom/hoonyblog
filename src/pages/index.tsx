@@ -1,19 +1,17 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { Layout, Date } from '@/components';
-import { siteTitle } from '@/components/layout';
-import { getSortedPostsData } from '@/lib/posts';
-import utilStyles from '@/styles/utils.module.css';
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import Head from "next/head";
+import Link from "next/link";
+import { Layout, Date } from "@/components";
+import { siteTitle } from "@/components/layout";
+import { getSortedPostsData } from "@/lib/posts";
 
 interface PostsProps {
   allPostsData: [
     {
-      id: string,
-      date: string,
-      title: string, 
-    }
-  ]
+      id: string;
+      date: string;
+      title: string;
+    },
+  ];
 }
 
 export async function getStaticProps() {
@@ -21,8 +19,8 @@ export async function getStaticProps() {
   return {
     props: {
       allPostsData,
-    }
-  }
+    },
+  };
 }
 
 export default function Home({ allPostsData }: PostsProps) {
@@ -31,22 +29,21 @@ export default function Home({ allPostsData }: PostsProps) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      
+
       <section>
         <h2 className="text-xxl">Blog</h2>
         <ul>
           {allPostsData.map(({ id, date, title }) => (
             <li className="mb-8 text-lg font-custom first:mt-5" key={id}>
-              <RoughNotation type="box" color="#62caf6" animationDuration={2000}  padding={10} strokeWidth={2} show={true}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-              </RoughNotation>
+              <Link href={`/posts/${id}`}>
+                <a>{title}</a>
+              </Link>
               <br />
               <small>
                 <Date dateString={date} />
               </small>
-            </li>          ))}
+            </li>
+          ))}
         </ul>
       </section>
     </Layout>

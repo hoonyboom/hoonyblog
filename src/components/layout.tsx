@@ -1,16 +1,16 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
-import styles from '@/styles/layout.module.css';
-import utilStyles from '@/styles/utils.module.css';
-import { Navbar } from '@/components'
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "@/styles/layout.module.css";
+import utilStyles from "@/styles/utils.module.css";
+import { Navbar } from "@/components";
 interface LayoutProps {
-  children: React.ReactNode,
-  home?: boolean,
+  children: React.ReactNode;
+  home?: boolean;
 }
 
-const name = '후니훈';
-export const siteTitle = '후니로그';
+export const name = "후니훈";
+export const siteTitle = "후니로그";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
@@ -30,56 +30,32 @@ export default function Layout({ children, home }: LayoutProps) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <header className="flex flex-col items-center">
         <Navbar />
-        {
-          home
-          ? (
-            <>
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={100}
-                width={100}
-                alt={name}
-              />
-              <h1 className={utilStyles.heading2Xl}>{name}</h1>
-            </>
-          )
-          : (
-            <>
-              <Link href="/">
-                <a>
-                  <Image
-                    priority
-                    src="/images/profile.jpg"
-                    className={utilStyles.borderCircle}
-                    height={100}
-                    width={100}
-                    alt={name}
-                  />
-                </a>
-              </Link>
-              <h2 className={utilStyles.headingLg}>
-                <Link href="/">
-                  <a className={utilStyles.colorInherit}>{name}</a>
-                </Link>
-              </h2>
-            </>
-          )}
+        {home ? (
+          <>
+            <Image
+              priority
+              src="/images/profile.jpg"
+              className="rounded-full"
+              height={100}
+              width={100}
+              alt={name}
+            />
+            <h1 className="font-custom text-lg">{name}</h1>
+          </>
+        ) : null}
       </header>
-      <main>{children}</main>
 
-      {
-        !home && (
-          <div className={styles.backToHome}>
-            <Link href="/">
-              <a>← Back to home</a>
-            </Link>
-          </div>
-        )
-      }
+      <main className="mt-24">{children}</main>
+
+      {!home && (
+        <div className="m-1">
+          <Link href="/">
+            <a>← Back to home</a>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
