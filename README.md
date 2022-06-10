@@ -21,10 +21,14 @@ $ yarn dev
 ## 기술 스택
 
 ```json
-  "recoil": "^0.7.3-alpha.2",
-  "axios": "^0.27.2",
-  "swr": "^1.3.0"
-  "tailwindcss": "^3.0.24",
-  "react-rough-notation": "^1.0.2",
-  
+    "@code-hike/mdx": "^0.5.3-next.0",
+    "date-fns": "^2.28.0",
+    "gray-matter": "^4.0.3",
+    "mdx-bundler": "^9.0.1",
+    "next": "12.1.6",
+    "react-rough-notation": "^1.0.2",
+    "rehype-prism": "^2.1.2",
+    "remark-gfm": "^3.0.1",
+    "shiki": "^0.10.1",
+    "swr": "^1.3.0"
 ```
