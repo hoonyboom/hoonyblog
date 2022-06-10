@@ -69,10 +69,10 @@ export async function getPostData(id: string) {
         remarkGfm,
         [remarkCodeHike, { theme }],
       ]),
-        (options.rehypePlugins = [
-          ...(options?.rehypePlugins ?? []),
-          rehypePrism,
-        ]);
+      (options.rehypePlugins = [
+        ...(options?.rehypePlugins ?? []),
+        rehypePrism,
+      ]);
       return options;
     },
   });
