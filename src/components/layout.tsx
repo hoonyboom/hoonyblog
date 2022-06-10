@@ -12,7 +12,7 @@ export const siteTitle = "후니로그";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="container max-w-xl mx-auto">
+    <div className="container max-w-xl mx-auto scroll-p-0">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta

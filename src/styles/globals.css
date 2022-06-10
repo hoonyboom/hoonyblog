@@ -1,5 +1,8 @@
 @tailwind base;
 @layer base {
+  *::-webkit-scrollbar {
+    display: none;
+  }
   html, body {
     @apply font-custom;
   }
