@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { name, siteTitle } from "@/components/layout";
+import { name } from "@/components/layout";
 
 export default function Navbar() {
   return (

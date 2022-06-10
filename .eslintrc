@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2020": true,
+    "es2021": true,
     "node": true
   },
   "extends": [
@@ -11,7 +11,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "2020",
+    "ecmaVersion": "2021",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -33,7 +33,7 @@
     "quotes": [
       "error",
       "double"
-    ], // 쌍따옴표가 아닌 홑따옴표를 사용
+    ], // 홀따옴표가 아닌 쌍따옴표를 사용
     "semi": [
       "error",
       "always"
@@ -59,8 +59,8 @@
     ], // 일반 괄호 앞 뒤 공백 추가
     "computed-property-spacing": [
       "error",
-      "never"
-    ], // 대괄호 앞 뒤 공백 추가하지 않음
+      "always"
+    ], // 대괄호 앞 뒤 공백 추가
     "comma-spacing": [
       "error",
       {
