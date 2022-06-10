@@ -1,27 +1,8 @@
 @tailwind base;
 @layer base {
   html, body {
-    @apply p-0 m-0 font-sans;
-  },
-  * {
-    @apply box-border
-  },
-  a {
-    @apply decoration-0
-  },
-  a:hover {
-    @apply decoration-wavy decoration-green-300
-  },
-  img {
-    @apply max-w-full block
-  },
-  p, blockquote {
-    @apply font-custom text-base break-words leading-7 tracking-tight m-4 antialiased
-  },
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-custom m-4 leading-10 subpixel-antialiased
-  },
-  h1{ @apply text-xxxl }, h2{ @apply text-xxl }, h3 { @apply text-xl }
+    @apply font-custom;
+  }
 }
 
 @tailwind components;

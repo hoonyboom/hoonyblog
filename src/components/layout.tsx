@@ -45,7 +45,7 @@ export default function Layout({ children, home }: LayoutProps) {
         ) : null}
       </header>
 
-      <main className="mt-24">{children}</main>
+      <div className="mt-24">{children}</div>
 
       {!home && (
         <div className="mt-12 mb-20">

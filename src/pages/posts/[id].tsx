@@ -37,12 +37,12 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
 
   return (
     <Layout>
-      <h1 className="text-xxxl text-center font-custom">{frontmatter.title}</h1>
+      <h1 className="text-xxxl text-center">{frontmatter.title}</h1>
       <p>{frontmatter.description}</p>
       <span className="text-base flex justify-center">
         <Date dateString={frontmatter.date} />
       </span>
-      <article className="text-base font-custom m-10 leading-7">
+      <article className="text-base m-10 leading-7">
         <Component />
       </article>
     </Layout>
