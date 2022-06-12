@@ -72,9 +72,11 @@ export default function Home({ allPostsData }: PostsProps) {
           </RoughNotation>
 
           <div className="mt-8">
-            {allPostsData.map(({ id, date, title, img }) => (
-              <div className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur">
-                <div className="flex flex-col text-lg" key={id}>
+            {allPostsData.map(({ id, date, title }) => (
+              <div
+                className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
+                key={id}>
+                <div className="flex flex-col text-lg">
                   <Link href={`/posts/${id}`}>
                     <a>{title}</a>
                   </Link>
