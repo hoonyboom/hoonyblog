@@ -19,11 +19,7 @@ import Link, { LinkProps } from "next/link";
 const BlogImg = (props: ImageProps) => {
   return (
     <>
-      <Image
-        {...props}
-        layout="responsive"
-        className="rounded-xl"
-      />
+      <Image {...props} layout="responsive" className="rounded-xl" />
     </>
   );
 };
