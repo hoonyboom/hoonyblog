@@ -1,12 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
 import Twemoji from "react-twemoji";
 import { useEffect } from "react";
+import { ObjectImageProps } from "type";
 
 interface PostsProps {
   allPostsData: [
@@ -16,6 +17,7 @@ interface PostsProps {
       title: string;
       description?: string;
       tag?: string;
+      img: string;
     },
   ];
 }
@@ -30,16 +32,10 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }: PostsProps) {
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title className="dark:text-orange-500">{siteTitle}</title>
       </Head>
       <Twemoji
         options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}>
@@ -61,12 +57,7 @@ export default function Home({ allPostsData }: PostsProps) {
         </section>
 
         <section className="mx-10 mb-28 flex items-center">
-          <p className="leading-7">
-            {/* 안녕하세요. 부족한 실력을 채우기 위해 만든 사이트입니다. <br />
-            더 나은 코드, 더 나은 디자인을 위해 틈틈이 기록합니다. <br />
-            요즘에는 Next.js에 빠져 있어요 👅 */}
-            아구몬의 처절한 코딩 생존기 🍖
-          </p>
+          <p className="leading-7">아구몬의 처절한 코딩 생존기 🍖</p>
         </section>
 
         <section className="mx-10 md:mx-0">
@@ -77,12 +68,13 @@ export default function Home({ allPostsData }: PostsProps) {
             brackets={["left", "right"]}
             color="tomato"
             animationDuration={1200}>
-            <span className="pl-2 text-xxl">Blog&nbsp;</span>
+            <span className="pl-2 text-2xl">Blog&nbsp;</span>
           </RoughNotation>
 
           <ul className="mt-10">
-            {allPostsData.map(({ id, date, title }) => (
+            {allPostsData.map(({ id, date, title, img }) => (
               <li className="mb-8 font-custom text-lg first:mt-5" key={id}>
+                <Image src={img} width={200} height={100} layout="responsive" />
                 <Link href={`/posts/${id}`}>
                   <a>{title}</a>
                 </Link>

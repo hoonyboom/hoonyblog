@@ -2,6 +2,8 @@ import { Layout, Date } from "@/components";
 import { useMemo } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
+import Twemoji from "react-twemoji";
+import MDXComponent from "@/components/MDXComponent";
 
 interface IdProps {
   params: {
@@ -37,14 +39,21 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
 
   return (
     <Layout>
-      <h1 className="text-center text-xxxl">{frontmatter.title}</h1>
-      <p>{frontmatter.description}</p>
-      <span className="flex justify-center text-base">
-        <Date dateString={frontmatter.date} />
-      </span>
-      <article className="m-10 text-base leading-7 md:m-7">
-        <Component />
-      </article>
+      <Twemoji
+        options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}>
+        <h1 className="mb-2 text-center text-3xl">{frontmatter.title}</h1>
+        <div className="flex flex-col text-base leading-6">
+          <p>{frontmatter.description}</p>
+          <p className="flex justify-center">
+            <Date dateString={frontmatter.date} />
+          </p>
+          <p className="flex justify-center">{frontmatter.tag}</p>
+        </div>
+
+        <article className="m-10 text-base leading-7 md:m-7">
+          <Component components={{ ...MDXComponent }} />
+        </article>
+      </Twemoji>
     </Layout>
   );
 }

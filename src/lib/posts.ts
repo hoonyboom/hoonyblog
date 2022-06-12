@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { remarkCodeHike } from "@code-hike/mdx";
 import theme from "shiki/themes/poimandres.json";
+import { remarkMdxImages } from "remark-mdx-images";
 
 interface meta {
   [key: string]: string;
@@ -67,12 +68,10 @@ export async function getPostData(id: string) {
       (options.remarkPlugins = [
         ...(options?.remarkPlugins ?? []),
         remarkGfm,
+        remarkMdxImages,
         [remarkCodeHike, { theme }],
       ]),
-      (options.rehypePlugins = [
-        ...(options?.rehypePlugins ?? []),
-        rehypePrism,
-      ]);
+        (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
       return options;
     },
   });

@@ -1,0 +1,59 @@
+---
+title: '새로운 글'
+date: '2022-06-12'
+img: "/images/profile.jpg"
+
+---
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+
+## 🌙 **다크모드**
+- 테일윈드 공홈에서 소개하는 방식
+
+<CH.Code>
+```js navbar.tsx
+const Toggle = () => {
+  if (!localStorage.theme) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    localStorage.removeItem("theme");
+  }
+};
+```
+```js index.tsx
+export default function Home({ allPostsData }: PostsProps) {
+  useEffect(() => {
+    if (localStorage.theme === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+```
+```css global.css
+:root {
+  --light-background: #fff;
+  --dark-background: rgba(0, 0, 0, 0.92);
+}
+html {
+  --background: var(--light-background);
+}
+html.dark {
+  --background: var(--dark-background);
+}
+```
+```js tailwind.config.js
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        custom: {
+          background: "var(--background)",
+        },
+      },
+    },
+  }
+  ...
+```
+</CH.Code>
+
+- Next.js Theme를 이용한 방식

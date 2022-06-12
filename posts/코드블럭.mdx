@@ -1,68 +1,12 @@
 ---
 title: '코드블럭'
 date: '2022-06-08'
+img: "/images/profile.jpg"
+
 ---
-
-# Just testing out [Code Hike](https://codehike.org/)
-
-Some normal `markdown`
-
-## Annotation Example
-```js index.js box=1[25:39]
-console.log("Some code. I am annotated!")
-```
-
-## Focus Example
-```js next.config.js focus=1:2,7
-const { remarkCodeHike } = require("@code-hike/mdx");
-const theme = require("shiki/themes/monokai.json");
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [[remarkCodeHike, { theme }]],
-    rehypePlugins: [],
-  },
-});
-
-module.exports = withMDX({
-  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdasdsdax"],
-});
-```
-
-<CH.Section>
-
-## Code Links Example
-
-We are looking at the [console.log](focus://console.js#1) function today
-
-<CH.Code>
-```js console.js
-console.table(["Hello", "World"])
-console.log("Hello World")
-```
-</CH.Code>
-
-</CH.Section>
-
-
-# Filenames
-
-Adding a filename to the codeblock
-
-```js app.js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit ? consectetur(ipsum) : [];
-}
-```
 
 ## Tabs
-
-To add more tabs, wrap multiple codeblocks with `<CH.Code/>`:
-
 <CH.Code>
-
 ```js app.js
 function lorem(ipsum, dolor = 1) {
   const sit = ipsum == null ? 0 : ipsum.sit;
@@ -78,47 +22,16 @@ function lorem(ipsum, dolor = 1) {
   background: #000;
 }
 ```
-
 </CH.Code>
-
-## Panels
-
-The _editor_ can be splitted vertically in two panels using `---`
-
-<CH.Code>
-
-```js app.js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit ? consectetur(ipsum) : [];
-}
-```
-
----
-
-```css styles.css
-.lorem {
-  color: #fff;
-  padding: 10px;
-  background: #000;
-}
-```
-
-</CH.Code>
-
 
 # Scrollycoding
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
-
-Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
-
+스크롤링
 <CH.Scrollycoding>
 
-## Step 1
+### Step 1
 
-Lorem ipsum dolor sit ame
+어쩌구저쩌구
 
 ```js app.js focus=3:10
 const { lorem, ipsum } = dolor({
@@ -151,8 +64,8 @@ const { lorem, ipsum } = dolor({
 
 ---
 
-## Step 2
-Lorem ipsum dolor sit ame
+### Step 2
+저쩌구어쩌구
 
 ```js app.js focus=11:17
 
@@ -160,9 +73,8 @@ Lorem ipsum dolor sit ame
 
 ---
 
-## Step 3
-Lorem ipsum dolor sit ame
-
+### Step 3
+저쩌구
 ```js app.js focus=11:14
 const { lorem, ipsum } = dolor({
   sit: {
@@ -191,9 +103,8 @@ const { lorem, ipsum } = dolor({
 
 ---
 
-## Step 4
-Lorem ipsum dolor sit ame
-
+### Step 4
+어쩌구
 
 Gravida in fermentum et sollicitudin ac orci phasellus egestas tellus. Volutpat consequat mauris nunc congue nisi vitae.
 

@@ -9,22 +9,17 @@
   #__next {
     @apply h-full w-full;
   }
+  
+
+  /* a {
+    @apply hover:decoration-green-200/90 underline-offset-2 hover:decoration-2 hover:underline hover:decoration-solid;
+  } */
 }
 
 @tailwind components;
 @tailwind utilities;
 
 
-:root {
-  --light-background: #fff;
-  --dark-background: #000;
-}
-html {
-  --background: var(--light-background);
-}
-html.dark {
-  --background: var(--dark-background);
-}
 
 @font-face {
   font-family: 'IBM';

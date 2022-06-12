@@ -48,13 +48,11 @@ export default function Layout({ children, home }: LayoutProps) {
           ) : null} */}
         </header>
 
-        <div className="mt-24">{children}</div>
+        <div className="min-h-content pt-24">{children}</div>
         {!home && (
           <div className="mt-12 ml-5 h-20 md:ml-1">
             <Link href="/">
-              <a className="decoration-green-300 decoration-4 hover:underline hover:decoration-solid">
-                ← Back to home
-              </a>
+              <a>← Back to home</a>
             </Link>
           </div>
         )}
