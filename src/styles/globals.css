@@ -4,7 +4,10 @@
     display: none;
   }
   html, body {
-    @apply font-custom;
+    @apply font-custom h-full;
+  }
+  #__next {
+    @apply h-full w-full;
   }
 }
 
@@ -12,17 +15,20 @@
 @tailwind utilities;
 
 
-
+:root {
+  --light-background: #fff;
+  --dark-background: #000;
+}
+html {
+  --background: var(--light-background);
+}
+html.dark {
+  --background: var(--dark-background);
+}
 
 @font-face {
   font-family: 'IBM';
   src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'Arita';
-  src: url('/fonts/Arita.woff2') format('woff2');
   font-weight: normal;
 }
 

@@ -4,8 +4,15 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./posts/**/*.{md,mdx}",
   ],
+  darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        custom: {
+          background: "var(--background)",
+        },
+      },
+    },
     screens: {
       sm: "480px",
       md: "768px",
