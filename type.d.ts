@@ -1,3 +1,5 @@
+import { toShikiTheme } from "shiki";
+
 type StringImageProps = {
   src: string;
 } & (
@@ -37,3 +39,7 @@ export type ImageProps = Omit<
   objectFit?: ImgElementStyle["objectFit"];
   objectPosition?: ImgElementStyle["objectPosition"];
 } & (StringImageProps | ObjectImageProps);
+
+declare module toShikiTheme {
+  
+}
