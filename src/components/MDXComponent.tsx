@@ -26,8 +26,8 @@ const BlogImg = (props: ImageProps) => {
 
 const MDXComponent = {
   Image,
-  // a: CustomLink,
   BlogImg,
+  // a: CustomLink,
 };
 
 export default MDXComponent;

@@ -5,7 +5,7 @@ import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { remarkCodeHike } from "@code-hike/mdx";
-import theme from "shiki/themes/poimandres.json";
+import theme from "shiki/themes/batman.json";
 import { remarkMdxImages } from "remark-mdx-images";
 
 interface meta {
@@ -71,7 +71,7 @@ export async function getPostData(id: string) {
         remarkMdxImages,
         [remarkCodeHike, { theme }],
       ]),
-      (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
+        (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
       return options;
     },
   });

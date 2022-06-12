@@ -71,20 +71,23 @@ export default function Home({ allPostsData }: PostsProps) {
             <span className="pl-2 text-2xl">Blog&nbsp;</span>
           </RoughNotation>
 
-          <ul className="mt-10">
+          <div className="mt-8">
             {allPostsData.map(({ id, date, title, img }) => (
-              <li className="mb-8 font-custom text-lg first:mt-5" key={id}>
-                <Image src={img} width={200} height={100} layout="responsive" />
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-                <br />
-                <small>
-                  <Date dateString={date} />
-                </small>
-              </li>
+              <div className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur">
+                <div className="flex flex-col text-lg" key={id}>
+                  <Link href={`/posts/${id}`}>
+                    <a>{title}</a>
+                  </Link>
+                  <small className="mt-2">
+                    <Date dateString={date} />
+                  </small>
+                </div>
+                {/* <div className="h-20 w-44 basis-1/3 rounded-lg">
+                  <Image priority src={img} width={20} height={10} layout="responsive" />
+                </div> */}
+              </div>
             ))}
-          </ul>
+          </div>
         </section>
       </Twemoji>
     </Layout>
