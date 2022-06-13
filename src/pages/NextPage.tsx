@@ -1,4 +1,4 @@
-export {};
+export default {};
 // import { PostsProps } from "@/pages";
 
 // export default function NextPage({ allPostsData }: PostsProps) {

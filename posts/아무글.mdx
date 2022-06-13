@@ -4,6 +4,7 @@ date: '2022-06-13'
 ---
 import { useState, useEffect } from "react";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import Image from "next/image";
 
 export default function abc (){
   const [ mounted, setMounted ] = useState(false)
@@ -24,10 +25,9 @@ export default function abc (){
   </RoughNotation>
 </div>
 </RoughNotationGroup>
+<Image priority src="/images/profile.jpg" className="rounded-full" height={80} width={80} />
     </>
   )
   }
   return null;
 }
-
-출력! <abc />
