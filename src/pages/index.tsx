@@ -1,14 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
 import Twemoji from "react-twemoji";
-import { useEffect } from "react";
-import { ObjectImageProps } from "type";
-import NextPage from "@/pages/NextPage";
 
 export interface PostsProps {
   allPostsData: [
@@ -90,9 +87,9 @@ export default function Home({ allPostsData }: PostsProps) {
                 </div> */}
               </div>
             ))}
-            <div>
+            {/* <div>
               <NextPage allPostsData={allPostsData} />
-            </div>
+            </div> */}
           </div>
         </section>
       </Twemoji>
