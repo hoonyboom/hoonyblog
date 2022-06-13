@@ -8,8 +8,9 @@ import { RoughNotation } from "react-rough-notation";
 import Twemoji from "react-twemoji";
 import { useEffect } from "react";
 import { ObjectImageProps } from "type";
+import NextPage from "@/pages/NextPage";
 
-interface PostsProps {
+export interface PostsProps {
   allPostsData: [
     {
       id: string;
@@ -71,7 +72,7 @@ export default function Home({ allPostsData }: PostsProps) {
             <span className="pl-2 text-2xl">Blog&nbsp;</span>
           </RoughNotation>
 
-          <div className="mt-8">
+          <div className="mt-8 pb-10 lg:pb-12">
             {allPostsData.map(({ id, date, title }) => (
               <div
                 className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
@@ -89,6 +90,9 @@ export default function Home({ allPostsData }: PostsProps) {
                 </div> */}
               </div>
             ))}
+            <div>
+              <NextPage allPostsData={allPostsData} />
+            </div>
           </div>
         </section>
       </Twemoji>

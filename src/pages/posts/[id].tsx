@@ -1,5 +1,5 @@
 import { Layout, Date } from "@/components";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import Twemoji from "react-twemoji";
@@ -36,7 +36,6 @@ export async function getStaticProps({ params }: IdProps) {
 
 export default function BlogPost({ code, frontmatter }: mdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
-
   return (
     <Layout>
       <Twemoji
