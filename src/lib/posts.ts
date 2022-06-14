@@ -78,18 +78,6 @@ export async function getPostData(id: string) {
 
       return options;
     },
-    esbuildOptions: (options) => {
-      options.outdir = "/Users/hoonyboom/Desktop/Gohoon/public/bundleIMG";
-      options.loader = {
-        ...options.loader,
-        ".png": "dataurl",
-        ".jpg": "dataurl",
-      };
-      options.publicPath = "/bundleIMG";
-      options.write = true;
-
-      return options;
-    },
   });
 
   return {
