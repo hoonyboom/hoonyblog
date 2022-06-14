@@ -5,7 +5,7 @@ import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { remarkCodeHike } from "@code-hike/mdx";
-import theme from "shiki/themes/poimandres.json";
+import theme from "shiki/themes/batman.json";
 import { remarkMdxImages } from "remark-mdx-images";
 
 interface meta {
@@ -36,20 +36,17 @@ export function getSortedPostsData() {
     };
   });
   // 날짜 최신순으로 정렬
-  return (
-    allPostsData
-      .sort(({ date: a }: meta, { date: b }: meta) => {
-        if (a < b) {
-          return 1;
-        } else if (a > b) {
-          return -1;
-        } else {
-          return 0;
-        }
-      })
-      // 페이지네이션(한 페이지당 노출할 글 설정)
-      // .slice(0, 3)
-  );
+  return allPostsData.sort(({ date: a }: meta, { date: b }: meta) => {
+    if (a < b) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  // 페이지네이션(한 페이지당 노출할 글 설정)
+  // .slice(0, 3)
 }
 
 export function getAllPostIds() {
@@ -76,7 +73,7 @@ export async function getPostData(id: string) {
         remarkMdxImages,
         [remarkCodeHike, { theme }],
       ]),
-      (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
+        (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
       return options;
     },
   });
