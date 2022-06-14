@@ -67,13 +67,13 @@ export async function getPostData(id: string) {
   const { code, frontmatter } = await bundleMDX({
     source,
     mdxOptions(options) {
-      (options.remarkPlugins = [
+      options.remarkPlugins = [
         ...(options?.remarkPlugins ?? []),
         remarkGfm,
         remarkMdxImages,
         [remarkCodeHike, { theme }],
-      ]),
-      (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
+      ];
+      options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
 
       return options;
     },
