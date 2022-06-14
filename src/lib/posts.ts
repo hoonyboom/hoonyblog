@@ -2,11 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
+import { remarkCodeHike } from "@code-hike/mdx";
+import { remarkMdxImages } from "remark-mdx-images";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
-import { remarkCodeHike } from "@code-hike/mdx";
-import theme from "shiki/themes/css-variables.json";
-import { remarkMdxImages } from "remark-mdx-images";
+import theme from "shiki/themes/dracula-soft.json";
 
 interface meta {
   [key: string]: string;
@@ -66,6 +66,7 @@ export async function getPostData(id: string) {
 
   const { code, frontmatter } = await bundleMDX({
     source,
+    cwd: "/Users/hoonyboom/Desktop/Gohoon/posts",
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options?.remarkPlugins ?? []),
@@ -74,6 +75,18 @@ export async function getPostData(id: string) {
         [remarkCodeHike, { theme }],
       ];
       options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
+
+      return options;
+    },
+    esbuildOptions: (options) => {
+      options.outdir = "/Users/hoonyboom/Desktop/Gohoon/public/bundleIMG";
+      options.loader = {
+        ...options.loader,
+        ".png": "dataurl",
+        ".jpg": "dataurl",
+      };
+      options.publicPath = "/bundleIMG";
+      options.write = true;
 
       return options;
     },

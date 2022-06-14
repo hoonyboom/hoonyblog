@@ -39,7 +39,8 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
   return (
     <Layout>
       <Twemoji
-        options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}>
+        options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}
+      >
         <h1 className="mb-2 text-center text-3xl">{frontmatter.title}</h1>
         <div className="flex flex-col text-base leading-6">
           <p>{frontmatter.description}</p>

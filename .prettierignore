@@ -1,4 +1,4 @@
 # Ignore all CSS files:
 *.css
-*.mdx
 *.eslintrc
+*.mdx

@@ -1,33 +1,31 @@
 ---
-title: '바보야'
-date: '2022-06-13'
+title: "바보야"
+date: "2022-06-13"
 ---
+
 import { useState, useEffect } from "react";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
-import Image from "next/image";
 
-export default function abc (){
-  const [ mounted, setMounted ] = useState(false)
+export default function abc () {
+  const [ mounted, setMounted ] = useState(false);
   useEffect(()=> {
     setMounted(true);
-  }, [])
-
+  }, []);
   if(mounted){
-  return (
-    <>
-      <div className="bg-gradient-to-r from-indigo-800">ddd</div>
-      <RoughNotationGroup show>
-오늘은 <RoughNotation type="highlight" color="palevioletred" order="3">금요일</RoughNotation>
-내일은 <RoughNotation type="box" color="#a3fbf6" order="2">토요일</RoughNotation>입니다.<br/>    
-마크다운 문법이 왜 적용 안되는지<RoughNotation type="underline" color="darkorange" order="1">모르겠네요</RoughNotation>
-<div className="m-6">
-  <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
-    <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
-  </RoughNotation>
-</div>
-</RoughNotationGroup>
-    </>
-  )
+    return (
+      <>
+        <RoughNotationGroup show>
+          오늘은 <RoughNotation type="highlight" color="palevioletred" order="3">금요일</RoughNotation>
+          내일은 <RoughNotation type="box" color="#a3fbf6" order="2">토요일</RoughNotation>입니다.<br/>  
+          마크다운 문법이 왜 적용 안되는지<RoughNotation type="underline" color="darkorange" order="1">모르겠네요</RoughNotation>
+          <div className="m-6">
+            <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
+              <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
+            </RoughNotation>
+          </div>
+        </RoughNotationGroup>
+      </>
+    )
   }
   return null;
 }
