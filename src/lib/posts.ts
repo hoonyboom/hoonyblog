@@ -66,7 +66,6 @@ export async function getPostData(id: string) {
 
   const { code, frontmatter } = await bundleMDX({
     source,
-    cwd: "/Users/hoonyboom/Desktop/Gohoon/posts",
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options?.remarkPlugins ?? []),
