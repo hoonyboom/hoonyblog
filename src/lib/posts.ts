@@ -73,7 +73,7 @@ export async function getPostData(id: string) {
         remarkMdxImages,
         [remarkCodeHike, { theme }],
       ]),
-        (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
+      (options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]);
 
       return options;
     },
