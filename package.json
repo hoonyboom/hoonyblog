@@ -56,7 +56,7 @@
   },
   "lint-staged": {
     "src/**/*.{json,md,mdx,ts,tsx}": [
-      "yarn lint-eslint"
+
     ]
   }
 }
