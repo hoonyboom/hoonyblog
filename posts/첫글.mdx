@@ -3,6 +3,8 @@ title: '첫글'
 date: '2022-06-03'
 tag:
 ---
+import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+
 <div className="flex flex-row justify-center space-x-1 mb-16">
   <span>![next](https://img.shields.io/badge/-Next.js-black?logo=next.js&logoColor=white)</span>
   <span>![ts](https://img.shields.io/badge/-typescript-blue?logo=typescript&logoColor=white)</span>
@@ -10,3 +12,14 @@ tag:
   <span>![mdx](https://img.shields.io/badge/-mdx-darkslateblue?logo=mdx&logoColor=white)</span>
 </div>
 ![프로핖](/images/profile.jpg)
+<br/>
+ <RoughNotationGroup show>
+          오늘은 <RoughNotation type="highlight" color="palevioletred" order="3">금요일</RoughNotation>
+          내일은 <RoughNotation type="box" color="#a3fbf6" order="2">토요일</RoughNotation>입니다.<br/>  
+          마크다운 문법이 왜 적용 안되는지<RoughNotation type="underline" color="darkorange" order="1">모르겠네요</RoughNotation>
+          <div className="m-6">
+            <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
+              <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
+            </RoughNotation>
+          </div>
+        </RoughNotationGroup>
