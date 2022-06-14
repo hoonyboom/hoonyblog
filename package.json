@@ -55,8 +55,6 @@
     "typescript": "4.7.2"
   },
   "lint-staged": {
-    "src/**/*.{json,md,mdx,ts,tsx}": [
-
-    ]
+    "src/**/*.{json,md,mdx,ts,tsx}": []
   }
 }

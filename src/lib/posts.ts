@@ -5,7 +5,7 @@ import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { remarkCodeHike } from "@code-hike/mdx";
-import theme from "shiki/themes/batman.json";
+import theme from "shiki/themes/css-variables.json";
 import { remarkMdxImages } from "remark-mdx-images";
 
 interface meta {
