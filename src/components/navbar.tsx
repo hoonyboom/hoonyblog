@@ -6,7 +6,7 @@ import { name } from "@/components/layout";
 import useSound from "use-sound";
 import { VscGithub, VscGithubAlt, VscGithubInverted } from "react-icons/vsc";
 import { FaGithubSquare } from "react-icons/fa";
-import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -32,19 +32,20 @@ export default function Navbar() {
         </a>
       </Link>
       <button>
-        <MdDarkMode
-          className="h-6 hover:animate-spin"
-          onClick={() => {
-            setTheme(theme === "light" ? "dark" : "light");
-          }}
-        />
+        {theme === "light" ? (
+          <MdDarkMode
+            onClick={() => {
+              setTheme(theme === "light" ? "dark" : "light");
+            }}
+          />
+        ) : (
+          <MdOutlineLightMode
+            onClick={() => {
+              setTheme(theme === "light" ? "dark" : "light");
+            }}
+          />
+        )}
       </button>
-
-      {/* <h2 className="font-custom text-base">
-        <Link href="/">
-          <a>{name}</a>
-        </Link>
-      </h2> */}
     </div>
   );
 }

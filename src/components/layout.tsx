@@ -14,7 +14,7 @@ export const months = "4개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="min-h-full dark:bg-custom-background w-full transition dark:text-neutral-400">
+    <div className="min-h-full dark:bg-custom-background w-full transition dark:text-slate-200/80">
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/favicon.ico" />

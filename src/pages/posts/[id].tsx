@@ -56,7 +56,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
           <p className="flex justify-center">{frontmatter.tag}</p>
         </div>
 
-        <article className="keep-all m-10 text-base leading-7 md:m-7">
+        <article className="keep-all m-10 indent-3 text-base leading-7 lg:leading-8">
           <Component components={{ ...MDXComponent }} />
         </article>
       </Twemoji>

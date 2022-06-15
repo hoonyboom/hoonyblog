@@ -74,11 +74,11 @@ export default function Home({ allPostsData }: PostsProps) {
               <div
                 className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
                 key={id}>
-                <div className="flex flex-col text-lg">
+                <div className="flex flex-col">
                   <Link href={`/posts/${id}`}>
-                    <a>{title}</a>
+                    <a className="text-lg">{title}</a>
                   </Link>
-                  <small className="mt-2">
+                  <small className="mt-2 text-base">
                     <Date dateString={date} />
                   </small>
                 </div>
