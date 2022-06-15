@@ -1,10 +1,11 @@
+import Head from "next/head";
+import Twemoji from "react-twemoji";
+import MDXComponent from "@/components/MDXComponent";
 import { Layout, Date } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
-import Twemoji from "react-twemoji";
-import MDXComponent from "@/components/MDXComponent";
-
+import { siteTitle } from "@/components/layout";
 interface IdProps {
   params: {
     id: string;
@@ -38,9 +39,14 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   return (
     <Layout>
+      <Head>
+        <title>
+          {frontmatter.title} | {siteTitle}
+        </title>
+        <meta name="keyword" content={frontmatter.tags} />
+      </Head>
       <Twemoji
-        options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}
-      >
+        options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}>
         <h1 className="mb-2 text-center text-3xl">{frontmatter.title}</h1>
         <div className="flex flex-col text-base leading-6">
           <p>{frontmatter.description}</p>
@@ -50,7 +56,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
           <p className="flex justify-center">{frontmatter.tag}</p>
         </div>
 
-        <article className="m-10 text-base leading-7 md:m-7">
+        <article className="keep-all m-10 text-base leading-7 md:m-7">
           <Component components={{ ...MDXComponent }} />
         </article>
       </Twemoji>
