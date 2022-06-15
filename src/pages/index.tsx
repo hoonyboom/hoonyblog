@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import Twemoji from "react-twemoji";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
-import Twemoji from "react-twemoji";
 
 export interface PostsProps {
   allPostsData: [
