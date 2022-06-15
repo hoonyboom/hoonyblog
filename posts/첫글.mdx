@@ -1,7 +1,8 @@
 ---
 title: '첫글'
 date: '2022-06-03'
-tag:
+tags: ['mdx블로그', 'next.js']
+categories:
 ---
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 
@@ -13,13 +14,13 @@ import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 </div>
 ![프로핖](/images/profile.jpg)
 <br/>
- <RoughNotationGroup show>
-          오늘은 <RoughNotation type="highlight" color="palevioletred" order="3">금요일</RoughNotation>
-          내일은 <RoughNotation type="box" color="#a3fbf6" order="2">토요일</RoughNotation>입니다.<br/>  
-          마크다운 문법이 왜 적용 안되는지<RoughNotation type="underline" color="darkorange" order="1">모르겠네요</RoughNotation>
-          <div className="m-6">
-            <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
-              <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
-            </RoughNotation>
-          </div>
-        </RoughNotationGroup>
+<RoughNotationGroup show animationDelay={1000}>
+  오늘은 <RoughNotation type="highlight" color="palevioletred" order="3">금요일</RoughNotation>
+  내일은 <RoughNotation type="box" color="#a3fbf6" order="2">토요일</RoughNotation>입니다.<br/>  
+  마크다운 문법이 왜 적용 안되는지 아직도 모르겠지만 어쨌든 하고 있습니다 <RoughNotation type="underline" color="darkorange" order="1">모르겠네요</RoughNotation>
+  <div className="m-6">
+    <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
+      <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
+    </RoughNotation>
+  </div>
+</RoughNotationGroup>

@@ -10,17 +10,15 @@ interface LayoutProps {
 
 export const name = "후니훈";
 export const siteTitle = "후니로그";
+export const months = "4개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="min-h-full w-full transition dark:bg-custom-background dark:text-neutral-400">
+    <div className="min-h-full dark:bg-custom-background w-full transition dark:text-neutral-400">
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <meta
-            name="description"
-            content="Learn how to build a personal website using Next.js"
-          />
+          <meta name="description" content={`${months}차 뉴비의 프론트엔드 생존기`} />
           <meta
             property="og:image"
             content={`https://og-image.vercel.app/${encodeURI(

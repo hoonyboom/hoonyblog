@@ -33,7 +33,7 @@ export default function Home({ allPostsData }: PostsProps) {
   return (
     <Layout home>
       <Head>
-        <title className="dark:text-orange-500">{siteTitle}</title>
+        <title>{siteTitle}</title>
       </Head>
       <Twemoji
         options={{ className: "inline m-px w-5 h-5 align-text-bottom cursor-default" }}>
