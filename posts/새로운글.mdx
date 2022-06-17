@@ -1,64 +1,33 @@
 ---
-title: '새로운 글'
+title: '슬라이딩 탭'
+description: '#styled-component'
 date: '2022-06-12'
-img: "/images/profile.jpg"
-
+tags: ['styled-componenet', 'sliding tab', '슬라이딩 탭 css']
 ---
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 
-## 🌙 **다크모드**
-- 테일윈드 공홈에서 소개하는 방식
-
-<CH.Code>
-```js navbar.tsx
-const Toggle = () => {
-  if (!localStorage.theme) {
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-    localStorage.removeItem("theme");
-  }
-};
+## 테스트
+### 테스트
+> 탭 언더라인 슬라이딩 UI
+- 탭을 누를 때 아래밑줄이 미끄러지며 따라오는 효과를 지칭합니다.
+- 기존에 class 탈부착으로만 구현해봐서 조금 더듬거렸어요.
+- props를 이용하여 간단히 구현 했습니다. 일반적인 레이아웃 잡는 데서보다, 이렇듯 애니메이션을 주는 데서 동적 스타일링의 매력이 느껴지는 듯했어요.
+```js ---.tsx
+const Lines = styled.div<styleProps>`
+  flex-basis: 33.333333%;
+  background-color: blue;
+  transform: translateX(${(props) => props.x}%);
+  transition: transform 0.6s;
+`;
 ```
-```js index.tsx
-export default function Home({ allPostsData }: PostsProps) {
-  useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-```
-```css global.css
-:root {
-  --light-background: #fff;
-  --dark-background: rgba(0, 0, 0, 0.92);
-}
-html {
-  --background: var(--light-background);
-}
-html.dark {
-  --background: var(--dark-background);
-}
-```
-```js tailwind.config.js
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        custom: {
-          background: "var(--background)",
-        },
-      },
-    },
-  }
-  ...
-```
-</CH.Code>
 
-일단 설명이 자세해서 어렵진 않았는데
-DOM에 직접 접근하는 것에 대한 막연한 거부감 때문에 내키지 않았다.  
-
-
-Next.js의 useTheme 훅을 이용하면 좀더 쉽게 이를 적용할 수 있다.
-근데 속의 메커니즘은 결국 똑같은듯..ㅎ
+<RoughNotationGroup show>
+  <span>오늘은</span> <RoughNotation type="highlight" color="palevioletred" order="3"><span>금요일</span></RoughNotation>
+  <span>내일은</span> <RoughNotation type="box" color="#a3fbf6" order="2"><span>토요일</span></RoughNotation><span>입니다</span>.<br/>  
+  <span>마크다운 문법이 왜 적용 안되는지</span><RoughNotation type="underline" color="darkorange" order="1">모르겠네요</RoughNotation>
+  <div className="m-6">
+    <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
+      <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
+    </RoughNotation>
+  </div>
+</RoughNotationGroup>

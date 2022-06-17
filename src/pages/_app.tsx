@@ -5,7 +5,7 @@ import "@code-hike/mdx/dist/index.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
+    <ThemeProvider attribute="class" defaultTheme="light">
       <Component {...pageProps} />
     </ThemeProvider>
   );

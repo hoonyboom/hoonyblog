@@ -9,6 +9,18 @@
   html, body {
     @apply font-custom h-full;
   }
+  blockquote > p {
+    @apply text-emerald-600;
+  }
+  h1 {
+    @apply text-3xl ;
+  }
+  h2 {
+    @apply text-2xl mb-5;
+  }
+  h3 {
+    @apply text-lg mb-2;
+  }
 }
 
 @layer components {
@@ -32,7 +44,6 @@ p>a, span>a {
   background-size: 100% 200%;
   background-position: 0px 0px;
 }
-
 @font-face {
   font-family: 'IBM';
   src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');

@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { name } from "@/components/layout";
 import useSound from "use-sound";
-import { VscGithub, VscGithubAlt, VscGithubInverted } from "react-icons/vsc";
-import { FaGithubSquare } from "react-icons/fa";
+import { VscGithubInverted } from "react-icons/vsc";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 export default function Navbar() {
@@ -32,16 +30,16 @@ export default function Navbar() {
         </a>
       </Link>
       <button>
-        {theme === "light" ? (
+        {theme === "dark" || [] ? (
           <MdDarkMode
             onClick={() => {
-              setTheme(theme === "light" ? "dark" : "light");
+              setTheme(theme === "dark" ? "light" : "dark");
             }}
           />
         ) : (
           <MdOutlineLightMode
             onClick={() => {
-              setTheme(theme === "light" ? "dark" : "light");
+              setTheme(theme === "dark" ? "light" : "dark");
             }}
           />
         )}
