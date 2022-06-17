@@ -30,7 +30,7 @@ export default function Navbar() {
         </a>
       </Link>
       <button>
-        {theme === "dark" || [] ? (
+        {theme === "dark" ? (
           <MdDarkMode
             onClick={() => {
               setTheme(theme === "dark" ? "light" : "dark");

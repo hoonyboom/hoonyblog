@@ -7,7 +7,7 @@ interface LayoutProps {
   home?: boolean;
 }
 
-export const name = "후니훈";
+export const name = "아구몬";
 export const siteTitle = "후니로그";
 export const months = "4개월";
 

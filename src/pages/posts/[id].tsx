@@ -39,7 +39,6 @@ export async function getStaticProps({ params }: IdProps) {
 
 export default function BlogPost({ code, frontmatter }: mdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
-
   return (
     <Layout>
       <Head>
@@ -67,7 +66,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
           </p>
         </div>
 
-        <article className="keep-all m-10 indent-3 text-base leading-7 lg:leading-8">
+        <article className="keep-all m-10 text-base leading-7 lg:leading-8">
           <Component components={{ ...MDXComponent }} />
         </article>
       </Twemoji>

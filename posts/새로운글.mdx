@@ -9,9 +9,6 @@ import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 ## 테스트
 ### 테스트
 > 탭 언더라인 슬라이딩 UI
-- 탭을 누를 때 아래밑줄이 미끄러지며 따라오는 효과를 지칭합니다.
-- 기존에 class 탈부착으로만 구현해봐서 조금 더듬거렸어요.
-- props를 이용하여 간단히 구현 했습니다. 일반적인 레이아웃 잡는 데서보다, 이렇듯 애니메이션을 주는 데서 동적 스타일링의 매력이 느껴지는 듯했어요.
 ```js ---.tsx
 const Lines = styled.div<styleProps>`
   flex-basis: 33.333333%;
@@ -20,14 +17,3 @@ const Lines = styled.div<styleProps>`
   transition: transform 0.6s;
 `;
 ```
-
-<RoughNotationGroup show>
-  <span>오늘은</span> <RoughNotation type="highlight" color="palevioletred" order="3"><span>금요일</span></RoughNotation>
-  <span>내일은</span> <RoughNotation type="box" color="#a3fbf6" order="2"><span>토요일</span></RoughNotation><span>입니다</span>.<br/>  
-  <span>마크다운 문법이 왜 적용 안되는지</span><RoughNotation type="underline" color="darkorange" order="1"><span>모르겠네요</span></RoughNotation>
-  <div className="m-6">
-    <RoughNotation type="bracket" brackets={["left", "right"]} strokeWidth="3"  color="black">
-      <blockquote>인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~인용문이 들어오는 곳입니다 대충 이런 식~</blockquote>
-    </RoughNotation>
-  </div>
-</RoughNotationGroup>

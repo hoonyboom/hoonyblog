@@ -21,6 +21,9 @@
   h3 {
     @apply text-lg mb-2;
   }
+  ul {
+    @apply mt-4 list-disc 
+  }
 }
 
 @layer components {
