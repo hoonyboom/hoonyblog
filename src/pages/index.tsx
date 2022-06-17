@@ -56,7 +56,7 @@ export default function Home({ allPostsData }: PostsProps) {
 
         <section className="mx-10 mb-28 flex items-center">
           <p className="leading-7">
-            안녕하세요. {name}의 처절한 코딩 생존기를 담은 사이트입니다.
+            안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
             <br />
             코딩과 일기가 뒤죽박죽 섞여 있어요 😵‍💫
             <br />

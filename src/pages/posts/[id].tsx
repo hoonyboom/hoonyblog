@@ -2,7 +2,7 @@ import Head from "next/head";
 import Twemoji from "react-twemoji";
 import MDXComponent from "@/components/MDXComponent";
 import { Layout, Date } from "@/components";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { siteTitle } from "@/components/layout";
@@ -43,7 +43,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
     <Layout>
       <Head>
         <title>
-          {frontmatter.title} | {siteTitle}
+          {frontmatter.title} 〰 {siteTitle}
         </title>
         <meta name="keyword" content={frontmatter.tags} />
       </Head>
