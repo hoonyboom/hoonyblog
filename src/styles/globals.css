@@ -39,6 +39,9 @@
   .keep-all {
     word-break: keep-all;
   }
+  .vertical-20 {
+    vertical-align: -20%;
+  }
 }
 
 p>a, span>a {
