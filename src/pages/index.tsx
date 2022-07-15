@@ -35,7 +35,8 @@ export default function Home({ allPostsData }: PostsProps) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <Twemoji options={{ className: "inline m-px w-5 h-5 vertical-20 cursor-default" }}>
+      <Twemoji
+        options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}>
         <section className="mx-2 flex p-10">
           <>
             <Image
