@@ -10,7 +10,6 @@ interface LayoutProps {
 export const name = "아구몬";
 export const siteTitle = "후니로그";
 export const months = "4개월";
-const API_KEY = "ffb0a0ae1678994ba794bdbf739083a8";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
