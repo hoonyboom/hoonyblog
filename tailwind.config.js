@@ -23,7 +23,7 @@ module.exports = {
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["Consolas", "ui-monospace", "SFMono-Regular"],
+      mono: ["Cascadia", "Consolas", "ui-monospace", "SFMono-Regular"],
       custom: ["IBM", "NanumSquareR", "Gowun"],
     },
     minHeight: {
