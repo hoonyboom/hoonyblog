@@ -45,7 +45,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
   }, []);
 
   return (
-    <div className={`transition duration-1300 ${fade ? "opacity-100" : "opacity-0"}`}>
+    <div className={`transition duration-1000 ${fade ? "opacity-100" : "opacity-0"}`}>
       <Layout>
         <Head>
           <title>{`${frontmatter.title} 〰 ${siteTitle}`}</title>
