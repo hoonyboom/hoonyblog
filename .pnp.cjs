@@ -67,6 +67,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rehype-prism", "virtual:4dc7e8d535ec69d39566f6168d20d70ba8cb1f7186c59c96b539a19e0925eb8e802f3832c43c478d224846fba77e8412ab6c4d64f0dc376f76e463cab8680642#npm:2.1.2"],\
             ["remark-gfm", "npm:3.0.1"],\
             ["remark-mdx-images", "npm:1.0.3"],\
+            ["rough-notation", "npm:0.5.1"],\
             ["shiki", "npm:0.10.1"],\
             ["swr", "virtual:4dc7e8d535ec69d39566f6168d20d70ba8cb1f7186c59c96b539a19e0925eb8e802f3832c43c478d224846fba77e8412ab6c4d64f0dc376f76e463cab8680642#npm:1.3.0"],\
             ["tailwindcss", "virtual:4dc7e8d535ec69d39566f6168d20d70ba8cb1f7186c59c96b539a19e0925eb8e802f3832c43c478d224846fba77e8412ab6c4d64f0dc376f76e463cab8680642#npm:3.0.24"],\
@@ -3333,6 +3334,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rehype-prism", "virtual:4dc7e8d535ec69d39566f6168d20d70ba8cb1f7186c59c96b539a19e0925eb8e802f3832c43c478d224846fba77e8412ab6c4d64f0dc376f76e463cab8680642#npm:2.1.2"],\
             ["remark-gfm", "npm:3.0.1"],\
             ["remark-mdx-images", "npm:1.0.3"],\
+            ["rough-notation", "npm:0.5.1"],\
             ["shiki", "npm:0.10.1"],\
             ["swr", "virtual:4dc7e8d535ec69d39566f6168d20d70ba8cb1f7186c59c96b539a19e0925eb8e802f3832c43c478d224846fba77e8412ab6c4d64f0dc376f76e463cab8680642#npm:1.3.0"],\
             ["tailwindcss", "virtual:4dc7e8d535ec69d39566f6168d20d70ba8cb1f7186c59c96b539a19e0925eb8e802f3832c43c478d224846fba77e8412ab6c4d64f0dc376f76e463cab8680642#npm:3.0.24"],\
@@ -6545,6 +6547,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/rough-notation-npm-0.4.0-f1f888442a-777fc589c6.zip/node_modules/rough-notation/",\
           "packageDependencies": [\
             ["rough-notation", "npm:0.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:0.5.1", {\
+          "packageLocation": "./.yarn/cache/rough-notation-npm-0.5.1-f8d7483ae2-e7aacbd0b9.zip/node_modules/rough-notation/",\
+          "packageDependencies": [\
+            ["rough-notation", "npm:0.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\

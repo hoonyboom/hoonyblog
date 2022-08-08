@@ -63,12 +63,6 @@ p>a, span>a {
 }
 
 @font-face {
-  font-family: 'Gowun';
-  src: url('/fonts/GowunDodum.woff2') format('woff2');
-  font-weight: normal;
-}
-
-@font-face {
   font-family: 'Consolas';
   src: url('/fonts/Consolasligaturizedv2.woff2') format('woff2');
   font-weight: normal;

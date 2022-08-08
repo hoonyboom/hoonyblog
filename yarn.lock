@@ -2652,6 +2652,7 @@ __metadata:
     rehype-prism: ^2.1.2
     remark-gfm: ^3.0.1
     remark-mdx-images: ^1.0.3
+    rough-notation: ^0.5.1
     shiki: ^0.10.1
     swr: ^1.3.0
     tailwindcss: ^3.0.24
@@ -5411,6 +5412,13 @@ __metadata:
   version: 0.4.0
   resolution: "rough-notation@npm:0.4.0"
   checksum: 777fc589c64512f7170db21ccee09c9155e117309de5d63dcf4a9ed9bbbbf844408ce8f2ff6a0eaad6d1989a19177c85adda3e8130bb955701335b3f7f7e57b6
+  languageName: node
+  linkType: hard
+
+"rough-notation@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "rough-notation@npm:0.5.1"
+  checksum: e7aacbd0b9751b4c5a377198dfd81eab8ad4c339bccc547e7439ce86c379113cea857fa56ef0f4beac41e316efc1888d127a8e7248b1431f41cd45092893166e
   languageName: node
   linkType: hard
 
