@@ -1,12 +1,15 @@
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
+import { CommandPalette } from "@/components";
 import "@/styles/globals.css";
 import "@code-hike/mdx/dist/index.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
-      <Component {...pageProps} />
+      <CommandPalette>
+        <Component {...pageProps} />
+      </CommandPalette>
     </ThemeProvider>
   );
 }

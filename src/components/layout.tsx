@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Navbar } from "@/components";
+import Nav from "./Nav";
 
-interface LayoutProps {
+export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
 }
@@ -13,7 +14,7 @@ export const months = "4개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="min-h-full dark:bg-custom-background w-full transition dark:text-slate-200/80">
+    <div className="min-h-full dark:bg-custom-background w-full transition dark:text-slate-200/80 ">
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/favicon.ico" />
@@ -28,24 +29,12 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
 
-        <header className="flex flex-col items-center">
+        <header className="flex justify-center items-center">
           {!home && <Navbar />}
-          {/* {home ? (
-            <>
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className="rounded-full"
-                height={100}
-                width={100}
-                alt={name}
-              />
-              <h1 className="text-lg">{name}</h1>
-            </>
-          ) : null} */}
         </header>
+        {home && <Nav />}
 
-        <div className="min-h-content pt-24">{children}</div>
+        <div className="min-h-content pt-16">{children}</div>
         {!home && (
           <div className="mt-12 ml-5 h-20 md:ml-1">
             <Link href="/">

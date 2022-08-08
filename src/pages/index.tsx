@@ -39,22 +39,19 @@ export default function Home({ allPostsData }: PostsProps) {
       <Twemoji
         options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}>
         <section className="mx-2 flex p-10">
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className="rounded-full"
-              height={80}
-              width={80}
-              alt={name}
-            />
-            <div className="ml-8 flex flex-col justify-center space-y-1">
-              <h1 className="text-lg">{name}</h1>
-              <h4 className="text-md">갸륵하도다</h4>
-            </div>
-          </>
+          <Image
+            priority
+            src="/images/profile.jpg"
+            className="rounded-full"
+            height={80}
+            width={80}
+            alt={name}
+          />
+          <div className="ml-8 flex flex-col justify-center space-y-1">
+            <h1 className="text-lg">{name}</h1>
+            <h4 className="text-md">갸륵하도다</h4>
+          </div>
         </section>
-
         <section className="mx-10 mb-28 flex items-center">
           <p className="leading-7">
             안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
