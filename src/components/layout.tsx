@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Navbar } from "@/components";
-import Nav from "./Nav";
+import { Navbar, Logo } from "@/components";
+import Nav from "./HomeNav";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ export const months = "4개월";
 export default function Layout({ children, home }: LayoutProps) {
   return (
     <div className="min-h-full dark:bg-custom-background w-full transition dark:text-slate-200/80 ">
+      <Logo />
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/favicon.ico" />

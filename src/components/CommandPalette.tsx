@@ -8,7 +8,7 @@ import {
   KBarSearch,
   KBarResults,
 } from "kbar";
-import { LayoutProps } from "./layout";
+import { LayoutProps } from "./Layout";
 import { VscGithubInverted, VscTwitter, VscCode } from "react-icons/vsc";
 import { TbPencil } from "react-icons/tb";
 import { SiAboutdotme } from "react-icons/si";

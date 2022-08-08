@@ -4,7 +4,7 @@ import { Layout, Date } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
-import { siteTitle } from "@/components/layout";
+import { siteTitle } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
 
 export interface IdProps {

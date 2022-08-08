@@ -6,7 +6,11 @@ module.exports = {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      transitionDuration: {
+        3000: "3000ms",
+      },
+    },
     screens: {
       sm: "375px",
       md: "768px",

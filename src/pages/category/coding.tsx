@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Twemoji from "react-twemoji";
 import { Layout, Date } from "@/components";
-import { siteTitle, name } from "@/components/layout";
+import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
 
 export default function Coding({ allPostsData }: PostsProps) {

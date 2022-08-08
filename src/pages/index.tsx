@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Twemoji from "react-twemoji";
 import { Layout, Date } from "@/components";
-import { siteTitle, name } from "@/components/layout";
+import { siteTitle, name } from "@/components/Layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
 

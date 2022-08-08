@@ -1,3 +1,4 @@
+
 export default function about() {
-  return <p>about</p>;
+  return <div>ㅎㅇ</div>
 }
