@@ -12,11 +12,10 @@ import { LayoutProps } from "./layout";
 import { VscGithubInverted, VscTwitter, VscCode } from "react-icons/vsc";
 import { TbPencil } from "react-icons/tb";
 import { SiAboutdotme } from "react-icons/si";
-import { FcSearch } from "react-icons/fc";
+import { IoCloud } from "react-icons/io5";
 import { GiCircle } from "react-icons/gi";
 export default function CommandPalette({ children }: LayoutProps) {
   const router = useRouter();
-
   const actions = [
     {
       id: "home",
@@ -102,7 +101,10 @@ export default function CommandPalette({ children }: LayoutProps) {
                 <button
                   type="submit"
                   className="py-3 px-2 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline">
-                  <FcSearch className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline" />
+                  <IoCloud
+                    className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline"
+                    fill="skyblue"
+                  />
                 </button>
               </span>
               <KBarSearch

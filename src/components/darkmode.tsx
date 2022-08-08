@@ -1,6 +1,5 @@
 import { useTheme } from "next-themes";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
-
 export default function Darkmode() {
   const { theme, setTheme } = useTheme();
 
@@ -12,6 +11,7 @@ export default function Darkmode() {
             setTheme(theme === "dark" ? "light" : "dark");
           }}
           className="w-6 h-6"
+          fill="gold"
         />
       ) : (
         <MdOutlineLightMode
@@ -19,6 +19,7 @@ export default function Darkmode() {
             setTheme(theme === "dark" ? "light" : "dark");
           }}
           className="w-6 h-6"
+          fill="orange"
         />
       )}
     </button>
