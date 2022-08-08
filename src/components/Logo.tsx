@@ -16,7 +16,7 @@ export default function Logo() {
       const targetY = (randomY + curY) / 2;
       curX = targetX;
       curY = targetY;
-      let randomRotation = (Math.random() - 0.5) * 10;
+      const randomRotation = (Math.random() - 0.5) * 10;
       setTransform(`translate(${targetX}px, ${targetY}px) rotate(${randomRotation}deg)`);
     }, 4300);
   }, []);

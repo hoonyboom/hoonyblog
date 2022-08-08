@@ -1,4 +1,3 @@
-
 export default function about() {
-  return <div>ㅎㅇ</div>
+  return <div>ㅎㅇ</div>;
 }
