@@ -34,7 +34,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@code-hike/mdx", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:0.7.2"],\
-            ["@radix-ui/react-icons", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:1.1.1"],\
             ["@types/axios", "npm:0.14.0"],\
             ["@types/node", "npm:18.6.4"],\
             ["@types/react", "npm:18.0.16"],\
@@ -468,28 +467,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@npmcli/move-file", "npm:2.0.0"],\
             ["mkdirp", "npm:1.0.4"],\
             ["rimraf", "npm:3.0.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@radix-ui/react-icons", [\
-        ["npm:1.1.1", {\
-          "packageLocation": "./.yarn/cache/@radix-ui-react-icons-npm-1.1.1-551deaeebf-fc64cd7639.zip/node_modules/@radix-ui/react-icons/",\
-          "packageDependencies": [\
-            ["@radix-ui/react-icons", "npm:1.1.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:1.1.1", {\
-          "packageLocation": "./.yarn/__virtual__/@radix-ui-react-icons-virtual-bc71c00cb1/0/cache/@radix-ui-react-icons-npm-1.1.1-551deaeebf-fc64cd7639.zip/node_modules/@radix-ui/react-icons/",\
-          "packageDependencies": [\
-            ["@radix-ui/react-icons", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:1.1.1"],\
-            ["@types/react", "npm:18.0.16"],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/react",\
-            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1617,7 +1594,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["chorok", "workspace:."],\
             ["@code-hike/mdx", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:0.7.2"],\
-            ["@radix-ui/react-icons", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:1.1.1"],\
             ["@types/axios", "npm:0.14.0"],\
             ["@types/node", "npm:18.6.4"],\
             ["@types/react", "npm:18.0.16"],\

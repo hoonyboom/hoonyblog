@@ -311,15 +311,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-icons@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@radix-ui/react-icons@npm:1.1.1"
-  peerDependencies:
-    react: ^16.x || ^17.x || ^18.x
-  checksum: fc64cd763994e035fe7a4898c0710793aebc2689d56dcc8a2fd76c334a424c48a1aa2fbcccc2bd1c0990d731f27090fc0ddf6859af32c5aa217bd75a10cb3e34
-  languageName: node
-  linkType: hard
-
 "@reach/observe-rect@npm:^1.1.0":
   version: 1.2.0
   resolution: "@reach/observe-rect@npm:1.2.0"
@@ -1198,7 +1189,6 @@ __metadata:
   resolution: "chorok@workspace:."
   dependencies:
     "@code-hike/mdx": ^0.7.2
-    "@radix-ui/react-icons": ^1.1.1
     "@types/axios": ^0.14.0
     "@types/node": 18.6.4
     "@types/react": 18.0.16

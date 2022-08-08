@@ -8,19 +8,13 @@ import {
   KBarSearch,
   KBarResults,
 } from "kbar";
-import {
-  CircleIcon,
-  CopyIcon,
-  MagnifyingGlassIcon,
-  QuestionMarkIcon,
-  MixIcon,
-  Pencil1Icon,
-  EnvelopeClosedIcon,
-} from "@radix-ui/react-icons";
-
-// TODO: add types
-// @ts-ignore
-export default function CommandPalette({ children }) {
+import { LayoutProps } from "./layout";
+import { VscGithubInverted, VscTwitter, VscCode } from "react-icons/vsc";
+import { TbPencil } from "react-icons/tb";
+import { SiAboutdotme } from "react-icons/si";
+import { FcSearch } from "react-icons/fc";
+import { GiCircle } from "react-icons/gi";
+export default function CommandPalette({ children }: LayoutProps) {
   const router = useRouter();
 
   const actions = [
@@ -31,16 +25,7 @@ export default function CommandPalette({ children }) {
       keywords: "home",
       section: "Category",
       perform: () => router.push("/"),
-      icon: <CircleIcon className="w-4 h-4" />,
-    },
-    {
-      id: "about",
-      name: "About",
-      shortcut: ["a"],
-      keywords: "about",
-      section: "Category",
-      perform: () => router.push("/category/about", "/about"),
-      icon: <QuestionMarkIcon className="w-4 h-4" />,
+      icon: <GiCircle className="w-4 h-4" />,
     },
     {
       id: "writing",
@@ -49,7 +34,7 @@ export default function CommandPalette({ children }) {
       keywords: "writing",
       section: "Category",
       perform: () => router.push("/category/writing", "/writing"),
-      icon: <Pencil1Icon className="w-4 h-4 " />,
+      icon: <TbPencil className="w-4 h-4 " />,
     },
     {
       id: "coding",
@@ -58,7 +43,7 @@ export default function CommandPalette({ children }) {
       keywords: "coding",
       section: "Category",
       perform: () => router.push("/category/coding", "/coding"),
-      icon: <MixIcon className="w-4 h-4" />,
+      icon: <VscCode className="w-4 h-4" />,
     },
     {
       id: "github",
@@ -67,6 +52,7 @@ export default function CommandPalette({ children }) {
       keywords: "github",
       section: "Social",
       perform: () => window.open("https://github.com/10004ok", "_blank"),
+      icon: <VscGithubInverted className="w-4 h-4" />,
     },
     {
       id: "twitter",
@@ -75,6 +61,16 @@ export default function CommandPalette({ children }) {
       keywords: "twitter",
       section: "Social",
       perform: () => window.open("https://twitter.com/hyezoprk", "_blank"),
+      icon: <VscTwitter className="w-4 h-4" />,
+    },
+    {
+      id: "about",
+      name: "About",
+      shortcut: ["a"],
+      keywords: "about",
+      section: "etc",
+      perform: () => router.push("/category/about", "/about"),
+      icon: <SiAboutdotme className="w-4 h-4" />,
     },
     // {
     //   id: 'copy',
@@ -106,7 +102,7 @@ export default function CommandPalette({ children }) {
                 <button
                   type="submit"
                   className="py-3 px-2 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline">
-                  <MagnifyingGlassIcon className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline" />
+                  <FcSearch className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline" />
                 </button>
               </span>
               <KBarSearch
