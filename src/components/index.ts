@@ -1,6 +1,6 @@
 export { default as Layout } from "./Layout";
 export { default as Date } from "./Date";
-export { default as Navbar } from "./Nav";
+export { default as Nav } from "./Nav";
 export { default as HomeNav } from "./HomeNav";
 export { default as Darkmode } from "./Darkmode";
 export { default as CommandPalette } from "./CommandPalette";

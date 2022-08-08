@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Navbar, Logo } from "@/components";
-import Nav from "./HomeNav";
+import { HomeNav, Logo, Nav } from "@/components";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -31,9 +30,9 @@ export default function Layout({ children, home }: LayoutProps) {
         </Head>
 
         <header className="flex justify-center items-center">
-          {!home && <Navbar />}
+          {!home && <Nav />}
         </header>
-        {home && <Nav />}
+        {home && <HomeNav />}
 
         <div className="min-h-content pt-16">{children}</div>
         {!home && (

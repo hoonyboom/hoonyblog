@@ -4,7 +4,7 @@ import { name } from "@/components/Layout";
 import { Darkmode, CommandPaletteIcon } from "@/components";
 import useSound from "use-sound";
 
-export default function Navbar() {
+export default function Nav() {
   return (
     <div className="fixed top-px z-10 flex h-12 w-2/3 flex-row items-center justify-center space-x-16 rounded-lg bg-neutral-200/30 saturate-100 backdrop-blur-sm dark:bg-zinc-600/30 md:max-w-sm">
       <CommandPaletteIcon />
