@@ -1,8 +1,9 @@
 import Image from "next/future/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LayoutProps } from "./Layout";
 
-export default function Logo() {
+export default function Logo({ children }: LayoutProps) {
   const [transform, setTransform] = useState("");
   useEffect(() => {
     const width = window.visualViewport.width;
@@ -21,17 +22,20 @@ export default function Logo() {
     }, 4300);
   }, []);
   return (
-    <Link href="/">
-      <Image
-        src="/images/snoopy.gif"
-        alt="Home"
-        width={0}
-        height={0}
-        priority
-        className="absolute top-16 left-32 opacity-[.8] transition-all duration-3000 ease-in-out w-14 h-14 cursor-pointer"
-        style={{ transform }}
-      />
-    </Link>
+    <>
+      <Link href="/">
+        <Image
+          src="/images/snoopy.gif"
+          alt="Home"
+          width={0}
+          height={0}
+          priority
+          className="fixed top-16 left-32 opacity-[.8] transition-all duration-3000 ease-in-out w-14 h-14 cursor-pointer"
+          style={{ transform }}
+        />
+      </Link>
+      {children}
+    </>
   );
 }
 

@@ -94,22 +94,20 @@ export default function CommandPalette({ children }: LayoutProps) {
   return (
     <KBarProvider actions={actions} options={{ disableScrollbarManagement: true }}>
       <KBarPortal>
-        <KBarPositioner className="z-10 bg-gray-1000/80">
+        <KBarPositioner className="z-10 bg-zinc-900/80">
           <KBarAnimator className="max-w-lg w-full overflow-y-auto rounded-lg shadow-lg">
-            <div className="rounded-t-lg flex items-center relative text-gray-600 focus-within:text-gray-400">
-              <span className="">
-                <button
-                  type="submit"
-                  className="py-3 px-2 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline">
-                  <IoCloud
-                    className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline"
-                    fill="skyblue"
-                  />
-                </button>
-              </span>
+            <div className="rounded-t-lg flex relative text-gray-600 focus-within:text-gray-400">
+              <button
+                type="submit"
+                className="flex py-4 px-2 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline">
+                <IoCloud
+                  className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline"
+                  fill="skyblue"
+                />
+              </button>
               <KBarSearch
-                className="py-3 px-3 bg-white dark:bg-gray-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
-                placeholder="Type a command or search…"
+                className="flex py-4 px-3 bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
+                placeholder="You can navigate with first letter of here. Cmd(or Ctrl) + K"
               />
             </div>
             <RenderResults />
@@ -131,13 +129,13 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex items-center justify-between cursor-pointer px-3 py-1 w-full text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-gray-800`}>
+          flex items-center justify-between cursor-pointer px-3 py-1 w-full text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}>
           {typeof item === "string" ? (
-            <div className="text-gray-200 text-xs">{item}</div>
+            <div className="text-gray-500/80 text-xs">{item}</div>
           ) : (
             <div
               className={`${
-                active ? "bg-gray-500 text-gray-100 rounded-md" : "transparent"
+                active ? "bg-emerald-600 text-gray-100 rounded-md" : "transparent"
               } 
             w-full text-base flex items-center space-x-2 p-2`}>
               {item.icon}
