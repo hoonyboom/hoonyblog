@@ -1,4 +1,5 @@
-import Image, { ImageProps } from "next/image";
+export {}
+/* import Image, { ImageProps } from "next/image";
 import Link, { LinkProps } from "next/link";
 
 // const CustomLink = (props: LinkProps) => {
@@ -21,9 +22,10 @@ const BlogImg = (props: ImageProps) => {
 };
 
 const MDXComponent = {
-  Image,
+  // Image,
   BlogImg,
   // a: CustomLink,
 };
 
 export default MDXComponent;
+ */

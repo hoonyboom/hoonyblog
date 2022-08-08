@@ -6,7 +6,6 @@ import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
-import { NextPage } from "next";
 
 export interface PostsProps {
   allPostsData: [

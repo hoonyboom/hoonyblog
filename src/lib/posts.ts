@@ -3,7 +3,6 @@ import path from "path";
 import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
 import { remarkCodeHike } from "@code-hike/mdx";
-import { remarkMdxImages } from "remark-mdx-images";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import theme from "shiki/themes/dracula-soft.json";
@@ -70,7 +69,7 @@ export async function getPostData(id: string) {
       options.remarkPlugins = [
         ...(options?.remarkPlugins ?? []),
         remarkGfm,
-        remarkMdxImages,
+        // remarkMdxImages,
         [remarkCodeHike, { theme }],
       ];
       options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
