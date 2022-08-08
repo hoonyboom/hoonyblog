@@ -17,11 +17,7 @@ import Link, { LinkProps } from "next/link";
 // };
 
 const BlogImg = (props: ImageProps) => {
-  return (
-    <>
-      <Image {...props} layout="responsive" className="rounded-xl" />
-    </>
-  );
+  return <Image {...props} layout="responsive" className="rounded-xl" />;
 };
 
 const MDXComponent = {
