@@ -129,15 +129,15 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex items-center justify-between cursor-pointer px-3 py-1 w-full text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}>
+          flex items-center justify-between cursor-pointer px-3 py-1 w-full border-white border-2 text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}>
           {typeof item === "string" ? (
-            <div className="text-gray-500/80 text-xs">{item}</div>
+            <div className="text-gray-500/80 text-xs ">{item}</div>
           ) : (
             <div
               className={`${
                 active ? "bg-emerald-600 text-gray-100 rounded-md" : "transparent"
               } 
-            w-full text-base flex items-center space-x-2 p-2`}>
+            w-full text-base flex items-center space-x-3 p-2`}>
               {item.icon}
               <p className="text-sm">{item.name}</p>
             </div>

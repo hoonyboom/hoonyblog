@@ -12,7 +12,7 @@ interface meta {
 }
 
 // const blogDirectory = path.join(process.cwd(), "blog")
-const postsDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "drafts");
 
 export function getSortedPostsData(categories?: string) {
   // /posts 폴더에 있는 파일 이름 가져오기
