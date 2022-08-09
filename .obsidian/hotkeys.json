@@ -1,0 +1,10 @@
+{
+  "templater-obsidian:template/frontmatter.md": [
+    {
+      "modifiers": [
+        "Ctrl"
+      ],
+      "key": "N"
+    }
+  ]
+}
