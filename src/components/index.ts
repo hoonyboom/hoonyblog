@@ -6,4 +6,4 @@ export { default as Darkmode } from "./Darkmode";
 export { default as CommandPalette } from "./CommandPalette";
 export { default as CommandPaletteIcon } from "./CommandIcon";
 export { default as Logo } from "./Logo";
-// export { default as BlogImg } from "./MdxComponent";
+// export { default as BlogImg } from "./MdxComponents";
