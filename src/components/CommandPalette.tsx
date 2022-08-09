@@ -20,7 +20,7 @@ export default function CommandPalette({ children }: LayoutProps) {
     {
       id: "home",
       name: "Home",
-      shortcut: ["h", "ㅎ"],
+      shortcut: ["h"],
       keywords: "home",
       section: "_root",
       perform: () => router.push("/"),
@@ -29,16 +29,16 @@ export default function CommandPalette({ children }: LayoutProps) {
     {
       id: "writing",
       name: "Writing",
-      shortcut: ["w", "ㅈ"],
+      shortcut: ["w"],
       keywords: "writing",
       section: "_root",
       perform: () => router.push("/category/writing", "/writing"),
-      icon: <TbPencil className="w-4 h-4 " />,
+      icon: <TbPencil className="w-4 h-4" />,
     },
     {
       id: "coding",
       name: "Coding",
-      shortcut: ["c", "ㅊ"],
+      shortcut: ["c"],
       keywords: "coding",
       section: "_root",
       perform: () => router.push("/category/coding", "/coding"),
@@ -47,7 +47,7 @@ export default function CommandPalette({ children }: LayoutProps) {
     {
       id: "github",
       name: "Github",
-      shortcut: ["g", "ㅎ"],
+      shortcut: ["g"],
       keywords: "github",
       section: "public",
       perform: () => window.open("https://github.com/10004ok", "_blank"),
@@ -56,7 +56,7 @@ export default function CommandPalette({ children }: LayoutProps) {
     {
       id: "twitter",
       name: "Twitter",
-      shortcut: ["t", "ㅅ"],
+      shortcut: ["t"],
       keywords: "twitter",
       section: "public",
       perform: () => window.open("https://twitter.com/hyezoprk", "_blank"),
@@ -65,7 +65,7 @@ export default function CommandPalette({ children }: LayoutProps) {
     {
       id: "about",
       name: "About",
-      shortcut: ["a", "ㅁ"],
+      shortcut: ["a"],
       keywords: "about",
       section: "README.md",
       perform: () => router.push("/category/about", "/about"),
@@ -96,18 +96,18 @@ export default function CommandPalette({ children }: LayoutProps) {
       <KBarPortal>
         <KBarPositioner className="z-10 bg-zinc-900/80">
           <KBarAnimator className="max-w-lg w-full overflow-y-auto rounded-lg shadow-lg">
-            <div className="rounded-t-lg flex relative text-gray-600 focus-within:text-gray-400">
+            <div className="flex relative text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"
-                className="flex py-4 px-2 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline">
+                className="flex py-4 px-2 rounded-tl-lg bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline">
                 <IoCloud
                   className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline"
                   fill="skyblue"
                 />
               </button>
               <KBarSearch
-                className="flex py-4 px-3 bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
-                placeholder="You can navigate with first letter of here. Cmd(or Ctrl) + K"
+                className="flex py-4 px-3  rounded-tr-lg bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
+                defaultPlaceholder="단축키: cmd(or ctrl) + K"
               />
             </div>
             <RenderResults />

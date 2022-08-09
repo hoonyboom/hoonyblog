@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { LayoutProps } from "./Layout";
 
 export default function Logo({ children }: LayoutProps) {
-  const [transform, setTransform] = useState("");
+  const [transform, setTransform] = useState("translate(0px)");
   useEffect(() => {
     const width = window.visualViewport.width;
     const height = window.visualViewport.height;
@@ -19,20 +19,22 @@ export default function Logo({ children }: LayoutProps) {
       curY = targetY;
       const randomRotation = (Math.random() - 0.5) * 10;
       setTransform(`translate(${targetX}px, ${targetY}px) rotate(${randomRotation}deg)`);
-    }, 4300);
+    }, 3500);
   }, []);
   return (
     <>
       <Link href="/">
-        <Image
-          src="/images/snoopy.gif"
-          alt="Home"
-          width={0}
-          height={0}
-          priority
-          className="fixed top-16 left-32 opacity-[.8] transition-all duration-3000 ease-in-out w-14 h-14 cursor-pointer"
-          style={{ transform }}
-        />
+        <a>
+          <Image
+            src="/images/snoopy.gif"
+            alt="Home"
+            width={0}
+            height={0}
+            priority
+            className="fixed md:top-16 md:left-32 opacity-[.8] transition-all duration-3000 ease-in-out md:w-12 md:h-12 sm:w-10 sm:h-10 sm:top-5 sm:left-5"
+            style={{ transform }}
+          />
+        </a>
       </Link>
       {children}
     </>

@@ -63,14 +63,8 @@ export default function Writing({ allPostsData }: PostsProps) {
                     <Date dateString={date} />
                   </small>
                 </div>
-                {/* <div className="h-20 w-44 basis-1/3 rounded-lg">
-                  <Image priority src={img} width={20} height={10} layout="responsive" />
-                </div> */}
               </div>
             ))}
-            {/* <div>
-              <NextPage allPostsData={allPostsData} />
-            </div> */}
           </div>
         </section>
       </Twemoji>
