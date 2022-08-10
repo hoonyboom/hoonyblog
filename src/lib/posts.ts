@@ -6,6 +6,7 @@ import { remarkCodeHike } from "@code-hike/mdx";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import theme from "shiki/themes/dracula-soft.json";
+
 interface meta {
   [key: string]: string;
 }
@@ -81,9 +82,9 @@ export async function getPostData(id: string) {
     source,
     mdxOptions(options) {
       options.remarkPlugins = [
-        ...(options?.remarkPlugins ?? []),
         remarkGfm,
         [remarkCodeHike, { theme }],
+        ...(options?.remarkPlugins ?? []),
       ];
       options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
 

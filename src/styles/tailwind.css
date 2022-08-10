@@ -22,7 +22,7 @@
     @apply text-lg mb-2;
   }
   ul {
-    @apply mt-4 list-disc 
+    @apply mt-4 pl-4 list-disc 
   }
 }
 
