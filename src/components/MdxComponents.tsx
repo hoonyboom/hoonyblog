@@ -1,5 +1,4 @@
 export {};
-// import React from "react";
 // import Image, { ImageProps } from "next/image";
 // import Link, { LinkProps } from "next/link";
 
@@ -18,12 +17,18 @@ export {};
 // //   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 // // };
 
-// export default function BlogImg(src: string) {
-//   return <Image src={src} layout="fill" className="rounded-xl" />;
-// }
+// const BlogImg = (props: ImageProps) => {
+//   return (
+//     <>
+//       <Image {...props} layout="responsive" className="rounded-xl" />
+//     </>
+//   );
+// };
 
-// const MdxComponent = {
+// const MdxComponents = {
 //   Image,
 //   BlogImg,
 //   // a: CustomLink,
 // };
+
+// export default MdxComponents;

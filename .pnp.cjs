@@ -64,7 +64,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["recoil", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:0.7.4"],\
             ["rehype-prism", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:2.1.3"],\
             ["remark-gfm", "npm:3.0.1"],\
-            ["remark-mdx-images", "npm:2.0.0"],\
             ["rough-notation", "npm:0.5.1"],\
             ["shiki", "npm:0.10.1"],\
             ["swr", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:1.3.0"],\
@@ -1581,7 +1580,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["recoil", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:0.7.4"],\
             ["rehype-prism", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:2.1.3"],\
             ["remark-gfm", "npm:3.0.1"],\
-            ["remark-mdx-images", "npm:2.0.0"],\
             ["rough-notation", "npm:0.5.1"],\
             ["shiki", "npm:0.10.1"],\
             ["swr", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:1.3.0"],\
@@ -6530,18 +6528,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["estree-util-value-to-estree", "npm:1.3.0"],\
             ["js-yaml", "npm:4.1.0"],\
             ["toml", "npm:3.0.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["remark-mdx-images", [\
-        ["npm:2.0.0", {\
-          "packageLocation": "./.yarn/cache/remark-mdx-images-npm-2.0.0-0cac0e32e0-d744b68ca3.zip/node_modules/remark-mdx-images/",\
-          "packageDependencies": [\
-            ["remark-mdx-images", "npm:2.0.0"],\
-            ["@types/mdast", "npm:3.0.10"],\
-            ["unified", "npm:10.1.2"],\
-            ["unist-util-visit", "npm:4.1.0"]\
           ],\
           "linkType": "HARD"\
         }]\
