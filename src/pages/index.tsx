@@ -6,6 +6,7 @@ import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
+import { useRouter } from "next/router";
 
 export interface PostsProps {
   allPostsData: [
@@ -14,15 +15,15 @@ export interface PostsProps {
       date: string;
       title: string;
       description?: string;
-      tag?: string;
-      img: string;
+      tags?: string;
+      categories?: string;
+      img?: string;
     },
   ];
 }
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
-
   return {
     props: {
       allPostsData,
@@ -85,14 +86,8 @@ export default function Home({ allPostsData }: PostsProps) {
                     <Date dateString={date} />
                   </small>
                 </div>
-                {/* <div className="h-20 w-44 basis-1/3 rounded-lg">
-                  <Image priority src={img} width={20} height={10} layout="responsive" />
-                </div> */}
               </div>
             ))}
-            {/* <div>
-              <NextPage allPostsData={allPostsData} />
-            </div> */}
           </div>
         </section>
       </Twemoji>

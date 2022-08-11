@@ -16,7 +16,7 @@ export default function Layout({ children, home }: LayoutProps) {
     <div className="min-h-full dark:bg-custom-background w-full transition dark:text-slate-200/80 ">
       <div className="container mx-auto max-w-xl">
         <Head>
-          <link rel="icon" href="/images/favicon.ico" />
+          <link rel="icon" href="/images/heart.svg" />
           <meta name="description" content={`${months}차 뉴비의 프론트엔드 생존기`} />
           <meta
             property="og:image"

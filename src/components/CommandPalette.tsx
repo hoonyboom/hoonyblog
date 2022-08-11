@@ -14,6 +14,7 @@ import { TbPencil } from "react-icons/tb";
 import { SiAboutdotme } from "react-icons/si";
 import { IoCloud } from "react-icons/io5";
 import { GiCircle } from "react-icons/gi";
+
 export default function CommandPalette({ children }: LayoutProps) {
   const router = useRouter();
   const actions = [
@@ -129,7 +130,7 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex items-center justify-between cursor-pointer px-3 py-1 w-full border-white border-2 text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}>
+          flex items-center justify-between cursor-pointer px-3 py-1 w-full border-white dark:border-zinc-800 border-2 text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}>
           {typeof item === "string" ? (
             <div className="text-gray-500/80 text-xs ">{item}</div>
           ) : (
