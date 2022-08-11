@@ -36,6 +36,7 @@ yarn-error.log*
 
 # 제외
 /src/pages/api/*
+/folderPosts.ts
+
 .obsidian
 .obsidian/*
-/folderPosts.ts

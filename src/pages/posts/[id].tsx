@@ -36,7 +36,6 @@ export async function getStaticProps({ params }: IdProps) {
   };
 }
 
-
 export default function BlogPost({ code, frontmatter }: mdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   const [fade, setFade] = useState(false);
