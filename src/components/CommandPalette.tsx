@@ -125,7 +125,7 @@ export default function CommandPalette({ children }: LayoutProps) {
 function RenderResults() {
   const { results } = useMatches();
   const [tick] = useSound("/sounds/tick.mp3");
-  const [beep] = useSound("/sounds/beep.mp3");
+  const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
 
   return (
     <KBarResults
@@ -139,7 +139,7 @@ function RenderResults() {
           ) : (
             <div
               onMouseEnter={() => tick()}
-              onMouseUp={() => beep()}
+              onMouseUp={() => tap()}
               className={`${
                 active ? "bg-emerald-600 text-gray-100 rounded-md" : "transparent"
               } 
