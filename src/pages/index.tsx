@@ -35,13 +35,12 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }: PostsProps) {
   const [randomColor, setRandomColor] = useState("");
   const [on, setOn] = useState(false);
-  const [tap] = useSound("/sounds/tap.mp3", {volume: 0.6});
+  const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
 
   useEffect(() => {
     const color = ["tomato", "skyblue", "turquoise", "crimson"];
     const random = Math.floor(Math.random() * color.length);
-    /*eslint computed-property-spacing: ["error", "never"]*/
-    setRandomColor(color[random]);
+    setRandomColor(color[ random ]);
     setOn(true);
   }, []);
 
