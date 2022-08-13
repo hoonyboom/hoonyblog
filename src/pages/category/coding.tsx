@@ -17,7 +17,7 @@ export default function Coding({ allPostsData }: PostsProps) {
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
-    setRandom(Math.floor(Math.random() * color.length));
+    setRandom(Math.floor((Math.random() * color.length)));
     setOn(true);
   }, []);
 
