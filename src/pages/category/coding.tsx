@@ -7,7 +7,7 @@ import Twemoji from "react-twemoji";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
 
 export default function Coding({ allPostsData }: PostsProps) {
@@ -19,7 +19,6 @@ export default function Coding({ allPostsData }: PostsProps) {
   useEffect(() => {
     setRandom(Math.floor(Math.random() * color.length));
     setOn(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -58,7 +57,7 @@ export default function Coding({ allPostsData }: PostsProps) {
             type="bracket"
             strokeWidth={3}
             brackets={["left", "right"]}
-            color={color[random]}
+            color={on ? color[random] : "tomato"}
             animationDuration={1200}>
             <span className="pl-2 text-2xl">Coding&nbsp;</span>
           </RoughNotation>

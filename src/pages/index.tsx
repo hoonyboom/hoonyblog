@@ -6,7 +6,7 @@ import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import useSound from "use-sound";
 
 export interface PostsProps {
@@ -41,7 +41,6 @@ export default function Home({ allPostsData }: PostsProps) {
   useEffect(() => {
     setRandom(Math.floor(Math.random() * color.length));
     setOn(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -80,7 +79,7 @@ export default function Home({ allPostsData }: PostsProps) {
             type="bracket"
             strokeWidth={3}
             brackets={["left", "right"]}
-            color={color[random]}
+            color={on ? color[random] : "tomato"}
             animationDuration={1200}>
             <span className="pl-2 text-2xl">Blog&nbsp;</span>
           </RoughNotation>
