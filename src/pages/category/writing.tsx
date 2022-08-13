@@ -11,16 +11,16 @@ import { useEffect, useState } from "react";
 import useSound from "use-sound";
 
 export default function Writing({ allPostsData }: PostsProps) {
-  const [random, setRandom] = useState("");
+  const [randomColor, setRandomColor] = useState("");
   const [on, setOn] = useState(false);
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
     const color = ["tomato", "skyblue", "turquoise", "crimson"];
-    setRandom(color[Math.floor(Math.random() * color.length)]);
+    const random = Math.floor(Math.random() * color.length);
+    setRandomColor(color[random]);
     setOn(true);
   }, []);
-
 
   return (
     <Layout home>
@@ -58,9 +58,9 @@ export default function Writing({ allPostsData }: PostsProps) {
             type="bracket"
             strokeWidth={3}
             brackets={["left", "right"]}
-            color={random}
+            color={randomColor}
             animationDuration={1200}>
-            <span className="pl-2 text-2xl">Writing&nbsp;</span>
+            <span className="pl-2 text-2xl">Blog&nbsp;</span>
           </RoughNotation>
 
           <div className="mt-8 pb-10 lg:pb-12">

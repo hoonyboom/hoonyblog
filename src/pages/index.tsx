@@ -33,13 +33,14 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }: PostsProps) {
-  const [random, setRandom] = useState("");
+  const [randomColor, setRandomColor] = useState("");
   const [on, setOn] = useState(false);
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
     const color = ["tomato", "skyblue", "turquoise", "crimson"];
-    setRandom(color[Math.floor(Math.random() * color.length)]);
+    const random = Math.floor(Math.random() * color.length);
+    setRandomColor(color[random]);
     setOn(true);
   }, []);
 
@@ -79,7 +80,7 @@ export default function Home({ allPostsData }: PostsProps) {
             type="bracket"
             strokeWidth={3}
             brackets={["left", "right"]}
-            color={random}
+            color={randomColor}
             animationDuration={1200}>
             <span className="pl-2 text-2xl">Blog&nbsp;</span>
           </RoughNotation>
