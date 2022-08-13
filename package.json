@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint-eslint": "eslint --ignore-path .gitignore src/**/*{ts,tsx} --fix",
-    "lint-prettier": "prettier --write \"src/**/*.(ts|tsx)\"",
-    "prepare": "husky install"
+    "lint-prettier": "prettier --write \"src/**/*.(ts|tsx)\""
   },
   "dependencies": {
     "date-fns": "^2.29.1",
@@ -43,7 +42,6 @@
     "eslint-config-next": "12.2.5",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
