@@ -18,7 +18,6 @@ export default function Writing({ allPostsData }: PostsProps) {
   useEffect(() => {
     const color = ["tomato", "skyblue", "turquoise", "crimson"];
     const random = Math.floor(Math.random() * color.length);
-    /*eslint computed-property-spacing: ["error", "never"]*/
     setRandomColor(color[random]);
     setOn(true);
   }, []);

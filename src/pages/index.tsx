@@ -40,7 +40,7 @@ export default function Home({ allPostsData }: PostsProps) {
   useEffect(() => {
     const color = ["tomato", "skyblue", "turquoise", "crimson"];
     const random = Math.floor(Math.random() * color.length);
-    setRandomColor(color[ random ]);
+    setRandomColor(color[random]);
     setOn(true);
   }, []);
 
