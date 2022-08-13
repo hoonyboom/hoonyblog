@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { name } from "@/components/Layout";
 import { Darkmode, CommandPaletteIcon } from "@/components";
-import useSound from "use-sound";
 
 export default function Nav() {
   return (

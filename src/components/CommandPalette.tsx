@@ -18,7 +18,6 @@ import useSound from "use-sound";
 
 export default function CommandPalette({ children }: LayoutProps) {
   const router = useRouter();
-  const [beep] = useSound("/sounds/beep.mp3");
   const actions = [
     {
       id: "home",
