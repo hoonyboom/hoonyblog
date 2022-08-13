@@ -37,7 +37,7 @@ export default function Home({ allPostsData }: PostsProps) {
   const [on, setOn] = useState(false);
   const color = useMemo(() => {
     return ["tomato", "skyblue", "turquoise", "crimson"];
-  }, []);
+  }, [ ]);
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
