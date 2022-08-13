@@ -7,20 +7,21 @@ import Twemoji from "react-twemoji";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useSound from "use-sound";
-
-const color = ["tomato", "skyblue", "turquoise", "crimson"];
 
 export default function Coding({ allPostsData }: PostsProps) {
   const [random, setRandom] = useState(0);
   const [on, setOn] = useState(false);
+  const color = useMemo(() => {
+    return ["tomato", "skyblue", "turquoise", "crimson"];
+  }, []);
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
     setRandom(Math.floor(Math.random() * color.length));
     setOn(true);
-  }, []);
+  }, [color]);
 
   return (
     <Layout home>
