@@ -16,8 +16,9 @@ export default function Writing({ allPostsData }: PostsProps) {
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
-    const color = ["tomato", "skyblue", "turquoise", "crimson"];
+    const color = ['tomato', 'skyblue', 'turquoise', 'crimson'];
     const random = Math.floor(Math.random() * color.length);
+    /*eslint computed-property-spacing: ["error", "never"]*/
     setRandomColor(color[random]);
     setOn(true);
   }, []);

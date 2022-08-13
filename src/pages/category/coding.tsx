@@ -1,23 +1,24 @@
-import { getSortedPostsData } from "@/lib/posts";
-import { PostsProps } from "..";
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import Twemoji from "react-twemoji";
-import { Layout, Date } from "@/components";
-import { siteTitle, name } from "@/components/Layout";
-import { RoughNotation } from "react-rough-notation";
-import { useEffect, useState } from "react";
-import useSound from "use-sound";
+import { getSortedPostsData } from '@/lib/posts';
+import { PostsProps } from '..';
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+import Twemoji from 'react-twemoji';
+import { Layout, Date } from '@/components';
+import { siteTitle, name } from '@/components/Layout';
+import { RoughNotation } from 'react-rough-notation';
+import { useEffect, useState } from 'react';
+import useSound from 'use-sound';
 
 export default function Coding({ allPostsData }: PostsProps) {
-  const [randomColor, setRandomColor] = useState("");
+  const [randomColor, setRandomColor] = useState('');
   const [on, setOn] = useState(false);
-  const [tap] = useSound("/sounds/tap.mp3");
+  const [tap] = useSound('/sounds/tap.mp3');
 
   useEffect(() => {
-    const color = ["tomato", "skyblue", "turquoise", "crimson"];
+    const color = ['tomato', 'skyblue', 'turquoise', 'crimson'];
     const random = Math.floor(Math.random() * color.length);
+    /*eslint computed-property-spacing: ["error", "never"]*/
     setRandomColor(color[random]);
     setOn(true);
   }, []);
@@ -28,7 +29,7 @@ export default function Coding({ allPostsData }: PostsProps) {
         <title>{siteTitle}</title>
       </Head>
       <Twemoji
-        options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}>
+        options={{ className: 'inline m-px w-5 h-5 align-text-20 cursor-default' }}>
         <section className="mx-2 flex p-10">
           <Image
             priority
@@ -57,7 +58,7 @@ export default function Coding({ allPostsData }: PostsProps) {
             show={on}
             type="bracket"
             strokeWidth={3}
-            brackets={["left", "right"]}
+            brackets={['left', 'right']}
             color={randomColor}
             animationDuration={1200}>
             <span className="pl-2 text-2xl">Blog&nbsp;</span>
@@ -87,7 +88,7 @@ export default function Coding({ allPostsData }: PostsProps) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData("coding");
+  const allPostsData = getSortedPostsData('coding');
 
   return {
     props: {
