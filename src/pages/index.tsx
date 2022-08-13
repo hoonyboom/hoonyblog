@@ -6,7 +6,7 @@ import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useSound from "use-sound";
 
 export interface PostsProps {
@@ -35,13 +35,16 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }: PostsProps) {
   const [random, setRandom] = useState(0);
   const [on, setOn] = useState(false);
-  const color = ["tomato", "skyblue", "turquoise", "crimson"];
+  const color = useMemo(() => {
+    return ["tomato", "skyblue", "turquoise", "crimson"];
+  }, [on]);
+
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
     setRandom(Math.floor(Math.random() * color.length));
     setOn(true);
-  }, [color]);
+  }, []);
 
   return (
     <Layout home>
