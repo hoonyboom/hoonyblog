@@ -19,7 +19,7 @@ export default function Coding({ allPostsData }: PostsProps) {
   useEffect(() => {
     setRandom(Math.floor(Math.random() * color.length));
     setOn(true);
-  }, [random, on]);
+  }, [color]);
 
   return (
     <Layout home>
