@@ -32,13 +32,11 @@ export async function getStaticProps() {
   };
 }
 
+const color = ["tomato", "skyblue", "turquoise", "crimson"];
+
 export default function Home({ allPostsData }: PostsProps) {
   const [random, setRandom] = useState(0);
   const [on, setOn] = useState(false);
-  const color = useMemo(() => {
-    return ["tomato", "skyblue", "turquoise", "crimson"];
-  }, [on]);
-
   const [tap] = useSound("/sounds/tap.mp3");
 
   useEffect(() => {
