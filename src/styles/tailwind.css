@@ -54,16 +54,19 @@ p>a, span>a {
   font-family: 'IBM';
   src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');
   font-weight: normal;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'NanumSquareR';
   src: url('/fonts/NanumSquareR.woff2') format('woff2');
   font-weight: normal;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'Consolas';
   src: url('/fonts/Consolasligaturizedv2.woff2') format('woff2');
   font-weight: normal;
+  font-display: block;
 }
