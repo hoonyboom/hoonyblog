@@ -9,7 +9,7 @@ export interface LayoutProps {
 
 export const name = "아구몬";
 export const siteTitle = "후니로그";
-export const months = "4개월";
+export const months = "6개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
@@ -17,6 +17,7 @@ export default function Layout({ children, home }: LayoutProps) {
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/images/heart.svg" />
+          <link rel="apple-touch-icon" href="/images/heart.svg" />
           <meta name="description" content={`${months}차 뉴비의 프론트엔드 생존기`} />
           <meta
             property="og:image"

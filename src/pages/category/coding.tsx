@@ -7,8 +7,20 @@ import Twemoji from "react-twemoji";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
+import { useEffect, useState } from "react";
+import useSound from "use-sound";
 
 export default function Coding({ allPostsData }: PostsProps) {
+  const [random, setRandom] = useState(0);
+  const [on, setOn] = useState(false);
+  const color = ["tomato", "skyblue", "turquoise", "crimson"];
+  const [tap] = useSound("/sounds/tap.mp3");
+
+  useEffect(() => {
+    setRandom(Math.floor(Math.random() * color.length));
+    setOn(true);
+  }, []);
+
   return (
     <Layout home>
       <Head>
@@ -41,11 +53,11 @@ export default function Coding({ allPostsData }: PostsProps) {
 
         <section className="mx-10 md:mx-0">
           <RoughNotation
-            show={true}
+            show={on}
             type="bracket"
             strokeWidth={3}
             brackets={["left", "right"]}
-            color="tomato"
+            color={color[random]}
             animationDuration={1200}>
             <span className="pl-2 text-2xl">Coding&nbsp;</span>
           </RoughNotation>
@@ -53,6 +65,7 @@ export default function Coding({ allPostsData }: PostsProps) {
           <div className="mt-8 pb-10 lg:pb-12">
             {allPostsData.map(({ id, date, title }) => (
               <div
+                onMouseUp={() => tap()}
                 className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
                 key={id}>
                 <div className="flex flex-col">

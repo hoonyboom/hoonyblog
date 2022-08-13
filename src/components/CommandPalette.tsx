@@ -14,9 +14,11 @@ import { TbPencil } from "react-icons/tb";
 import { SiAboutdotme } from "react-icons/si";
 import { IoCloud } from "react-icons/io5";
 import { GiCircle } from "react-icons/gi";
+import useSound from "use-sound";
 
 export default function CommandPalette({ children }: LayoutProps) {
   const router = useRouter();
+  const [beep] = useSound("/sounds/beep.mp3");
   const actions = [
     {
       id: "home",
@@ -108,7 +110,7 @@ export default function CommandPalette({ children }: LayoutProps) {
               </button>
               <KBarSearch
                 className="flex py-4 px-3  rounded-tr-lg bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
-                defaultPlaceholder="단축키: cmd(or ctrl) + K"
+                defaultPlaceholder="첫글자를 이용하면 밖에서도 이동할 수 있어요 &nbsp;🚀"
               />
             </div>
             <RenderResults />
@@ -123,6 +125,8 @@ export default function CommandPalette({ children }: LayoutProps) {
 
 function RenderResults() {
   const { results } = useMatches();
+  const [tick] = useSound("/sounds/tick.mp3");
+  const [beep] = useSound("/sounds/beep.mp3");
 
   return (
     <KBarResults
@@ -135,6 +139,8 @@ function RenderResults() {
             <div className="text-gray-500/80 text-xs ">{item}</div>
           ) : (
             <div
+              onMouseEnter={() => tick()}
+              onMouseUp={() => beep()}
               className={`${
                 active ? "bg-emerald-600 text-gray-100 rounded-md" : "transparent"
               } 
