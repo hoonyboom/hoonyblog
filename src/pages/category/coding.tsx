@@ -65,11 +65,10 @@ export default function Coding({ allPostsData }: PostsProps) {
 
           <div className="mt-8 pb-10 lg:pb-12">
             {allPostsData.map(({ id, date, title }) => (
-              <Link href={`/posts/${id}`}>
+              <Link href={`/posts/${id}`} key={id}>
                 <div
                   onMouseUp={() => tap()}
-                  className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
-                  key={id}>
+                  className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur">
                   <div className="flex flex-col">
                     <a className="text-lg">{title}</a>
                     <small className="mt-2 text-base">
