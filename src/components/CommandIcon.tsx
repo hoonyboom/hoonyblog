@@ -10,7 +10,7 @@ export default function CommandPaletteIcon() {
   return (
     <>
       <button
-        onMouseUp={() => beep()}
+        onMouseDown={() => beep()}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={query.toggle}
@@ -25,7 +25,7 @@ export default function CommandPaletteIcon() {
 const MouseHoverPopup = ({ hover }: { hover: boolean }) => {
   return (
     <div
-      className={`absolute top-16 w-24 h-8 text-sm outline-1 outline-dotted outline-sky-300 rounded-md flex justify-center items-center transition-opacity duration-200
+      className={`absolute top-16 w-24 h-8 text-sm outline-1 outline-dotted outline-sky-300 rounded-md sm:hidden md:flex justify-center items-center transition-opacity duration-200 
       ${hover ? "opacity-100" : "opacity-0"}`}>
       Cmd/Ctrl + K
     </div>

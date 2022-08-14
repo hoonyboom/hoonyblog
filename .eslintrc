@@ -73,8 +73,7 @@
       "always"
     ], // line의 가장 마지막 줄에는 개행 넣기
     "import/no-named-as-default": 0, // default로 정의되지 않은 아이들을 불러왔음을 알려줌
-    "react/react-in-jsx-scope": "off",
-    "array-bracket-spacing": "never",
+    "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "import/resolver": {
