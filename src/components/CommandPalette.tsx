@@ -108,7 +108,7 @@ export default function CommandPalette({ children }: LayoutProps) {
                 />
               </button>
               <KBarSearch
-                className="flex py-4 px-3  rounded-tr-lg bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
+                className="flex py-4 px-3 bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
                 defaultPlaceholder="첫글자를 이용하면 밖에서도 이동할 수 있어요 &nbsp;🚀"
               />
             </div>
