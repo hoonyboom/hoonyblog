@@ -9,13 +9,13 @@ import "@code-hike/mdx/dist/index.css";
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     // <NextSeo {...SEO}>
-      <ThemeProvider attribute="class" defaultTheme="system">
-        <CommandPalette>
-          <Logo>
-            <Component {...pageProps} />
-          </Logo>
-        </CommandPalette>
-      </ThemeProvider>
+    <ThemeProvider attribute="class" defaultTheme="system">
+      <CommandPalette>
+        <Logo>
+          <Component {...pageProps} />
+        </Logo>
+      </CommandPalette>
+    </ThemeProvider>
     // </NextSeo>
   );
 }
