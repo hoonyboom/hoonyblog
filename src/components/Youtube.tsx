@@ -13,4 +13,3 @@ export default function Youtube({ src }: { src: string }) {
     </div>
   );
 }
-
