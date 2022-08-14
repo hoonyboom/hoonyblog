@@ -17,7 +17,7 @@ export default function Layout({ children, home }: LayoutProps) {
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/images/heart.svg" />
-          <link rel="apple-touch-icon" href="/images/heart.svg" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/heart.svg" />
           <meta name="description" content={`${months}차 뉴비의 프론트엔드 생존기`} />
           <meta
             property="og:image"
