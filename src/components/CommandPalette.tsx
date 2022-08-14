@@ -101,14 +101,14 @@ export default function CommandPalette({ children }: LayoutProps) {
             <div className="flex relative text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"
-                className="flex py-4 px-2 rounded-tl-lg bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline">
+                className="py-4 px-2 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline">
                 <IoCloud
-                  className="w-6 h-6 bg-white dark:bg-gray-800 focus:outline-none focus:shadow-outline"
+                  className="w-6 h-6 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline"
                   fill="skyblue"
                 />
               </button>
               <KBarSearch
-                className="flex py-4 px-3 bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
+                className="py-4 px-3 bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
                 defaultPlaceholder="첫글자를 이용하면 밖에서도 이동할 수 있어요 &nbsp;🚀"
               />
             </div>
