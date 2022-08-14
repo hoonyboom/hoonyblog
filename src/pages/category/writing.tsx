@@ -53,7 +53,7 @@ export default function Writing({ allPostsData }: PostsProps) {
 
         <div className="mt-8 pb-10 lg:pb-12">
           {allPostsData.map(({ id, date, title }) => (
-            <Link href={`/posts/${id}`} key={id}>
+            <Link href={`/posts/${id}`} key={id} passHref>
               <div
                 onMouseUp={() => tap()}
                 className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur">

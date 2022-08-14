@@ -1,10 +1,10 @@
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import { CommandPalette, Logo } from "@/components";
-// import { NextSeo } from "next-seo";
-// import SEO from "next-seo.config";
 import "@/styles/tailwind.css";
 import "@code-hike/mdx/dist/index.css";
+// import { NextSeo } from "next-seo";
+// import SEO from "next-seo.config";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
