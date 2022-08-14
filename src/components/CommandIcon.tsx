@@ -10,6 +10,7 @@ export default function CommandPaletteIcon() {
   return (
     <>
       <button
+        aria-label="Search"
         onMouseDown={() => beep()}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}

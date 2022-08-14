@@ -32,6 +32,7 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta property="og:locale" content="ko_KR" />
           <meta property="og:type" content="website" />
           <meta name="twitter:card" content="summary_large_image" />
+          <meta name="robots" content="all" />
         </Head>
 
         <header className="flex justify-center items-center">{!home && <Nav />}</header>
