@@ -6,17 +6,9 @@
   },
   "extends": [
     "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "next",
+    "plugin:prettier/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": "2022",
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
   "plugins": [
     "react",
     "prettier",
@@ -56,11 +48,11 @@
     "space-in-parens": [
       "error",
       "never"
-    ], // 일반 괄호 앞 뒤 공백 추가
+    ], // 일반 괄호 앞 뒤 공백 추가 X
     "computed-property-spacing": [
       "error",
       "never"
-    ], // 대괄호 앞 뒤 공백 추가
+    ], // 대괄호 앞 뒤 공백 추가 X
     "comma-spacing": [
       "error",
       {

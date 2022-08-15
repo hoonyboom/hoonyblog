@@ -16,9 +16,11 @@ export default function Darkmode() {
 
   return (
     <button
+      aria-label="Darkmode Switch"
       className={`md:inline hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-zinc-800/70 dark:hover:text-gray-100 rounded-md
       transition-transform origin-center duration-300 ${rotate ? "rotate-0" : "rotate-45"}
-      `}>
+      `}
+    >
       {mounted && theme === "dark" ? (
         <MdDarkMode
           onMouseUp={() => switch2()}

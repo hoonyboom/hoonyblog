@@ -101,7 +101,8 @@ export default function CommandPalette({ children }: LayoutProps) {
             <div className="flex relative text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"
-                className="py-4 px-2 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline">
+                className="py-4 px-2 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline"
+              >
                 <IoCloud
                   className="w-6 h-6 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline"
                   fill="skyblue"
@@ -133,7 +134,8 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex items-center justify-between cursor-pointer px-3 py-1 w-full border-white dark:border-zinc-800 border-2 text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}>
+          flex items-center justify-between cursor-pointer px-3 py-1 w-full border-white dark:border-zinc-800 border-2 text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}
+        >
           {typeof item === "string" ? (
             <div className="text-gray-500/80 text-xs ">{item}</div>
           ) : (
@@ -143,7 +145,8 @@ function RenderResults() {
               className={`${
                 active ? "bg-emerald-600 text-gray-100 rounded-md" : "transparent"
               } 
-            w-full text-base flex items-center space-x-3 p-2`}>
+            w-full text-base flex items-center space-x-3 p-2`}
+            >
               {item.icon}
               <p className="text-sm">{item.name}</p>
             </div>

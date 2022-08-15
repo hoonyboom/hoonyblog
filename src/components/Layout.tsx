@@ -39,7 +39,8 @@ export default function Layout({ children, home }: LayoutProps) {
         {home && <HomeNav />}
 
         <Twemoji
-          options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}>
+          options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}
+        >
           <div className="min-h-content pt-16">{children}</div>
           {!home && (
             <div className="mt-12 ml-5 h-20 md:ml-1">

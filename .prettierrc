@@ -2,6 +2,8 @@
   "semi": true,
   "tabWidth": 2,
   "printWidth": 90,
-  "trailingComma": "all",
-  "bracketSameLine": true
+  "trailingComma": "all", // 마지막에 컴마 붙이기
+  "bracketSameLine": true, // jsx 닫는 </> 줄바꿈
+  "arrowParens": "avoid", // 화살표 함수 괄호 생략이 될 때 생략
+  "proseWrap": "preserve"
 }

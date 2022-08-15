@@ -6,6 +6,7 @@ import { siteTitle, name } from "@/components/Layout";
 import { getSortedPostsData } from "@/lib/posts";
 import { RoughNotation } from "react-rough-notation";
 import useSound from "use-sound";
+import { TbDropletHalf2 } from "react-icons/tb";
 export interface PostsProps {
   allPostsData: [
     {
@@ -45,11 +46,12 @@ export default function Home({ allPostsData }: PostsProps) {
           className="rounded-full"
           height={80}
           width={80}
+          layout="intrinsic"
           alt={name}
         />
         <div className="ml-8 flex flex-col justify-center space-y-1">
-          <h1 className="text-lg">{name}</h1>
-          <h4 className="text-md">갸륵하도다</h4>
+          <h4 className="text-lg">{name}</h4>
+          <h5 className="text-md">갸륵하도다</h5>
         </div>
       </section>
       <section className="mx-10 mb-28 flex items-center">
@@ -68,24 +70,27 @@ export default function Home({ allPostsData }: PostsProps) {
           strokeWidth={3}
           brackets={["left", "right"]}
           color="skyblue"
-          animationDuration={1200}>
+          animationDuration={1200}
+        >
           <span className="pl-2 text-2xl">Blog&nbsp;</span>
         </RoughNotation>
 
         <div className="mt-8 pb-10 lg:pb-12">
           {allPostsData.map(({ id, date, title }) => (
-            <Link href={`/posts/${id}`} key={id} passHref>
-              <div
-                onMouseUp={() => tap()}
-                className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur">
+            <div
+              onMouseUp={() => tap()}
+              className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
+              key={id}
+            >
+              <Link href={`/posts/${id}`} passHref>
                 <div className="flex flex-col">
                   <a className="text-lg">{title}</a>
                   <small className="mt-2 text-base">
                     <Date dateString={date} />
                   </small>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))}
           {/* todo: 페이지네이션 추가해야 할 곳 */}
         </div>

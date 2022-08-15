@@ -61,7 +61,8 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
               type="highlight"
               iterations={3}
               strokeWidth={1}
-              color="#5bcf86">
+              color="#5bcf86"
+            >
               {frontmatter.description}
             </RoughNotation>
           </p>
