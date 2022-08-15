@@ -6,19 +6,18 @@
   },
   "extends": [
     "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    "next",
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": "2022",
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  // "parser": "@typescript-eslint/parser",
+  // "parserOptions": {
+  //   "ecmaVersion": "2022",
+  //   "sourceType": "module",
+  //   "ecmaFeatures": {
+  //     "jsx": true
+  //   }
+  // },
   "plugins": [
     "react",
     "prettier",
@@ -75,7 +74,8 @@
       "always"
     ], // line의 가장 마지막 줄에는 개행 넣기
     "import/no-named-as-default": 0, // default로 정의되지 않은 아이들을 불러왔음을 알려줌
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "tailwindcss/classname-order": "off" // tailwind className 순서 규칙 끔
   },
   "settings": {
     "import/resolver": {
