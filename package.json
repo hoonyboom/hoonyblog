@@ -53,5 +53,10 @@
   },
   "lint-staged": {
     "src/**/*.{json,md,mdx,ts,tsx}": []
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   }
 }
