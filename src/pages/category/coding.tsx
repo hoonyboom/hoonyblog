@@ -17,7 +17,7 @@ export default function Coding({ allPostsData }: PostsProps) {
         <title>{siteTitle}</title>
       </Head>
 
-      <section className="mx-2 flex p-10">
+      <section className="flex p-10 mx-2">
         <Image
           priority
           src="/images/profile.jpg"
@@ -27,12 +27,12 @@ export default function Coding({ allPostsData }: PostsProps) {
           layout="intrinsic"
           alt={name}
         />
-        <div className="ml-8 flex flex-col justify-center space-y-1">
+        <div className="flex flex-col justify-center ml-8 space-y-1">
           <h4 className="text-lg">{name}</h4>
           <h5 className="text-md">갸륵하도다</h5>
         </div>
       </section>
-      <section className="mx-10 mb-28 flex items-center">
+      <section className="flex items-center mx-10 mb-28">
         <p className="leading-7">
           안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
           <br />
@@ -53,7 +53,7 @@ export default function Coding({ allPostsData }: PostsProps) {
           <span className="pl-2 text-2xl">Blog&nbsp;</span>
         </RoughNotation>
 
-        <div className="mt-8 pb-10 lg:pb-12">
+        <div className="pb-10 mt-8 lg:pb-12">
           {allPostsData.map(({ id, date, title }) => (
             <div
               onMouseUp={() => tap()}
