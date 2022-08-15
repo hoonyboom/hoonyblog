@@ -5,12 +5,12 @@
     "node": true
   },
   "extends": [
-    "next/core-web-vitals",
     "next",
+    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended" // recommend: 항상 아래에.!
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -77,7 +77,7 @@
       "always"
     ], // line의 가장 마지막 줄에는 개행 넣기
     "import/no-named-as-default": 0, // default로 정의되지 않은 아이들을 불러왔음을 알려줌
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off" // import react from "react" 생략
   },
   "settings": {
     "import/resolver": {

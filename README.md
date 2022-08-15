@@ -1,9 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
 
 ## 시작
 
 ```bash
-$ yarn dev
+yarn dev
 ```
 
 ## 가보자GO~ (공부자료들 계속해서 추가 -ing)
