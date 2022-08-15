@@ -57,12 +57,12 @@ export default function Coding({ allPostsData }: PostsProps) {
           {allPostsData.map(({ id, date, title }) => (
             <div
               onMouseUp={() => tap()}
-              className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
+              className="my-5 border rounded-3xl border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
               key={id}
             >
               <Link href={`/posts/${id}`} passHref>
                 <div className="flex flex-col">
-                  <a className="text-lg">{title}</a>
+                  <a className="sm:text-sm text-lg">{title}</a>
                   <small className="mt-2 text-base">
                     <Date dateString={date} />
                   </small>
