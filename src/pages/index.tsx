@@ -44,14 +44,14 @@ export default function Home({ allPostsData }: PostsProps) {
           priority
           src="/images/profile.jpg"
           className="rounded-full"
-          height={80}
-          width={80}
+          height="80"
+          width="80"
           layout="intrinsic"
           alt={name}
         />
         <div className="ml-8 flex flex-col justify-center space-y-1">
           <h4 className="text-lg">{name}</h4>
-          <h5 className="text-md">갸륵하도다</h5>
+          <h5 className="text-base">갸륵하도다</h5>
         </div>
       </section>
       <section className="mx-10 mb-28 flex items-center">

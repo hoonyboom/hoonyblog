@@ -10,6 +10,7 @@ import useSound from "use-sound";
 
 export default function Writing({ allPostsData }: PostsProps) {
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
+
   return (
     <Layout home>
       <Head>
@@ -32,7 +33,7 @@ export default function Writing({ allPostsData }: PostsProps) {
         </div>
       </section>
       <section className="mx-10 mb-28 flex items-center">
-        <p className="leading-7">
+        <p className="text-md leading-7">
           안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
           <br />
           코딩과 일기가 뒤죽박죽 섞여 있어요 😵‍💫
@@ -46,7 +47,7 @@ export default function Writing({ allPostsData }: PostsProps) {
           type="bracket"
           strokeWidth={3}
           brackets={["left", "right"]}
-          color="skyblue"
+          color="crimson"
           animationDuration={1200}
         >
           <span className="pl-2 text-2xl">Writing&nbsp;</span>
