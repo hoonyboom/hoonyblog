@@ -6,7 +6,7 @@ import useSound from "use-sound";
 export default function Darkmode() {
   const { theme, setTheme } = useTheme();
   const [rotate, setRotate] = useState(false);
-  const [switch2] = useSound("/sounds/switch.mp3");
+  const [sound] = useSound("/sounds/switch.mp3");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Darkmode() {
     >
       {mounted && theme === "dark" ? (
         <MdDarkMode
-          onMouseUp={() => switch2()}
+          onMouseUp={() => sound()}
           onClick={() => {
             setTheme("light");
             setRotate(false);
@@ -34,7 +34,7 @@ export default function Darkmode() {
         />
       ) : (
         <MdOutlineLightMode
-          onMouseUp={() => switch2()}
+          onMouseUp={() => sound()}
           onClick={() => {
             setTheme("dark");
             setRotate(true);

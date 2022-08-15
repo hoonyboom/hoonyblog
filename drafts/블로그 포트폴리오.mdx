@@ -7,7 +7,12 @@ categories: "coding"
 
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 
-
+<div className="flex flex-row justify-center space-x-1 mb-16">
+  <span>![next](https://img.shields.io/badge/-Next.js-black?logo=next.js&logoColor=white)</span>
+  <span>![ts](https://img.shields.io/badge/-typescript-blue?logo=typescript&logoColor=white)</span>
+  <span>![tail](https://img.shields.io/badge/-tailwind-red?logo=tailwindCSS&logoColor=white)</span>
+  <span>![mdx](https://img.shields.io/badge/-mdx-darkslateblue?logo=mdx&logoColor=white)</span>
+</div>
 
 다른 건 모르겠어도 블로그는 꼭 만들고 시작하자 싶었다.
 
@@ -18,24 +23,26 @@ import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 - MD 파일의 컴파일링에는 Mdx-Bundler 라이브러리를 사용했다.
 - Twemoji와 RoughNotation을 활용해 과하지 않게 포인트를 주고 싶었다.
 
-  <br />
-  <br />
+<br />
+<br />
+<hr/>
+<br />
+<br />
 
 > Next.js (by Vercel)
 
-React에 서버사이드 렌더링 옵션을 입히는 프레임워크다. 디폴트 값은 SSG로, 첫방문 이후에는 페이지 이동/렌더에 관한 전권이 다시 리액트에 주어진다. 초기셋팅(타입스크립트, 웹팩, 바벨 등)이 잘돼있기 때문에 CRA 유저라면 적응에 큰 무리가 없을 듯싶다.  
-라우팅의 편리함과 함께, 작은 Node.js 공간인 Serverless Route가 최고의 매력으로 느껴졌다. 나의 백엔드 실험실..!
-
+React에 서버사이드 렌더링 옵션을 입히는 프레임워크다. 디폴트 값은 SSG로, 첫방문 이후에는 페이지 이동/렌더에 관한 전권이 다시 리액트에 주어진다. 초기셋팅(타입스크립트, 웹팩, 바벨 등)이 잘돼있기 때문에 CRA 유저라면 적응에 큰 무리가 없을 듯싶다(솔직히 말하면 이거 쓰려고 리액트 배웠구나 싶다)  
+라우팅의 편리함과 함께, 작은 Node.js 공간인 Serverless Route가 최고의 매력으로 느껴졌다.  
 SEO와 쾌적한 UX를 동시에 챙길 수 있다.
 
 <br />
 <br />
-
 > Mdx-bundler
 
-Mdx는 Md 파일에 Jsx적 요소를 결합한 확장형식이다. 중간에서 이를 컴파일하는 장치가 필요한데, 나는 [Mdx-bundler](https://www.iamyadav.com/blogs/use-mdx-bundler-with-next-js)를 이용했다. 마크다운 문서에서 리액트 라이브러리나 컴퍼넌트를 불러와 활용할 수 있다.
-부족한 기능은 remark와 rehype의 부대 라이브러리를 통해 보강했다. 가령 나름 중요하게 생각했던 코드 구문 하이라이트의 경우 remark-prism과 code-hike(beta)를 연동시켜 구현할 수 있었다. 이제 열심히 쓰기만 하면 된다.... 
-마크다운 형식의 글이기 때문에 코드 에디터를 고집할 필요가 없다! 율리시스도 IA-Writer도 괜찮다. 나는 옵시디언으로 쓰고 있다! 🙋‍♀️
+Mdx는 Md 파일에 Jsx적 요소를 결합한 확장형식이다. 중간에서 이를 컴파일하는 장치가 필요한데, 나는 [Mdx-bundler](https://www.iamyadav.com/blogs/use-mdx-bundler-with-next-js)를 이용했다. 마크다운 문서에서 리액트 라이브러리나 컴퍼넌트를 불러와 활용할 수 있다.  
+부족한 기능은 remark와 rehype의 부대 라이브러리를 통해 보강했다. 가령 나름 중요하게 생각했던 코드 구문 하이라이트의 경우 remark-prism과 code-hike(beta)를 연동시켜 구현했다.  
+<br/>
+이건 당연한 얘기겠지만 마크다운 형식의 글이기 때문에 꼭 코드 에디터를 고집할 필요가 없다. 율리시스도 IA-Writer도 괜찮다. 나는 옵시디언을 쓰고 있다.
 
 ```mdx 예시.mdx
 ---
@@ -53,23 +60,16 @@ import { 훅, 컴퍼넌트 } from "모듈";
   <span>![tail](https://img.shields.io/)</span>
 </div>
 ```
-
 <br />
 <br />
-
 > Tailwind
 
-Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 부여하는 CSS프레임워크다.
-매번 CSS 목록을 써내려가야 했던 styled-component보다 작업 면에서 편하고 효율적으로 느껴졌다.
-빌드시엔 사용된 클래스에 관한 CSS만을 남겨 몸집을 줄이기도 한다.
-
-<br />
-공식문서를 톺아보면서 개인적으론 몰랐던 속성들에 대한 공부도 많이 됐는데, 커스텀을 추가해가면서
-길들이는 맛이 제법 쏠쏠하다는 후문..&nbsp;&nbsp; 🙊
+Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 부여하는 CSS프레임워크다. 매번 CSS 목록을 써내려가야 했던 styled-component보다 작업 면에서 편하고 효율적으로 느껴졌다. 빌드시엔 사용된 클래스에 관한 CSS만을 남겨 몸집을 줄이기도 한다.  
+<br/>
+공식문서를 톺아보면서 개인적으론 몰랐던 속성들에 대한 공부도 많이 됐는데, 커스텀을 추가해가면서 길들이는 맛이 제법 쏠쏠했다 🙊
 
 <br />
 <br />
-
 > Vercel
 
 같은 그룹의 클라우드 플랫폼 Vercel을 통해 호스팅했다. 깃허브를 통해
@@ -77,4 +77,63 @@ Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 �
 경우 임의의 브랜치를 활용해 프리뷰 모드로 진입할 수도 있다.
 
 <br />
-(추가예정)
+<br />
+<hr/>
+<br />
+<br />
+### 후기
+<br />
+1. ㄱ. Lighthouse 테스트. 대단할 거 없는 사이트지만 그린 라이트에 기쁘다🙇‍♀️🎉 &nbsp;감점 요소가 무엇인지, 그에 대한 참조 링크까지 친절히 알려줘서 오류를 잡기 수월했다.  
+<br/>
+![seo-test](/images/seo-test.png)
+<br/>
+2. ㄴ. 마크다운에 리액트를 불러올 때 매번 모듈을 불러오는 것은 번거로운 일이다. 그럴 땐 커스텀 스니펫을 만들어두면 시간을 아낄 수 있다. 
+```json markdown.json
+{// src를 props로 받는 Youtube 컴퍼넌트를 만들고, 이를 불러온다.
+  "youtube": {
+    "prefix": "@yt", // 단축어는 @yt로
+    "body": [ // body 안에 코드를 작성. 한줄을 기준으로 ""에 담는다.
+      "import Youtube from '../src/components/Youtube.tsx';",
+      "import { useState, useEffect } from 'react';",
+      "",
+      "export default function Video() {",
+      "  const [mounted, setMounted] = useState(false);",
+      "  useEffect(()=>{setMounted(true)}, [])",
+      "  if(mounted){",
+      "    return <Youtube src={'${1:/* url paste */}'} />",
+      "  }", // ${1: @#!} 스니펫 호출 후 커서가 가닿아 있는 곳. 
+      "  return null;",
+      "}"
+    ],
+    "description": "Youtube Component"
+  },
+}
+```
+<br/>
+3. ㄷ. Yarn berry를 처음으로 적용했다. 여태 yarn classic을 문제없이 불만없이 썼으나 레거시로 돌아선지도 한참인데 언제까지 쓰고 있을 순 없다고 판단했다.  
+yarn berry는 모듈 파일들을 압축된 형식으로 가진다. 쉽게 이해하면 필요할 때 위치를 찾아내서 이를 들춰보는 방식이다. 적은 용량을 가지며, 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다.  
+<br/>
+하지만 이 때문에 아직 호환이 안 되는 부분도 분명 있었다. 나는 다른 작업에서 Prisma의 스키마를 migration 하는 과정에서 이를 처음 경험했는데, 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했다. 이유는 이렇다.  
+prettier는 자신의 plugin들을 찾을 때 node_modules 뒤져 픽업해 간다. 때문에 node_modules가 없는 yarn berry로선 위치를 직접 집어 이를 prettier가 데려갈 수 있게 내보내야 한다.
+
+<CH.Code>
+```js .prettierrc.js
+// .prettierrc(json)를 썼다면 .js로 포맷을 바꾼다
+module.exports = {
+  plugins: [require("prettier-plugin-tailwindcss")],
+  semi: true,
+  ...
+  ...
+} // 혹은
+```
+---
+```json .yarnrc.yml
+nodeLinker: node_modules
+// pnp 방식을 꺼버리는 수가 있겠으나 그럴거면 굳이..?
+```
+</CH.Code>
+
+
+
+      
+      
