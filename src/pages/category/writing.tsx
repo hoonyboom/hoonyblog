@@ -2,7 +2,7 @@ import { getSortedPostsData } from "@/lib/posts";
 import { PostsProps } from "..";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/future/image";
 import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
@@ -21,10 +21,9 @@ export default function Writing({ allPostsData }: PostsProps) {
         <Image
           priority
           src="/images/profile.jpg"
-          className="rounded-full"
+          className="h-20 w-20 rounded-full"
           height={80}
           width={80}
-          layout="intrinsic"
           alt={name}
         />
         <div className="ml-8 flex flex-col justify-center space-y-1">

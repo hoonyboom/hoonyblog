@@ -4,12 +4,36 @@
     "type": "split",
     "children": [
       {
-        "id": "24db6db116789de6",
+        "id": "99ac102f8d9056ad",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "drafts/블로그 포트폴리오.mdx",
+            "mode": "source",
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "cb25f13bfa64c55c",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
             "file": "drafts/무제노트.mdx",
+            "mode": "source",
+            "source": false
+          }
+        }
+      },
+      {
+        "id": "4ae6613bdc3b0de5",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "drafts/슬라이딩 탭.mdx",
             "mode": "source",
             "source": false
           }
@@ -61,7 +85,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 224.5
   },
   "right": {
     "id": "7b76472bf419e846",
@@ -77,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "drafts/무제노트.mdx",
+                "file": "drafts/블로그 포트폴리오.mdx",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "drafts/무제노트.mdx",
+                "file": "drafts/블로그 포트폴리오.mdx",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -117,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "drafts/무제노트.mdx"
+                "file": "drafts/블로그 포트폴리오.mdx"
               }
             }
           },
@@ -136,13 +160,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "24db6db116789de6",
+  "active": "99ac102f8d9056ad",
   "lastOpenFiles": [
-    "drafts/새로운글.mdx",
-    "drafts/블로그 사이트.mdx",
+    "drafts/슬라이딩 탭.mdx",
+    "drafts/블로그 포트폴리오.mdx",
     "drafts/무제노트.mdx",
     "drafts/무제노트.md",
-    "README.md",
-    "template/frontmatter.md"
+    "무제노트.md",
+    "images/profile.jpg.md",
+    "drafts/테스트 1.mdx",
+    "drafts/새로운글.mdx",
+    "drafts/블로그 사이트.mdx",
+    "README.md"
   ]
 }

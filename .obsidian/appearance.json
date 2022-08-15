@@ -1,4 +1,10 @@
 {
-  "cssTheme": "Mado Miniflow",
-  "theme": "moonstone"
+  "cssTheme": "Catppuccin",
+  "theme": "obsidian",
+  "textFontFamily": "IM_Hyemin",
+  "interfaceFontFamily": "Adobe Clean",
+  "baseFontSize": 21,
+  "baseFontSizeAction": true,
+  "monospaceFontFamily": "Cascadia Code",
+  "translucency": false
 }
