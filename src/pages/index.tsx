@@ -39,7 +39,7 @@ export default function Home({ allPostsData }: PostsProps) {
         <title>{siteTitle}</title>
       </Head>
 
-      <section className="flex p-10 mx-2">
+      <section className="mx-2 flex p-10">
         <Image
           priority
           src="/images/profile.jpg"
@@ -49,13 +49,13 @@ export default function Home({ allPostsData }: PostsProps) {
           layout="intrinsic"
           alt={name}
         />
-        <div className="flex flex-col justify-center ml-8 space-y-1">
+        <div className="ml-8 flex flex-col justify-center space-y-1">
           <h4 className="text-lg">{name}</h4>
           <h5 className="text-md">갸륵하도다</h5>
         </div>
       </section>
-      <section className="flex items-center mx-10 mb-28">
-        <p className="leading-7">
+      <section className="mx-10 mb-28 flex items-center">
+        <p className="text-md leading-7">
           안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
           <br />
           코딩과 일기가 뒤죽박죽 섞여 있어요 😵‍💫
@@ -75,11 +75,11 @@ export default function Home({ allPostsData }: PostsProps) {
           <span className="pl-2 text-2xl">Blog&nbsp;</span>
         </RoughNotation>
 
-        <div className="pb-10 mt-8 lg:pb-12">
+        <div className="mt-8 pb-10 lg:pb-12">
           {allPostsData.map(({ id, date, title }) => (
             <div
               onMouseUp={() => tap()}
-              className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
+              className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
               key={id}
             >
               <Link href={`/posts/${id}`} passHref>

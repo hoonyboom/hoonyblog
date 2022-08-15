@@ -14,7 +14,7 @@ export const months = "6개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="min-h-full dark:bg-custom-background w-full transition dark:text-slate-200/80 ">
+    <div className="w-full transition dark:text-slate-200/80 ">
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/images/heart.svg" />
@@ -35,7 +35,7 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="robots" content="all" />
         </Head>
 
-        <header className="flex justify-center items-center">{!home && <Nav />}</header>
+        <header className="flex items-center justify-center">{!home && <Nav />}</header>
         {home && <HomeNav />}
 
         <Twemoji

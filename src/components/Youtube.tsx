@@ -1,8 +1,8 @@
 export default function Youtube({ src }: { src: string }) {
   return (
-    <div className="relative pb-[56.25%] pt-6 h-0">
+    <div className="relative h-0 pb-[56.25%] pt-6">
       <iframe
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute top-0 left-0 h-full w-full"
         width="560"
         height="315"
         src={src}

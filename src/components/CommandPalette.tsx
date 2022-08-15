@@ -26,7 +26,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "home",
       section: "_root",
       perform: () => router.push("/"),
-      icon: <GiCircle className="w-4 h-4" />,
+      icon: <GiCircle className="h-4 w-4" />,
     },
     {
       id: "writing",
@@ -35,7 +35,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "writing",
       section: "_root",
       perform: () => router.push("/category/writing", "/writing"),
-      icon: <TbPencil className="w-4 h-4" />,
+      icon: <TbPencil className="h-4 w-4" />,
     },
     {
       id: "coding",
@@ -44,7 +44,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "coding",
       section: "_root",
       perform: () => router.push("/category/coding", "/coding"),
-      icon: <VscCode className="w-4 h-4" />,
+      icon: <VscCode className="h-4 w-4" />,
     },
     {
       id: "github",
@@ -53,7 +53,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "github",
       section: "public",
       perform: () => window.open("https://github.com/10004ok", "_blank"),
-      icon: <VscGithubInverted className="w-4 h-4" />,
+      icon: <VscGithubInverted className="h-4 w-4" />,
     },
     {
       id: "twitter",
@@ -62,7 +62,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "twitter",
       section: "public",
       perform: () => window.open("https://twitter.com/hyezoprk", "_blank"),
-      icon: <VscTwitter className="w-4 h-4" />,
+      icon: <VscTwitter className="h-4 w-4" />,
     },
     {
       id: "about",
@@ -71,7 +71,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "about",
       section: "README.md",
       perform: () => router.push("/category/about", "/about"),
-      icon: <SiAboutdotme className="w-4 h-4" />,
+      icon: <SiAboutdotme className="h-4 w-4" />,
     },
     // {
     //   id: 'copy',
@@ -97,19 +97,19 @@ export default function CommandPalette({ children }: LayoutProps) {
     <KBarProvider actions={actions} options={{ disableScrollbarManagement: true }}>
       <KBarPortal>
         <KBarPositioner className="z-10 bg-zinc-900/80">
-          <KBarAnimator className="max-w-lg w-full overflow-y-auto rounded-lg shadow-lg">
-            <div className="flex relative text-gray-600 focus-within:text-gray-400">
+          <KBarAnimator className="w-full max-w-lg overflow-y-auto rounded-lg shadow-lg">
+            <div className="relative flex text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"
-                className="py-4 px-2 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline"
+                className="bg-white py-4 px-2 focus:shadow-md dark:bg-zinc-800"
               >
                 <IoCloud
-                  className="w-6 h-6 bg-white dark:bg-zinc-800 focus:outline-none focus:shadow-outline"
+                  className="h-6 w-6 bg-white focus:shadow-md dark:bg-zinc-800"
                   fill="skyblue"
                 />
               </button>
               <KBarSearch
-                className="py-4 px-3 bg-white dark:bg-zinc-800 text-black dark:text-white text-base w-full caret-blue-500 outline-none"
+                className="w-full bg-white py-4 px-3 text-base text-black caret-blue-500 outline-none dark:bg-zinc-800 dark:text-white"
                 defaultPlaceholder="첫글자를 이용하면 밖에서도 이동할 수 있어요 &nbsp;🚀"
               />
             </div>
@@ -134,18 +134,18 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex items-center justify-between cursor-pointer px-3 py-1 w-full border-white dark:border-zinc-800 border-2 text-gray-900 dark:text-gray-100 text-sm bg-white dark:bg-zinc-800`}
+          flex w-full cursor-pointer items-center justify-between border-2 border-white bg-white px-3 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
         >
           {typeof item === "string" ? (
-            <div className="text-gray-500/80 text-xs ">{item}</div>
+            <div className="text-gray-500/80">{item}</div>
           ) : (
             <div
               onMouseEnter={() => tick()}
               onMouseUp={() => tap()}
               className={`${
-                active ? "bg-emerald-600 text-gray-100 rounded-md" : "transparent"
+                active ? "rounded-md bg-emerald-600 text-gray-100" : "transparent"
               } 
-            w-full text-base flex items-center space-x-3 p-2`}
+            flex w-full items-center space-x-3 p-2 text-base`}
             >
               {item.icon}
               <p className="text-sm">{item.name}</p>

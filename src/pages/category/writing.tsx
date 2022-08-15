@@ -29,7 +29,7 @@ export default function Writing({ allPostsData }: PostsProps) {
         />
         <div className="ml-8 flex flex-col justify-center space-y-1">
           <h4 className="text-lg">{name}</h4>
-          <h5 className="text-md">갸륵하도다</h5>
+          <h5 className="text-base">갸륵하도다</h5>
         </div>
       </section>
       <section className="mx-10 mb-28 flex items-center">
@@ -57,7 +57,7 @@ export default function Writing({ allPostsData }: PostsProps) {
           {allPostsData.map(({ id, date, title }) => (
             <div
               onMouseUp={() => tap()}
-              className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 filter backdrop-blur"
+              className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
               key={id}
             >
               <Link href={`/posts/${id}`} passHref>
