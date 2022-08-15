@@ -7,11 +7,9 @@ import { Layout, Date } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
 import useSound from "use-sound";
-import { useRouter } from "next/router";
 
 export default function Writing({ allPostsData }: PostsProps) {
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
-  const router = useRouter();
   return (
     <Layout home>
       <Head>
