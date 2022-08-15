@@ -50,7 +50,7 @@ export default function Writing({ allPostsData }: PostsProps) {
           color="skyblue"
           animationDuration={1200}
         >
-          <span className="pl-2 text-2xl">Blog&nbsp;</span>
+          <span className="pl-2 text-2xl">Writing&nbsp;</span>
         </RoughNotation>
 
         <div className="mt-8 pb-10 lg:pb-12">
