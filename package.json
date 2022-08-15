@@ -54,8 +54,8 @@
     "unified": "^10.1.2"
   },
   "lint-staged": {
-    "**/*.{tsx,ts,jsx,js}": [
-      "eslint --ignore-path .gitignore src/**/*{ts,tsx,js,jsx} --fix",
+    "src/**/*{ts,tsx,js,jsx}": [
+      "eslint --ignore-path .gitignore --fix",
       "prettier --write \"src/**/*.(ts|tsx|js|jsx)\""
     ]
   }
