@@ -50,6 +50,7 @@ p>a, span>a {
   background-size: 100% 200%;
   background-position: 0px 0px;
 }
+
 @font-face {
   font-family: 'IBM';
   src: url('/fonts/IBMPlexSans-Regular.woff2') format('woff2');

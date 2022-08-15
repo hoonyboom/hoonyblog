@@ -3,12 +3,30 @@
 module.exports = {
   reactStrictMode: true,
   experimental: { images: { allowFutureImage: true } },
+  async redirects() {
+    return [
+      {
+        source: "/coding",
+        destination: "/category/coding",
+        permanent: false,
+      },
+      {
+        source: "/writing",
+        destination: "/category/writing",
+        permanent: false,
+      },
+      {
+        source: "/about",
+        destination: "/category/about",
+        permanent: false,
+      },
+    ];
+  },
   // async rewrites() {
   //   return [
   //     {
-  //       source: "/api/movies", // api 요청 url
-  //       destination: "https://www.naver.com/api_keys", // 실제 원출처 api url with MY_API_KEYS
-  //       permanent: false,
+  //       source: "/category/coding", // api 요청 url
+  //       destination: "/coding", // 실제 원출처 api url with MY_API_KEYS
   //     },
   //   ];
   // },

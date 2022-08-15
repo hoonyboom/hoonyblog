@@ -134,7 +134,7 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex w-full cursor-pointer items-center justify-between border-2 border-white bg-white px-3 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
+          flex w-full cursor-pointer items-center justify-between border-4 border-white bg-white px-3 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
         >
           {typeof item === "string" ? (
             <div className="text-gray-500/80">{item}</div>
