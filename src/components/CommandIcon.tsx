@@ -15,7 +15,7 @@ export default function CommandPaletteIcon() {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onClick={query.toggle}
-        className="md:inline hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-zinc-800/70 dark:hover:text-gray-100 rounded-md"
+        className="rounded-md md:inline hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-zinc-800/70 dark:hover:text-gray-100"
       >
         <IoCloud className="w-6 h-6" fill="skyblue" />
       </button>
