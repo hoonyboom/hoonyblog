@@ -2,3 +2,6 @@
 *.css
 *.eslintrc
 *.mdx
+.yarn
+.obsidian
+.next
