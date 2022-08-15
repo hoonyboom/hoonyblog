@@ -56,7 +56,7 @@
   "lint-staged": {
     "src/**/*{ts,tsx,js,jsx}": [
       "eslint --ignore-path .gitignore --fix",
-      "prettier --write \"src/**/*.(ts|tsx|js|jsx)\""
+      "prettier --write"
     ]
   }
 }
