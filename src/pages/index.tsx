@@ -82,14 +82,14 @@ export default function Home({ allPostsData }: PostsProps) {
               className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
               key={id}
             >
-              <Link href={`/posts/${id}`} passHref>
-                <div className="flex flex-col">
+              <div className="flex flex-col">
+                <Link href={`/posts/${id}`}>
                   <a className="text-lg">{title}</a>
-                  <small className="mt-2 text-base">
-                    <Date dateString={date} />
-                  </small>
-                </div>
-              </Link>
+                </Link>
+                <small className="mt-2 text-base">
+                  <Date dateString={date} />
+                </small>
+              </div>
             </div>
           ))}
           {/* todo: 페이지네이션 추가해야 할 곳 */}
