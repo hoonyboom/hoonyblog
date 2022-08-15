@@ -8,9 +8,6 @@ import { siteTitle, name } from "@/components/Layout";
 import { RoughNotation } from "react-rough-notation";
 import useSound from "use-sound";
 
-
-
-
 export default function Writing({ allPostsData }: PostsProps) {
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   return (
