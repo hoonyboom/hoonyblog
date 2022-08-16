@@ -117,8 +117,7 @@ Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 �
 <br/>
 yarn berry는 모듈 파일들을 압축된 형식으로 가진다. 쉽게 이해하면 필요할 때 위치를 찾아내서 이를 들춰보는 방식이다. (압축됐기에) 작은 용량을 가지며, (트리형 참조가 아니기 때문에) 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다.  
 <br/>
-하지만 이 때문에 아직 호환이 안 되는 부분도 분명 있었다. 나는 다른 작업에서 Prisma의 스키마를 migration 하는 과정에서 이를 처음 경험했는데, 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했다. 이유는 이렇다.  
-현재로서 prettier는 자신의 plugin들을 찾을 때 node_modules만을 색인한다. 하지만 yarn berry는 node_modules를 가지지 않기에 그를 직접 집어 내보내야 한다.
+하지만 이 때문에 아직 호환이 안 되는 부분도 분명 있었다. 나는 다른 작업에서 Prisma의 스키마를 migration 하는 과정에서 이를 처음 경험했는데, 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했다. 이유는 현재로서 prettier는 자신의 plugin들을 찾을 때 node_modules만을 색인한다. 하지만 yarn berry는 node_modules를 가지지 않기에 그를 직접 집어 내보내야 한다.
 
 <CH.Code>
 ```js .prettierrc.js

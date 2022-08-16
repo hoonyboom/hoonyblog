@@ -62,7 +62,6 @@ export default function Home({ allPostsData }: PostsProps) {
             type="underline"
             color="orange"
             animationDuration={1000}
-            animationDelay={500}
           >
             코딩과 일기
           </RoughNotation>
@@ -79,7 +78,7 @@ export default function Home({ allPostsData }: PostsProps) {
           brackets={["left", "right"]}
           color="skyblue"
           animationDuration={1200}
-          animationDelay={1700}
+          animationDelay={1200}
         >
           <span className="pl-2 text-2xl">Blog&nbsp;</span>
         </RoughNotation>
