@@ -14,7 +14,7 @@ export const months = "6개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="w-full transition dark:text-slate-200/80 ">
+    <div className="h-full w-full transition dark:bg-zinc-900/90 dark:text-slate-200/80 ">
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/images/heart.svg" />

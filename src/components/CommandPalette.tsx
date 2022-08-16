@@ -109,7 +109,7 @@ export default function CommandPalette({ children }: LayoutProps) {
                 />
               </button>
               <KBarSearch
-                className="w-full bg-white py-4 px-3 text-base text-black caret-blue-500 outline-none dark:bg-zinc-800 dark:text-white"
+                className="w-full rounded-none border-4 border-white bg-white py-4 px-3 text-base text-black caret-blue-500 outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white"
                 defaultPlaceholder="첫글자를 이용하면 밖에서도 이동할 수 있어요 &nbsp;🚀"
               />
             </div>
@@ -134,16 +134,18 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex w-full cursor-pointer items-center justify-between border-4 border-white bg-white px-3 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
+          flex w-full items-center justify-between border-4 border-white bg-white px-3 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
         >
           {typeof item === "string" ? (
-            <div className="text-gray-500/80">{item}</div>
+            <div className="cursor-default text-gray-500/80">{item}</div>
           ) : (
             <div
               onMouseEnter={() => tick()}
               onMouseUp={() => tap()}
               className={`${
-                active ? "rounded-md bg-emerald-600 text-gray-100" : "transparent"
+                active
+                  ? "cursor-pointer rounded-md  bg-emerald-600 text-gray-100"
+                  : "transparent"
               } 
             flex w-full items-center space-x-3 p-2 text-base`}
             >

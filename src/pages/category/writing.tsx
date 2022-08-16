@@ -35,7 +35,16 @@ export default function Writing({ allPostsData }: PostsProps) {
         <p className="text-md leading-7">
           안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
           <br />
-          코딩과 일기가 뒤죽박죽 섞여 있어요 😵‍💫
+          <RoughNotation
+            show={true}
+            type="underline"
+            color="orange"
+            animationDuration={1000}
+            animationDelay={500}
+          >
+            코딩과 일기
+          </RoughNotation>
+          가 뒤죽박죽 섞여 있어요 😵‍💫
           <br />
         </p>
       </section>

@@ -11,7 +11,7 @@ export default function Video() {
   const [mounted, setMounted] = useState(false);
   useEffect(()=>{setMounted(true)}, [])
   if(mounted){
-    return <Youtube src={'/* url paste */'} />
+    return <Youtube src={'https://www.youtube.com/embed/l7zVhZeZvPI'} />
   }
   return null;
 }

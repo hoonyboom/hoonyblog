@@ -44,12 +44,12 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
   }, []);
 
   return (
-    <div className={`transition ${fade ? "opacity-100" : "opacity-0"}`}>
-      <Layout>
-        <Head>
-          <title>{`${frontmatter.title} 〰 ${siteTitle}`}</title>
-        </Head>
+    <Layout>
+      <Head>
+        <title>{`${frontmatter.title} 〰 ${siteTitle}`}</title>
+      </Head>
 
+      <div className={`transition ${fade ? "opacity-100" : "opacity-0"}`}>
         <h1 className="mt-28 mb-2 text-center text-3xl">{frontmatter.title}</h1>
         <div className="flex flex-col text-base leading-6">
           <p className="mt-2 flex justify-center">
@@ -71,7 +71,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
         <article className="keep-all m-10 text-base leading-7 lg:leading-8">
           <Component />
         </article>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
