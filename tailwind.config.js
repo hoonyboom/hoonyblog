@@ -33,7 +33,7 @@ module.exports = {
       custom: ["IBM", "NanumSquareR"],
     },
     minHeight: {
-      content: "40vh",
+      content: "100vh",
     },
   },
   plugins: [],

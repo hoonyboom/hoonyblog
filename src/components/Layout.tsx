@@ -14,7 +14,7 @@ export const months = "6개월";
 
 export default function Layout({ children, home }: LayoutProps) {
   return (
-    <div className="h-auto w-full transition dark:bg-zinc-900/90 dark:text-slate-200/80 ">
+    <div className="h-auto min-h-content w-full transition dark:bg-zinc-900/90 dark:text-slate-200/80 ">
       <div className="container mx-auto max-w-xl">
         <Head>
           <link rel="icon" href="/images/heart.svg" />
@@ -42,14 +42,16 @@ export default function Layout({ children, home }: LayoutProps) {
         <Twemoji
           options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}
         >
-          <div className="pt-16">{children}</div>
-          {!home && (
-            <div className="mt-12 ml-5 h-20 md:ml-1">
-              <Link href="/">
-                <a>← Back to home</a>
-              </Link>
-            </div>
-          )}
+          <div className="pt-10">
+            {children}
+            {!home && (
+              <div className="mt-16 ml-5 h-20 text-base md:ml-1">
+                <Link href="/">
+                  <a>← Back to home</a>
+                </Link>
+              </div>
+            )}
+          </div>
         </Twemoji>
       </div>
     </div>
