@@ -98,7 +98,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       <KBarPortal>
         <KBarPositioner className="z-10 bg-zinc-900/80">
           <KBarAnimator className="w-full max-w-lg overflow-y-auto rounded-lg shadow-lg">
-            <div className="relative flex text-gray-600  focus-within:text-gray-400">
+            <div className="relative flex text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"
                 className="bg-white py-4 px-2 focus:shadow-md dark:bg-zinc-800"
@@ -134,7 +134,7 @@ function RenderResults() {
       onRender={({ item, active }) => (
         <div
           className={`
-          flex w-full items-center justify-between border-4 border-white bg-white px-3 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
+          flex w-full items-center justify-between border-4 border-white bg-white px-3 text-sm text-gray-900 dark:border-zinc-800 dark:bg-zinc-800 dark:text-gray-100`}
         >
           {typeof item === "string" ? (
             <div className="cursor-default text-gray-500/80">{item}</div>
