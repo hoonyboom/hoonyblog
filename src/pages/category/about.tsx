@@ -1,3 +1,10 @@
-export default function about() {
-  return <div>ㅎㅇ</div>;
+import { MdxComponents } from "@/components";
+
+export default function About() {
+  const { Lnk } = MdxComponents;
+  return (
+    <>
+      <Lnk href="/" text="바보" />
+    </>
+  );
 }

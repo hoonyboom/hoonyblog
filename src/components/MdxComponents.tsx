@@ -1,34 +1,82 @@
-export {};
-// import Image, { ImageProps } from "next/image";
-// import Link, { LinkProps } from "next/link";
+import Image, { ImageProps } from "next/future/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 
-// // const CustomLink = (props: LinkProps) => {
-// //   const href = props.href;
-// //   const isInternalLink = href;
+/* 인터페이스 커스텀 타입 확장 */
+interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
+  href: string;
+  text: string;
+}
+interface NotationProps extends Omit<RoughNotationProps, "children"> {
+  css?: string;
+  text: string;
+}
 
-// //   if (isInternalLink) {
-// //     return (
-// //       <Link href={href}>
-// //         <a {...props}>{props.children}</a>
-// //       </Link>
-// //     );
-// //   }
+// 커스텀 컴퍼넌트
+//
+//
+// NextLink
+const Lnk = (props: LinkProps) => {
+  return (
+    <Link href={props.href}>
+      <a {...props}>{props.title}</a>
+    </Link>
+  );
+};
 
-// //   return <a target="_blank" rel="noopener noreferrer" {...props} />;
-// // };
+// NextImage
+const Img = (props: ImageProps) => {
+  return (
+    <Image
+      {...props}
+      width={9999}
+      height={9999}
+      alt="image"
+      className="h-auto w-auto rounded-xl shadow-lg shadow-black dark:shadow-white/30"
+    />
+  );
+};
 
-// const BlogImg = (props: ImageProps) => {
-//   return (
-//     <>
-//       <Image {...props} layout="responsive" className="rounded-xl" />
-//     </>
-//   );
-// };
+// Youtube
+const Youtube = ({ src }: { src: string }) => {
+  return (
+    <div className="relative h-0 pb-[56.25%] pt-6">
+      <iframe
+        className="absolute top-0 left-0 h-full w-full"
+        width="560"
+        height="315"
+        src={src}
+        frameBorder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  );
+};
 
-// const MdxComponents = {
-//   Image,
-//   BlogImg,
-//   // a: CustomLink,
-// };
+// RoughNotation
+const Note = (props: NotationProps) => {
+  const [isCalled, setIsCalled] = useState(false);
+  useEffect(() => setIsCalled(true), []);
+  return (
+    <RoughNotation
+      show={isCalled}
+      color="tomato"
+      animationDuration={1200}
+      animationDelay={100}
+      {...props}
+    >
+      <span className={props.css}>{props.text}</span>
+    </RoughNotation>
+  );
+};
 
-// export default MdxComponents;
+const MdxComponents = {
+  Img,
+  Lnk,
+  Youtube,
+  Note,
+};
+
+export default MdxComponents;

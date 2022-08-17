@@ -34,7 +34,14 @@ export default function CommandPalette({ children }: LayoutProps) {
       shortcut: ["w"],
       keywords: "writing",
       section: "_root",
-      perform: () => router.push("/category/writing", "/writing"),
+      perform: () =>
+        router.push(
+          {
+            pathname: "/",
+            query: { id: "writing" },
+          },
+          "/writing",
+        ),
       icon: <TbPencil className="h-4 w-4" />,
     },
     {
@@ -43,7 +50,14 @@ export default function CommandPalette({ children }: LayoutProps) {
       shortcut: ["c"],
       keywords: "coding",
       section: "_root",
-      perform: () => router.push("/category/coding", "/coding"),
+      perform: () =>
+        router.push(
+          {
+            pathname: "/",
+            query: { id: "coding" },
+          },
+          "/coding",
+        ),
       icon: <VscCode className="h-4 w-4" />,
     },
     {

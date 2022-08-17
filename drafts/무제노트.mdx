@@ -1,7 +1,19 @@
 ---
 title: "무제노트"
-date: "2022-08-09"
+date: "2022-08-10"
 categories: "writing"
 ---
 
-음... 코딩하기 전엔 무슨 그뤠잇한 일을 한다고 영어를 저렇게 섞어 쓰나 했는데
+import { useState, useEffect } from 'react';
+
+export default function Good({MdxComponents}) {
+  const {Lnk, Img, Note, Youtube} =  MdxComponents;
+  return (
+    <>
+      <Lnk text={"아무거나"} href={"/"} />
+      <Img src={"/images/color-code-1.png"} />
+      <Img src={"/images/color-code-2.png"} />
+      <Note children={"암무거나"} type={"box"} color={"navy"} />
+    </>
+  )
+}
