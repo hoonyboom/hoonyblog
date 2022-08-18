@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import theme from "shiki/themes/dracula-soft.json";
 
-interface meta {
+interface dateType {
   [key: string]: string;
 }
 
@@ -36,29 +36,37 @@ export function getSortedPostsData(categories?: string) {
 
   if (categories) {
     const categoriesData = allPostsData.filter(post => post.categories === categories);
-    return categoriesData.sort(({ date: a }: meta, { date: b }: meta) => {
-      if (a < b) {
+    return categoriesData
+      .sort(({ date: a }: dateType, { date: b }: dateType) => {
+        if (a > b) {
+          return 1;
+        } else if (a < b) {
+          return -1;
+        } else {
+          return 0;
+        }
+      })
+      .map((post, i) => {
+        return Object.assign(post, { index: i });
+      })
+      .reverse();
+  }
+
+  // 날짜 최신순으로 정렬
+  return allPostsData
+    .sort(({ date: a }: dateType, { date: b }: dateType) => {
+      if (a > b) {
         return 1;
-      } else if (a > b) {
+      } else if (a < b) {
         return -1;
       } else {
         return 0;
       }
-    });
-  }
-
-  // 날짜 최신순으로 정렬
-  return allPostsData.sort(({ date: a }: meta, { date: b }: meta) => {
-    if (a < b) {
-      return 1;
-    } else if (a > b) {
-      return -1;
-    } else {
-      return 0;
-    }
-  });
-  // 페이지네이션(한 페이지당 노출할 글 설정)
-  // .slice(0, 3)
+    })
+    .map((post, i) => {
+      return Object.assign(post, { index: i });
+    })
+    .reverse();
 }
 
 export function getAllPostIds() {

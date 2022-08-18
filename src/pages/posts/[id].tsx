@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Layout, Date } from "@/components";
+import { Layout, Date, MdxComponents } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
@@ -69,7 +69,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
         </div>
 
         <article className="keep-all m-10 text-base leading-7 lg:leading-8">
-          <Component />
+          <Component MdxComponents={MdxComponents} />
         </article>
       </div>
     </Layout>

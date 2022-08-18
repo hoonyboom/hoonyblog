@@ -7,12 +7,12 @@ module.exports = {
     return [
       {
         source: "/coding",
-        destination: "/category/coding",
+        destination: "/",
         permanent: false,
       },
       {
         source: "/writing",
-        destination: "/category/writing",
+        destination: "/",
         permanent: false,
       },
       {

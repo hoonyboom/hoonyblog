@@ -5,12 +5,12 @@ import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 
 /* 인터페이스 커스텀 타입 확장 */
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
-  href: string;
   text: string;
+  href: string;
 }
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
-  css?: string;
   text: string;
+  css?: string;
 }
 
 // 커스텀 컴퍼넌트
@@ -20,7 +20,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 const Lnk = (props: LinkProps) => {
   return (
     <Link href={props.href}>
-      <a {...props}>{props.title}</a>
+      <a {...props}>{props.text}</a>
     </Link>
   );
 };

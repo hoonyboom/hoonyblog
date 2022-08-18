@@ -90,20 +90,20 @@ Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 �
 <br/>
 ![seo-test](/images/seo-test.png)
 <br/>
-ㄴ. 마크다운에 모듈을 매번 일일이 작성하는 게 번거로웠다. 이렇게 커스텀 스니펫을 짜두면 시간을 아낄 수 있다.
+ㄴ. 마크다운에 모듈을 매번 일일이 작성하는 게 생각보다 번거로웠다. 그러다 커스텀 스니펫을 알게 되었는데, 단축어로 내가 지정한 일련의 코드 무리를 뽑아내는 편리한 기술이다. 시작을 안 해서 그렇지 한번 해보면 빠져나갈 수 없는 마약 같은 기술. 여러 작업에서 두루두루 활용할 수 있다.
 ```json markdown.json
 {
   "mdx": {
-    "prefix": "@mdx", // 단축어는 @mdx로
+    "prefix": "@mdx", // 단축어 설정
     "body": [ // body 안에 코드를 작성. 한줄을 기준으로 ""에 담는다.
       "import { useState, useEffect } from 'react';",
-      "",
+      "",                   // 안쪽에는 쌍따옴표가 없게 ''를 사용
       "export default function ${1:/*이름*/}({MdxComponents}) {",
-      "  const { LINK, IMAGE, Notation, Youtube } = MdxComponents;",
+      "  const { Lnk, Img, Note, Youtube } = MdxComponents;",
       "  return (",
       "    <>",
       "      ${2:/*Code here*/}",
-      "    </>",
+      "    </>", //${숫자: } -> 이 영역은 순서에 따라 tab으로 포커싱 🙆🏻‍♀️
       "  )",
       "}"
     ],
@@ -116,7 +116,7 @@ Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 �
 <br/>
 yarn berry는 모듈 파일들을 압축된 형식으로 가진다. 참조가 필요할 때 위치를 찾아내서 이를 들춰보는 방식이다. (압축됐기에) 작은 용량을 가지며, (트리형 참조가 아니기 때문에) 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다.  
 <br/>
-하지만 이 때문에 아직 호환이 안 되는 부분도 분명 있었다. 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했다. prettier는 자신의 plugin들을 찾을 때 node_modules만을 색인하기 때문에, yarn berry에선 그를 직접 내보내줘야 한다.
+하지만 이 때문에 아직 호환이 안 되는 부분도 분명 있었다. 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했는데, prettier가 자신의 plugin들을 찾을 때 node_modules만을 색인해서 생긴 문제였다. yarn berry에선 그를 직접 찾아 보내줘야 한다.
 
 <CH.Code>
 ```js .prettierrc.js
@@ -134,5 +134,4 @@ nodeLinker: node_modules
 // 최후의 수단: pnp 방식을 꺼버리기
 ```
 </CH.Code>
-      
       

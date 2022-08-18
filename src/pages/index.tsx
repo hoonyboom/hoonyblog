@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/future/image";
-import { Layout, Date, MdxComponents } from "@/components";
+import { Layout, Date, MdxComponents, Pagination } from "@/components";
 import { siteTitle, name } from "@/components/Layout";
 import { getSortedPostsData } from "@/lib/posts";
 import useSound from "use-sound";
@@ -13,6 +13,7 @@ export interface PostsProps {
   date: string;
   title: string;
   categories: string;
+  index: number;
   description?: string;
   tags?: string;
   img?: string;
@@ -28,6 +29,7 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   const { Note } = MdxComponents;
+  // 카테고리 state
   const id = useRouter().query.id;
   const [category, setCategory] = useState<PostsProps[]>();
   const [changed, setChanged] = useState(false);
@@ -38,11 +40,17 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     });
     setChanged(false);
     setCategory(sorted);
+    setPage(1);
   }, [id, allPostsData]);
 
   useEffect(() => {
     setChanged(true);
   }, [category]);
+
+  // 페이지네이션 state
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(3);
+  const offset = (page - 1) * limit;
 
   return (
     <Layout home>
@@ -92,13 +100,13 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           text={id ? `${id}` : "Blog"}
         />
 
-        <div className="mt-8 pb-10 lg:pb-12">
+        <div className="mt-8 pb-5 lg:pb-10">
           {!id
-            ? allPostsData.map(({ id, date, title }) => (
+            ? allPostsData.slice(offset, offset + limit).map(({ id, date, title }) => (
                 <div
+                  key={id}
                   onMouseUp={() => tap()}
                   className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
-                  key={id}
                 >
                   <div className="flex flex-col">
                     <Link href={`/posts/${id}`}>
@@ -110,7 +118,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
                   </div>
                 </div>
               ))
-            : category?.map(({ id, date, title }) => (
+            : category?.slice(offset, offset + limit).map(({ id, date, title }) => (
                 <div
                   onMouseUp={() => tap()}
                   className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
@@ -126,8 +134,26 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
                   </div>
                 </div>
               ))}
-          {/* todo: 페이지네이션 추가해야 할 곳 */}
         </div>
+        <footer>
+          {!id ? (
+            <Pagination
+              total={allPostsData.length}
+              limit={limit}
+              page={page}
+              setLimit={setLimit}
+              setPage={setPage}
+            />
+          ) : (
+            <Pagination
+              total={category?.length}
+              limit={limit}
+              page={page}
+              setLimit={setLimit}
+              setPage={setPage}
+            />
+          )}
+        </footer>
       </section>
     </Layout>
   );
