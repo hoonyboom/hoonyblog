@@ -9,24 +9,24 @@ interface PaginationProps {
 }
 
 export default function Pagination({
-  total,
+  // total,
+  // setPage,
+  // page,
   limit,
-  setPage,
-}: /* page,
-  setLimit, */
-PaginationProps) {
+  setLimit,
+}: PaginationProps) {
   const [isActive, setIsActive] = useState([true]);
-  let numPages = 0;
-  if (typeof total === "number") {
-    numPages = Math.ceil(total / limit);
-  }
+  // let numPages = 0;
+  // if (typeof total === "number") {
+  //   numPages = Math.ceil(total / limit);
+  // }
 
   return (
     <div className="flex flex-row justify-center space-x-5 pb-10 text-md">
       {/* <button onClick={() => setPage(page - 1)} disabled={page === 1}>
         &lt;
       </button> */}
-      {Array(numPages)
+      {/* {Array(numPages)
         .fill(undefined)
         .map((undef, i) => {
           return (
@@ -44,19 +44,19 @@ PaginationProps) {
               {i + 1}
             </button>
           );
-        })}
+        })} */}
       {/* <button onClick={() => setPage(page + 1)} disabled={page === numPages}>
         &gt;
       </button> */}
 
       {/* 한무 스크롤 */}
-      {/* <button
+      <button
         onClick={() => {
-          setLimit((prev: number) => prev + 3);
+          setLimit((prev: number) => prev + 7);
         }}
       >
         Load More
-      </button> */}
+      </button>
     </div>
   );
 }

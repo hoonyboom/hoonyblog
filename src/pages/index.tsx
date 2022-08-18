@@ -27,12 +27,17 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
+  // 라이브러리
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   const { Note } = MdxComponents;
   // 카테고리 state
   const id = useRouter().query.id;
   const [category, setCategory] = useState<PostsProps[]>();
   const [changed, setChanged] = useState(false);
+  // 페이지네이션 state
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(7);
+  const offset = (page - 1) * limit;
 
   useEffect(() => {
     const sorted = allPostsData.filter(({ categories }) => {
@@ -40,17 +45,13 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     });
     setChanged(false);
     setCategory(sorted);
-    setPage(1);
   }, [id, allPostsData]);
 
   useEffect(() => {
     setChanged(true);
+    setLimit(7);
+    setPage(1);
   }, [category]);
-
-  // 페이지네이션 state
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(3);
-  const offset = (page - 1) * limit;
 
   return (
     <Layout home>
