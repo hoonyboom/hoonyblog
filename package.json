@@ -4,15 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && build:css",
+    "build:css": "NODE_ENV=production tailwindcss -o src/styles/tailwind.css -m",
     "start": "next start",
     "lint": "next lint",
     "lint-eslint": "eslint --ignore-path .gitignore src/**/*{ts,tsx} drafts/**/*{md,mdx} --fix",
     "lint-prettier": "prettier --write \"src/**/*.(ts|tsx)\" \"drafts/**/*.(md|mdx)\""
   },
   "dependencies": {
-    "brotli": "^1.3.3",
-    "cssnano": "^5.1.13",
     "date-fns": "^2.29.1",
     "gray-matter": "^4.0.3",
     "kbar": "^0.1.0-beta.36",
