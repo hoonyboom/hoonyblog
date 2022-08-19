@@ -11,6 +11,7 @@
     "lint-prettier": "prettier --write \"src/**/*.(ts|tsx)\" \"drafts/**/*.(md|mdx)\""
   },
   "dependencies": {
+    "cssnano": "^5.1.13",
     "date-fns": "^2.29.1",
     "gray-matter": "^4.0.3",
     "kbar": "^0.1.0-beta.36",
