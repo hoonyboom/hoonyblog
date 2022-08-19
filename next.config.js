@@ -1,5 +1,25 @@
-/** @type {import('next').NextConfig} */
+const path = require("path");
+const loaderUtils = require("loader-utils");
 
+const hashOnlyIdent = (context, _, exportName) => {
+  const result = loaderUtils
+    .getHashDigest(
+      Buffer.from(
+        `filePath:${path
+          .relative(context.rootContext, context.resourcePath)
+          .replace(/\\+/g, "/")}#className:${exportName}`,
+      ),
+      "md4",
+      "base64",
+      6,
+    )
+    .replace(/^(-?\d|--)/, "_$1")
+    .replaceAll("+", "_")
+    .replaceAll("/", "_");
+  return result;
+};
+
+/** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
   experimental: { images: { allowFutureImage: true } },
@@ -30,22 +50,25 @@ module.exports = {
   //     },
   //   ];
   // },
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.module.rules[3].oneOf.forEach((moduleLoader, i) => {
-      Array.isArray(moduleLoader.use) &&
-        moduleLoader.use.forEach(l => {
-          if (l.loader.includes("\\css-loader") && !l.loader.includes("postcss-loader")) {
-            const { getLocalIdent, ...others } = l.options.modules;
-            l.options = {
-              ...l.options,
-              modules: {
-                ...others,
-                localIdentName: "[hash:base64:6]",
-              },
-            };
-          }
+    const rules = config.module.rules
+      .find(rule => typeof rule.oneOf === "object")
+      .oneOf.filter(rule => Array.isArray(rule.use));
+
+    if (!dev)
+      rules.forEach(rule => {
+        rule.use.forEach(moduleLoader => {
+          if (
+            moduleLoader.loader?.includes("css-loader") &&
+            !moduleLoader.loader?.includes("postcss-loader")
+          )
+            moduleLoader.options.modules.getLocalIdent = hashOnlyIdent;
         });
-    });
+      });
+
     return config;
   },
 };
