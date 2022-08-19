@@ -1342,6 +1342,7 @@ __metadata:
     husky: ^8.0.1
     kbar: ^0.1.0-beta.36
     lint-staged: ^13.0.3
+    loader-utils: ^3.2.0
     mdx-bundler: ^9.0.1
     next: 12.2.5
     next-seo: ^5.5.0
@@ -3787,6 +3788,13 @@ __metadata:
     enquirer:
       optional: true
   checksum: 7af31851abe25969ef0581c6db808117e36af15b131401795182427769d9824f451ba9e8aff6ccd25b6a4f6c8796f816292caf08e5f1f9b1775e8e9c313dc6c5
+  languageName: node
+  linkType: hard
+
+"loader-utils@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "loader-utils@npm:3.2.0"
+  checksum: c7b9a8dc4b3bc19e9ef563c48e3a18ea9f8bb2da1ad38a12e4b88358cfba5f148a7baf12d78fe78ffcb718ce1e062ab31fcf5c148459f1247a672a4213471e80
   languageName: node
   linkType: hard
 
