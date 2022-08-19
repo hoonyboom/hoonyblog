@@ -20,7 +20,7 @@ const hashOnlyIdent = (context, _, exportName) => {
 };
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   experimental: { images: { allowFutureImage: true } },
   async redirects() {
@@ -72,4 +72,3 @@ const nextConfig = {
     return config;
   },
 };
-module.exports = nextConfig;
