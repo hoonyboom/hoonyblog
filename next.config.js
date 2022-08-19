@@ -1,8 +1,8 @@
 const path = require("path");
 const loaderUtils = require("loader-utils");
 
-const hashOnlyIdent = (context, _, exportName) => {
-  const result = loaderUtils
+const hashOnlyIdent = (context, _, exportName) =>
+  loaderUtils
     .getHashDigest(
       Buffer.from(
         `filePath:${path
@@ -13,14 +13,10 @@ const hashOnlyIdent = (context, _, exportName) => {
       "base64",
       6,
     )
-    .replace(/^(-?\d|--)/, "_$1")
-    .replaceAll("+", "_")
-    .replaceAll("/", "_");
-  return result;
-};
+    .replace(/^(-?\d|--)/, "_$1");
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   experimental: { images: { allowFutureImage: true } },
   async redirects() {
@@ -50,10 +46,7 @@ const nextConfig = {
   //     },
   //   ];
   // },
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
-  },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack(config, { dev }) {
     const rules = config.module.rules
       .find(rule => typeof rule.oneOf === "object")
       .oneOf.filter(rule => Array.isArray(rule.use));
@@ -66,10 +59,13 @@ const nextConfig = {
             !moduleLoader.loader?.includes("postcss-loader")
           )
             moduleLoader.options.modules.getLocalIdent = hashOnlyIdent;
+
+          // earlier below statements were sufficient:
+          // delete moduleLoader.options.modules.getLocalIdent;
+          // moduleLoader.options.modules.localIdentName = '[hash:base64:6]';
         });
       });
 
     return config;
   },
 };
-module.exports = nextConfig;
