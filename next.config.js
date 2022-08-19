@@ -1,5 +1,3 @@
-const MangleCssClassPlugin = require("mangle-css-class-webpack-plugin");
-
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
@@ -31,10 +29,4 @@ module.exports = {
   //     },
   //   ];
   // },
-  plugins: [
-    new MangleCssClassPlugin({
-      classNameRegExp: "[cl]-[a-z][a-zA-Z0-9_]*",
-      log: true,
-    }),
-  ],
 };
