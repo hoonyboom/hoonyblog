@@ -61,7 +61,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
               type="highlight"
               iterations={3}
               strokeWidth={1}
-              color="#5bcf86"
+              color="#25c2a0"
             >
               {frontmatter.description}
             </RoughNotation>
@@ -69,7 +69,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
         </div>
 
         <article className="keep-all m-10 text-base leading-7 lg:leading-8">
-          <Component MdxComponents={MdxComponents} />
+          <Component components={MdxComponents} />
         </article>
       </div>
     </Layout>

@@ -10,6 +10,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
+    "plugin:mdx/recommended",
     "plugin:prettier/recommended" // recommend: 항상 아래에!
   ],
   "parser": "@typescript-eslint/parser",
@@ -88,7 +89,9 @@
           ".ts",
           ".tsx"
         ]
-      }
+      },
+      "mdx/code-blocks": true,
+      "mdx/language-mapper": {}
     },
     "react": {
       "version": "detect"

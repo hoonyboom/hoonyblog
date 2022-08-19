@@ -17,7 +17,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 //
 //
 // NextLink
-const Lnk = (props: LinkProps) => {
+export const Lnk = (props: LinkProps) => {
   return (
     <Link href={props.href}>
       <a {...props}>{props.text}</a>
@@ -26,20 +26,20 @@ const Lnk = (props: LinkProps) => {
 };
 
 // NextImage
-const Img = (props: ImageProps) => {
+export const Img = (props: ImageProps) => {
   return (
     <Image
       {...props}
       width={9999}
       height={9999}
       alt="image"
-      className="h-auto w-auto rounded-xl shadow-lg shadow-black dark:shadow-white/30"
+      className="h-auto w-auto rounded-xl shadow shadow-black dark:shadow-white/30"
     />
   );
 };
 
 // Youtube
-const Youtube = ({ src }: { src: string }) => {
+export const Youtube = ({ src }: { src: string }) => {
   return (
     <div className="relative h-0 pb-[56.25%] pt-6">
       <iframe
@@ -56,7 +56,7 @@ const Youtube = ({ src }: { src: string }) => {
 };
 
 // RoughNotation
-const Note = (props: NotationProps) => {
+export const Note = (props: NotationProps) => {
   const [isCalled, setIsCalled] = useState(false);
   useEffect(() => setIsCalled(true), []);
   return (

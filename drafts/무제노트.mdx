@@ -4,16 +4,3 @@ date: "2022-08-10"
 categories: "writing"
 ---
 
-import { useState, useEffect } from 'react';
-
-export default function Good({MdxComponents}) {
-  const {Lnk, Img, Note, Youtube} =  MdxComponents;
-  return (
-    <>
-      <Lnk text={"아무거나"} href={"/"}  />
-      <Img src={"/images/color-code-1.png"} />
-      <Img src={"/images/color-code-2.png"} />
-      <Note text={"암무거나"} type={"box"} color={"navy"} /> 
-    </>
-  )
-}

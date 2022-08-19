@@ -9,17 +9,17 @@ interface PaginationProps {
 }
 
 export default function Pagination({
-  // total,
+  total,
   // setPage,
-  // page,
+  page,
   limit,
   setLimit,
 }: PaginationProps) {
   const [isActive, setIsActive] = useState([true]);
-  // let numPages = 0;
-  // if (typeof total === "number") {
-  //   numPages = Math.ceil(total / limit);
-  // }
+  let numPages = 0;
+  if (typeof total === "number") {
+    numPages = Math.ceil(total / limit);
+  }
 
   return (
     <div className="flex flex-row justify-center space-x-5 pb-10 text-md">
@@ -54,8 +54,9 @@ export default function Pagination({
         onClick={() => {
           setLimit((prev: number) => prev + 7);
         }}
+        className={page === numPages ? "hidden text-base" : ""}
       >
-        Load More
+        더 보기
       </button>
     </div>
   );
