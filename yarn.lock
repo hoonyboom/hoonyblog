@@ -1342,7 +1342,7 @@ __metadata:
     husky: ^8.0.1
     kbar: ^0.1.0-beta.36
     lint-staged: ^13.0.3
-    loader-utils: ^3.2.0
+    mangle-css-class-webpack-plugin: ^5.0.8
     mdx-bundler: ^9.0.1
     next: 12.2.5
     next-seo: ^5.5.0
@@ -3791,13 +3791,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "loader-utils@npm:3.2.0"
-  checksum: c7b9a8dc4b3bc19e9ef563c48e3a18ea9f8bb2da1ad38a12e4b88358cfba5f148a7baf12d78fe78ffcb718ce1e062ab31fcf5c148459f1247a672a4213471e80
-  languageName: node
-  linkType: hard
-
 "locate-path@npm:^2.0.0":
   version: 2.0.0
   resolution: "locate-path@npm:2.0.0"
@@ -3898,6 +3891,13 @@ __metadata:
     socks-proxy-agent: ^7.0.0
     ssri: ^9.0.0
   checksum: 2f6c294179972f56fab40fd8618f07841e06550692bb78f6da16e7afaa9dca78c345b08cf44a77a8907ef3948e4dc77e93eb7492b8381f1217d7ac057a7522f8
+  languageName: node
+  linkType: hard
+
+"mangle-css-class-webpack-plugin@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "mangle-css-class-webpack-plugin@npm:5.0.8"
+  checksum: 054c2ab8ad6e595a567346a7e743c13f49c64cba8021b7153b2b443d7bdb0083c52b365c6601ec58870b6a631b8bc7154730ce87feb3fa5f4ffcc8631c261e00
   languageName: node
   linkType: hard
 

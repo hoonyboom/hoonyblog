@@ -53,7 +53,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["kbar", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:0.1.0-beta.36"],\
             ["lint-staged", "npm:13.0.3"],\
-            ["loader-utils", "npm:3.2.0"],\
+            ["mangle-css-class-webpack-plugin", "npm:5.0.8"],\
             ["mdx-bundler", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:9.0.1"],\
             ["next", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:12.2.5"],\
             ["next-seo", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:5.5.0"],\
@@ -1763,7 +1763,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["husky", "npm:8.0.1"],\
             ["kbar", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:0.1.0-beta.36"],\
             ["lint-staged", "npm:13.0.3"],\
-            ["loader-utils", "npm:3.2.0"],\
+            ["mangle-css-class-webpack-plugin", "npm:5.0.8"],\
             ["mdx-bundler", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:9.0.1"],\
             ["next", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:12.2.5"],\
             ["next-seo", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:5.5.0"],\
@@ -4681,15 +4681,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["loader-utils", [\
-        ["npm:3.2.0", {\
-          "packageLocation": "./.yarn/cache/loader-utils-npm-3.2.0-02250d00d7-c7b9a8dc4b.zip/node_modules/loader-utils/",\
-          "packageDependencies": [\
-            ["loader-utils", "npm:3.2.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["locate-path", [\
         ["npm:2.0.0", {\
           "packageLocation": "./.yarn/cache/locate-path-npm-2.0.0-673d28b0ea-02d581edbb.zip/node_modules/locate-path/",\
@@ -4797,6 +4788,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["promise-retry", "npm:2.0.1"],\
             ["socks-proxy-agent", "npm:7.0.0"],\
             ["ssri", "npm:9.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["mangle-css-class-webpack-plugin", [\
+        ["npm:5.0.8", {\
+          "packageLocation": "./.yarn/cache/mangle-css-class-webpack-plugin-npm-5.0.8-895106dc30-054c2ab8ad.zip/node_modules/mangle-css-class-webpack-plugin/",\
+          "packageDependencies": [\
+            ["mangle-css-class-webpack-plugin", "npm:5.0.8"]\
           ],\
           "linkType": "HARD"\
         }]\
