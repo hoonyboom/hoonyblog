@@ -8,14 +8,11 @@
     "next",
     "next/core-web-vitals",
     "eslint:recommended",
+    "plugin:mdx/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
     "plugin:prettier/recommended" // recommend: 항상 아래에!
   ],
-  "overrides": [{
-    "files": "*.mdx",
-    "extends":"plugin:mdx/recommended",
-  }],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "2022",

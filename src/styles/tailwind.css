@@ -7,13 +7,13 @@
     display: none;
   }
   html, body {
-    @apply font-custom h-full;
+    @apply font-custom h-full scroll-smooth scroll-p-16;
   }
   blockquote > p {
     @apply text-emerald-600;
   }
   h1 {
-    @apply text-3xl ;
+    @apply text-3xl;
   }
   h2 {
     @apply text-2xl mb-5;
@@ -21,8 +21,11 @@
   h3 {
     @apply text-lg mb-2;
   }
+  h4 {
+    @apply text-md;
+  }
   ul {
-    @apply mt-4 pl-4 list-disc 
+    @apply mt-2 pl-4 list-disc
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "chorok",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -55,7 +55,7 @@
     "unified": "^10.1.2"
   },
   "lint-staged": {
-    "**/*{ts,tsx,js,jsx,md,mdx}": [
+    "src/**/*{ts,tsx,js,jsx}": [
       "eslint --ignore-path .gitignore --fix",
       "prettier --write"
     ]

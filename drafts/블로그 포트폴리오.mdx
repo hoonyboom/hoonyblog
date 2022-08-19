@@ -5,9 +5,9 @@ tags: ["mdx", "mdx 블로그", "프론트 주니어 포트폴리오"]
 categories: "coding"
 ---
 
-<div className="mb-16 flex flex-row justify-center space-x-1 ">
-  <Img src="/images/-typescript-blue.svg" />
+<div className="mb-16 flex flex-row justify-center space-x-1">
   <Img src="/images/-Next.svg" />
+  <Img src="/images/-typescript-blue.svg" />
   <Img src="/images/-tailwind-red.svg" />
   <Img src="/images/-mdx-darkslateblue.svg" />
 </div>
@@ -21,11 +21,11 @@ categories: "coding"
 - MD 파일의 컴파일링에는 Mdx-Bundler 라이브러리를 사용했다.
 - Twemoji와 RoughNotation을 활용해 과하지 않게 포인트를 주고 싶었다.
 
-<br />;
-<br />;
-<hr />;
-<br />;
-<br />;
+<br />
+<br />
+<hr />
+<br />
+<br />
 
 > Next.js (by Vercel)
 
@@ -33,15 +33,15 @@ React에 서버사이드 렌더링 옵션을 입히는 프레임워크다. 디�
 라우팅의 편리함과 함께, 작은 Node.js 공간인 Serverless Route가 최고의 매력으로 느껴졌다.  
 SEO와 쾌적한 UX를 동시에 챙길 수 있다.
 
-<br />;
-<br />;
+<br />
+<br />
 
 > Mdx-bundler
 
 Mdx는 Md 파일에 Jsx적 요소를 결합한 확장형식이다. 중간에서 이를 컴파일하는 장치가 필요한데, 나는 [Mdx-bundler](https://www.iamyadav.com/blogs/use-mdx-bundler-with-next-js)를 이용했다. 마크다운 문서에 리액트 라이브러리나 컴퍼넌트를 불러와 활용할 수 있다.  
 추가적인 기능은 remark와 rehype의 부대 라이브러리를 통해 보강했다. 가령 중요하게 생각했던 코드 구문 하이라이트의 경우 remark-prism과 code-hike(beta)를 연동시켜 구현했다.
 
-<br />; 마크다운 형식의 글이기 때문에 꼭 코드 에디터를 고집할 필요가 없다. 율리시스도
+<br /> 마크다운 형식의 글이기 때문에 꼭 코드 에디터를 고집할 필요가 없다. 율리시스도
 IA-Writer도 괜찮다. 나는 옵시디언을 쓰고 있다.
 
 ```mdx 예시.mdx
@@ -51,7 +51,7 @@ date: "2022-06-15"
 ---
 
 import { useState, useEffect } from "react";
-
+// mark[1:6]
 export default function Abc() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -65,18 +65,18 @@ export default function Abc() {
 .
 ```
 
-<br />;
-<br />;
+<br />
+<br />
 
 > Tailwind
 
 Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 부여하는 CSS프레임워크다. 매번 CSS 목록을 써내려가야 했던 styled-component보다 작업 면에서 편하고 효율적으로 느껴졌다. 빌드시엔 사용된 클래스에 관한 CSS만을 남겨 몸집을 줄이기도 한다.
 
-<br />; 공식문서를 톺아보면서 개인적으론 몰랐던 속성들에 대한 공부도 많이 됐는데, 커스텀을
+<br /> 공식문서를 톺아보면서 개인적으론 몰랐던 속성들에 대한 공부도 많이 됐는데, 커스텀을
 추가해가면서 길들이는 맛이 제법 쏠쏠했다 🙊
 
-<br />;
-<br />;
+<br />
+<br />
 
 > Vercel
 
@@ -84,18 +84,19 @@ Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 �
 배포하면 푸시할 때마다 알아서 빌드를 올려준다. 나는 이게 정말 편했다. 자동빌드를 원치 않는
 경우 임의의 브랜치를 활용해 프리뷰 모드로 진입할 수도 있다.
 
-<br />;
-<br />;
-<hr />;
-<br />;
-<br />; ### etc
-<br />;
+<br />
+<br />
+<hr />
+<br />
+<br />
+### etc
+<br />
 
 ㄱ. Lighthouse를 통해 사이트의 성능을 점검했다. 감점 요소가 무엇인지, 이유와 참조 링크를 자세히 알려 준다. 부랴부랴 수정해서 초록불 띄워둔 상태ㅎ
 
-<br/>;
+<br/>
 ![seo-test](/images/seo-test.png)
-<br/>;
+<br/>
 ㄴ. 마크다운에 모듈을 매번 일일이 작성하는 게 생각보다 번거로웠다. 그러다 커스텀 스니펫을 알게 되었는데, 단축어로 내가 지정한 일련의 코드 무리를 뽑아내는 편리한 기술이다. 시작을 안 해서 그렇지 한번 해보면 빠져나갈 수 없는 마약 같은 기술. 여러 작업에서 두루두루 활용할 수 있다.
 ```json markdown.json
 {
@@ -117,15 +118,15 @@ Bootstrap처럼 미리 정의된 클래스 이름을 활용하여 스타일을 �
   },
 }
 ```
-<br/>;
+<br/>
 ㄷ. Yarn berry를 처음으로 적용했다. 여태 yarn classic을 문제없이, 불만없이 썼으나 레거시로 돌아선지 한참인데 언제까지 쓰고 있을 순 없다고 판단했다.  
-<br/>;
+<br/>
 yarn berry는 모듈 파일들을 압축된 형식으로 가진다. 참조가 필요할 때 위치를 찾아내서 이를 들춰보는 방식이다. (압축됐기에) 작은 용량을 가지며, (트리형 참조가 아니기 때문에) 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다.  
-<br/>;
+<br/>
 하지만 이 때문에 아직 호환이 안 되는 부분도 분명 있었다. 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했는데, prettier가 자신의 plugin들을 찾을 때 node_modules만을 색인해서 생긴 문제였다. yarn berry에선 그를 직접 찾아 보내줘야 한다.
 
 <CH.Code>
-```js .prettierrc.js
+```js .prettierrc.js focus=2:5
 // .prettierrc(json)를 썼다면 .js로 포맷을 바꾼다
 module.exports = {
   plugins: [require("prettier-plugin-tailwindcss")],

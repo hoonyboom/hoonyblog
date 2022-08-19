@@ -87,7 +87,14 @@ export async function getPostData(id: string) {
     mdxOptions(options) {
       options.remarkPlugins = [
         remarkGfm,
-        [remarkCodeHike, { theme }],
+        [
+          remarkCodeHike,
+          {
+            theme,
+            showCopyButton: true,
+            staticMediaQuery: "not screen, (max-width: 768px)",
+          },
+        ],
         ...(options?.remarkPlugins ?? []),
       ];
       options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
