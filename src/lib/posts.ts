@@ -6,7 +6,6 @@ import { remarkCodeHike } from "@code-hike/mdx";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import theme from "shiki/themes/dracula-soft.json";
-import { pnpPlugin } from "@yarnpkg/esbuild-plugin-pnp";
 
 interface dateType {
   [key: string]: string;

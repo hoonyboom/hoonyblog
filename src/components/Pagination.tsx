@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { /* useState, */ Dispatch, SetStateAction } from "react";
 
 interface PaginationProps {
   total?: number;
@@ -10,12 +10,13 @@ interface PaginationProps {
 
 export default function Pagination({
   total,
-  // setPage,
   page,
+  // setPage,
   limit,
   setLimit,
 }: PaginationProps) {
-  const [isActive, setIsActive] = useState([true]);
+  // const [isActive, setIsActive] = useState([true]);
+
   let numPages = 0;
   if (typeof total === "number") {
     numPages = Math.ceil(total / limit);
