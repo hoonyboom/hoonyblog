@@ -11,6 +11,7 @@ interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
   text: string;
   css?: string;
+  className?: string;
 }
 
 // 커스텀 컴퍼넌트
@@ -20,7 +21,9 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 export const Lnk = (props: LinkProps) => {
   return (
     <Link href={props.href}>
-      <a {...props}>{props.text}</a>
+      <a target="_blank" rel="noopener noreferrer" {...props}>
+        {props.text}
+      </a>
     </Link>
   );
 };
@@ -33,7 +36,7 @@ export const Img = (props: ImageProps) => {
       height={9999}
       quality={100}
       alt="image"
-      className="h-auto w-auto rounded-xl shadow shadow-black dark:shadow-white/30"
+      className="my-3 h-auto w-auto rounded-xl shadow shadow-black dark:shadow-white/30"
       {...props}
     />
   );
@@ -63,7 +66,7 @@ export const Note = (props: NotationProps) => {
   return (
     <RoughNotation
       show={isCalled}
-      color="tomato"
+      color="skyblue"
       animationDuration={1200}
       animationDelay={100}
       {...props}

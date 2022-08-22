@@ -15,7 +15,8 @@ export const months = "6개월";
 export default function Layout({ children, home }: LayoutProps) {
   return (
     <div className="h-auto min-h-content w-full transition dark:bg-zinc-900/90 dark:text-slate-200/80 ">
-      <div className={`container mx-auto ${home ? "max-w-xl" : "max-w-2xl"}`}>
+      <div className={"container mx-auto max-w-xl"}>
+        {/* ${home ? "max-w-xl" : "max-w-xl"} */}
         <Head>
           <link rel="icon" href="/images/heart.svg" />
           <link rel="apple-touch-icon" href="/images/heart.svg" />
@@ -35,14 +36,12 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="robots" content="all" />
         </Head>
-
         {!home && (
           <header className="flex items-center justify-center">
             <Nav />
           </header>
         )}
         {home && <HomeNav />}
-
         <Twemoji
           options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}
         >

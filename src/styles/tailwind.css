@@ -17,10 +17,10 @@
     @apply mb-5 text-2xl;
   }
   h3 {
-    @apply pt-4 text-lg font-bold;
+    @apply pt-4 pb-2 text-lg font-bold;
   }
   h4 {
-    @apply pt-4 text-md font-bold text-emerald-600;
+    @apply pt-4 pb-2 text-md font-bold text-emerald-600;
   }
   h5 {
     @apply text-base;
