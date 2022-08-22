@@ -1,6 +1,6 @@
 import Image, { ImageProps } from "next/future/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 
 /* 인터페이스 커스텀 타입 확장 */
@@ -9,9 +9,10 @@ interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
   href: string;
 }
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
-  text: string;
+  text?: string;
   css?: string;
   className?: string;
+  children?: React.ReactNode;
 }
 
 // 커스텀 컴퍼넌트
@@ -71,7 +72,8 @@ export const Note = (props: NotationProps) => {
       animationDelay={100}
       {...props}
     >
-      <span className={props.css}>{props.text}</span>
+      {props.children}
+      {!props.children && <span className={props.css}>{props.text}</span>}
     </RoughNotation>
   );
 };

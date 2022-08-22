@@ -38,8 +38,6 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(7);
   const offset = (page - 1) * limit;
-  // 스크롤위치 state
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const sorted = allPostsData.filter(({ categories }) => {
@@ -79,13 +77,9 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         <p className="text-md leading-7">
           안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
           <br />
-          <Note
-            show={changed}
-            type="underline"
-            color="orange"
-            animationDuration={1000}
-            text="코딩과 일기"
-          />
+          <Note show={changed} type="underline" color="orange" animationDuration={1000}>
+            코딩과 일기
+          </Note>
           가 뒤죽박죽 섞여 있어요 😵‍💫
           <br />
         </p>

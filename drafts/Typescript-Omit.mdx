@@ -10,20 +10,17 @@ categories: "coding"
 <Img src={'/images/typeError1.png'} />
 <br/>
 
-### 니가 몬데 짜식아?
+### 니가 몬데 짜식아
 간단히 말해 RoughNotationProps(부모타입?)에서 필수로 요하는 children을 내 쪽에서 옵셔널로 바꾸면서 생긴 오류였다. 오홍.? 🤔  
-interface는 기존 정의에 새로운 값/타입을 추가하는 데엔 관대하지만 이렇듯 기존값을 뭔가로 다르게 덮어쓰면 오류를 던진다. 돌아가 당시의 타입을 보면 대충 이런 꼴인데
-<CH.Spotlight>
-  ```ts MdxComponents.tsx
+interface는 기존 정의에 새로운 값/타입을 추가하는 데엔 관대하지만, 이렇듯 기존값을 뭔가로 다르게 덮어쓰면 오류를 던진다. 돌아가 당시의 타입을 보면 대충 이런 꼴인데
+<CH.Scrollycoding rows={10}>
+  원흉 👾
+  ```ts MdxComponents.tsx focus=4 
   interface NotationProps extends RoughNotationProps {
     text: string;
     css?: string;
     children?: React.ReactNode;
   }
-  ```
-  ---
-  원흉 👾
-  ```ts MdxComponents.tsx focus=4
   ```
   ---
   컴퍼넌트
@@ -46,22 +43,25 @@ interface는 기존 정의에 새로운 값/타입을 추가하는 데엔 관대
     );
   };
   ```
-</CH.Spotlight>
-당초 의도는 children을 생략하고 그 자리를 text와 css로 대신하는 거였다. 물론 그거랑 children이랑 작동이 별반 다를 거 없긴 하다. 근데 왜 바꾸냐고? 아니 css가 이상하게 들어가더라고요..ㅎㅎ;;   
+</CH.Scrollycoding>
+당초 의도는 children을 생략하고 그 자리를 text와 css로 대신하는 거였다. 물론 그거랑 children이랑 작동이 별반 다를 거 없긴 하다. 근데 왜 바꾸냐면,, 아니 css가 이상하게 들어가더라고요..ㅎㅎ;;   
 그래서 어떻게 해야 할까?  
 <br/>
 ### 방법은 Typescript의 'Omit' 💨💨
 - 타입스크립트의 유틸타입 중 하나!
-- 타입을 _`extends`_ 해올 때 <Note text={'특정키 값을 제외하고 상속'} /> 받는다
+- 타입을 _`extends`_ 해올 때 <Note>특정키 값을 제외</Note>하고 <Note type="circle">상속</Note> 받는다
 <br/>
 공식문서 둘러볼 때 이놈은 필히 쓰겠다 싶더랬지ㅎ 사용법은 간단하다.
 ```ts Mdx....tsx mark=1[33:68]
+// children을 제외하고 extends 해온다.
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
-  text: string;
+  text?: string;
   css?: string;
-} // children을 제외하고 extends 해온다.
+  className?: string;
+  children?: React.ReactNode;
+} 
 ```
-이러면 이제 children을 안 쓰거나 혹은 원래 의도대로 옵셔널하게 재정의할 수 있을 거시외다~  
+이러면 이제 children을 안 쓰거나 원래 의도대로 옵셔널하게 재정의할 수 있을 것이다.   
 끝.
 <br/>
 
