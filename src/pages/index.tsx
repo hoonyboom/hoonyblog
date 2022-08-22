@@ -38,6 +38,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(7);
   const offset = (page - 1) * limit;
+  // 스크롤위치 state
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const sorted = allPostsData.filter(({ categories }) => {
@@ -69,8 +71,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           alt={name}
         />
         <div className="ml-8 flex flex-col justify-center space-y-1">
-          <h4 className="text-lg">{name}</h4>
-          <h5 className="text-base">갸륵하도다</h5>
+          <p className="text-lg">{name}</p>
+          <p className="text-base">갸륵하도다</p>
         </div>
       </section>
       <section className="mx-10 mb-28 flex items-center">
@@ -113,7 +115,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
                     <Link href={`/posts/${id}`}>
                       <a className="text-lg">{title}</a>
                     </Link>
-                    <small className="pt-1 text-base">
+                    <small className="pt-2 text-base">
                       <Date dateString={date} />
                     </small>
                   </div>
@@ -129,7 +131,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
                     <Link href={`/posts/${id}`}>
                       <a className="text-lg">{title}</a>
                     </Link>
-                    <small className="mt-2 text-base">
+                    <small className="pt-2 text-base">
                       <Date dateString={date} />
                     </small>
                   </div>

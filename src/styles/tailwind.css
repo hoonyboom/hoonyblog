@@ -7,9 +7,9 @@
   body {
     @apply h-full scroll-p-8 scroll-smooth font-custom;
   }
-  blockquote > p {
+  /* blockquote {
     @apply text-emerald-600;
-  }
+  } */
   h1 {
     @apply text-3xl;
   }
@@ -17,22 +17,19 @@
     @apply mb-5 text-2xl;
   }
   h3 {
-    @apply pb-1 text-lg;
+    @apply pt-4 text-lg font-bold;
   }
   h4 {
-    @apply text-md;
+    @apply pt-4 text-md font-bold text-emerald-600;
   }
   h5 {
     @apply text-base;
   }
   ul {
-    @apply list-disc pl-4;
+    @apply list-disc pt-1 pl-6;
   }
   ol {
-    @apply list-decimal pl-4;
-  }
-  li {
-    @apply leading-7;
+    @apply list-decimal pt-1 pl-6;
   }
 }
 
@@ -60,20 +57,20 @@
 note: 폰트설정
 영어-한글-모노 */
 @font-face {
-  font-family: "Baloo2";
-  src: url("/fonts/Baloo2.woff2") format("woff2");
+  font-family: "IBM";
+  src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
 @font-face {
-  font-family: "Arita";
-  src: url("/fonts/Arita.woff2") format("woff2");
+  font-family: "NanumSquareR";
+  src: url("/fonts/NanumSquareR.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
 @font-face {
   font-family: "Consolas";
-  src: url("/fonts/Consolasligaturizedv2.woff2") format("woff2");
+  src: url("/fonts/CascadiaCode-SemiLight.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }

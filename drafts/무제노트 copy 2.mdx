@@ -58,25 +58,25 @@ const Example = (x: string | number) => {
 - interface는 중복선언 가능. 기존에 없던 속성이면 추가. 기존에 있던 속성이면 에러.
 - type은 엄격해서 중복선언 불가.
 
-> RestParameter vs SpreadOperator
+#### RestParameter vs SpreadOperator
 
 - RestParameter의 타입은 어레이
 - 스프레드 오퍼레이터 = 데이터 복붙
 
-> 디스트럭쳐링
+#### 디스트럭쳐링
 
-> 타입스크립트에서 클래스 만들 때
+#### 타입스크립트에서 클래스 만들 때
 
 - 바로 쓰는 것과 컨스트럭터 만들어서 쓰는 것의 차이? 컨스트럭터를 쓰면 파라미터를 받을 수 있다.
 
-> 타입스크립트 클래스
+#### 타입스크립트 클래스
 
 - public: 자식들이 사용 가능 수정 가능 (default)
 - private: 자식들이 사용 불가 수정 불가 (안에서는 수정 가능. 그래서 변경 함수를 내부에 만들어놓고 밖에서 함수를 이용한 수정 가능)
 - protected: extends 됐을 때 사용 가능. 자식들 불가능
 - static: 부모만 쓸 수 있음. 자식에게 상속 x
 
-> Declare
+#### Declare
 
 - js의 타입 설정 안 된 변수를 ts에서 쓰려고 할 때. declare에 정의
 - 타입을 global로 만들기 위해서도 사용할 수 있다.
@@ -89,14 +89,14 @@ declare global {
 }
 ```
 
-> d.ts 파일
+#### d.ts 파일
 
 - declare 타입, export 하는 타입 모아놓는 곳.
 - namespace 쓰거나.?
 - 앰비언트 모듈이 아닌 로컬 모듈이기 때문에 글로벌 적용 x
 -
 
-> implements
+#### implements
 
 - extends와 쓰임이 비슷해 보이지만
 - 할당하는 것이 아니라 확인하는 용도.
@@ -107,7 +107,7 @@ class Book implements BookType {
 }
 ```
 
-> 타입변환기
+#### 타입변환기
 
 ```ts
 type TypeChanger<T> = {
@@ -117,14 +117,14 @@ type TypeChanger<T> = {
 };
 ```
 
-> 조건문 타입
+#### 조건문 타입
 ```ts
 // extends = in 이다
 
 type 타입추출<T> = T extends (infer R)[] ? R : unknown;
 ```
 
-> 제네릭
+#### 제네릭
 
 <CH.Scrollycoding>
 ```ts index.tsx {/*focus=1:1*/}
@@ -146,7 +146,7 @@ window.Example
 6. 화살표 함수의 this = window
 7. 이벤트리스너 안에서 애로우 펑션을 쓰
 
-### var let const 차이
+#### var let const 차이
 - 선언 할당 범위의 차이다
 1. var 재선언 가능, 재할당 가능, 범위는 펑션
 2. let 재선언 불가, 재할당 가능, 범위는 중괄호(window에서 쓰면 전역변수)
@@ -154,11 +154,29 @@ window.Example
 - 이것도 막고 싶으면 ts의 리터럴 타입, readonly를 쓰거나
 - Object.freeze(obj)를 이용
 
-
-### 자바스크립트의 hoisting
+#### 자바스크립트의 hoisting
 - 변수/함수의 선언부만 먼저 최상단으로 읽어올림
 - 할당값은 차례일 때 읽는다.
 
-### SpreadOperator
+#### SpreadOperator
 - 바깥 괄호 해체
 - 문자에 붙이면 한글자 한글자 펼쳐준다.
+
+#### Symbol
+- object의 비밀키값
+- 반복문에 안 나타남
+
+#### Web Components : 커스텀 html 태그
+customElements.define();
+```js
+class MyClass extends HTMLElement {
+  connectedCallback(){
+    let 생성 = document.createElement("div");
+  }
+}
+
+customElements.define('custom-div', MyClass);
+
+```
+
+> 어찌되나 한번 보자

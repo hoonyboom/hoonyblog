@@ -15,7 +15,7 @@ export const months = "6개월";
 export default function Layout({ children, home }: LayoutProps) {
   return (
     <div className="h-auto min-h-content w-full transition dark:bg-zinc-900/90 dark:text-slate-200/80 ">
-      <div className="container mx-auto max-w-xl">
+      <div className={`container mx-auto ${home ? "max-w-xl" : "max-w-2xl"}`}>
         <Head>
           <link rel="icon" href="/images/heart.svg" />
           <link rel="apple-touch-icon" href="/images/heart.svg" />
@@ -36,7 +36,11 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="robots" content="all" />
         </Head>
 
-        <header className="flex items-center justify-center">{!home && <Nav />}</header>
+        {!home && (
+          <header className="flex items-center justify-center">
+            <Nav />
+          </header>
+        )}
         {home && <HomeNav />}
 
         <Twemoji
@@ -45,7 +49,7 @@ export default function Layout({ children, home }: LayoutProps) {
           <div className="pt-10">
             {children}
             {!home && (
-              <div className="mt-16 ml-5 h-20 text-md md:ml-1">
+              <div className="mt-16 ml-5 h-20 text-base md:ml-1">
                 <Link href="/">
                   <a>← Back to home</a>
                 </Link>

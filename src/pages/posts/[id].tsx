@@ -48,7 +48,6 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
       <Head>
         <title>{`${frontmatter.title} 〰 ${siteTitle}`}</title>
       </Head>
-
       <div className={`transition ${fade ? "opacity-100" : "opacity-0"}`}>
         <h1 className="mt-28 mb-2 text-center text-3xl">{frontmatter.title}</h1>
         <div className="flex flex-col text-base leading-6">
@@ -68,7 +67,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
           </p>
         </div>
 
-        <article className="keep-all m-10 text-base leading-7">
+        <article className="keep-all m-10 text-base leading-7 md:leading-8">
           <Component components={MdxComponents} />
         </article>
       </div>
