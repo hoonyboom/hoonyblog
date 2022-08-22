@@ -129,9 +129,9 @@ type 타입추출<T> = T extends (infer R)[] ? R : unknown;
 <CH.Scrollycoding>
 ```ts index.tsx {/*focus=1:1*/}
 const Example = () => {
-  console.log(this)
-}
-window.Example
+  console.log(this);
+};
+window.Example;
 ```
 ---
 ```ts 파일명.tsx {/*focus=1:1*/}
@@ -175,8 +175,7 @@ class MyClass extends HTMLElement {
   }
 }
 
-customElements.define('custom-div', MyClass);
-
+customElements.define("custom-div", MyClass);
 ```
 
 > 어찌되나 한번 보자

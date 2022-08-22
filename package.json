@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint-eslint": "eslint --ignore-path .gitignore src/**/*{ts,tsx} drafts/**/*{md,mdx} --fix",
+    "lint-eslint": "eslint --ignore-path .gitignore src/**/*{ts,tsx} --fix",
     "lint-prettier": "prettier --write \"src/**/*.(ts|tsx)\" \"drafts/**/*.(md|mdx)\""
   },
   "dependencies": {
@@ -44,7 +44,6 @@
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-mdx": "^2.0.2",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-tailwindcss": "^3.6.0",
     "husky": "^8.0.1",
