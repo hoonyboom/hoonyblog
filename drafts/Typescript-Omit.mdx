@@ -61,9 +61,11 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
   children?: React.ReactNode;
 } 
 ```
-이러면 이제 원래 의도대로 children을 옵셔널하게 재정의할 수 있을 것이다.  
+그럼 이제 원래 의도대로 children을 옵셔널하게 재정의할 수 있다.  
+세부적인 메커니즘을 이해하는 데엔 아래 링크를 참고했다. 내가 그 과정을 정리하는 게 무안할 정도로 설명이 깔끔하다.!!  
 끝.
 <br/>
 
 #### 참고한 사이트
 - <Lnk text='타입스크립트 공식문서' href={'https://www.typescriptlang.org/docs/handbook/utility-types.html'} />
+- <Lnk text={'Omit 메커니즘 이해하기'} href={'https://yceffort.kr/2022/03/typescript-omit-exclude-pick'} />
