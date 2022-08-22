@@ -21,6 +21,7 @@ export default function Logo({ children }: LayoutProps) {
       setTransform(`translate(${targetX}px, ${targetY}px) rotate(${randomRotation}deg)`);
     }, 3500);
   }, []);
+
   return (
     <>
       <Link href="/">
@@ -40,21 +41,3 @@ export default function Logo({ children }: LayoutProps) {
     </>
   );
 }
-
-// $(document).ready(function () {
-//   const logo = document.getElementById("logo");
-//   const width = window.screen.width;
-//   const height = window.screen.height;
-//   let curX = 0;
-//   let curY = 0;
-//   const logoInterval = window.setInterval(() => {
-//     const randomX = Math.random() * width;
-//     const randomY = Math.random() * height;
-//     const targetX = (randomX + curX) / 2;
-//     const targetY = (randomY + curY) / 2;
-//     curX = targetX;
-//     curY = targetY;
-//     randomRotation = (Math.random() - 0.5) * 10;
-//     logo.style.transform = `translate(${targetX}px, ${targetY}px) rotate(${randomRotation}deg)`;
-//   }, 3300);
-// });

@@ -45,7 +45,7 @@ export default function Layout({ children, home }: LayoutProps) {
           <div className="pt-10">
             {children}
             {!home && (
-              <div className="mt-16 ml-5 h-20 text-base md:ml-1">
+              <div className="mt-16 ml-5 h-20 text-md md:ml-1">
                 <Link href="/">
                   <a>← Back to home</a>
                 </Link>

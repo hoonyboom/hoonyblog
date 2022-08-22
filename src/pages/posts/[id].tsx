@@ -68,7 +68,7 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
           </p>
         </div>
 
-        <article className="keep-all m-10 text-base leading-7 lg:leading-8">
+        <article className="keep-all m-10 text-base leading-7">
           <Component components={MdxComponents} />
         </article>
       </div>

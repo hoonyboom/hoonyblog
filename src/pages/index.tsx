@@ -113,7 +113,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
                     <Link href={`/posts/${id}`}>
                       <a className="text-lg">{title}</a>
                     </Link>
-                    <small className="mt-2 text-base">
+                    <small className="pt-1 text-base">
                       <Date dateString={date} />
                     </small>
                   </div>

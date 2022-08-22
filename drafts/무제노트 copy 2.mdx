@@ -5,28 +5,41 @@ categories: "coding"
 ---
 
 #### 타입스크립트에서 any와 unknown의 차이
-
 - 언노운: 뭐든 될 수 있지만, 어쨌든 자기 타입을 가진다
 - 애니: 타입 정보 없음.
-  <br />
-  <br />
-
+<br/>
 #### 타입 범위 좁히기, 특정하기
-
-1. typeof
-
+<CH.Scrollycoding>
+##### 1. if  
+국민 내로잉 if
+```ts if.tsx {/*focus=1:1*/}
+const Example = (x:string | undefined) => {
+  if(x){
+    console.log(x)
+  }
+}
+```
+---
+##/*제목1*/
+/*내용*/
+```ts 파일명.tsx {/*focus=1:1*/}
+/*Code Here*/
+```
+</CH.Scrollycoding>
+1. if
+2. typeof
 ```ts 예시.ts
 const Example = (x: string | number) => {
   if (typeof x === "string") {
   }
 };
 ```
-
-2. instanceof
-3. as
-
+3. 속성명 in 오브젝트
+4. 오브젝트 instanceof 부모클래스
+5. as
 - 여러 개에서 좁히는 문법이지 바꾸는 문법이 아니다.
 - 무슨 타입이 들어올지 100% 확실할 때.
+6. .?
 
 #### type alias
 
@@ -34,5 +47,118 @@ const Example = (x: string | number) => {
 - extend 할 때는 &
 
 #### Liter Type & Tuple Type
+
 - 실제 값을 지정해준다는 점에서 공통점
 - 마우스 올리면 자동완성 힌트
+- 기능으로 보면 const 변수의 상위호환
+- 오브젝트를 쉽게 리터럴 타입으로 만들 땐 as const 옵션 : 1) object value 값을 그대로 타입으로 지정 2) object를 readonly로 변경
+
+#### Interface 와 Type alias 차이
+
+- interface는 중복선언 가능. 기존에 없던 속성이면 추가. 기존에 있던 속성이면 에러.
+- type은 엄격해서 중복선언 불가.
+
+> RestParameter vs SpreadOperator
+
+- RestParameter의 타입은 어레이
+- 스프레드 오퍼레이터 = 데이터 복붙
+
+> 디스트럭쳐링
+
+> 타입스크립트에서 클래스 만들 때
+
+- 바로 쓰는 것과 컨스트럭터 만들어서 쓰는 것의 차이? 컨스트럭터를 쓰면 파라미터를 받을 수 있다.
+
+> 타입스크립트 클래스
+
+- public: 자식들이 사용 가능 수정 가능 (default)
+- private: 자식들이 사용 불가 수정 불가 (안에서는 수정 가능. 그래서 변경 함수를 내부에 만들어놓고 밖에서 함수를 이용한 수정 가능)
+- protected: extends 됐을 때 사용 가능. 자식들 불가능
+- static: 부모만 쓸 수 있음. 자식에게 상속 x
+
+> Declare
+
+- js의 타입 설정 안 된 변수를 ts에서 쓰려고 할 때. declare에 정의
+- 타입을 global로 만들기 위해서도 사용할 수 있다.
+
+```ts 전역으로 만들기 focus=1[1:15]
+declare global {
+  interface Props {
+    id: number;
+  }
+}
+```
+
+> d.ts 파일
+
+- declare 타입, export 하는 타입 모아놓는 곳.
+- namespace 쓰거나.?
+- 앰비언트 모듈이 아닌 로컬 모듈이기 때문에 글로벌 적용 x
+-
+
+> implements
+
+- extends와 쓰임이 비슷해 보이지만
+- 할당하는 것이 아니라 확인하는 용도.
+
+```ts
+class Book implements BookType {
+  -> BookType의 요소가 았니 확인만 하지 가져오는 것이 아님.
+}
+```
+
+> 타입변환기
+
+```ts
+type TypeChanger<T> = {
+  // key가 T에 있는 key들에 속하면 : string
+  // keyof는 T를 받아서 유니온 타입으로 만든다
+  [key in keyof T]: string;
+};
+```
+
+> 조건문 타입
+```ts
+// extends = in 이다
+
+type 타입추출<T> = T extends (infer R)[] ? R : unknown;
+```
+
+> 제네릭
+
+<CH.Scrollycoding>
+```ts index.tsx {/*focus=1:1*/}
+const Example = () => {
+  console.log(this)
+}
+window.Example
+```
+---
+```ts 파일명.tsx {/*focus=1:1*/}
+/*Code Here*/
+```
+</CH.Scrollycoding>
+1. this = 나를 담고 있는 object
+2. window도 동일한 맥락
+3. 컨스트럭터의 상속도 동일한 맥락
+4. e.currentTarget도 동일한 맥락
+5. 콜백함수도 동일한 맥락. 이름없는 일반 함수일 뿐이기 떄문에 window를 향한다.
+6. 화살표 함수의 this = window
+7. 이벤트리스너 안에서 애로우 펑션을 쓰
+
+### var let const 차이
+- 선언 할당 범위의 차이다
+1. var 재선언 가능, 재할당 가능, 범위는 펑션
+2. let 재선언 불가, 재할당 가능, 범위는 중괄호(window에서 쓰면 전역변수)
+3. const 재선언 불가, 재할당 불가(하지만 오브젝트일 경우 안의 데이터 바꿀 수 있다), 범위는 중괄호(window에서 쓰면 전역변수)
+- 이것도 막고 싶으면 ts의 리터럴 타입, readonly를 쓰거나
+- Object.freeze(obj)를 이용
+
+
+### 자바스크립트의 hoisting
+- 변수/함수의 선언부만 먼저 최상단으로 읽어올림
+- 할당값은 차례일 때 읽는다.
+
+### SpreadOperator
+- 바깥 괄호 해체
+- 문자에 붙이면 한글자 한글자 펼쳐준다.

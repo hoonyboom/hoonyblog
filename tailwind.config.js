@@ -34,12 +34,13 @@ module.exports = {
       xl: "clamp(1.40rem, calc(1.09rem + 1.08vw), 1.95rem)",
       "2xl": "clamp(1.69rem, calc(1.25rem + 1.48vw), 2.44rem)",
       "3xl": "clamp(1.9rem, calc(1.44rem + 1.67vw), 2.84rem)",
+      mono: "clamp(0.81rem, calc(0.65rem + 0.31vw), 0.87rem);",
     },
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
       mono: ["Consolas", "ui-monospace", "SFMono-Regular"],
-      custom: ["IBM", "NanumSquareR"],
+      custom: ["Baloo2", "Arita"],
     },
     minHeight: {
       content: "100vh",

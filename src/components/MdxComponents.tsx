@@ -29,11 +29,12 @@ export const Lnk = (props: LinkProps) => {
 export const Img = (props: ImageProps) => {
   return (
     <Image
-      {...props}
       width={9999}
       height={9999}
+      quality={100}
       alt="image"
       className="h-auto w-auto rounded-xl shadow shadow-black dark:shadow-white/30"
+      {...props}
     />
   );
 };
