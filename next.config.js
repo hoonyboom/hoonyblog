@@ -1,5 +1,5 @@
-import path from "path";
-import loaderUtils from "loader-utils";
+const path = require("path");
+const loaderUtils = require("loader-utils");
 
 // based on https://github.com/vercel/next.js/blob/0af3b526408bae26d6b3f8cab75c4229998bf7cb/packages/next/build/webpack/config/blocks/css/loaders/getCssModuleLocalIdent.ts
 const hashOnlyIdent = (context, _, exportName) =>
