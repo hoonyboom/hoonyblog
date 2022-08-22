@@ -52,7 +52,7 @@ interface는 기존 정의에 새로운 값/타입을 추가하는 데엔 관대
 - 타입을 _`extends`_ 해올 때 <Note>특정키 값을 제외</Note>하고 <Note type="circle">상속</Note> 받는다
 <br/>
 공식문서 둘러볼 때 이놈은 필히 쓰겠다 싶더랬지ㅎ 사용법은 간단하다.
-```ts Mdx....tsx mark=1[33:68]
+```ts Mdx....tsx mark=2[33:68]
 // children을 제외하고 extends 해온다.
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
   text?: string;
