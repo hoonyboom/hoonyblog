@@ -1509,7 +1509,7 @@ __metadata:
     husky: ^8.0.1
     kbar: ^0.1.0-beta.36
     lint-staged: ^13.0.3
-    loader-utils: ^3.2.0
+    mangle-css-class-webpack-plugin: ^5.0.8
     mdx-bundler: ^9.0.1
     next: 12.2.5
     next-seo: ^5.5.0
