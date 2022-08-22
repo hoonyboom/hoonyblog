@@ -37,13 +37,9 @@ export function getSortedPostsData(categories?: string) {
   if (categories) {
     const categoriesData = allPostsData.filter(post => post.categories === categories);
     return categoriesData.sort(({ date: a }: dateType, { date: b }: dateType) => {
-      if (a < b) {
-        return 1;
-      } else if (a > b) {
-        return -1;
-      } else {
-        return 0;
-      }
+      if (a < b) return 1;
+      else if (a > b) return -1;
+      else return 0;
     });
     // .map((post, i) => {
     //   return Object.assign(post, { index: i });
@@ -53,13 +49,9 @@ export function getSortedPostsData(categories?: string) {
 
   // 날짜 최신순으로 정렬
   return allPostsData.sort(({ date: a }: dateType, { date: b }: dateType) => {
-    if (a < b) {
-      return 1;
-    } else if (a > b) {
-      return -1;
-    } else {
-      return 0;
-    }
+    if (a < b) return 1;
+    else if (a > b) return -1;
+    else return 0;
   });
   // .map((post, i) => {
   //   return Object.assign(post, { index: i });

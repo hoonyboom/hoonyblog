@@ -18,9 +18,7 @@ export default function Pagination({
   // const [isActive, setIsActive] = useState([true]);
 
   let numPages = 0;
-  if (typeof total === "number") {
-    numPages = Math.ceil(total / limit);
-  }
+  if (typeof total === "number") numPages = Math.ceil(total / limit);
 
   return (
     <div className="flex flex-row justify-center space-x-5 pb-10 text-md">
