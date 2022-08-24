@@ -17,7 +17,7 @@
     @apply mb-5 text-2xl;
   }
   h3 {
-    @apply pt-4 pb-2 text-lg font-bold;
+    @apply py-4 text-lg font-bold text-waterMelon;
   }
   h4 {
     @apply pt-4 pb-2 text-md font-bold text-emerald-600;
