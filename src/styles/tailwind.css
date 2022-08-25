@@ -17,7 +17,7 @@
     @apply mb-5 text-2xl;
   }
   h3 {
-    @apply py-4 text-lg font-bold text-waterMelon;
+    @apply py-4 text-lg font-bold text-waterMelon dark:text-cyan-200/90;
   }
   h4 {
     @apply pt-4 pb-2 text-md font-bold text-emerald-600;
@@ -57,7 +57,7 @@
 note: 폰트설정
 영어-한글-모노 */
 @font-face {
-  font-family: "IBM";
+  font-family: "IBMPlexSans";
   src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
@@ -69,8 +69,8 @@ note: 폰트설정
   font-display: block;
 }
 @font-face {
-  font-family: "Consolas";
-  src: url("/fonts/CascadiaCode-SemiLight.woff2") format("woff2");
+  font-family: "IBMPlexMono";
+  src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }

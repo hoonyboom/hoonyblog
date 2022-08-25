@@ -111,7 +111,7 @@ export default function CommandPalette({ children }: LayoutProps) {
     <KBarProvider actions={actions} options={{ disableScrollbarManagement: true }}>
       <KBarPortal>
         <KBarPositioner className="z-10 bg-zinc-900/80">
-          <KBarAnimator className="w-full  max-w-lg overflow-y-auto rounded-lg bg-white shadow-lg">
+          <KBarAnimator className="w-full  max-w-lg overflow-y-auto rounded-lg bg-white shadow-lg dark:bg-zinc-800">
             <div className="relative flex text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"

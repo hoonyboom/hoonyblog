@@ -13,7 +13,6 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
   css?: string;
   className?: string;
   children?: React.ReactNode;
-  y?: number;
 }
 
 // 커스텀 컴퍼넌트

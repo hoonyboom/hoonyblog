@@ -94,7 +94,7 @@ Yarn berry를 처음으로 적용했다. 여태 yarn classic을 쓰며 문제도
 <br/>
 yarn berry는 모듈 파일들을 압축된 형식으로 가진다. 참조가 필요할 때 위치를 찾아내 이를 들춰보는 방식이다. (압축됐기에) 작은 용량을 가지며, (트리형 참조가 아니기 때문에) 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다.  
 <br/>
-하지만 호환이 안 되는 부분도 있긴 했다. 첫경험은 prisma에서 스키마를 migration할 때였는데, 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했다. prettier가 자신의 plugin들을 찾을 때 node_modules만을 색인하기 때문이었다. 아쉽지만 node_modules를 내부에 두지 않는 yarn berry로선 그를 직접 찾아 내보내야 한다.
+하지만 호환이 안 되는 부분도 있긴 했다. 첫경험은 prisma에서 스키마를 migration할 때였는데, 여기서는 tailwind 요소를 prettier 정렬에 반영하는 과정에서 오류가 발생했다. prettier가 자신의 plugin들을 찾을 때 node_modules만을 색인하기 때문이었다. 아쉽지만 node_modules 폴더를 내부에 두지 않는 yarn berry로선 그를 찾아 직접 내보내야 한다.
 
 <CH.Code>
 ```js .prettierrc.js focus=3

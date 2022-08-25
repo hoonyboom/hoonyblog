@@ -4,7 +4,7 @@ date: "2022-07-11"
 categories: "coding"
 ---
 
-타입스크립트 본격적으로 쓴 지 한달째다. 근데 잘 가고 있는 걸까 물으면... 솔직히 모르겠다. 그냥 기본에서 기본만 맴도는 느낌.. 한결 익숙해져서라고 믿고 싶지만.. 😢
+타입스크립트 본격적으로 쓴 지 한달째다. 근데 잘 가고 있는 걸까 물으면... 솔직히 모르겠다. 그냥 기본에서 기본만 맴도는 느낌.. 한결 익숙해져서라고 믿고 싶다 😢
 <br/>
 아무튼 오늘은 자주 쓰는 모듈들을 한데 모아 커스터마이징 했다. 그 과정에서 이런 타입 에러를 맞딱드렸고
 <Img src={'/images/typeError1.png'} />
@@ -63,9 +63,9 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 ```
 <br/>
 ### 제네릭이 어떻게 짜여있길래?
-이를 이해하기 위해선 다른 유틸 타입인 _`Pick`_ 과 _`Exclude`_ 의 쓰임을 먼저 알아야 했다. 내가 단박에 파악할 깜냥은 안 돼서 다른 분의 설명을 참고했고, 많은 도움이 됐다. 자세한 설명은 그분 걸 참고하는 게 나을 것이다. 아무래도 나는 내가 적고 내가 이해하는 데 주안을 두기 때문이다.  
+이를 이해하기 위해선 다른 유틸 타입인 _`Pick`_ 과 _`Exclude`_ 의 쓰임을 먼저 알아야 했다. 내가 단박에 파악할 깜냥은 안 돼서 다른 분의 설명을 참고했고, 많은 도움이 됐다. 자세한 설명이라면 그분 걸 참고하는 게 나을 것 같다. 아무래도 나는 내가 적고 내가 이해하는 데 주안을 두기 때문이다.  
 <br/>
-아무튼 말로 먼저 풀어보면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 _`Pick<대상, 조건>`_ 에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit이고, 그런 부정논리를 만들어주는 녀석이 Exclude다. 그러니 Pick을 알고 Exclude를 알면 사실 Omit도 거저 따라오는 셈이다.  
+아무튼 말로 먼저 풀어보면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 _`Pick<대상, 조건>`_ 에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit이고, 그런 부정논리를 만들어주는 녀석이 바로 Exclude이다. 그러니 Pick을 알고 Exclude를 알면 사실 Omit도 거저 따라오는 셈이다.  
 간략하게나마 이를 살펴보자
 <br/>
 <br/>
@@ -73,7 +73,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 <br/>
 
 1. _`Exclude<대상, 제외하려는 값>`_  
-  일련의 <Note type="circle" color="orange" animationDelay={1000}>유니온 타입</Note>이 나열되어 있을 때 특정 타입을 제외하여 돌려준다. 가령 제네릭의 첫번째 인자가 "A"|"B"|"C" 를 나열한 타입이라고 치자. 그러면 두번째 인자로 들어오는 "B"는 "A"|"C" 를 반환하게 만든다.  
+  일련의 <Note type="box" iterations={1} color="orange" animationDelay={1000}>유니온 타입</Note>이 나열되어 있을 때 특정 타입을 제외하여 돌려준다. 가령 제네릭의 첫번째 인자가 "A"|"B"|"C" 를 나열한 타입이라고 치자. 그러면 두번째 인자로 들어오는 "B"는 "A"|"C" 를 반환하게 만든다.  
     - 구조: _`type Exclude<T, K> = T extends K ? never : T`_
     - 조건문에서 extends는 '겹치면', '속하면'으로 읽어주는 편이 낫다.  
     : "T중에 K랑 겹치는 애면 없는 셈치고 나머지만 뽑아주라"
@@ -82,7 +82,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 <br/>
   
 2. _`Pick<대상, 남기려는 값>`_  
-<Note type="circle" color="orange" animationDelay={1000}>오브젝트 타입</Note>에서 특정 키(와 타입)을 뽑아낸다.  
+<Note type="box" iterations={1} color="orange" animationDelay={1000}>오브젝트 타입</Note>에서 특정 키(와 타입)을 뽑아낸다.  
 _`keyof`_ 는 오브젝트에서 키값을 뽑아내 유니언 타입으로 나열해주는 operator다. Pick은 그의 도움을 받아 다음과 같이 이루어진다.
 ```ts sample.ts
 type Pick<T, K extends keyof T> = { // 조건: 원본 T의 키에서 K와 일치하는 키들을
@@ -93,7 +93,7 @@ type Pick<T, K extends keyof T> = { // 조건: 원본 T의 키에서 K와 일치
 <hr/>
 <br/> 
 3. _`Omit<대상, 제외하려는 값>`_  
-<Note type="circle" color="orange" animationDelay={1000}>오브젝트 타입</Note>에서 특정 키(와 타입)을 제외한 모든 값을 반환한다. 앞서 말했지만 이는 결국 Pick을 들고 그 안의 조건을 뒤집는 것이다. 그 과정을 살펴보면
+<Note type="box" iterations={1} color="orange" animationDelay={1000}>오브젝트 타입</Note>에서 특정 키(와 타입)을 제외한 모든 값을 반환한다. 앞서 말했지만 이는 결국 Pick을 들고 그 안의 조건을 뒤집는 것이다. 그 과정을 살펴보면
     1. keyof T를 통해 유니언 타입을 추출하고,  
     2. 그에 대해 Exclude를 이용해 K를 제외한 모든 값을 남긴다.  
     3. 그리고 Pick은 이 모두를 조건으로 받는다.  

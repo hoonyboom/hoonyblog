@@ -4,14 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { siteTitle } from "@/components/Layout";
-import { RoughNotation } from "react-rough-notation";
 
 export interface IdProps {
   params: {
     id: string;
   };
 }
-export interface mdxProps {
+export interface MdxProps {
   code: string;
   frontmatter: {
     [keys: string]: string;
@@ -35,7 +34,7 @@ export async function getStaticProps({ params }: IdProps) {
   };
 }
 
-export default function BlogPost({ code, frontmatter }: mdxProps) {
+export default function BlogPost({ code, frontmatter }: MdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   const [fade, setFade] = useState(false);
   useEffect(() => {
@@ -50,23 +49,9 @@ export default function BlogPost({ code, frontmatter }: mdxProps) {
       </Head>
       <div className={`transition ${fade ? "opacity-100" : "opacity-0"}`}>
         <h1 className="mt-28 mb-2 text-center text-3xl">{frontmatter.title}</h1>
-        <div className="flex flex-col text-base leading-6">
-          <p className="mt-2 flex justify-center">
-            <Date dateString={frontmatter.date} />
-          </p>
-          <p className="my-1 flex justify-center">
-            <RoughNotation
-              show
-              type="highlight"
-              iterations={3}
-              strokeWidth={1}
-              color="#25c2a0"
-            >
-              {frontmatter.description}
-            </RoughNotation>
-          </p>
-        </div>
-
+        <header className="mt-4 flex justify-center text-base leading-6">
+          <Date dateString={frontmatter.date} />
+        </header>
         <article className="keep-all m-10 text-base leading-7 md:leading-8">
           <Component components={MdxComponents} />
         </article>
