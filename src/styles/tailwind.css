@@ -10,6 +10,9 @@
   /* blockquote {
     @apply text-emerald-600;
   } */
+  a {
+    @apply underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
+  }
   h1 {
     @apply text-3xl;
   }

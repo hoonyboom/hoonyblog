@@ -70,18 +70,17 @@ function Profile({ changed, id }: { changed: boolean; id?: string | string[] }) 
     </>
   );
 }
-function Posts({ id, title, date }: { [key: string]: string }) {
+function Posts({ id, title, date }: { [keys: string]: string }) {
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
 
   return (
     <div
-      key={id}
       onMouseUp={() => tap()}
       className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
     >
       <div className="flex flex-col">
         <Link href={`/posts/${id}`}>
-          <a className="text-lg">{title}</a>
+          <a className="text-lg no-underline">{title}</a>
         </Link>
         <small className="pt-2 text-base">
           <Date dateString={date} />
@@ -125,16 +124,16 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <section className="mx-10 md:mx-0">
         <article className="mt-8 pb-5 lg:pb-10">
           {!id
-            ? allPostsData
-                .slice(offset, offset + limit)
-                .map(({ id, date, title }) => (
-                  <Posts key={id} id={id} date={date} title={title} />
-                ))
-            : category
-                ?.slice(offset, offset + limit)
-                .map(({ id, date, title }) => (
-                  <Posts key={id} id={id} date={date} title={title} />
-                ))}
+            ? allPostsData.slice(offset, offset + limit).map(({ id, date, title }) => (
+                <div key={id}>
+                  <Posts id={id} date={date} title={title} />
+                </div>
+              ))
+            : category?.slice(offset, offset + limit).map(({ id, date, title }) => (
+                <div key={id}>
+                  <Posts id={id} date={date} title={title} />
+                </div>
+              ))}
         </article>
         <footer>
           {!id ? (

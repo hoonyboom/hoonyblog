@@ -37,18 +37,18 @@ export const Img = (props: ImageProps) => {
       height={9999}
       quality={100}
       alt="image"
-      className="my-3 h-auto w-auto rounded-xl shadow shadow-black dark:shadow-white/30"
+      className="my-3 h-auto w-auto rounded-xl shadow-black drop-shadow-xl hover:cursor-none dark:shadow-white/30"
       {...props}
     />
   );
 };
 
-// Youtube
+// Youtubeq
 export const Youtube = ({ src }: { src: string }) => {
   return (
-    <div className="relative h-0 pb-[56.25%] pt-6">
+    <div className="relative mb-8 h-0 pb-[46.25%] pt-6">
       <iframe
-        className="absolute top-0 left-0 h-full w-full"
+        className="absolute top-0 left-0 h-full w-full rounded-2xl shadow-2xl shadow-black"
         width="560"
         height="315"
         src={src}

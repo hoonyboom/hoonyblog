@@ -49,7 +49,7 @@ export default function Layout({ children, home }: LayoutProps) {
             {!home && (
               <footer className="mt-16 ml-5 h-20 text-base md:ml-1">
                 <Link href="/">
-                  <a>← Back to home</a>
+                  <a className="no-underline">← Back to home</a>
                 </Link>
               </footer>
             )}

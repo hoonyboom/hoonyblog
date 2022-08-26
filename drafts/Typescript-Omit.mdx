@@ -12,10 +12,10 @@ categories: "coding"
 <br/>
 
 ### 그래서 니가 몬데
-간단히 말해 부모타입에서 필수로 요했던 children을 내 쪽에서 옵셔널하게 바꾸면서 생긴 오류였다. 아하.? 🤔  
-interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지만, 이렇듯 기존값을 뭔가로 다르게 덮어쓰면 경고를 던진다. 당시 타입은 이런 꼴이었는데
+간단히 말해 부모타입에서 필수로 요했던 children을 내 쪽에서 옵셔널하게 바꾸면서 생긴 오류였다 🤔   
+interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지만, 이렇듯 기존값을 뭔가로 다르게 덮어쓰면 돌을 던진다.
 <CH.Scrollycoding rows={11}>
-  원흉 👾
+  문제가 된 부분 👾
   ```ts MdxComponents.tsx focus=4 
   interface NotationProps extends RoughNotationProps {
     text: string;
@@ -24,7 +24,7 @@ interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지�
   }
   ```
   ---
-  컴퍼넌트
+  *children*을 생략하고 싶었다
   ```ts Mdx....tsx mark=2[29:41]
   // RoughNotation
   export const Note = (props: NotationProps) => {
@@ -43,15 +43,14 @@ interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지�
   };
   ```
 </CH.Scrollycoding>
-당초 의도는 children을 생략하고 그 자리를 text와 css로 대신하는 거였다. 물론 그거랑 children이랑 작동이 별반 다를 거 없긴 하다. 근데 왜 바꿨냐고? 나도 그러기 싫었다.. 근데 css가 이상하게 들어가더라아ㅣ.. ㅎㅎ;;   
-그럼 이를 어찌하면 좋을까?
+그럼 어떻게 해야 할까?
 <br/><br/>
 
 ### 방법은 Typescript의 'Omit' 💨💨
 - 타입스크립트의 유틸타입 중 하나
 - 타입을 extends 해올 때 <Note animationDelay={700}>특정키 값을 제외</Note>하고 상속받는다
 <br/>
-공식문서 둘러볼 때 이놈은 필히 쓰겠다 싶더랬지ㅎ 사용법은 간단하다.
+공식문서 둘러볼 때 이놈은 필히 쓰겠다 싶더랬다. 사용법은 간단하다.
 ```ts Mdx....tsx mark=2[33:68]
 // children을 제외하고 extends 해온다.
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
@@ -65,7 +64,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 ### 제네릭이 어떻게 짜여있길래?
 이를 이해하기 위해선 다른 유틸 타입인 _`Pick`_ 과 _`Exclude`_ 의 쓰임을 먼저 알아야 했다. 내가 단박에 파악할 깜냥은 안 돼서 다른 분의 설명을 참고했고, 많은 도움이 됐다. 자세한 설명이라면 그분 걸 참고하는 게 나을 것 같다. 아무래도 나는 내가 적고 내가 이해하는 데 주안을 두기 때문이다.  
 <br/>
-아무튼 말로 먼저 풀어보면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 _`Pick<대상, 조건>`_ 에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit이고, 그런 부정논리를 만들어주는 녀석이 바로 Exclude이다. 그러니 Pick을 알고 Exclude를 알면 사실 Omit도 거저 따라오는 셈이다.  
+아무튼 말로 먼저 풀어보면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 _`Pick<대상, 조건>`_ 에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit이고, 그런 부정논리를 만들어주는 녀석이 Exclude일 뿐이다. 그러니 Pick을 알고 Exclude를 알면 사실 Omit도 거저 따라오는 셈이다.  
 간략하게나마 이를 살펴보자
 <br/>
 <br/>
