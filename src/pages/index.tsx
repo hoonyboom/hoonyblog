@@ -125,17 +125,11 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         <article className="mt-8 pb-5 lg:pb-10">
           {!id
             ? allPostsData.slice(offset, offset + limit).map(({ id, date, title }) => (
-                <div
-                  key={id}
-                  onClick={() => {
-                    setTimeout(() => {
-                      setSwap("animate-swap");
-                    }, 0);
-                    router.push(`/posts/${id}`);
-                  }}
-                >
-                  <Posts date={date} title={title} />
-                </div>
+                <Link key={id} href={`/posts/${id}`}>
+                  <a className="no-underline">
+                    <Posts date={date} title={title} />
+                  </a>
+                </Link>
               ))
             : category?.slice(offset, offset + limit).map(({ id, date, title }) => (
                 <Link key={id} href={`/posts/${id}`}>

@@ -10,9 +10,7 @@ export interface LayoutProps {
 export default function Layout({ children, home }: LayoutProps) {
   return (
     <div
-      className={`h-auto min-h-content w-full ${
-        !home && "animate-swapReverse"
-      } dark:bg-zinc-900/90 dark:text-slate-200/80`}
+      className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
     >
       <div className={"container mx-auto max-w-xl"}>
         <header>
