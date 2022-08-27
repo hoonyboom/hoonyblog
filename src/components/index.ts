@@ -8,3 +8,4 @@ export { default as CommandPaletteIcon } from "./CommandIcon";
 export { default as Logo } from "./Logo";
 export { default as MdxComponents } from "./MdxComponents";
 export { default as Pagination } from "./Pagination";
+export { default as Seo } from "./Seo";

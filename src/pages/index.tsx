@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getSortedPostsData } from "@/lib/posts";
 import { Layout, Date, MdxComponents, Pagination } from "@/components";
-import { siteTitle, name } from "@/components/Layout";
+import { siteTitle, name } from "@/components/Seo";
 import useSound from "use-sound";
 
 export interface PostsProps {
@@ -70,7 +70,7 @@ function Profile({ changed, id }: { changed: boolean; id?: string | string[] }) 
     </>
   );
 }
-function Posts({ id, title, date }: { [keys: string]: string }) {
+function Posts({ title, date }: { [keys: string]: string }) {
   const [tap] = useSound("/sounds/tap.mp3", { volume: 0.6 });
 
   return (
@@ -79,9 +79,7 @@ function Posts({ id, title, date }: { [keys: string]: string }) {
       className="my-5 rounded-3xl border border-zinc-600/10 bg-white bg-opacity-[.05] p-5 backdrop-blur"
     >
       <div className="flex flex-col">
-        <Link href={`/posts/${id}`}>
-          <a className="text-lg no-underline">{title}</a>
-        </Link>
+        <span className="text-lg no-underline">{title}</span>
         <small className="pt-2 text-base">
           <Date dateString={date} />
         </small>
@@ -92,6 +90,8 @@ function Posts({ id, title, date }: { [keys: string]: string }) {
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리 state
+  const [swap, setSwap] = useState("");
+  const router = useRouter();
   const id = useRouter().query.id;
   const [category, setCategory] = useState<PostsProps[]>();
   const [changed, setChanged] = useState(false);
@@ -115,7 +115,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   }, [category]);
 
   return (
-    <Layout home>
+    <Layout home swap={swap}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -125,14 +125,22 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         <article className="mt-8 pb-5 lg:pb-10">
           {!id
             ? allPostsData.slice(offset, offset + limit).map(({ id, date, title }) => (
-                <div key={id}>
-                  <Posts id={id} date={date} title={title} />
+                <div
+                  key={id}
+                  onClick={() => {
+                    setSwap("animate-swap");
+                    router.push(`/posts/${id}`);
+                  }}
+                >
+                  <Posts date={date} title={title} />
                 </div>
               ))
             : category?.slice(offset, offset + limit).map(({ id, date, title }) => (
-                <div key={id}>
-                  <Posts id={id} date={date} title={title} />
-                </div>
+                <Link key={id} href={`/posts/${id}`}>
+                  <a className="no-underline">
+                    <Posts date={date} title={title} />
+                  </a>
+                </Link>
               ))}
         </article>
         <footer>

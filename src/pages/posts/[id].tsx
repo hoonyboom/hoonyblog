@@ -3,7 +3,7 @@ import { Layout, Date, MdxComponents } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
-import { siteTitle } from "@/components/Layout";
+import { siteTitle } from "@/components/Seo";
 
 export interface IdProps {
   params: {
@@ -49,9 +49,9 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
       </Head>
       <div className={`transition ${fade ? "opacity-100" : "opacity-0"}`}>
         <h1 className="mt-28 mb-2 text-center text-3xl">{frontmatter.title}</h1>
-        <header className="mt-4 flex justify-center text-base leading-6">
+        <div className="mt-4 flex justify-center text-base leading-6">
           <Date dateString={frontmatter.date} />
-        </header>
+        </div>
         <article className="keep-all m-10 text-base leading-7 md:leading-8">
           <Component components={MdxComponents} />
         </article>

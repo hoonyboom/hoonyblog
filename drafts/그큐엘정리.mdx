@@ -1,0 +1,28 @@
+---
+title: "그큐엘 사용기"
+date: "2022-08-25"
+categories: "coding"
+---
+
+### API가 무엇이오?
+API: Application Programming Interface의 약자  
+API는 어플리케이션과 소통할 수 있는 버튼과도 같은 것이다.  
+일종의 약속, 정해진 언어를 사용해 그 컨텐츠(데이터)를 이용하는 것.
+
+<br/>
+### 그큐엘은 무엇이오?
+- REST API의 문제점
+   1. Over-fetching: 내가 필요로 하지 않는 데이터도 포함돼 있음
+   2. *Under-fetching*: 한 화면을 위해 여러 request를 보내야 경우
+
+- 그큐엘은 이것들을 해결한다. 필요한 데이터를 구체적으로 쓰기 때문.  
+
+<br/>
+### setup
+아무데서나 되는 건 아니고 graphql을 이해하는 서버 필요.  
+나는 graphql-yoga와 Apollo server에서  
+같은 기능을 실험했는데 아폴로가 나았다.  
+Next.js의 경우에 서버쪽에선 Apollo-server가 아닌 Apollo-server/micro 를 써줘야 한다
+
+
+(추가예정)

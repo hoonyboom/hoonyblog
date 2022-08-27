@@ -10,14 +10,24 @@ module.exports = {
       transitionDuration: {
         3000: "3000ms",
       },
-      KeyframeEffect: {
+      keyframes: {
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+        swap: {
+          "50%": { transform: "translateY(50px)" },
+          "100%": { transform: "translateY(-250px)", opacity: 0 },
+        },
+        swapReverse: {
+          "0%": { transform: "translateY(150px)", opacity: 0 },
+          "100%": { transform: "translateY(0px)", opacity: 1 },
+        },
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
+        swap: "swap 0.8s ease-in-out",
+        swapReverse: "swapReverse 0.8s ease-in-out",
       },
       colors: {
         waterMelon: "#ED4C6A",

@@ -77,7 +77,6 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
     - 조건문에서 extends는 '겹치면', '속하면'으로 읽어주는 편이 낫다.  
     : "T중에 K랑 겹치는 애면 없는 셈치고 나머지만 뽑아주라"
 <br/>
-<hr/>
 <br/>
   
 2. _`Pick<대상, 남기려는 값>`_  
@@ -89,7 +88,6 @@ type Pick<T, K extends keyof T> = { // 조건: 원본 T의 키에서 K와 일치
 }
 ```
 <br/>
-<hr/>
 <br/> 
 3. _`Omit<대상, 제외하려는 값>`_  
 <Note type="box" iterations={1} color="orange" animationDelay={1000}>오브젝트 타입</Note>에서 특정 키(와 타입)을 제외한 모든 값을 반환한다. 앞서 말했지만 이는 결국 Pick을 들고 그 안의 조건을 뒤집는 것이다. 그 과정을 살펴보면
