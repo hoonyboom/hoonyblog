@@ -114,12 +114,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     setPage(1);
   }, [category]);
 
-  useEffect(() => {
-    setSwap("");
-  }, []);
-
   return (
-    <Layout home swap={swap}>
+    <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
