@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { name } from "@/components/Layout";
+import { name } from "@/components/Seo";
 import { Darkmode, CommandPaletteIcon } from "@/components";
 
 export default function Nav() {
