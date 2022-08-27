@@ -114,6 +114,10 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     setPage(1);
   }, [category]);
 
+  useEffect(() => {
+    setSwap("");
+  }, []);
+
   return (
     <Layout home swap={swap}>
       <Head>
@@ -128,7 +132,9 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
                 <div
                   key={id}
                   onClick={() => {
-                    setSwap("animate-swap");
+                    setTimeout(() => {
+                      setSwap("animate-swap");
+                    }, 0);
                     router.push(`/posts/${id}`);
                   }}
                 >
