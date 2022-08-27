@@ -5,7 +5,7 @@ import { HomeNav, Nav, Seo } from "@/components";
 export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
-  swap: string;
+  swap?: string;
 }
 
 export default function Layout({ children, home, swap }: LayoutProps) {
