@@ -38,7 +38,7 @@ export default function CommandPalette({ children }: LayoutProps) {
         router.push(
           {
             pathname: "/",
-            query: { id: "writing" },
+            query: { category: "writing" },
           },
           "/writing",
         ),
@@ -54,7 +54,7 @@ export default function CommandPalette({ children }: LayoutProps) {
         router.push(
           {
             pathname: "/",
-            query: { id: "coding" },
+            query: { category: "coding" },
           },
           "/coding",
         ),

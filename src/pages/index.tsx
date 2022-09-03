@@ -26,7 +26,13 @@ export async function getStaticProps() {
   };
 }
 
-function Profile({ changed, id }: { changed: boolean; id?: string | string[] }) {
+function Profile({
+  changed,
+  isCategory,
+}: {
+  changed: boolean;
+  isCategory?: string | string[];
+}) {
   const { Note } = MdxComponents;
   return (
     <>
@@ -61,10 +67,16 @@ function Profile({ changed, id }: { changed: boolean; id?: string | string[] }) 
           type="bracket"
           strokeWidth={3}
           brackets={["left", "right"]}
-          color={id === "coding" ? "tomato" : id === "writing" ? "crimson" : "skyblue"}
+          color={
+            isCategory === "coding"
+              ? "tomato"
+              : isCategory === "writing"
+              ? "crimson"
+              : "skyblue"
+          }
           animationDelay={1200}
           css="px-2 text-2xl"
-          text={id ? `${id}` : "Blog"}
+          text={isCategory ? `${isCategory}` : "Blog"}
         />
       </section>
     </>
@@ -90,7 +102,7 @@ function Posts({ title, date }: { [keys: string]: string }) {
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리 state
-  const id = useRouter().query.id;
+  const isCategory = useRouter().query.category;
   const [category, setCategory] = useState<PostsProps[]>();
   const [changed, setChanged] = useState(false);
   // 페이지네이션 state
@@ -99,12 +111,12 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const offset = (page - 1) * limit;
 
   useEffect(() => {
-    const sorted = allPostsData.filter(({ categories }) => {
-      return categories === id;
+    const categoryData = allPostsData.filter(({ categories }) => {
+      return categories === isCategory;
     });
     setChanged(false);
-    setCategory(sorted);
-  }, [id, allPostsData]);
+    setCategory(categoryData);
+  }, [isCategory, allPostsData]);
 
   useEffect(() => {
     setChanged(true);
@@ -117,11 +129,11 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <Profile changed={changed} id={id} />
+      <Profile changed={changed} isCategory={isCategory} />
 
       <section className="mx-10 md:mx-0">
         <article className="mt-8 pb-5 lg:pb-10">
-          {!id
+          {!isCategory
             ? allPostsData.slice(offset, offset + limit).map(({ id, date, title }) => (
                 <Link key={id} href={`/posts/${id}`}>
                   <a className="no-underline">
@@ -138,7 +150,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
               ))}
         </article>
         <footer>
-          {!id ? (
+          {!isCategory ? (
             <Pagination
               total={allPostsData.length}
               limit={limit}

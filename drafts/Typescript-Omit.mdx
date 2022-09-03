@@ -74,7 +74,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 1. _`Exclude<대상, 제외하려는 값>`_  
   일련의 <Note type="box" iterations={1} color="orange" animationDelay={1000}>유니온 타입</Note>이 나열되어 있을 때 특정 타입을 제외하여 돌려준다. 가령 제네릭의 첫번째 인자가 "A"|"B"|"C" 를 나열한 타입이라고 치자. 그러면 두번째 인자로 들어오는 "B"는 "A"|"C" 를 반환하게 만든다.  
     - 구조: _`type Exclude<T, K> = T extends K ? never : T`_
-    - 조건문에서 extends는 '겹치면', '속하면'으로 읽어주는 편이 낫다.  
+    - extends는 이꼴(=)이다. 조건문에서는 '겹치면', '속하면'으로 읽어주는 편이 낫다.  
     : "T중에 K랑 겹치는 애면 없는 셈치고 나머지만 뽑아주라"
 <br/>
 <br/>

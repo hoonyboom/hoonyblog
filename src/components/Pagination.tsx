@@ -1,4 +1,5 @@
 import { /* useState, */ Dispatch, SetStateAction } from "react";
+import MdxComponents from "./MdxComponents";
 
 interface PaginationProps {
   total?: number;
@@ -20,6 +21,7 @@ export default function Pagination({
   let numPages = 0;
   if (typeof total === "number") numPages = Math.ceil(total / limit);
 
+  const { Note } = MdxComponents;
   return (
     <div className="flex flex-row justify-center space-x-5 pb-10 text-md">
       {/* <button onClick={() => setPage(page - 1)} disabled={page === 1}>
@@ -55,7 +57,9 @@ export default function Pagination({
         }}
         className={page === numPages ? "hidden text-base" : ""}
       >
-        더 보기
+        <Note type="bracket" brackets={["left", "right"]} strokeWidth={2}>
+          more
+        </Note>
       </button>
     </div>
   );
