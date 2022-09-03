@@ -90,8 +90,6 @@ function Posts({ title, date }: { [keys: string]: string }) {
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리 state
-  const [swap, setSwap] = useState("");
-  const router = useRouter();
   const id = useRouter().query.id;
   const [category, setCategory] = useState<PostsProps[]>();
   const [changed, setChanged] = useState(false);

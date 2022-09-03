@@ -41,14 +41,13 @@ module.exports = {
     },
     fontSize: {
       sm: "clamp(0.67rem, calc(0.59rem + 0.22vw), 0.76rem);",
-      base: "clamp(0.81rem, calc(0.71rem + 0.37vw), 0.92rem);",
-      md: "clamp(0.84rem, calc(0.73rem + 0.39vw), 1.02rem);",
+      base: "clamp(0.81rem, calc(0.7rem + 0.36vw), 1rem);",
+      md: "clamp(0.84rem, calc(0.73rem + 0.39vw), 1.08rem);",
       lg: "clamp(1.17rem, calc(0.95rem + 0.88vw), 1.76rem)",
       xl: "clamp(1.40rem, calc(1.09rem + 1.08vw), 1.95rem)",
       "2xl": "clamp(1.69rem, calc(1.25rem + 1.48vw), 2.44rem)",
       "3xl": "clamp(1.9rem, calc(1.44rem + 1.67vw), 2.84rem)",
-      mono: "clamp(0.73rem, calc(0.62rem + 0.26vw), 0.8rem);",
-      // mono: "clamp(0.81rem, calc(0.65rem + 0.31vw), 0.87rem);",
+      mono: "clamp(0.76rem, calc(0.63rem + 0.26vw), 0.85rem);",
     },
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],

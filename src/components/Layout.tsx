@@ -5,14 +5,19 @@ import { HomeNav, Nav, Seo } from "@/components";
 export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
+  category?: string;
 }
 
-export default function Layout({ children, home }: LayoutProps) {
+export default function Layout({ children, home, category }: LayoutProps) {
   return (
     <div
       className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
     >
-      <div className={"container mx-auto max-w-xl"}>
+      <div
+        className={`container mx-auto ${
+          home || category === "writing" ? "max-w-xl" : "max-w-2xl"
+        }`}
+      >
         <header>
           <Seo />
           {!home && <Nav />}

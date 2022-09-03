@@ -6,23 +6,360 @@ categories: "coding"
 
 ### API가 무엇이오?
 API: Application Programming Interface의 약자  
-API는 어플리케이션과 소통할 수 있는 버튼과도 같은 것이다.  
-일종의 약속, 정해진 언어를 사용해 그 컨텐츠(데이터)를 이용하는 것.
+API는 어플리케이션과의 소통을 포괄적으로 일컫는 말이다.  
+일종의 약속, 정해진 언어를 사용해 특정 컨텐츠(데이터)를 이용하는 것.  
+Rest API, Graphql API는 그런 방식중의 하나다. 목적은 같지만 다른 스타일, 다른 문법으로 요청되는 API인 것.  
 
 <br/>
-### 그큐엘은 무엇이오?
-- REST API의 문제점
-   1. Over-fetching: 내가 필요로 하지 않는 데이터도 포함돼 있음
-   2. *Under-fetching*: 한 화면을 위해 여러 request를 보내야 함
+### 그렇담 그큐엘은 무엇이오?
+- REST API가 지닌 문제점
+   1. Over-fetching: 한 요청에 내가 필요로 하지 않는 데이터도 들어있는 경우 -> 네트워크 낭비
+   2. *Under-fetching*: 한 화면을 위해 여러 요청을 보내야 하는 경우 -> 코드의 낭비
 
-- 그큐엘은 이것들을 해결한다. 왜? 필요한 데이터를 구체적으로 쓰기 때문.  
-
-<br/>
-### 조건
-아무데서나 되는 건 아니고 graphql을 이해하는 서버가 필요함  
-호기심에 graphql-yoga와 Apollo server에서 같은 기능을 실험했는데 아폴로가 나았다.(<Lnk text='아폴로' href={'https://gumeun.vercel.app/'} />,
-<Lnk text='요가' href={'https://hayan.vercel.app/'} />)  
-Next.js의 경우, 서버쪽에서 Apollo-server 가 아닌 Apollo-server/micro 를 씀
+- 그큐엘은 필요한 데이터를 구체적으로 요청함으로써 이를 해결한다 
 
 <br/>
-(추가예정)
+### 사용 조건
+아무데서나 되는 건 아니고 Graphql을 이해하는 서버가 필요  
+Graphql-yoga와 Apollo server에서 같은 기능을 실험했는데 아폴로가 나았다(<Lnk text='아폴로' href={'https://gumeun.vercel.app/'} />,
+<Lnk text='요가' href={'https://hayan.vercel.app/'} />).  
+Next + Apollo의 경우, Apollo-server 가 아닌 Apollo-server/micro 를 써줘야 했음  
+물론 어떤 경우에도 Graphql 서버는 <Note>typeDefs</Note>와 <Note>resolvers</Note>로 구성된 스키마의 설계를 요구한다.  
+<CH.Section>
+<CH.Code>
+```ts yoga-graphql.ts
+import { createServer } from "@graphql-yoga/node";
+import { resolvers, typeDefs } from "./schema";
+
+const server = createServer({
+  schema: { typeDefs, resolvers },
+  endpoint: "/api/graphql",
+});
+
+export default server;
+```
+```ts apollo-graphql.ts
+import "reflect-metadata";
+import { NextApiRequest, NextApiResponse } from "next";
+import { TypeGraphQLServer } from "next-type-graphql";
+import { MovieResolver } from "./schema/movie.resolver";
+
+const apolloServer = new TypeGraphQLServer({
+  path: "/api/graphql",
+  schema: { 
+    resolvers: [MovieResolver],
+  }, // 여기선 type-graphql의 사용으로 typeDefs가 생략돼 있다
+});
+const startServer = apolloServer.start();
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  await startServer;
+  await apolloServer.createHandler()(req, res);
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+```
+</CH.Code>
+[요가 예시](focus://yoga-graphql.ts#5)   
+[아폴로 + type Graphql 예시](focus://apollo-graphql.ts#8:10)
+</CH.Section>
+
+<br/>
+### typeDefs?
+말 그대로 typeDefs(type definitions), 데이터들의 타입 정의다.  
+그큐엘 사용자는 데이터의 구성=shape를 먼저 서버에 기술해야 함(즉 꿰고 있어야 한단 말)  
+그래야 필요한 쿼리를 클라이언트에서 선별적으로 요청할 수 있는 것이다.  
+<br/>
+어떻게 작성하는지 예를 살펴보자  
+(예시는 전적으로 <Note type="box" iterations={1}>노마드코더</Note>의 그큐엘 강의 + 그큐엘 공식문서에서 뽑았다).
+<br/>
+
+1. **Query 타입**
+   - 필수!로 작성해야 하는 타입
+   - Query 타입 = Rest API의 GET 요청이 들어오는 곳과 같다
+   - <a>클라에서 fetcher를 옆에 두고 말하자면, Rest API는 fetcher에 url을 싣지만, 그큐엘에서는 바로 이 쿼리의 모양을 싣는다.</a>
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      type Query {
+         allTweets: [Tweet!]!
+         tweet(id:ID!): Tweet!
+      }
+   `
+   ```
+<br/>
+
+2. **Mutation 타입**
+   - POST, PUT, DELETE 요청은 이곳에서 처리
+   - 하지만 역할을 기준으로 한 개념적인 구분일 뿐, 실은 Query 타입과 기능적으로 동일하다. 그래도 약속을 지켜주자
+   - Rest API의 url variable은 그큐엘에서 argument 형태로 들어간다
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      type Mutation {
+         postTweet(text:String, userId: ID): Tweet
+         deleteTweet(id:ID): Boolean
+      }
+      type Query {
+         ...
+      }
+   `
+   ```
+<br/>
+
+3. **Scalar 타입**
+   - 그큐엘에서 기본적인 타입 지정에 사용
+   - String, Boolean, Int, Float, ID
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      type Tweet {
+         id: ID
+         text: String
+      }
+      type Query {
+         ...
+      }
+   `
+   ```
+<br/>
+
+4. Enum 타입
+   - 열거형 타입이라고도 한다. 조금 특별한 스칼라 타입.
+   - 특정 값으로 필드값에 제한(또는 힌트)을 줄 때 사용한다. typescript의 리터럴 타입에 as const를 걸어준 것과 비슷한 걸로 이해하고 있다.
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      enum Role {
+         ADMIN
+         USER
+      }
+      type Query {
+         ...
+      }
+   `
+   ```
+<br/>
+
+5. 인터페이스
+   - 그큐엘에도 인터페이스는 있다..!
+   - 마찬가지로 오브젝트 형식이고 implement를 통해 상속도 가능하다.
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      interface Character {
+         id: ID!
+         name: String!
+         friends: [Character]
+         appearsIn: [Episode]!
+      }
+      type Droid implements Character {
+         id: ID!
+         name: String!
+         friends: [Character]
+         appearsIn: [Episode]!
+         primaryFunction: String
+      }
+      type Query {
+         hero(episode: Episode): Character
+         droid(id: ID!): Droid
+      }
+   `
+   ```
+<br/>
+6. 유니온 타입
+   - 특정한 타입군으로 타입의 범위를 한정한다. Enum이 들어올 수 있는 필드값에 제한을 두는 거라면, 유니온은 지정된 타입들로(오브젝트 타입일 수 있다) 제한을 두는 걸로 이해중.
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      union SearchResult = Human | Droid | Starship
+      type Query {
+         search(text: String): SearchResult
+      }
+   `
+   ```
+<br/>
+
+7. 인풋 타입
+   - 뮤테이션에 사용되는 커스텀 타입은 input을 사용한다.
+   - Query와 Mutation이 표기상의 구분일 뿐인 것처럼, type과 input도 분리하자는 약속일 뿐 기능적으로는 동일하다.
+   ```ts typeDefs.ts
+   const typeDefs = gql`
+      input ReviewInput {
+         stars: Int!
+         commentary: String
+      }
+      type Query {
+         ...
+      }
+   `
+   ```
+<br/>
+
+8. **Non Nullable field**
+   - required 필드
+   - !를 달아서 만든다
+   - 요청한 데이터가 null값이면 에러를 반환 
+<br/>
+
+### resolvers
+   - 요청된 쿼리가 실제로 수행하는 동작들의 집합.
+   - 앞서 작성한 typeDefs가 클라이언트와 소통되는 창구라면, resolvers는 그 배후에서 이루어지는 디비와의 소통이라 봐도 무방할 듯싶다.
+   - 왜냐면 쿼리나 뮤테이션, 섭스크립션이 무슨 일을 행할지 다 리졸버에서 풀어주기 때문이다. 가령 쿼리를 통해 GET 요청을 했다면, 그 쿼리는 자신과 대응하는 리졸버를 호출한다. 거기서 DB든 외부 API든 요청된 값이 리턴되도록 코드가 일을 함.
+   - 이때 멋진 것이 타입 간의 상호참조다..! 클라에서 쿼리에 뭔가를 GET 요청했을 때, 단순 그 쿼리의 리턴값으로 요청이 충족되지 않는 상황이라면, 이번에 그큐엘은 그 쿼리의 타입과 리졸버를 확인, 요청된 작업을 수행한다. 말로만 이를 이해하긴 힘들 것이다. 
+   ```ts resolvers.ts
+   const resolvers = {
+      Query: {
+         tweet(__, { id }){ // 클라이언트에서 보낸 인자는 두번째 파마리터 자리에 실림
+            return tweets.find(tweet => tweet.id === id) 
+         }
+      },
+      Mutation: {...}
+      Tweet: {
+         author({ userId }){ // 첫번째 파라미터에는 Tweet을 데이터 타입으로 하는 쿼리들의 리턴값이 실림
+            return users.find(user => user.id === userId)
+         } // author가 요청됐을 때, 쿼리에서 리턴되는 데이터에 author가 없다면 여기를 참조해서 값을 구해간다.
+      }
+   }
+   ```
+   (코드를 봐도 마찬가지ㅎ 나중에 db로 작업할 때 실제 예시를 덧대러 오겠숩니다요)
+<br/>
+
+### 후기
+그큐엘의 장점은 앞에도 쓰여 있지만, 그것보단 직접 써보면서 좀 더 데이터에 관심을 갖는 계기가 된 거 같다. 딱히 나 잘났다는 말은 아니다아.. 어차피 프론트엔드도 interface 뽑으면서 들어오는 데이터에 대해 일상적으로 파악하기 때문이다.  
+그럼 뭘까? 내가 말하고 싶은 건 차라리 그 둘을 따로 하는 것의 부당함, <a>공들인 스키마와 번거로운 ts 사이에서 둘을 합치는 방식이 없을까</a>다. 이 문제를 갖고 삽질을 좀 했다 💁🏽
+<br/>
+   1. type-graphql  
+   일종의 type ORM이다. 자체 오퍼레이터를 활용하여 typeDefs를 작성한다. 그런데 솔직히 말해 별로였다. 일단 코드가 길어지고 resolvers에 가선 더 복잡해진다. 뭣보다 내 궁금증은 서버에서 공들여 짠 스키마를 클라이언트에서도 통용되게 할 수 있느냐였는데, 근데 그게 아니었다는 게 크리티컬했음. 다신 안 볼 거 같아서 내용도 까먹었다ㅜㅡ
+   <Img src='/images/type-graphql.png' />
+<br/>
+   2. Prisma + Nexus  
+   이건 솔직히 좀 버거웠다. 과정만 간단히 추리면 먼저 프리즈마로 Model 스키마를 짠다. 그럼 Nexus는 이 스키마를 Graphql 스키마로 변환해주는데, makeSchema 훅을 이용해 이를 그큐엘 서버로 넘기면 끝. 이렇게 말하는 내가 나도 싫다ㅎ 후.. 아무튼 이것도 클라이언트와는 무관한 일이었지만 그래도 Prisma에 대해선 호감? 호기심이랄 게 생겨서 다시 한번 공부해 보려고 한다. 일단 type-graphql 보단 백만배 나았음.
+<br/>
+   3. Graphql Code Generator  
+   그큐엘 스키마를 타입스크립트 형태로 추출해준다. 내가 찾던 기능이다! 하지만 문제는 추출된 타입을 읽기가 우리 사람들이 쓴 것과 달리 꽤 난해하다는 것이다. 편하기는 한데, 타입스크립트를 다루는 동료가 봐도 이해하기 어렵다면 이걸 쓰는 게 맞냐는 생각.. 아래는 공홈의 예다. 물론 조금만 들여보면 이해가 되지만, 그런 조금의 노력도 동료에겐 부담일 수 있기에.. 아무래도 몇분 걸려 직접 쓰는 게 나을 거 같다.
+
+<CH.Code>
+```ts schema.graphql
+scalar Date
+
+schema {
+  query: Query
+}
+
+type Query {
+  me: User!
+  user(id: ID!): User
+  allUsers: [User]
+  search(term: String!): [SearchResult!]!
+  myChats: [Chat!]!
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+interface Node {
+  id: ID!
+}
+
+union SearchResult = User | Chat | ChatMessage
+
+type User implements Node {
+  id: ID!
+  username: String!
+  email: String!
+  role: Role!
+}
+
+type Chat implements Node {
+  id: ID!
+  users: [User!]!
+  messages: [ChatMessage!]!
+}
+
+type ChatMessage implements Node {
+  id: ID!
+  content: String!
+  time: Date!
+  user: User!
+}
+```
+```ts typed.ts
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  Date: any;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  me: User;
+  user?: Maybe<User>;
+  allUsers?: Maybe<Array<Maybe<User>>>;
+  search: Array<SearchResult>;
+  myChats: Array<Chat>;
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QuerySearchArgs = {
+  term: Scalars['String'];
+};
+
+export enum Role {
+  User = 'USER',
+  Admin = 'ADMIN'
+}
+
+export type Node = {
+  id: Scalars['ID'];
+};
+
+export type SearchResult = User | Chat | ChatMessage;
+
+export type User = Node & {
+  __typename?: 'User';
+  id: Scalars['ID'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  role: Role;
+};
+
+export type Chat = Node & {
+  __typename?: 'Chat';
+  id: Scalars['ID'];
+  users: Array<User>;
+  messages: Array<ChatMessage>;
+};
+
+export type ChatMessage = Node & {
+  __typename?: 'ChatMessage';
+  id: Scalars['ID'];
+  content: Scalars['String'];
+  time: Scalars['Date'];
+  user: User;
+};
+
+```
+</CH.Code>
+<br/>
+4. tRpc (+ Prisma)  
+와,, 이거 딱 내가 찾던 거.. 너무 신박했다. 별다른 추출이나 변환 없이도 서버의 스키마를 클라이언트에서 <a>유추</a>한다. 타입이 저절로 유추되기에 어떤 타입스크립트의 작성도 불필요하다. 서버에서의 설계는 한층 더 복잡해지지만.  
+tRpc는 조만간 따로 포스팅해보려고 한다.! 쾅쾅
