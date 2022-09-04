@@ -1,5 +1,235 @@
 ---
-title: "Tailwind 셋팅"
+title: "Tailwind 간단 정리(with Next.js)"
 date: "2022-09-02"
 categories: "coding"
 ---
+
+간단하게 정리하는 Tailwind.  
+인스톨은 앞의 세단계, 커스터마이징은 뒤의 세단계로 나눠서 정리했다.  
+공홈이 진짜 잘돼있으니까 제발 <Lnk text={'공홈'} href={'https://tailwindcss.com/'} />을 봐주세요..!!
+
+
+<CH.Spotlight rows={20}>
+```js terminal
+// yarn
+yarn add -D tailwindcss postcss autoprefixer
+
+// npm
+npm install -D tailwindcss postcss autoprefixer
+```
+---
+##### 설치
+```js terminal focus=2,5
+```
+---
+##### 초기 설정
+<CH.Code>
+```js /tailwind.config.js
+/** @type {import('tailwindcss').Config} */ 
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+---
+```js /postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+</CH.Code>
+---
+##### global.css
+```css /src/styles/tailwind.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* _app.tsx에 잊지 말고 import 걸어줄 것!
+  import "@/styles/tailwind.css";
+*/
+```
+---
+##### 🌊🌊🌊🌊🌊
+```zsh 설명서
+초기셋팅이 끝났습니다.
+Tailwind는 공홈 설명이 정말 잘돼있다고 생각해요!
+클래스마다 어떤 css가 구현된 건지
+찬찬히 살펴보며 일독을 권합니다.
+편리함의 노예지만 공부는 해야 하잖아요ㅎ
+
+만약 VSCode 사용자라면 확장프로그램에서
+> Tailwind CSS IntelliSense 설치를 추천드려요.
+자동완성 기능을 제공해주는데(저는 컨트롤+스페이스를 이용합니다),
+클래스명이 정확히 기억나지 않을 때 많은 도움이 돼요
+
+그럼 이제 어느 정도 적응이 되었다면 입맛대로 커스터마이징할 차례!
+아래 세 설정은 제가 이 블로그에 쓰고 있는 예시입니다.
+keyframes, clamp, 웹폰트 등 완죠니 수제로 쓰고 있어요 😁
+```
+---
+##### config 설정
+```js /tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./drafts/**/*.{md,mdx}",
+  ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      transitionDuration: {
+        3000: "3000ms",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+        swap: {
+          "50%": { transform: "translateY(50px)" },
+          "100%": { transform: "translateY(-250px)", opacity: 0 },
+        },
+        swapReverse: {
+          "0%": { transform: "translateY(150px)", opacity: 0 },
+          "100%": { transform: "translateY(0px)", opacity: 1 },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s ease-in-out infinite",
+        swap: "swap 0.8s ease-in-out",
+        swapReverse: "swapReverse 0.8s ease-in-out",
+      },
+      colors: {
+        waterMelon: "#ED4C6A",
+      },
+    },
+    screens: {
+      sm: "375px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1440px",
+    },
+    fontSize: {
+      sm: "clamp(0.67rem, calc(0.59rem + 0.22vw), 0.76rem);",
+      base: "clamp(0.81rem, calc(0.7rem + 0.36vw), 1rem);",
+      md: "clamp(0.84rem, calc(0.73rem + 0.39vw), 1.08rem);",
+      lg: "clamp(1.17rem, calc(0.95rem + 0.88vw), 1.76rem)",
+      xl: "clamp(1.40rem, calc(1.09rem + 1.08vw), 1.95rem)",
+      "2xl": "clamp(1.69rem, calc(1.25rem + 1.48vw), 2.44rem)",
+      "3xl": "clamp(1.9rem, calc(1.44rem + 1.67vw), 2.84rem)",
+      mono: "clamp(0.76rem, calc(0.63rem + 0.26vw), 0.85rem);",
+    },
+    fontFamily: {
+      sans: ["ui-sans-serif", "system-ui"],
+      serif: ["ui-serif", "Georgia"],
+      mono: ["IBMPlexMono", "ui-monospace", "SFMono-Regular"],
+      custom: ["IBMPlexSans", "NanumSquareR"],
+    },
+    minHeight: {
+      content: "100vh",
+    },
+    listStyleType: {
+      none: "none",
+      disc: "disc",
+      decimal: "decimal",
+      square: "square",
+      circle: "circle",
+      roman: "upper-roman",
+    },
+  },
+  plugins: [],
+};
+```
+---
+##### css 설정
+```css /src/styles/tailwind.css
+@tailwind base;
+@layer base {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+  html,
+  body {
+    @apply h-full scroll-p-8 scroll-smooth font-custom;
+  }
+  /* blockquote {
+    @apply text-emerald-600;
+  } */
+  a {
+    @apply underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
+  }
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply mb-5 text-2xl;
+  }
+  h3 {
+    @apply py-4 text-lg font-bold text-waterMelon dark:text-cyan-200/90;
+  }
+  h4 {
+    @apply pt-4 pb-2 text-md font-bold text-emerald-600;
+  }
+  h5 {
+    @apply text-base;
+  }
+  ul {
+    @apply list-disc pt-1 pl-6;
+  }
+  ol {
+    @apply list-decimal pt-1 pl-6;
+  }
+}
+
+@tailwind components;
+@layer components {
+  #__next {
+    @apply h-full w-full;
+  }
+  .wrap {
+    @apply flex items-center justify-center;
+  }
+}
+
+@tailwind utilities;
+@layer utilities {
+  .keep-all {
+    word-break: keep-all;
+  }
+  .align-text-20 {
+    vertical-align: -20%;
+  }
+}
+```
+---
+##### prettier 설정
+```js .prettierrc.js
+
+/* 플러그인부터 설치
+  yarn add -D prettier prettier-plugin-tailwindcss
+*/
+
+module.exports = {
+  // yarn berry에선 플러그인 위치를 특정해줘야 함(원래는 자동)
+  plugins: [require("prettier-plugin-tailwindcss")], 
+  semi: true,
+  tabWidth: 2,
+  printWidth: 90,
+  trailingComma: "all",
+  bracketSameLine: false, 
+  arrowParens: "avoid",
+};
+```
+</CH.Spotlight>

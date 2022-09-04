@@ -1,5 +1,5 @@
 import { /* useState, */ Dispatch, SetStateAction } from "react";
-import MdxComponents from "./MdxComponents";
+import { MdxComponents } from "@/components";
 
 interface PaginationProps {
   total?: number;
