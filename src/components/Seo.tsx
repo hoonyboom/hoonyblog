@@ -1,8 +1,7 @@
 import Head from "next/head";
 
-export const name = "아구몬";
+export const name = "츄륵";
 export const siteTitle = "후니로그";
-export const months = "6개월";
 
 export default function Seo() {
   return (
@@ -11,7 +10,7 @@ export default function Seo() {
       <link rel="apple-touch-icon" href="/images/heart.svg" />
       <link rel="mask-icon" href="/images/heart.svg" />
       <link rel="canonical" href="https://chorok.vercel.app" />,
-      <meta name="description" content={`${months}차 뉴비의 프론트엔드 생존기`} />
+      <meta name="description" content="프론트엔드 취준생 블로그" />
       <meta
         property="og:image"
         content={`https://og-image.vercel.app/${encodeURI(

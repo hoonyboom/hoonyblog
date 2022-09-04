@@ -39,8 +39,8 @@ function Profile({
       <section className="mx-2 flex p-10">
         <Image
           priority
-          src="/images/profile.png"
-          className="h-20 w-20 rounded-full ring ring-red-300/90 ring-offset-4 ring-offset-slate-600"
+          src="/images/profile3.png"
+          className="h-20 w-20 rounded-full ring-2 ring-blue-300/90 ring-offset-4 ring-offset-slate-600"
           height={80}
           width={80}
           alt={name}

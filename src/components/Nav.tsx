@@ -12,7 +12,7 @@ export default function Nav() {
           <a className="mt-1">
             <Image
               priority
-              src="/images/profile.jpg"
+              src="/images/profile3.png"
               className="rounded-full"
               height={40}
               width={40}
