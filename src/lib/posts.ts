@@ -5,7 +5,7 @@ import { bundleMDX } from "mdx-bundler";
 import { remarkCodeHike } from "@code-hike/mdx";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
-import { theme } from "./search-light.js";
+import { theme } from "./search-light";
 
 interface dateType {
   [key: string]: string;
