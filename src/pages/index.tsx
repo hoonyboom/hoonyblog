@@ -39,7 +39,7 @@ function Profile({
       <section className="mx-2 flex p-10">
         <Image
           priority
-          src="/images/profile.jpg"
+          src="/images/profile3.png"
           className="h-20 w-20 rounded-full"
           height={80}
           width={80}
