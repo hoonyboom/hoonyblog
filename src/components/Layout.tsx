@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Twemoji from "react-twemoji";
-import { HomeNav, Nav, Seo } from "@/components";
-import { useEffect, useState } from "react";
+import { Nav, Seo } from "@/components";
+import { useEffect, useState, useCallback } from "react";
 import { throttle } from "lodash";
 
 export interface LayoutProps {
@@ -11,14 +11,25 @@ export interface LayoutProps {
 }
 
 export default function Layout({ children, home, category }: LayoutProps) {
-  const [y, setY] = useState(0);
-  const handle = () => {
-    setY(globalThis.scrollY), console.log("스크롤은 ", y);
-  };
-
+  const [navShow, setNavShow] = useState(false);
+  let beforeScrollY = 0;
+  const scrollSensor = useCallback(
+    throttle(() => {
+      const currentScrollY = globalThis.scrollY;
+      if (currentScrollY > beforeScrollY) {
+        setNavShow(true);
+        console.log("스크롤 내려가는 중", currentScrollY);
+      } else {
+        setNavShow(false);
+        console.log("스크롤 올라가는 중", currentScrollY);
+      }
+      beforeScrollY = currentScrollY;
+    }, 300),
+    [],
+  );
   useEffect(() => {
-    globalThis.addEventListener("scroll", throttle(handle, 300));
-    return () => globalThis.removeEventListener("scroll", handle);
+    globalThis.addEventListener("scroll", scrollSensor);
+    return () => globalThis.removeEventListener("scroll", scrollSensor);
   });
 
   return (
@@ -32,8 +43,9 @@ export default function Layout({ children, home, category }: LayoutProps) {
       >
         <header>
           <Seo />
-          {!home && <Nav />}
-          {home && y >= 160 && <Nav />}
+          <Nav navShow={navShow} />
+          {/* {!home && <Nav navShow />}
+          {home && <Nav navShow={navShow} />} */}
         </header>
 
         <section className="pt-10">
