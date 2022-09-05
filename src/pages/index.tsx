@@ -36,7 +36,7 @@ function Profile({
   const { Note } = MdxComponents;
   return (
     <>
-      <section className="mx-2 flex p-10">
+      <section className="mx-2 mt-10 flex p-10">
         <Image
           priority
           src="/images/profile3.png"

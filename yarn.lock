@@ -434,6 +434,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.184":
+  version: 4.14.184
+  resolution: "@types/lodash@npm:4.14.184"
+  checksum: 6d9a4d67f7f9d0ec3fd21174f3dd3d00629dc1227eb469450eace53adbc1f7e2330699c28d0fe093e5f0fef0f0e763098be1f779268857213224af082b62be21
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:*, @types/mdast@npm:^3.0.0":
   version: 3.0.10
   resolution: "@types/mdast@npm:3.0.10"
@@ -1250,6 +1257,7 @@ __metadata:
   resolution: "chorok@workspace:."
   dependencies:
     "@code-hike/mdx": ^0.7.4
+    "@types/lodash": ^4.14.184
     "@types/node": 18.7.11
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6
@@ -1270,6 +1278,7 @@ __metadata:
     kbar: ^0.1.0-beta.36
     lint-staged: ^13.0.3
     loader-utils: ^3.2.0
+    lodash: ^4.17.21
     mdx-bundler: ^9.0.1
     next: 12.2.5
     next-seo: ^5.5.0
@@ -3559,6 +3568,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
   languageName: node
   linkType: hard
 

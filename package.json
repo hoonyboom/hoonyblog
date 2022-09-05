@@ -16,6 +16,7 @@
     "gray-matter": "^4.0.3",
     "kbar": "^0.1.0-beta.36",
     "loader-utils": "^3.2.0",
+    "lodash": "^4.17.21",
     "mdx-bundler": "^9.0.1",
     "next": "12.2.5",
     "next-seo": "^5.5.0",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@code-hike/mdx": "^0.7.4",
+    "@types/lodash": "^4.14.184",
     "@types/node": "18.7.11",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",

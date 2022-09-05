@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Twemoji from "react-twemoji";
 import { HomeNav, Nav, Seo } from "@/components";
+import { useEffect, useState } from "react";
+import { throttle } from "lodash";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -9,6 +11,16 @@ export interface LayoutProps {
 }
 
 export default function Layout({ children, home, category }: LayoutProps) {
+  const [y, setY] = useState(0);
+  const handle = () => {
+    setY(globalThis.scrollY), console.log("스크롤은 ", y);
+  };
+
+  useEffect(() => {
+    globalThis.addEventListener("scroll", throttle(handle, 300));
+    return () => globalThis.removeEventListener("scroll", handle);
+  });
+
   return (
     <div
       className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
@@ -21,7 +33,7 @@ export default function Layout({ children, home, category }: LayoutProps) {
         <header>
           <Seo />
           {!home && <Nav />}
-          {home && <HomeNav />}
+          {home && y >= 160 && <Nav />}
         </header>
 
         <section className="pt-10">
