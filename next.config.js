@@ -21,6 +21,18 @@ module.exports = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/fonts/LeferiBaseRegular.woff2",
+        destination: "/secret",
+      },
+      {
+        source: "/fonts/LeferiPointSpecial.woff2",
+        destination: "/secret",
+      },
+    ];
+  },
   // async rewrites() {
   //   return [
   //     {

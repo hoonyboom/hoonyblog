@@ -36,16 +36,10 @@ export default function Layout({ children, home, category }: LayoutProps) {
     <div
       className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
     >
-      <div
-        className={`container mx-auto ${
-          home || category === "writing" ? "max-w-xl" : "max-w-2xl"
-        }`}
-      >
+      <div className={`container mx-auto ${!home ? "max-w-3xl" : "max-w-6xl"}`}>
         <header>
           <Seo />
           <Nav navShow={navShow} />
-          {/* {!home && <Nav navShow />}
-          {home && <Nav navShow={navShow} />} */}
         </header>
 
         <section className="pt-10">

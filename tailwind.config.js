@@ -33,6 +33,7 @@ module.exports = {
       colors: {
         waterMelon: "#ED4C6A",
       },
+      backgroundColor: {},
     },
     screens: {
       sm: "375px",
@@ -54,7 +55,8 @@ module.exports = {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
       mono: ["IBMPlexMono", "ui-monospace", "SFMono-Regular"],
-      custom: ["IBMPlexSans", "NanumSquareR"],
+      heading: ["LeferiPointSpecial"],
+      content: ["LeferiBaseRegular"],
     },
     minHeight: {
       content: "100vh",

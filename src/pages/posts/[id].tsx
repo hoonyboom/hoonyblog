@@ -36,6 +36,7 @@ export async function getStaticProps({ params }: IdProps) {
 
 export default function BlogPost({ code, frontmatter }: MdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
+  const { categories } = frontmatter;
   const [fade, setFade] = useState(false);
   useEffect(() => {
     setFade(true);
@@ -43,7 +44,7 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
   }, []);
 
   return (
-    <Layout category={frontmatter.categories}>
+    <Layout category={categories}>
       <Head>
         <title>{`${frontmatter.title} 〰 ${siteTitle}`}</title>
       </Head>
@@ -52,7 +53,7 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
         <div className="mt-4 flex justify-center text-base leading-6">
           <Date dateString={frontmatter.date} />
         </div>
-        <article className="keep-all m-10 text-base leading-7 md:leading-8">
+        <article className="keep-all m-10 font-content text-base leading-7 md:leading-8">
           <Component components={MdxComponents} />
         </article>
       </div>
