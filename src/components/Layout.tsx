@@ -7,10 +7,10 @@ import { throttle } from "lodash";
 export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
-  category?: string;
+  siteTitle: string;
 }
 
-export default function Layout({ children, home, category }: LayoutProps) {
+export default function Layout({ children, home, siteTitle }: LayoutProps) {
   const [navShow, setNavShow] = useState(false);
   let beforeScrollY = 0;
   const scrollSensor = useCallback(
@@ -38,7 +38,7 @@ export default function Layout({ children, home, category }: LayoutProps) {
     >
       <div className={`container mx-auto ${!home ? "max-w-3xl" : "max-w-6xl"}`}>
         <header>
-          <Seo />
+          <Seo siteTitle={siteTitle} />
           <Nav navShow={navShow} />
         </header>
 

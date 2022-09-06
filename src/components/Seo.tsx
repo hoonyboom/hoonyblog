@@ -1,11 +1,9 @@
 import Head from "next/head";
 
-export const name = "츄륵";
-export const siteTitle = "후니로그";
-
-export default function Seo() {
+export default function Seo({ siteTitle }: { siteTitle: string }) {
   return (
     <Head>
+      <title>{siteTitle}</title>
       <link rel="icon" href="/images/heart.svg" />
       <link rel="apple-touch-icon" href="/images/heart.svg" />
       <link rel="mask-icon" href="/images/heart.svg" />

@@ -24,21 +24,21 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/fonts/LeferiBaseRegular.woff2",
-        destination: "/secret",
+        source: "/fonts/Arita.woff2",
+        destination: "/404",
       },
       {
         source: "/fonts/LeferiPointSpecial.woff2",
-        destination: "/secret",
+        destination: "/404",
+      },
+      {
+        source: "/fonts/NunitoSans-Regular.woff2",
+        destination: "/404",
+      },
+      {
+        source: "/fonts/IBMPlexMono-Regular.woff2",
+        destination: "/404",
       },
     ];
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/category/coding", // api 요청 url
-  //       destination: "/coding", // 실제 원출처 api url with MY_API_KEYS
-  //     },
-  //   ];
-  // },
 };

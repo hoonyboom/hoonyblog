@@ -11,16 +11,16 @@
     @apply underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
   }
   h1 {
-    @apply text-3xl font-heading;
+    @apply font-heading text-3xl;
   }
   h2 {
-    @apply mb-5 text-2xl font-heading;
+    @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply py-4 text-lg font-bold text-waterMelon dark:text-cyan-200/90 font-heading;
+    @apply py-4 font-heading text-lg font-bold text-waterMelon dark:text-cyan-200/90;
   }
   h4 {
-    @apply pt-4 pb-2 text-md font-bold text-emerald-600 font-heading;
+    @apply pt-4 pb-2 font-heading text-md font-bold text-emerald-600;
   }
   h5 {
     @apply text-base;
@@ -212,14 +212,21 @@
   font-display: block;
 } */
 @font-face {
-  font-family: "LeferiBaseRegular";
+  font-family: "Arita";
   src: url("/fonts/Arita.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
+
 @font-face {
   font-family: "LeferiPointSpecial";
   src: url("/fonts/LeferiPointSpecial.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "NunitoSans";
+  src: url("/fonts/NunitoSans-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }

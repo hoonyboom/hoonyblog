@@ -44,7 +44,7 @@ module.exports = {
     fontSize: {
       sm: "clamp(0.67rem, calc(0.59rem + 0.22vw), 0.76rem);",
       base: "clamp(0.81rem, calc(0.7rem + 0.36vw), 1rem);",
-      md: "clamp(0.84rem, calc(0.73rem + 0.39vw), 1.08rem);",
+      md: "clamp(0.9rem, calc(0.82rem + 0.55vw), 1.22rem);",
       lg: "clamp(1.17rem, calc(0.95rem + 0.88vw), 1.76rem)",
       xl: "clamp(1.40rem, calc(1.09rem + 1.08vw), 1.95rem)",
       "2xl": "clamp(1.69rem, calc(1.25rem + 1.48vw), 2.44rem)",
@@ -56,7 +56,7 @@ module.exports = {
       serif: ["ui-serif", "Georgia"],
       mono: ["IBMPlexMono", "ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
-      content: ["LeferiBaseRegular"],
+      content: ["NunitoSans", "Arita"],
     },
     minHeight: {
       content: "100vh",
