@@ -1,5 +1,4 @@
-import Head from "next/head";
-import { Layout, Date, MdxComponents, Seo } from "@/components";
+import { Layout, Date, MdxComponents } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
@@ -35,7 +34,6 @@ export async function getStaticProps({ params }: IdProps) {
 
 export default function BlogPost({ code, frontmatter }: MdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
-  const { categories } = frontmatter;
   const [fade, setFade] = useState(false);
   useEffect(() => {
     setFade(true);

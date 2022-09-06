@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { name } from "@/components/Seo";
 import { Darkmode, CommandPaletteIcon } from "@/components";
 
 export default function Nav({ navShow }: { navShow: boolean }) {
@@ -20,7 +19,7 @@ export default function Nav({ navShow }: { navShow: boolean }) {
               className="rounded-full"
               height={40}
               width={40}
-              alt={name}
+              alt="프로필"
             />
           </a>
         </Link>

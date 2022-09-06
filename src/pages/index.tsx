@@ -1,10 +1,9 @@
-import Head from "next/head";
 import Link from "next/link";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getSortedPostsData } from "@/lib/posts";
-import { Layout, Date, MdxComponents, Pagination, Seo } from "@/components";
+import { Layout, MdxComponents, Pagination } from "@/components";
 import useSound from "use-sound";
 import { uniqBy } from "lodash";
 
@@ -74,7 +73,7 @@ function Profile({ initCategory }: { initCategory: boolean }) {
     </>
   );
 }
-function Posts({ tags, date }: Partial<PostsProps>) {
+function Posts({ tags }: Partial<PostsProps>) {
   const [clickSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   return (
     <div
@@ -106,7 +105,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     const deleteOverlapTags = uniqBy(initData, "tags");
     setInitCategory(false);
     setSelectedData(deleteOverlapTags);
-  }, [isCategory]);
+  }, [isCategory, allPostsData]);
 
   useEffect(() => {
     setInitCategory(true);
@@ -123,8 +122,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
             {isCategory ? isCategory : "coding"}
           </div>
           <div className="writing-vertical basis-4/5 pl-5">
-            {selectedData?.slice(offset, offset + limit).map(({ id, date, tags }) => (
-              <Posts key={id} date={date} tags={tags} />
+            {selectedData?.slice(offset, offset + limit).map(({ id, tags }) => (
+              <Posts key={id} tags={tags} />
             ))}
           </div>
         </article>
