@@ -159,7 +159,7 @@ function RenderResults() {
               className={`${
                 active
                   ? "cursor-pointer rounded-md  bg-emerald-600 text-gray-100"
-                  : "transparent"
+                  : "bg-white"
               } 
             flex w-full items-center space-x-3 p-2 text-base`}
             >

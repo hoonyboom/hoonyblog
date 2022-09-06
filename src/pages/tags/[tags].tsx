@@ -23,7 +23,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: PathProps) {
   const allTagsData = getSortedPostsData(params.tags);
-  console.log(allTagsData);
   return {
     props: { allTagsData, tag: params.tags },
   };

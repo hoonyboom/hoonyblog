@@ -88,7 +88,7 @@ export const config = {
    - 필수!로 작성해야 하는 타입
    - Query 타입 = Rest API의 GET 요청이 들어오는 곳과 같다
    - <a>클라에서 fetcher를 옆에 두고 말하자면, Rest API는 fetcher에 url을 싣지만, 그큐엘에서는 바로 이 쿼리의 모양을 싣는다.</a>
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       type Query {
          allTweets: [Tweet!]!
@@ -102,7 +102,7 @@ export const config = {
    - POST, PUT, DELETE 요청은 이곳에서 처리
    - 하지만 역할을 기준으로 한 개념적인 구분일 뿐, 실은 Query 타입과 기능적으로 동일하다. 그래도 약속을 지켜주자
    - Rest API의 url variable은 그큐엘에서 argument 형태로 들어간다
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       type Mutation {
          postTweet(text:String, userId: ID): Tweet
@@ -118,7 +118,7 @@ export const config = {
 3. **Scalar 타입**
    - 그큐엘에서 기본적인 타입 지정에 사용
    - String, Boolean, Int, Float, ID
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       type Tweet {
          id: ID
@@ -134,7 +134,7 @@ export const config = {
 4. Enum 타입
    - 열거형 타입이라고도 한다. 조금 특별한 스칼라 타입.
    - 특정 값으로 필드값에 제한(또는 힌트)을 줄 때 사용한다. (typescript의 리터럴 타입에 as const를 걸어준 것과 비슷한 걸로 이해하면 될까?).
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       enum Role {
          ADMIN
@@ -150,7 +150,7 @@ export const config = {
 5. 인터페이스
    - 그큐엘에도 인터페이스는 있다.!
    - 마찬가지로 오브젝트 형식이고 implement를 통해 상속도 가능하다.
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       interface Character {
          id: ID!
@@ -174,7 +174,7 @@ export const config = {
 <br/>
 6. 유니온 타입
    - 특정한 타입군으로 타입의 범위를 한정한다. Enum이 들어올 수 있는 필드값에 제한을 두는 거라면, 유니온은 지정된 타입들로(오브젝트 타입일 수 있다) 제한을 두는 걸로 이해중.
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       union SearchResult = Human | Droid | Starship
       type Query {
@@ -187,7 +187,7 @@ export const config = {
 7. 인풋 타입
    - 뮤테이션에 사용되는 커스텀 타입은 input을 사용한다.
    - Query와 Mutation이 단지 표기상의 구분인 것처럼, type과 input도 분리하자는 약속일 뿐 기능적으로는 동일하다.
-   ```gql typeDefs.ts
+   ```graphql typeDefs.ts
    const typeDefs = gql`
       input ReviewInput {
          stars: Int!
