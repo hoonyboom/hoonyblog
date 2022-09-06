@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function Seo({ siteTitle }: { siteTitle: string }) {
+export default function Seo({ siteTitle }: { siteTitle?: string }) {
   return (
     <Head>
       <title>{siteTitle}</title>
@@ -12,7 +12,7 @@ export default function Seo({ siteTitle }: { siteTitle: string }) {
       <meta
         property="og:image"
         content={`https://og-image.vercel.app/${encodeURI(
-          siteTitle,
+          "후니로그",
         )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
       />
       <meta property="og:title" content={siteTitle} />

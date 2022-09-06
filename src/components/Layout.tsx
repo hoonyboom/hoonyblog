@@ -1,31 +1,32 @@
 import Link from "next/link";
 import Twemoji from "react-twemoji";
 import { Nav, Seo } from "@/components";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { throttle } from "lodash";
 
 export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
-  siteTitle: string;
+  siteTitle?: string;
 }
 
 export default function Layout({ children, home, siteTitle }: LayoutProps) {
   const [navShow, setNavShow] = useState(false);
-  let beforeScrollY = 0;
-  const scrollSensor = useCallback(
-    throttle(() => {
-      const currentScrollY = globalThis.scrollY;
-      if (currentScrollY > beforeScrollY) {
-        setNavShow(true);
-        console.log("스크롤 내려가는 중", currentScrollY);
-      } else {
-        setNavShow(false);
-        console.log("스크롤 올라가는 중", currentScrollY);
-      }
-      beforeScrollY = currentScrollY;
-    }, 300),
-    [],
+  const beforeScrollY = useRef(0);
+  const scrollSensor = useMemo(
+    () =>
+      throttle(() => {
+        const currentScrollY = globalThis.scrollY;
+        if (currentScrollY > beforeScrollY.current) {
+          setNavShow(true);
+          console.log("스크롤 내려가는 중", currentScrollY);
+        } else {
+          setNavShow(false);
+          console.log("스크롤 올라가는 중", currentScrollY);
+        }
+        beforeScrollY.current = currentScrollY;
+      }, 300),
+    [beforeScrollY],
   );
   useEffect(() => {
     globalThis.addEventListener("scroll", scrollSensor);
