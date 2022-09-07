@@ -16,14 +16,12 @@ export interface PostsProps {
   description: string;
   excerpt?: string;
 }
-
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
     props: { allPostsData },
   };
 }
-
 function Profile({ initCategory }: { initCategory: boolean }) {
   const { Note } = MdxComponents;
   return (
@@ -86,6 +84,16 @@ function Posts({ tags }: Partial<PostsProps>) {
     </div>
   );
 }
+const Tabs = ({ selectedCategory }: { selectedCategory: string | string[] }) => {
+  return (
+    <Link
+      href={{ pathname: "/", query: { category: selectedCategory } }}
+      as={`/${selectedCategory}`}
+    >
+      <a className="bg-stripes-indigo basis-1/3">{selectedCategory}</a>
+    </Link>
+  );
+};
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리 state
@@ -96,6 +104,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(7);
   const offset = (page - 1) * limit;
+  const deleteOverlapCategories = uniqBy(allPostsData, "categories");
 
   useEffect(() => {
     const initData = allPostsData.filter(({ categories }) => {
@@ -106,7 +115,6 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     setInitCategory(false);
     setSelectedData(deleteOverlapTags);
   }, [isCategory, allPostsData]);
-
   useEffect(() => {
     setInitCategory(true);
     setLimit(7);
@@ -117,7 +125,12 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     <Layout home siteTitle="후니로그">
       <Profile initCategory={initCategory} />
       <section className="mx-10 md:mx-0">
-        <article className="my-5 mt-8 flex h-96 flex-row border-y border-blue-800 py-2 backdrop-blur">
+        <div className="mt-8 flex w-96 justify-center space-x-3 text-center no-underline">
+          {deleteOverlapCategories.map(({ categories, id }) => (
+            <Tabs selectedCategory={categories} key={id} />
+          ))}
+        </div>
+        <article className="flex h-96 flex-row border-y border-blue-800 py-2 backdrop-blur">
           <div className="flex basis-1/5 items-center justify-center text-2xl">
             {isCategory ? isCategory : "coding"}
           </div>

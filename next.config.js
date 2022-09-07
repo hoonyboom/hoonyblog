@@ -22,23 +22,6 @@ module.exports = {
     ];
   },
   async rewrites() {
-    return [
-      {
-        source: "/fonts/Arita.woff2",
-        destination: "/404",
-      },
-      {
-        source: "/fonts/LeferiPointSpecial.woff2",
-        destination: "/404",
-      },
-      {
-        source: "/fonts/NunitoSans-Regular.woff2",
-        destination: "/404",
-      },
-      {
-        source: "/fonts/IBMPlexMono-Regular.woff2",
-        destination: "/404",
-      },
-    ];
+    return [];
   },
 };
