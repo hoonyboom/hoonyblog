@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { getSortedPostsData } from "@/lib/posts";
 import { Layout, MdxComponents, Pagination } from "@/components";
 import useSound from "use-sound";
@@ -71,6 +71,29 @@ function Profile({ initCategory }: { initCategory: boolean }) {
     </>
   );
 }
+const Tabs = ({
+  selectedCategory,
+  setXValue,
+  i,
+}: {
+  selectedCategory: string | string[];
+  setXValue: Dispatch<SetStateAction<string>>;
+  i: number;
+}) => {
+  return (
+    <Link
+      href={{ pathname: "/", query: { category: selectedCategory } }}
+      as={`/${selectedCategory}`}
+    >
+      <a
+        onClick={() => setXValue(`translate-x-[${i}00%]`)}
+        className="bg-stripes-indigo basis-1/3 no-underline"
+      >
+        {selectedCategory}
+      </a>
+    </Link>
+  );
+};
 function Posts({ tags }: Partial<PostsProps>) {
   const [clickSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   return (
@@ -84,14 +107,13 @@ function Posts({ tags }: Partial<PostsProps>) {
     </div>
   );
 }
-const Tabs = ({ selectedCategory }: { selectedCategory: string | string[] }) => {
+const TabLiner = ({ xValue }: { xValue: string }) => {
   return (
-    <Link
-      href={{ pathname: "/", query: { category: selectedCategory } }}
-      as={`/${selectedCategory}`}
-    >
-      <a className="bg-stripes-indigo basis-1/3">{selectedCategory}</a>
-    </Link>
+    <div className="flex w-96">
+      <div
+        className={`bg-stripes-pink ${xValue} mb-2 basis-1/3  border-t-4 border-t-red-500 transition`}
+      ></div>
+    </div>
   );
 };
 
@@ -100,11 +122,12 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
+  const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(7);
   const offset = (page - 1) * limit;
-  const deleteOverlapCategories = uniqBy(allPostsData, "categories");
+  const [xValue, setXValue] = useState("");
 
   useEffect(() => {
     const initData = allPostsData.filter(({ categories }) => {
@@ -125,11 +148,12 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     <Layout home siteTitle="후니로그">
       <Profile initCategory={initCategory} />
       <section className="mx-10 md:mx-0">
-        <div className="mt-8 flex w-96 justify-center space-x-3 text-center no-underline">
-          {deleteOverlapCategories.map(({ categories, id }) => (
-            <Tabs selectedCategory={categories} key={id} />
+        <div className="mt-8 flex w-96 text-center">
+          {deleteOverlapCategories.map(({ categories, id }, i) => (
+            <Tabs setXValue={setXValue} selectedCategory={categories} key={id} i={i} />
           ))}
         </div>
+        <TabLiner xValue={xValue} />
         <article className="flex h-96 flex-row border-y border-blue-800 py-2 backdrop-blur">
           <div className="flex basis-1/5 items-center justify-center text-2xl">
             {isCategory ? isCategory : "coding"}

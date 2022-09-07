@@ -46,9 +46,9 @@ export const Img = (props: ImageProps) => {
 // Youtube
 export const Youtube = ({ src }: { src: string }) => {
   return (
-    <div className="relative mb-8 h-0 pb-[46.25%] pt-6">
+    <div className="relative mb-8 pb-[46.25%] pt-6">
       <iframe
-        className="absolute top-0 left-0 h-full w-full rounded-2xl shadow-2xl shadow-black dark:shadow-red-900/30 "
+        className="absolute top-0 left-0 h-full w-full rounded-2xl bg-black shadow-2xl shadow-black dark:shadow-red-900/30 "
         width="560"
         height="315"
         src={src}

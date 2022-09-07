@@ -123,8 +123,8 @@ export default function CommandPalette({ children }: LayoutProps) {
                 />
               </button>
               <KBarSearch
-                className="w-full rounded-none border-4 border-white bg-white py-4 px-3 text-base text-black caret-blue-500 outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white"
-                defaultPlaceholder="첫글자를 이용하면 밖에서도 이동할 수 있어요 &nbsp;🚀"
+                className="w-full rounded-none border-4 border-white bg-white py-4 px-3 text-sm text-black caret-blue-500 outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white"
+                defaultPlaceholder="첫글자는 단축키 &nbsp;🚀"
               />
             </div>
             <RenderResults />
@@ -159,7 +159,7 @@ function RenderResults() {
               className={`${
                 active
                   ? "cursor-pointer rounded-md  bg-emerald-600 text-gray-100"
-                  : "bg-white"
+                  : "bg-transparent"
               } 
             flex w-full items-center space-x-3 p-2 text-base`}
             >

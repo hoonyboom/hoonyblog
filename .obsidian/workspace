@@ -4,37 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "99ac102f8d9056ad",
+        "id": "8786557846849d83",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "drafts/블로그 포트폴리오.mdx",
+            "file": "drafts/일기.mdx",
             "mode": "source",
-            "source": false
-          }
-        }
-      },
-      {
-        "id": "cb25f13bfa64c55c",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "drafts/무제노트.mdx",
-            "mode": "source",
-            "source": false
-          }
-        }
-      },
-      {
-        "id": "4ae6613bdc3b0de5",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "drafts/슬라이딩 탭.mdx",
-            "mode": "source",
+            "backlinks": true,
             "source": false
           }
         }
@@ -101,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "drafts/블로그 포트폴리오.mdx",
+                "file": "drafts/일기.mdx",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +95,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "drafts/블로그 포트폴리오.mdx",
+                "file": "drafts/일기.mdx",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +118,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "drafts/블로그 포트폴리오.mdx"
+                "file": "drafts/일기.mdx"
               }
             }
           },
@@ -160,17 +137,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "99ac102f8d9056ad",
+  "active": "8786557846849d83",
   "lastOpenFiles": [
-    "drafts/슬라이딩 탭.mdx",
+    "drafts/tailwind 셋팅.mdx",
+    "drafts/일기2.mdx",
+    "drafts/일기.mdx",
+    "drafts/Typescript-Omit.mdx",
+    "으하핳.md",
+    "drafts/으하핳.mdx",
+    "drafts/그큐엘정리.mdx",
     "drafts/블로그 포트폴리오.mdx",
-    "drafts/무제노트.mdx",
-    "drafts/무제노트.md",
-    "무제노트.md",
-    "images/profile.jpg.md",
-    "drafts/테스트 1.mdx",
-    "drafts/새로운글.mdx",
-    "drafts/블로그 사이트.mdx",
-    "README.md"
+    "drafts/슬라이딩 탭.mdx",
+    "drafts/무제노트.mdx"
   ]
 }

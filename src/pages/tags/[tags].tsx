@@ -13,7 +13,6 @@ interface DataProps {
   allTagsData: PostsProps[];
   tag: string;
 }
-
 export async function getStaticPaths() {
   const paths = getAllPostTags();
   return {
@@ -21,14 +20,12 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
 export async function getStaticProps({ params }: PathProps) {
   const allTagsData = getSortedPostsData(params.tags);
   return {
     props: { allTagsData, tag: params.tags },
   };
 }
-
 const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
   const [clickSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
 
@@ -48,7 +45,6 @@ const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
 
 export default function PostByTag({ allTagsData, tag }: DataProps) {
   const { Img } = MdxComponents;
-
   return (
     <Layout siteTitle={`${tag} 〰 후니로그`}>
       <h1 className="pt-20">{tag}</h1>

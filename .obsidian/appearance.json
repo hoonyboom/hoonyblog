@@ -1,10 +1,10 @@
 {
   "cssTheme": "Catppuccin",
   "theme": "obsidian",
-  "textFontFamily": "IM_Hyemin",
-  "interfaceFontFamily": "Adobe Clean",
+  "textFontFamily": "Arita-dotum4.0(OTF)",
+  "interfaceFontFamily": "",
   "baseFontSize": 21,
   "baseFontSizeAction": true,
-  "monospaceFontFamily": "Cascadia Code",
+  "monospaceFontFamily": "Monaco for Powerline",
   "translucency": false
 }
