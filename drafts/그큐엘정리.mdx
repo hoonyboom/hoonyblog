@@ -26,7 +26,7 @@ Rest API, Graphql API는 그런 방식중의 하나다. 목적은 같지만 다�
 Graphql-yoga와 Apollo server에서 같은 기능을 실험했는데 아폴로가 나았다(<Lnk text='아폴로' href={'https://gumeun.vercel.app/'} />,
 <Lnk text='요가' href={'https://hayan.vercel.app/'} />).  
 Next + Apollo의 경우, Apollo-server 가 아닌 Apollo-server/micro 를 써줘야 했음.  
-물론 어떤 걸 써도 Graphql 서버가 요구하는 핵심은 변하지 않는다. 바로 <Note>typeDefs</Note>와 <Note>resolvers</Note>다.  
+그러나 어떤 경우에도 Graphql 서버가 요구하는 핵심은 변하지 않는다.  
 <CH.Section>
 <CH.Code>
 ```ts yoga-graphql.ts
@@ -75,10 +75,10 @@ export const config = {
 </CH.Section>
 
 <br/>
-### typeDefs?
-말 그대로 typeDefs(type definitions), 데이터들의 타입 정의다.  
+### 핵심 중 하나, typeDefs
+typeDefs는 말그대로 데이터들의 타입 정의다(type definitions).  
 그큐엘 사용자는 데이터의 구성=shape를 먼저 서버에 기술해야 한다(꿰고 있어야 한단 말)  
-그렇게 해서 클라이언트가 필요한 쿼리만 선별적으로 요청할 수 있는 것이다.  
+그래야 클라이언트에서 쿼리를 요청할 때 필요한 부분만 이해하고 선별적으로 줄 수 있는 것.  
 <br/>
 어떻게 작성하는지 예를 살펴보자  
 (예시는 <Note type="box" iterations={1}>노마드코더</Note>의 그큐엘 강의 + 그큐엘 공식문서에서 뽑았다).
