@@ -197,7 +197,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <section className="sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
         <div className="my-3 flex text-center font-heading">
-          {deleteOverlapCategories.map(({ categories, id }, i) => (
+          {deleteOverlapCategories?.map(({ categories, id }, i) => (
             <Tabs selectedCategory={categories} key={id} i={i} />
           ))}
         </div>
