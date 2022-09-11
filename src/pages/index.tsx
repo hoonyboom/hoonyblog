@@ -135,7 +135,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
 const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
-    router.push({ query: { category: selectedCategory } }, `/${selectedCategory}`);
+    router.push({ query: { category: selectedCategory } });
     if (typeof selectedCategory === "string")
       localStorage.setItem("whichTab", selectedCategory);
   };
