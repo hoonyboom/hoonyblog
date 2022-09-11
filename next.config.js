@@ -6,12 +6,12 @@ module.exports = {
     return [
       {
         source: "/coding",
-        destination: "/",
+        destination: "/?category=coding",
         permanent: false,
       },
       {
         source: "/writing",
-        destination: "/",
+        destination: "/?category=writing",
         permanent: false,
       },
       {
@@ -22,6 +22,15 @@ module.exports = {
     ];
   },
   async rewrites() {
-    return [];
+    return [
+      {
+        source: "/?category=coding",
+        destination: "/coding",
+      },
+      {
+        source: "/?category=writing",
+        destination: "/writing",
+      },
+    ];
   },
 };
