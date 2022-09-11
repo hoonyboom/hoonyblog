@@ -54,7 +54,7 @@ export default function PostByTag({ allTagsData, tag }: DataProps) {
       <div className="flex justify-between pt-7">
         <p className="font-content text-md">{summary.map(({ excerpt }) => excerpt)}</p>
         {banner.map(({ image, id }) => (
-          <Img src={image} key={id} />
+          <Img src={image} key={id} priority />
         ))}
       </div>
       <div className="pt-16 font-content text-base">
