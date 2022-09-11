@@ -77,7 +77,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
 
   useEffect(() => {
     setAnimation(!animation);
-  }, [isClick, animation]);
+  }, [isClick]);
   useEffect(() => {
     if (localStorage.getItem("Monthly")) {
       const data = JSON.parse(localStorage.getItem("Monthly") as string).toggle;
