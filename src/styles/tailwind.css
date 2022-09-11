@@ -5,7 +5,7 @@
   }
   html,
   body {
-    @apply h-full scroll-p-8 scroll-smooth font-heading;
+    @apply h-full scroll-p-8 scroll-smooth font-content;
   }
   a {
     @apply underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
@@ -48,8 +48,11 @@
   .keep-all {
     word-break: keep-all;
   }
-  .align-text-20 {
-    vertical-align: -20%;
+  .align-text-25 {
+    vertical-align: -25%;
+  }
+  .align-text-17 {
+    vertical-align: -17%;
   }
   .writing-vertical {
     writing-mode: vertical-lr;
@@ -59,7 +62,7 @@
     text-overflow: ellipsis;
   }
   .word-tightest {
-    word-spacing: -0.75em;
+    word-spacing: -0.85em;
   }
   .bg-stripes-gray {
     background-color: #9ca3af1a;

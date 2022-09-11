@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Twemoji from "react-twemoji";
 import { Nav, Seo } from "@/components";
 import { useEffect, useState, useMemo, useRef } from "react";
 import { throttle } from "lodash";
+import { useRouter } from "next/router";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +11,7 @@ export interface LayoutProps {
 }
 
 export default function Layout({ children, home, siteTitle }: LayoutProps) {
+  const router = useRouter();
   const [navShow, setNavShow] = useState(false);
   const beforeScrollY = useRef(0);
   const scrollSensor = useMemo(
@@ -37,7 +38,7 @@ export default function Layout({ children, home, siteTitle }: LayoutProps) {
     <div
       className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
     >
-      <div className={`container mx-auto ${!home ? "max-w-3xl" : "max-w-6xl"}`}>
+      <div className={`container mx-auto ${!home ? "max-w-3xl" : "max-w-4xl"}`}>
         <header>
           <Seo siteTitle={siteTitle} />
           <Nav navShow={navShow} />
@@ -45,14 +46,17 @@ export default function Layout({ children, home, siteTitle }: LayoutProps) {
 
         <section className="pt-10">
           <Twemoji
-            options={{ className: "inline m-px w-5 h-5 align-text-20 cursor-default" }}
+            options={{
+              className:
+                "inline m-px w-5 h-5 sm:align-text-25 md:align-text-17 cursor-default",
+            }}
           >
             <article>{children}</article>
             {!home && (
               <footer className="mt-16 ml-5 h-20 text-base md:ml-1">
-                <Link href="/">
-                  <a className="no-underline">← Back to home</a>
-                </Link>
+                <div onClick={() => router.back()} className="cursor-pointer">
+                  ← Previous
+                </div>
               </footer>
             )}
           </Twemoji>

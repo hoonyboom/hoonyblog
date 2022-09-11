@@ -9,8 +9,8 @@ import {
   KBarResults,
 } from "kbar";
 import { LayoutProps } from "@/components/Layout";
-import { VscGithubInverted, VscTwitter, VscCode } from "react-icons/vsc";
-import { TbPencil } from "react-icons/tb";
+import { VscGithubInverted, VscTwitter } from "react-icons/vsc";
+import { FcDislike, FcWorkflow } from "react-icons/fc";
 import { SiAboutdotme } from "react-icons/si";
 import { IoCloud } from "react-icons/io5";
 import { GiCircle } from "react-icons/gi";
@@ -42,7 +42,7 @@ export default function CommandPalette({ children }: LayoutProps) {
           },
           "/writing",
         ),
-      icon: <TbPencil className="h-4 w-4" />,
+      icon: <FcDislike className="h-4 w-4" />,
     },
     {
       id: "coding",
@@ -58,7 +58,7 @@ export default function CommandPalette({ children }: LayoutProps) {
           },
           "/coding",
         ),
-      icon: <VscCode className="h-4 w-4" />,
+      icon: <FcWorkflow className="h-4 w-4" />,
     },
     {
       id: "github",
