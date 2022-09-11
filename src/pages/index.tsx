@@ -19,9 +19,8 @@ export interface PostsProps {
   image: string;
 }
 interface TabsProps {
-  selectedCategory: string | string[];
+  selectedCategory: string;
   i: number;
-  // setXValue: Dispatch<SetStateAction<string>>;
 }
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -136,8 +135,7 @@ const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
     router.push({ query: { category: selectedCategory } }, `/${selectedCategory}`);
-    if (typeof selectedCategory === "string")
-      localStorage.setItem("whichTab", selectedCategory);
+    localStorage.setItem("whichTab", selectedCategory);
   };
 
   return (
