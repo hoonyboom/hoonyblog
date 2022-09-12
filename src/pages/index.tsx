@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSortedPostsData } from "@/lib/posts";
 import { Layout, MdxComponents, Pagination } from "@/components";
 import useSound from "use-sound";
@@ -11,7 +11,6 @@ import { BsChevronDown } from "react-icons/bs";
 
 interface TabsProps {
   selectedCategory: string;
-  setTranslateX: Dispatch<SetStateAction<string>>;
   i: number;
 }
 export interface PostsProps {
@@ -73,7 +72,7 @@ const Profile = ({ initCategory }: { initCategory: boolean }) => {
 };
 const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
   const [isClick, setIsClick] = useState(false);
-  const [animation, setAnimation] = useState(true);
+  const [animation, setAnimation] = useState(false);
   const Month = new Date().getMonth() + 1;
 
   useEffect(() => {
@@ -98,13 +97,13 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
         <div className="grow text-center">{Month}月</div>
         <div className="absolute right-2">
           <BsChevronDown
-            className={`duration-700 ${animation ? "-rotate-180" : "rotate-0"}`}
+            className={`duration-700 ${!animation ? "-rotate-180" : "rotate-0"}`}
           />
         </div>
       </div>
       <div
         className={`grid gap-x-5 text-base duration-1000 sm:grid-cols-1 md:grid-cols-2 ${
-          animation ? "opacity-100" : "opacity-0"
+          !animation ? "opacity-100" : "opacity-0"
         }`}
       >
         {isClick &&
@@ -133,11 +132,10 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
     </div>
   );
 };
-const Tabs = ({ selectedCategory, setTranslateX, i }: TabsProps) => {
+const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
     router.push({ query: { category: selectedCategory } }, "/");
-    setTranslateX(`translate-x-[${i}00%]`);
     localStorage.setItem("watchedTab", JSON.stringify({ val: i }));
   };
 
@@ -147,27 +145,21 @@ const Tabs = ({ selectedCategory, setTranslateX, i }: TabsProps) => {
     </div>
   );
 };
-const TabSelector = ({
-  initCategory,
-  translateX,
-  setTranslateX,
-}: {
-  initCategory: boolean;
-  translateX: string;
-  setTranslateX: Dispatch<SetStateAction<string>>;
-}) => {
+const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
+  const [translateX, setTranslateX] = useState("translate-x-0");
+
   useEffect(() => {
     if (localStorage.watchedTab) {
       const xValue = JSON.parse(localStorage.getItem("watchedTab") as string).val;
-      setTranslateX(`translate-x-[${xValue}00%]`);
+      setTranslateX(() => {
+        return `translate-x-[${xValue}00%]`;
+      });
     }
-  }, []);
+  }, [initCategory]);
 
   return (
     <span
-      className={`${
-        initCategory && translateX
-      } relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
+      className={`${translateX} relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
       <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-900"></span>
@@ -193,7 +185,6 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
-  const [translateX, setTranslateX] = useState("translate-x-0");
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
@@ -226,20 +217,11 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <section className="sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
         <div className="-mb-2 flex">
-          <TabSelector
-            initCategory={initCategory}
-            translateX={translateX}
-            setTranslateX={setTranslateX}
-          />
+          <TabSelector initCategory={initCategory} />
         </div>
         <div className="my-3 flex text-center font-heading">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
-            <Tabs
-              selectedCategory={categories}
-              setTranslateX={setTranslateX}
-              key={id}
-              i={i}
-            />
+            <Tabs selectedCategory={categories} key={id} i={i} />
           ))}
         </div>
         {/* 태그 리스트 */}
