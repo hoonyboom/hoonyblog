@@ -38,7 +38,7 @@ export default function Layout({ children, home, siteTitle }: LayoutProps) {
     <div
       className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
     >
-      <div className={`container mx-auto ${!home ? "max-w-3xl" : "max-w-4xl"}`}>
+      <div className={`container mx-auto ${!home ? "max-w-2xl" : "max-w-4xl"}`}>
         <header>
           <Seo siteTitle={siteTitle} />
           <Nav navShow={navShow} />

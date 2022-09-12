@@ -47,7 +47,7 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
         <div className="flex justify-center text-base leading-6 sm:mt-3 sm:mb-10 md:mt-5 md:mb-12">
           <Date dateString={frontmatter.date} />
         </div>
-        <article className="keep-all m-7 font-content text-base sm:leading-6 md:leading-8">
+        <article className="keep-all m-10 font-content text-base sm:leading-6 md:leading-8">
           <Component components={MdxComponents} />
         </article>
       </div>
