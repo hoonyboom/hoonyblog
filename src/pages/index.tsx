@@ -149,17 +149,21 @@ const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
   const [translateX, setTranslateX] = useState("");
   const [animation, setAnimation] = useState(false);
   useEffect(() => {
+    setAnimation(!animation);
+  }, [initCategory]);
+
+  useEffect(() => {
     if (localStorage.watchedTab) {
       const xValue = JSON.parse(localStorage.getItem("watchedTab") as string).val;
       setTranslateX(`translate-x-[${xValue}00%]`);
-      setAnimation(!animation);
+      console.log(translateX);
     }
-  }, [initCategory]);
+  }, [animation]);
 
   return (
     <span
       className={`${
-        animation ? translateX : "translate-x-0"
+        initCategory ? translateX : "translate-x-0"
       } relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
