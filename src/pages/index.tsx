@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
-import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useEffect, useState } from "react";
 import { getSortedPostsData } from "@/lib/posts";
 import { Layout, MdxComponents, Pagination } from "@/components";
 import useSound from "use-sound";
@@ -146,18 +146,18 @@ const Tabs = ({ selectedCategory, i }: TabsProps) => {
   );
 };
 const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
-  const [xValue, setXValue] = useState(0);
+  const [translateX, setTranslateX] = useState("translate-x-0");
   useEffect(() => {
     if (localStorage.watchedTab) {
-      const data = JSON.parse(localStorage.getItem("watchedTab") as string).val;
-      setXValue(data);
+      const xValue = JSON.parse(localStorage.getItem("watchedTab") as string).val;
+      setTranslateX(`translate-x-[${xValue}00%]`);
     }
   }, [initCategory]);
 
   return (
     <span
       className={`${
-        initCategory && `translate-x-[${xValue}00%]`
+        initCategory && translateX
       } relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
@@ -184,7 +184,6 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
-  const [tabClick, setTabClick] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
