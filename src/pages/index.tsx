@@ -146,20 +146,18 @@ const Tabs = ({ selectedCategory, i }: TabsProps) => {
   );
 };
 const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
-  const [translateX, setTranslateX] = useState("translate-x-0");
-
+  const [translateX, setTranslateX] = useState("0%");
   useEffect(() => {
     if (localStorage.watchedTab) {
       const xValue = JSON.parse(localStorage.getItem("watchedTab") as string).val;
-      setTranslateX(() => {
-        return `translate-x-[${xValue}00%]`;
-      });
+      setTranslateX(`${xValue}00%`);
     }
   }, [initCategory]);
 
   return (
     <span
-      className={`${translateX} relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
+      className={"relative flex h-1 w-1 basis-1/3 justify-end duration-700"}
+      style={{ transform: `translate(${translateX})` }}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
       <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-900"></span>
