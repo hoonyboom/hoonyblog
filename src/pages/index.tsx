@@ -46,7 +46,7 @@ const Profile = ({ initCategory }: { initCategory: boolean }) => {
               alt="프로필"
             />
             <div className="ml-8 flex flex-col justify-center space-y-1">
-              <p className="text-lg">츄륵</p>
+              <p className="font-heading text-lg">츄륵</p>
               <p className="text-base">갸륵하도다</p>
             </div>
           </section>
@@ -135,7 +135,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
 const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
-    router.push({ query: { category: selectedCategory } }, selectedCategory);
+    router.push({ query: { category: selectedCategory } }, "/");
     localStorage.setItem("whichTab", selectedCategory);
   };
   return (
@@ -149,7 +149,7 @@ const Posts = ({ tags }: Partial<PostsProps>) => {
   return (
     <div
       onMouseUp={() => clickSound()}
-      className="md:word-tightest my-5 -ml-px h-52 border-x border-r-0 border-blue-800/20 px-2 backdrop-blur"
+      className="md:word-tightest my-5 -ml-px border-x border-r-0 border-blue-800/20 px-2 backdrop-blur sm:h-40 md:h-52"
     >
       <Link href={`/tags/${tags}`}>
         <a className="text-md no-underline">{tags}</a>

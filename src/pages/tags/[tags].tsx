@@ -53,15 +53,15 @@ export default function PostByTag({ allTagsData, tag }: DataProps) {
     <Layout siteTitle={`${tag} 〰 후니로그`}>
       <h1 className="pt-20 pl-4">{tag}</h1>
       <div className="flex justify-between pt-7 pl-3 pb-12">
-        <p className="basis-2/5 text-md">{summary.map(({ excerpt }) => excerpt)}</p>
-        <div className="basis-3/5 px-3">
+        <p className="basis-1/2 text-base">{summary.map(({ excerpt }) => excerpt)}</p>
+        <div className="basis-1/2 px-3">
           {banner.map(({ image, id }) => (
             <Img src={image} key={id} />
           ))}
         </div>
       </div>
       <div className="text-base">
-        {allTagsData.reverse().map(({ id, title, date, description }) => (
+        {allTagsData.map(({ id, title, date, description }) => (
           <Posts key={id} id={id} title={title} date={date} description={description} />
         ))}
       </div>

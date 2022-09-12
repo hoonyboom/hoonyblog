@@ -18,7 +18,7 @@ export default function Layout({ children, home, siteTitle }: LayoutProps) {
     () =>
       throttle(() => {
         const currentScrollY = globalThis.scrollY;
-        if (currentScrollY > beforeScrollY.current) {
+        if (currentScrollY > beforeScrollY.current && currentScrollY > 100) {
           setNavShow(true);
           console.log("스크롤 내려가는 중", currentScrollY);
         } else {

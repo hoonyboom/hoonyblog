@@ -22,15 +22,6 @@ module.exports = {
     ];
   },
   async rewrites() {
-    return [
-      {
-        source: "/coding",
-        destination: "/coding",
-      },
-      {
-        source: "/writing",
-        destination: "/writing",
-      },
-    ];
+    return [];
   },
 };
