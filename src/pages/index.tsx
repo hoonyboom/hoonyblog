@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getSortedPostsData } from "@/lib/posts";
 import { Layout, MdxComponents, Pagination } from "@/components";
 import useSound from "use-sound";
@@ -11,6 +11,7 @@ import { BsChevronDown } from "react-icons/bs";
 
 interface TabsProps {
   selectedCategory: string;
+  setTranslateX: Dispatch<SetStateAction<string>>;
   i: number;
 }
 export interface PostsProps {
@@ -132,10 +133,11 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
     </div>
   );
 };
-const Tabs = ({ selectedCategory, i }: TabsProps) => {
+const Tabs = ({ selectedCategory, setTranslateX, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
     router.push({ query: { category: selectedCategory } }, "/");
+    setTranslateX(`translate-x-[${i}00%]`);
     localStorage.setItem("watchedTab", JSON.stringify({ val: i }));
   };
 
@@ -145,25 +147,26 @@ const Tabs = ({ selectedCategory, i }: TabsProps) => {
     </div>
   );
 };
-const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
-  const [translateX, setTranslateX] = useState("");
-  const [animation, setAnimation] = useState(false);
-  useEffect(() => {
-    setAnimation(!animation);
-  }, [initCategory]);
-
+const TabSelector = ({
+  initCategory,
+  translateX,
+  setTranslateX,
+}: {
+  initCategory: boolean;
+  translateX: string;
+  setTranslateX: Dispatch<SetStateAction<string>>;
+}) => {
   useEffect(() => {
     if (localStorage.watchedTab) {
       const xValue = JSON.parse(localStorage.getItem("watchedTab") as string).val;
       setTranslateX(`translate-x-[${xValue}00%]`);
-      console.log(translateX);
     }
-  }, [animation]);
+  }, []);
 
   return (
     <span
       className={`${
-        initCategory ? translateX : "translate-x-0"
+        initCategory && translateX
       } relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
@@ -190,6 +193,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
+  const [translateX, setTranslateX] = useState("translate-x-0");
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
@@ -222,11 +226,20 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <section className="sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
         <div className="-mb-2 flex">
-          <TabSelector initCategory={initCategory} />
+          <TabSelector
+            initCategory={initCategory}
+            translateX={translateX}
+            setTranslateX={setTranslateX}
+          />
         </div>
         <div className="my-3 flex text-center font-heading">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
-            <Tabs selectedCategory={categories} key={id} i={i} />
+            <Tabs
+              selectedCategory={categories}
+              setTranslateX={setTranslateX}
+              key={id}
+              i={i}
+            />
           ))}
         </div>
         {/* 태그 리스트 */}
