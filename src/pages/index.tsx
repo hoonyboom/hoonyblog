@@ -40,7 +40,7 @@ const Profile = ({ initCategory }: { initCategory: boolean }) => {
             <Image
               priority
               src="/images/profile.png"
-              className="ring-offset- rounded-full ring-2 ring-indigo-900 ring-offset-1  sm:h-16 sm:w-16 md:h-20 md:w-20"
+              className="rounded-full ring-2 ring-indigo-900 ring-offset-1 sm:h-16 sm:w-16 md:h-20 md:w-20"
               height={80}
               width={80}
               alt="프로필"
@@ -145,16 +145,20 @@ const Tabs = ({ selectedCategory, i }: TabsProps) => {
     </div>
   );
 };
-const TabSelector = () => {
-  const [watchedTab, setWatchedTab] = useState(0);
+const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
+  const [xValue, setXValue] = useState(0);
   useEffect(() => {
-    if (localStorage.getItem("watchedTab"))
-      setWatchedTab(JSON.parse(localStorage.getItem("watchedTab") as string).val);
-  });
+    if (localStorage.watchedTab) {
+      const data = JSON.parse(localStorage.getItem("watchedTab") as string).val;
+      setXValue(data);
+    }
+  }, [initCategory]);
 
   return (
     <span
-      className={`translate-x-[${watchedTab}00%] relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
+      className={`${
+        initCategory && `translate-x-[${xValue}00%]`
+      } relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
       <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-900"></span>
@@ -180,6 +184,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
+  const [tabClick, setTabClick] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
@@ -212,7 +217,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <section className="sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
         <div className="-mb-2 flex">
-          <TabSelector />
+          <TabSelector initCategory={initCategory} />
         </div>
         <div className="my-3 flex text-center font-heading">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
