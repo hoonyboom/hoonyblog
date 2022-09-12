@@ -4,9 +4,9 @@ export default function Seo({ siteTitle }: { siteTitle?: string }) {
   return (
     <Head>
       <title>{siteTitle}</title>
-      <link rel="icon" href="/images/heart.svg" />
-      <link rel="apple-touch-icon" href="/images/heart.svg" />
-      <link rel="mask-icon" href="/images/heart.svg" />
+      <link rel="icon" href="/images/2022/summer/heart.svg" />
+      <link rel="apple-touch-icon" href="/images/2022/summer/heart.svg" />
+      <link rel="mask-icon" href="/images/2022/summer/heart.svg" />
       <link rel="canonical" href="https://chorok.vercel.app" />,
       <meta name="description" content="프론트엔드 취준생 블로그" />
       <meta

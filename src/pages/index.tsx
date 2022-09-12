@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { getSortedPostsData } from "@/lib/posts";
 import { Layout, MdxComponents, Pagination } from "@/components";
 import useSound from "use-sound";
@@ -9,6 +9,11 @@ import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike } from "react-icons/fc";
 import { BsChevronDown } from "react-icons/bs";
 
+interface TabsProps {
+  selectedCategory: string;
+  setWhichTab: Dispatch<SetStateAction<number>>;
+  i: number;
+}
 export interface PostsProps {
   id: string;
   title: string;
@@ -18,10 +23,6 @@ export interface PostsProps {
   description: string;
   excerpt?: string;
   image: string;
-}
-interface TabsProps {
-  selectedCategory: string;
-  i: number;
 }
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -39,8 +40,8 @@ const Profile = ({ initCategory }: { initCategory: boolean }) => {
           <section className="mx-2 flex sm:p-8 md:mt-10  md:p-10">
             <Image
               priority
-              src="/images/profile3.png"
-              className="rounded-full ring-2 ring-blue-300/90 ring-offset-4 ring-offset-slate-600 sm:h-16 sm:w-16 md:h-20 md:w-20"
+              src="/images/profile.png"
+              className="ring-offset- rounded-full ring-2 ring-indigo-900 ring-offset-1  sm:h-16 sm:w-16 md:h-20 md:w-20"
               height={80}
               width={80}
               alt="프로필"
@@ -86,7 +87,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
   }, []);
 
   return (
-    <div className="sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
+    <div className="mb-px cursor-pointer sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
       <div
         onClick={() => {
           setIsClick(!isClick);
@@ -97,7 +98,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
         <div className="grow text-center">{Month}月</div>
         <div className="absolute right-2">
           <BsChevronDown
-            className={`transition ${animation ? "-rotate-180" : "rotate-0"}`}
+            className={`duration-700 ${animation ? "-rotate-180" : "rotate-0"}`}
           />
         </div>
       </div>
@@ -132,16 +133,34 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
     </div>
   );
 };
-const Tabs = ({ selectedCategory, i }: TabsProps) => {
+const Tabs = ({ selectedCategory, setWhichTab, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
     router.push({ query: { category: selectedCategory } }, "/");
-    localStorage.setItem("whichTab", selectedCategory);
+    setWhichTab(i);
+    localStorage.setItem("watchedTab", JSON.stringify({ val: i }));
   };
+  useEffect(() => {
+    if (localStorage.getItem("watchedTab")) {
+      const watchedTab = JSON.parse(localStorage.getItem("watchedTab") as string).val;
+      setWhichTab(watchedTab);
+    }
+  }, []);
+
   return (
-    <div onClick={onClick} className={"basis-1/3 no-underline"}>
+    <div onClick={onClick} className="basis-1/3 cursor-pointer">
       {selectedCategory}
     </div>
+  );
+};
+const TabSelector = ({ whichTab }: { whichTab: number }) => {
+  return (
+    <span
+      className={`translate-x-[ relative flex h-1 w-1 basis-1/3 duration-700${whichTab}00%] justify-end`}
+    >
+      <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
+      <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-900"></span>
+    </span>
   );
 };
 const Posts = ({ tags }: Partial<PostsProps>) => {
@@ -163,6 +182,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
+  const [whichTab, setWhichTab] = useState(0);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
@@ -194,9 +214,17 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <RecentPosts recentPosts={recentPosts} />
       <section className="sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
+        <div className="-mb-2 flex">
+          <TabSelector whichTab={whichTab} />
+        </div>
         <div className="my-3 flex text-center font-heading">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
-            <Tabs selectedCategory={categories} key={id} i={i} />
+            <Tabs
+              setWhichTab={setWhichTab}
+              selectedCategory={categories}
+              key={id}
+              i={i}
+            />
           ))}
         </div>
         {/* 태그 리스트 */}

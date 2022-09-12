@@ -4,6 +4,7 @@ date: "2022-08-25"
 categories: "coding"
 tags: "그큐엘"
 description: "Init:"
+image: "/images/2022/summer/graphql_image.png"
 ---
 
 ### API가 무엇이오?
@@ -237,7 +238,7 @@ typeDefs는 일종의 지도다.
 <br/>
    1. type-graphql  
    자체 오퍼레이터를 활용하여 typeDefs를 작성한다. 그런데 솔직히 까놓고 얘기해도 될까? 처음부터 끝까지 별로였다. 일단 코드가 길어지고 resolvers에 가선 더 복잡해진다. 내 궁금증은 서버에서 공들여 짠 스키마를 클라이언트에서도 통용되게 할 수 있느냐였는데, 그게 아니라는 데서 크리티컬했다. 다신 안 다룰 거 같아 내용도 까먹어버림.. ㅅㅂ
-   <Img src='/images/type-graphql.png' />
+   <Img src='/images/2022/summer/type-graphql.png' />
 <br/>
    2. Prisma + Nexus  
    이건 좀 버거웠다. 과정만 간단히 추리면 먼저 1) 프리즈마로 Model 스키마를 짠다. 2) 그럼 Nexus는 이 스키마를 Graphql 스키마로 변환해주는데, makeSchema 훅을 이용해 이를 그큐엘 서버로 넘기면 끝이다. 나도 이렇게 말하는 내가 싫다ㅎㅎ.. ㅎㅏ.. 아무튼 이것도 클라이언트와는 무관한 일이었지만 그래도 Prisma에 대해선 호감? 호기심이랄 게 생겨서 공부해 보고 싶은 마음이 든다. 일단 type-graphql 보단 백만배 나았음.

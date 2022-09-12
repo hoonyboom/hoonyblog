@@ -44,17 +44,19 @@ const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
   );
 };
 
-export default function PostByTag({ allTagsData, tag }: DataProps) {
+export default function PostsByTag({ allTagsData, tag }: DataProps) {
   const { Img } = MdxComponents;
   const summary = filter(allTagsData, "excerpt");
   const banner = filter(allTagsData, "image");
 
   return (
     <Layout siteTitle={`${tag} 〰 후니로그`}>
-      <h1 className="pt-20 pl-4">{tag}</h1>
+      <h1 className="pt-16 pl-4">{tag}</h1>
       <div className="flex justify-between pt-7 pl-3 pb-12">
-        <p className="basis-1/2 text-base">{summary.map(({ excerpt }) => excerpt)}</p>
-        <div className="basis-1/2 px-3">
+        <p className="text-base sm:basis-1/2 md:basis-2/5">
+          {summary.map(({ excerpt }) => excerpt)}
+        </p>
+        <div className="pr-3 sm:basis-1/2 md:basis-3/5">
           {banner.map(({ image, id }) => (
             <Img src={image} key={id} />
           ))}

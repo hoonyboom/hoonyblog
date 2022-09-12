@@ -24,15 +24,16 @@ export function getSortedPostsData(tags?: string) {
     // 데이터: id와 메타섹션의 정보
     return {
       id,
-      tags: matterResult.tags,
+      tags: matterResult.tags as string,
+      date: matterResult.date as string,
       ...matterResult,
     };
   });
 
   // tag 페이지의 경우
   if (tags) {
-    const postByTag = allPostsData.filter(post => post.tags === tags);
-    return postByTag.sort((a, b) => {
+    const postsByTag = allPostsData.filter(post => post.tags === tags);
+    return postsByTag.sort(({ date: a }, { date: b }) => {
       if (a < b) return 1;
       else if (a > b) return -1;
       else return 0;
@@ -40,7 +41,7 @@ export function getSortedPostsData(tags?: string) {
   }
 
   // 없으면 그냥 날짜 최신순으로 정렬
-  return allPostsData.sort((a, b) => {
+  return allPostsData.sort(({ date: a }, { date: b }) => {
     if (a < b) return 1;
     else if (a > b) return -1;
     else return 0;

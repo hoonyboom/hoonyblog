@@ -32,6 +32,7 @@ module.exports = {
       },
       colors: {
         waterMelon: "#ED4C6A",
+        orange: "#ffa500",
       },
       backgroundColor: {},
     },
