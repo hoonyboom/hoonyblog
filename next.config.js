@@ -4,16 +4,16 @@ module.exports = {
   experimental: { images: { allowFutureImage: true } },
   async redirects() {
     return [
-      // {
-      //   source: "/coding",
-      //   destination: "/",
-      //   permanent: false,
-      // },
-      // {
-      //   source: "/writing",
-      //   destination: "/",
-      //   permanent: false,
-      // },
+      {
+        source: "/coding",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/writing",
+        destination: "/",
+        permanent: false,
+      },
       {
         source: "/about",
         destination: "/category/about",

@@ -8,6 +8,7 @@ import useSound from "use-sound";
 import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike } from "react-icons/fc";
 import { BsChevronDown } from "react-icons/bs";
+
 export interface PostsProps {
   id: string;
   title: string;
@@ -35,11 +36,11 @@ const Profile = ({ initCategory }: { initCategory: boolean }) => {
     <>
       <div className="flex flex-col place-items-center">
         <div>
-          <section className="mx-2 mt-10 flex p-10">
+          <section className="mx-2 flex sm:p-8 md:mt-10  md:p-10">
             <Image
               priority
               src="/images/profile3.png"
-              className="h-20 w-20 rounded-full ring-2 ring-blue-300/90 ring-offset-4 ring-offset-slate-600"
+              className="rounded-full ring-2 ring-blue-300/90 ring-offset-4 ring-offset-slate-600 sm:h-16 sm:w-16 md:h-20 md:w-20"
               height={80}
               width={80}
               alt="프로필"
@@ -85,7 +86,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
   }, []);
 
   return (
-    <div className="mt-16 sm:mx-5 md:mx-10">
+    <div className="sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
       <div
         onClick={() => {
           setIsClick(!isClick);
@@ -101,7 +102,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
         </div>
       </div>
       <div
-        className={`grid gap-x-5 duration-1000 sm:grid-cols-1 md:grid-cols-2 ${
+        className={`grid gap-x-5 text-base duration-1000 sm:grid-cols-1 md:grid-cols-2 ${
           animation ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -111,7 +112,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
               <div
                 key={id}
                 className={
-                  "mb-2 flex flex-row justify-between border-slate-600/30 px-5 sm:border-y-0 sm:py-1 md:border-y md:py-3"
+                  "mb-2 flex flex-row justify-between border-slate-600/30 px-5 sm:border-y-0 sm:py-1 md:border-y md:py-2"
                 }
               >
                 <div>
@@ -134,7 +135,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
 const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
-    router.push({ query: { category: selectedCategory } }, selectedCategory);
+    router.push({ query: { category: selectedCategory } }, "/");
     localStorage.setItem("whichTab", selectedCategory);
   };
   return (
@@ -148,7 +149,7 @@ const Posts = ({ tags }: Partial<PostsProps>) => {
   return (
     <div
       onMouseUp={() => clickSound()}
-      className="word-tightest my-5 -ml-px h-52 border-x border-r-0 border-blue-800/20 px-2 font-content backdrop-blur"
+      className="md:word-tightest my-5 -ml-px h-52 border-x border-r-0 border-blue-800/20 px-2 backdrop-blur"
     >
       <Link href={`/tags/${tags}`}>
         <a className="text-md no-underline">{tags}</a>
@@ -160,6 +161,7 @@ const Posts = ({ tags }: Partial<PostsProps>) => {
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리 state
   const isCategory = useRouter().query.category;
+  console.log(useRouter());
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
@@ -183,8 +185,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   }, [isCategory, allPostsData]);
   useEffect(() => {
     setInitCategory(true);
-    setLimit(7);
-    setPage(1);
+    // setLimit(7);
+    // setPage(1);
   }, [selectedData]);
 
   return (

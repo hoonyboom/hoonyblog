@@ -3,7 +3,7 @@ import { getAllPostTags, getSortedPostsData } from "@/lib/posts";
 import { PostsProps } from "@/pages/index";
 import Link from "next/link";
 import useSound from "use-sound";
-import { uniqBy } from "lodash";
+import { filter } from "lodash";
 
 interface PathProps {
   params: {
@@ -46,18 +46,21 @@ const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
 
 export default function PostByTag({ allTagsData, tag }: DataProps) {
   const { Img } = MdxComponents;
-  const summary = uniqBy(allTagsData, "excerpt");
-  const banner = uniqBy(allTagsData, "excerpt");
+  const summary = filter(allTagsData, "excerpt");
+  const banner = filter(allTagsData, "image");
+
   return (
     <Layout siteTitle={`${tag} 〰 후니로그`}>
-      <h1 className="pt-20">{tag}</h1>
-      <div className="flex justify-between pt-7">
-        <p className="font-content text-md">{summary.map(({ excerpt }) => excerpt)}</p>
-        {banner.map(({ image, id }) => (
-          <Img src={image} key={id} priority />
-        ))}
+      <h1 className="pt-20 pl-4">{tag}</h1>
+      <div className="flex justify-between pt-7 pl-3 pb-12">
+        <p className="basis-2/5 text-md">{summary.map(({ excerpt }) => excerpt)}</p>
+        <div className="basis-3/5 px-3">
+          {banner.map(({ image, id }) => (
+            <Img src={image} key={id} />
+          ))}
+        </div>
       </div>
-      <div className="pt-16 font-content text-base">
+      <div className="text-base">
         {allTagsData.reverse().map(({ id, title, date, description }) => (
           <Posts key={id} id={id} title={title} date={date} description={description} />
         ))}
