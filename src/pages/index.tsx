@@ -135,7 +135,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
 const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
-    router.push({ query: { category: selectedCategory } }, "/");
+    router.push({ query: { category: selectedCategory } }, selectedCategory);
     localStorage.setItem("whichTab", selectedCategory);
   };
   return (
@@ -161,7 +161,6 @@ const Posts = ({ tags }: Partial<PostsProps>) => {
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리 state
   const isCategory = useRouter().query.category;
-  console.log(useRouter());
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");

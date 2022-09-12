@@ -23,14 +23,14 @@ module.exports = {
   },
   async rewrites() {
     return [
-      // {
-      //   source: "/?category=coding",
-      //   destination: "/coding",
-      // },
-      // {
-      //   source: "/?category=writing",
-      //   destination: "/writing",
-      // },
+      {
+        source: "/coding",
+        destination: "/coding",
+      },
+      {
+        source: "/writing",
+        destination: "/writing",
+      },
     ];
   },
 };
