@@ -11,7 +11,6 @@ import { BsChevronDown } from "react-icons/bs";
 
 interface TabsProps {
   selectedCategory: string;
-  setWhichTab: Dispatch<SetStateAction<number>>;
   i: number;
 }
 export interface PostsProps {
@@ -133,19 +132,12 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
     </div>
   );
 };
-const Tabs = ({ selectedCategory, setWhichTab, i }: TabsProps) => {
+const Tabs = ({ selectedCategory, i }: TabsProps) => {
   const router = useRouter();
   const onClick = () => {
     router.push({ query: { category: selectedCategory } }, "/");
-    setWhichTab(i);
     localStorage.setItem("watchedTab", JSON.stringify({ val: i }));
   };
-  useEffect(() => {
-    if (localStorage.getItem("watchedTab")) {
-      const watchedTab = JSON.parse(localStorage.getItem("watchedTab") as string).val;
-      setWhichTab(watchedTab);
-    }
-  }, []);
 
   return (
     <div onClick={onClick} className="basis-1/3 cursor-pointer">
@@ -153,10 +145,16 @@ const Tabs = ({ selectedCategory, setWhichTab, i }: TabsProps) => {
     </div>
   );
 };
-const TabSelector = ({ whichTab }: { whichTab: number }) => {
+const TabSelector = () => {
+  const [watchedTab, setWatchedTab] = useState(0);
+  useEffect(() => {
+    if (localStorage.getItem("watchedTab"))
+      setWatchedTab(JSON.parse(localStorage.getItem("watchedTab") as string).val);
+  });
+
   return (
     <span
-      className={`translate-x-[ relative flex h-1 w-1 basis-1/3 duration-700${whichTab}00%] justify-end`}
+      className={`translate-x-[${watchedTab}00%] relative flex h-1 w-1 basis-1/3 justify-end duration-700`}
     >
       <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
       <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-900"></span>
@@ -182,7 +180,6 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
-  const [whichTab, setWhichTab] = useState(0);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
   // 페이지네이션 state
   const [page, setPage] = useState(1);
@@ -215,16 +212,11 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       <section className="sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
         <div className="-mb-2 flex">
-          <TabSelector whichTab={whichTab} />
+          <TabSelector />
         </div>
         <div className="my-3 flex text-center font-heading">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
-            <Tabs
-              setWhichTab={setWhichTab}
-              selectedCategory={categories}
-              key={id}
-              i={i}
-            />
+            <Tabs selectedCategory={categories} key={id} i={i} />
           ))}
         </div>
         {/* 태그 리스트 */}
