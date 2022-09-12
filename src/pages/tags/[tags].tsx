@@ -34,7 +34,7 @@ const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
     <Link href={`/posts/${id}`}>
       <a
         onMouseUp={() => clickSound()}
-        className="-my-px flex border-y border-blue-800 py-2 text-right no-underline"
+        className="-my-px flex border-y border-blue-800 py-2 text-right no-underline dark:border-blue-900"
       >
         <div className="pl-3 text-left sm:basis-2/12 md:basis-1/12">{description}</div>
         <div className="sm:basis-10/12 sm:pr-3 md:basis-9/12 md:pr-10">{title}</div>

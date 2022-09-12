@@ -92,7 +92,7 @@ const RecentPosts = ({ recentPosts }: { recentPosts: PostsProps[] }) => {
           setIsClick(!isClick);
           localStorage.setItem("Monthly", JSON.stringify({ toggle: !isClick }));
         }}
-        className="relative my-2 flex place-items-center justify-center bg-blue-800 py-1 text-md text-white"
+        className="relative my-2 flex place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
       >
         <div className="grow text-center">{Month}月</div>
         <div className="absolute right-2">
@@ -159,8 +159,8 @@ const TabSelector = ({ initCategory }: { initCategory: boolean }) => {
       className={"relative flex h-1 w-1 basis-1/3 justify-end duration-700"}
       style={{ transform: `translate(${translateX})` }}
     >
-      <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-800 opacity-75"></span>
-      <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-900"></span>
+      <span className="absolute inline-flex h-1 w-1 animate-ping rounded-full bg-blue-600 opacity-75 dark:bg-yellow-300"></span>
+      <span className="relative inline-flex h-1 w-1 rounded-full bg-blue-800 dark:bg-orange"></span>
     </span>
   );
 };
@@ -223,7 +223,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           ))}
         </div>
         {/* 태그 리스트 */}
-        <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur">
+        <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur dark:border-blue-900">
           <div className="flex basis-1/12 items-center justify-center pl-3">
             {isCategory === "writing" ? (
               <FcDislike className="h-6 w-6" />

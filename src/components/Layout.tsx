@@ -48,7 +48,7 @@ export default function Layout({ children, home, siteTitle }: LayoutProps) {
           <Twemoji
             options={{
               className:
-                "inline m-px w-5 h-5 sm:align-text-25 md:align-text-17 cursor-default",
+                "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-17 cursor-default",
             }}
           >
             <article>{children}</article>
