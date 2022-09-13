@@ -3,6 +3,9 @@
   *::-webkit-scrollbar {
     display: none;
   }
+  ::selection {
+    @apply bg-black/80 text-white dark:bg-white/90 dark:text-black;
+  }
   html,
   body {
     @apply h-full scroll-p-8 scroll-smooth font-content;
