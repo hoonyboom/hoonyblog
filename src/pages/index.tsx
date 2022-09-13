@@ -31,12 +31,12 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
-  // 카테고리 state
+  // 카테고리
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories");
-  // 페이지네이션 state
+  // 페이지네이션
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(7);
   const offset = (page - 1) * limit;

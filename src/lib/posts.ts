@@ -30,7 +30,7 @@ export function getSortedPostsData(tags?: string) {
     };
   });
 
-  // tag 페이지의 경우
+  // tags 페이지의 경우
   if (tags) {
     const postsByTag = allPostsData.filter(post => post.tags === tags);
     return postsByTag.sort(({ date: a }, { date: b }) => {
@@ -105,7 +105,7 @@ export function getAllPostTags() {
 // 카테고리 필터링
 // if (categories) {
 //   const categoriesData = allPostsData.filter(post => post.categories === categories);
-//   return categoriesData.sort(({ date: a }: dateType, { date: b }: dateType) => {
+//   return categoriesData.sort(({ date: a }, { date: b }) => {
 //     if (a < b) return 1;
 //     else if (a > b) return -1;
 //     else return 0;

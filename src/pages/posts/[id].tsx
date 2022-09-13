@@ -22,7 +22,6 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
 export async function getStaticProps({ params }: IdProps) {
   const postData = await getPostData(params.id);
   return {

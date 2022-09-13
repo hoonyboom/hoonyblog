@@ -20,7 +20,7 @@
     @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply py-4 font-heading text-lg font-bold;
+    @apply py-4 font-heading text-lg font-bold sm:mt-5 sm:mb-px md:mt-10 md:mb-2;
   }
   h4 {
     @apply pt-4 pb-2 font-heading text-md font-bold text-emerald-600;
@@ -255,6 +255,7 @@ Scroll 전체화면 설정 */
   @apply text-sm leading-6;
 }
 /* 기본화면 설정 */
-.ch-code-scroll-content span {
+.ch-code-scroll-content span,
+.ch-inline-code span {
   @apply text-mono;
 }
