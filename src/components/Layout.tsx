@@ -9,9 +9,16 @@ export interface LayoutProps {
   home?: boolean;
   siteTitle?: string;
   tags?: string;
+  category?: string;
 }
 
-export default function Layout({ children, home, siteTitle, tags }: LayoutProps) {
+export default function Layout({
+  children,
+  home,
+  siteTitle,
+  tags,
+  category,
+}: LayoutProps) {
   const router = useRouter();
   const [navShow, setNavShow] = useState(false);
   const beforeScrollY = useRef(0);
@@ -41,7 +48,11 @@ export default function Layout({ children, home, siteTitle, tags }: LayoutProps)
     >
       <div
         className={`container mx-auto ${
-          home ? "max-w-4xl" : tags === "일기" ? "max-w-xl" : "max-w-2xl"
+          home
+            ? "max-w-4xl"
+            : tags === "일기" || category === "reading"
+            ? "max-w-xl"
+            : "max-w-2xl"
         }`}
       >
         <header>
