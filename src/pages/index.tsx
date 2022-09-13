@@ -62,7 +62,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   }, [selectedData]);
 
   return (
-    <Layout home siteTitle="후니로그">
+    <Layout home siteTitle="혜조로그">
       <Profile initCategory={initCategory} />
       <RecentPosts recentPosts={recentPosts} />
       <section className="sm:mx-5 md:mx-10">

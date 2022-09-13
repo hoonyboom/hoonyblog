@@ -49,7 +49,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
   const banner = filter(allTagsData, "image");
 
   return (
-    <Layout siteTitle={`${tag} 〰 후니로그`}>
+    <Layout siteTitle={`${tag} 〰혜조로그`}>
       <h1 className="pt-16 pl-4">{tag}</h1>
       <div className="flex justify-between pt-7 pl-3 pb-12">
         <p className="text-base sm:basis-1/2 md:basis-2/5">

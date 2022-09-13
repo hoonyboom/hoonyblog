@@ -16,7 +16,7 @@ export default function Profile({ initCategory }: { initCategory: boolean }) {
             alt="프로필"
           />
           <div className="ml-8 flex flex-col justify-center space-y-1">
-            <p className="font-heading text-lg">츄륵</p>
+            <p className="font-heading text-lg">혜조</p>
             <p className="text-base">취준일기</p>
           </div>
         </section>
