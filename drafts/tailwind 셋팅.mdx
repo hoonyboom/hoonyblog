@@ -7,6 +7,9 @@ description: "Init:"
 image: "/images/2022/summer/tailwind_image.png"
 ---
 
+테일윈드의 초기 셋팅과 커스터마이징 하는 법을 담았다.  
+쉬우니까 구구절절 설명보단 실례를 달았음.
+<br/>
 <CH.Spotlight rows={20}>
 ```js terminal
 // yarn
@@ -59,21 +62,23 @@ module.exports = {
 ---
 ##### 🌊❗️Notice❗️🌊
 ```zsh 설명서
-초기셋팅이 끝났습니다.
-Tailwind는 공홈 설명이 정말 잘돼있다고 생각해요!
-클래스마다 어떤 css가 구현된 건지
-찬찬히 살펴보며 일독을 권합니다.
-편리함의 노예지만 공부는 해야 하잖아요ㅎ
+Tailwind는 공홈 설명이 정말 잘돼있다.
+그래서 클래스마다 어떤 css가 구현된 건지
+기회삼아 찬찬히 살펴보며 공부했다.
+아무리 편리함의 노예라지만 실력은 늘려야 하니까.
 
 만약 VSCode 사용자라면 확장프로그램에서
-> Tailwind CSS IntelliSense 설치를 추천드려요.
-자동완성 기능을 제공해주는데(저는 컨트롤+스페이스를 이용합니다),
-클래스명이 정확히 기억나지 않을 때 많은 도움이 돼요
+> Tailwind CSS IntelliSense 를 반드시 설치하자.
+자동완성 기능을 제공해주는데(나는 컨트롤+스페이스를 이용한다),
+클래스명이 정확히 기억나지 않을 때 많은 도움이 된다.
 
-그럼 이제 어느 정도 적응이 되었다면 입맛대로 커스터마이징할 차례!
-아래 세 설정은 제가 이 블로그에 쓰고 있는 예시입니다.
-keyframes, clamp, 웹폰트 등 완죠니 수제로 쓰고 있어요 😁
-자세한 사항은 공홈을 꼭! 읽어보시길 바랍니다
+쓰면서 어느 정도 적응이 되었다면 커스터마이징하면 된다.
+아래 설정은 내가 이 블로그에 쓰고 있는 예시인데,
+keyframes, clamp, 웹폰트 등 쓰고 싶은 건 다 쓸 수 있다.
+
+어떤 프로퍼티는 extend, 어떤 건 theme,
+또 어떤 건 utilities로 아예 새로 파줘야 하니 
+자세한 사항은 그때그때 공홈을 찾아 읽어보길 바람
 ```
 ---
 ##### config 설정
@@ -216,12 +221,11 @@ module.exports = {
 ##### prettier 설정
 ```js .prettierrc.js
 
-/* 플러그인부터 설치
-  yarn add -D prettier prettier-plugin-tailwindcss
-*/
+플러그인부터 설치
+yarn add -D prettier prettier-plugin-tailwindcss
 
 module.exports = {
-  // yarn berry에선 플러그인 위치를 특정해줘야 함(원래는 자동)
+  // PnP 방식에선 플러그인 위치를 특정해줘야 함(원래는 자동)
   plugins: [require("prettier-plugin-tailwindcss")], 
   semi: true,
   tabWidth: 2,
