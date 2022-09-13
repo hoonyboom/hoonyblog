@@ -2,7 +2,7 @@ import { getSortedPostsData } from "@/lib/posts";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { uniqBy } from "lodash";
-import { FcWorkflow, FcDislike } from "react-icons/fc";
+import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
 import {
   Layout,
   Pagination,
@@ -80,8 +80,10 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           <div className="flex basis-1/12 items-center justify-center pl-3">
             {isCategory === "writing" ? (
               <FcDislike className="h-6 w-6" />
-            ) : (
+            ) : isCategory === "coding" ? (
               <FcWorkflow className="h-6 w-6" />
+            ) : (
+              <FcPuzzle className="h-6 w-6" />
             )}
           </div>
           <div className="writing-vertical basis-11/12 pl-3">
