@@ -1059,13 +1059,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base64-js@npm:^1.1.2":
-  version: 1.5.1
-  resolution: "base64-js@npm:1.5.1"
-  checksum: 669632eb3745404c2f822a18fc3a0122d2f9a7a13f7fb8b5823ee19d1d2ff9ee5b52c53367176ea4ad093c332fd5ab4bd0ebae5a8e27917a4105a4cfc86b1005
-  languageName: node
-  linkType: hard
-
 "binary-extensions@npm:^2.0.0":
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
@@ -1105,15 +1098,6 @@ __metadata:
   dependencies:
     fill-range: ^7.0.1
   checksum: e2a8e769a863f3d4ee887b5fe21f63193a891c68b612ddb4b68d82d1b5f3ff9073af066c343e9867a393fe4c2555dcb33e89b937195feb9c1613d259edfcd459
-  languageName: node
-  linkType: hard
-
-"brotli@npm:^1.3.3":
-  version: 1.3.3
-  resolution: "brotli@npm:1.3.3"
-  dependencies:
-    base64-js: ^1.1.2
-  checksum: 2c97329f4ccb8e4332cedd2f63b85c2e15ffb305b1cbf046df86201434caf93cb7992ca73c0f7053b6a1417f595069ec7783c26e01510cefc10035a0f466e594
   languageName: node
   linkType: hard
 
@@ -1265,7 +1249,6 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.34.0
     "@typescript-eslint/parser": ^5.34.0
     autoprefixer: ^10.4.8
-    brotli: ^1.3.3
     date-fns: ^2.29.2
     esbuild: ^0.15.5
     eslint: 8.22.0
@@ -1281,7 +1264,6 @@ __metadata:
     lodash: ^4.17.21
     mdx-bundler: ^9.0.1
     next: 12.2.5
-    next-seo: ^5.5.0
     next-themes: ^0.2.0
     postcss: ^8.4.16
     prettier: ^2.7.1
@@ -1294,7 +1276,6 @@ __metadata:
     rehype-prism: ^2.1.3
     remark-gfm: ^3.0.1
     rough-notation: ^0.5.1
-    shiki: ^0.11.1
     tailwindcss: ^3.1.8
     typescript: 4.7.4
     unified: ^10.1.2
@@ -4567,17 +4548,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-seo@npm:^5.5.0":
-  version: 5.5.0
-  resolution: "next-seo@npm:5.5.0"
-  peerDependencies:
-    next: ^8.1.1-canary.54 || >=9.0.0
-    react: ">=16.0.0"
-    react-dom: ">=16.0.0"
-  checksum: 3202c4e84db533ad116d629482e766eb954053d5630275eb75c3e4234cf3ae354e4c2284a7659c0480570670f292b122ee3d11e9b2f23588030d0d5b1f9cb37d
-  languageName: node
-  linkType: hard
-
 "next-themes@npm:^0.2.0":
   version: 0.2.0
   resolution: "next-themes@npm:0.2.0"
@@ -5726,17 +5696,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:^0.11.1":
-  version: 0.11.1
-  resolution: "shiki@npm:0.11.1"
-  dependencies:
-    jsonc-parser: ^3.0.0
-    vscode-oniguruma: ^1.6.1
-    vscode-textmate: ^6.0.0
-  checksum: 2a4ebc3b466816263fc244ae4f67a4ff96aa74d863b9c5e7e4affc50f37fd6d1a781405de0dbf763b777bc33e49a0d441de7ff3fededb8b01e3b8dbb37e2927d
-  languageName: node
-  linkType: hard
-
 "side-channel@npm:^1.0.4":
   version: 1.0.4
   resolution: "side-channel@npm:1.0.4"
@@ -6613,13 +6572,6 @@ __metadata:
   version: 5.2.0
   resolution: "vscode-textmate@npm:5.2.0"
   checksum: 5449b42d451080f6f3649b66948f4b5ee4643c4e88cfe3558a3b31c84c78060cfdd288c4958c1690eaa5cd65d09992fa6b7c3bef9d4aa72b3651054a04624d20
-  languageName: node
-  linkType: hard
-
-"vscode-textmate@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "vscode-textmate@npm:6.0.0"
-  checksum: ff6f17a406c2906586afc14ef01cb122e33acd35312e815abb5c924347a777c6783ce3fe7db8b83f1760ebf843c669843b9390f905b69c433b3395af28e4b483
   languageName: node
   linkType: hard
 
