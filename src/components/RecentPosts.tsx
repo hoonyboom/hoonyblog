@@ -2,9 +2,12 @@ import { PostsProps } from "@/pages";
 import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { FcWorkflow, FcDislike } from "react-icons/fc";
+import useSound from "use-sound";
 import Link from "next/link";
 
 export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[] }) {
+  const [tabSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
+  const [beepSound] = useSound("/sounds/beep.mp3", { volume: 0.6 });
   const [isClick, setIsClick] = useState(false);
   const [animation, setAnimation] = useState(false);
   const Month = new Date().getMonth() + 1;
@@ -29,7 +32,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
         className="relative my-2 flex place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
       >
         <div className="grow text-center">{Month}月</div>
-        <div className="absolute right-2">
+        <div className="absolute right-2" onClick={() => beepSound()}>
           <BsChevronDown
             className={`duration-700 ${!animation ? "-rotate-180" : "rotate-0"}`}
           />
@@ -45,6 +48,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
             return (
               <Link key={id} href={`/posts/${id}`}>
                 <a
+                  onMouseUp={() => tabSound()}
                   className={
                     "mb-2 flex flex-row justify-between border-slate-600/30 px-5 no-underline sm:border-y-0 sm:py-1 md:border-y md:py-2"
                   }

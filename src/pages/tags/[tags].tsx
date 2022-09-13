@@ -28,12 +28,11 @@ export async function getStaticProps({ params }: PathProps) {
   };
 }
 const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
-  const [clickSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
-
+  const [tapSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   return (
     <Link href={`/posts/${id}`}>
       <a
-        onMouseUp={() => clickSound()}
+        onMouseUp={() => tapSound()}
         className="-my-px flex border-y border-blue-800 py-2 text-right no-underline dark:border-blue-900"
       >
         <div className="pl-3 text-left sm:basis-2/12 md:basis-1/12">{description}</div>
