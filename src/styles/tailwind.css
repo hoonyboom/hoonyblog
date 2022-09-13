@@ -64,6 +64,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .word-arita {
+    word-spacing: 0.1em;
+  }
   .word-tightest {
     word-spacing: -0.85em;
   }

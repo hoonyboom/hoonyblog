@@ -8,9 +8,10 @@ export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
   siteTitle?: string;
+  tags?: string;
 }
 
-export default function Layout({ children, home, siteTitle }: LayoutProps) {
+export default function Layout({ children, home, siteTitle, tags }: LayoutProps) {
   const router = useRouter();
   const [navShow, setNavShow] = useState(false);
   const beforeScrollY = useRef(0);
@@ -38,7 +39,11 @@ export default function Layout({ children, home, siteTitle }: LayoutProps) {
     <div
       className={"h-auto min-h-content w-full dark:bg-zinc-900/90 dark:text-slate-200/80"}
     >
-      <div className={`container mx-auto ${!home ? "max-w-2xl" : "max-w-4xl"}`}>
+      <div
+        className={`container mx-auto ${
+          home ? "max-w-4xl" : tags === "일기" ? "max-w-xl" : "max-w-2xl"
+        }`}
+      >
         <header>
           <Seo siteTitle={siteTitle} />
           <Nav navShow={navShow} />
