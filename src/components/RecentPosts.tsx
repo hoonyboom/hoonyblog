@@ -43,23 +43,22 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
         {isClick &&
           recentPosts.map(({ id, categories, title }) => {
             return (
-              <div
-                key={id}
-                className={
-                  "mb-2 flex flex-row justify-between border-slate-600/30 px-5 sm:border-y-0 sm:py-1 md:border-y md:py-2"
-                }
-              >
-                <div>
-                  {categories === "coding" ? (
-                    <FcWorkflow className="h-5 w-5" />
-                  ) : (
-                    <FcDislike className="h-5 w-5" />
-                  )}
-                </div>
-                <Link href={`/posts/${id}`}>
-                  <a className="no-underline">{title}</a>
-                </Link>
-              </div>
+              <Link key={id} href={`/posts/${id}`}>
+                <a
+                  className={
+                    "mb-2 flex flex-row justify-between border-slate-600/30 px-5 no-underline sm:border-y-0 sm:py-1 md:border-y md:py-2"
+                  }
+                >
+                  <div>
+                    {categories === "coding" ? (
+                      <FcWorkflow className="h-5 w-5" />
+                    ) : (
+                      <FcDislike className="h-5 w-5" />
+                    )}
+                  </div>
+                  <div>{title}</div>
+                </a>
+              </Link>
             );
           })}
       </div>
