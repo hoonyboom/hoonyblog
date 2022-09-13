@@ -9,3 +9,8 @@ export { default as Logo } from "./Logo";
 export { default as MdxComponents } from "./MdxComponents";
 export { default as Pagination } from "./Pagination";
 export { default as Seo } from "./Seo";
+export { default as Profile } from "./Profile";
+export { default as CategoryTabs } from "./CategoryTabs";
+export { default as TabTracker } from "./TabTracker";
+export { default as TagList } from "./TagList";
+export { default as RecentPosts } from "./RecentPosts";

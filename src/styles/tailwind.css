@@ -20,7 +20,7 @@
     @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply py-4 font-heading text-lg font-bold text-waterMelon dark:text-cyan-200/90;
+    @apply py-4 font-heading text-lg font-bold;
   }
   h4 {
     @apply pt-4 pb-2 font-heading text-md font-bold text-emerald-600;
