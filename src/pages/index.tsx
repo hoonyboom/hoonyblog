@@ -41,9 +41,10 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const [limit, setLimit] = useState(7);
   const offset = (page - 1) * limit;
   // 이달의 글
-  const thisMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+  const thisMonth =
+    new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
   const recentPosts = allPostsData.filter(({ date }) => {
-    return date.substring(5, 7) === thisMonth;
+    return date.substring(0, 7) === thisMonth;
   });
 
   useEffect(() => {
@@ -60,6 +61,9 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     // setLimit(7);
     // setPage(1);
   }, [selectedData]);
+  useEffect(() => {
+    if (sessionStorage.Page) sessionStorage.removeItem("Page");
+  }, []);
 
   return (
     <Layout home siteTitle="혜조로그">
@@ -80,10 +84,10 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           <div className="flex basis-1/12 items-center justify-center pl-3">
             {isCategory === "writing" ? (
               <FcDislike className="h-6 w-6" />
-            ) : isCategory === "coding" ? (
-              <FcWorkflow className="h-6 w-6" />
-            ) : (
+            ) : isCategory === "reading" ? (
               <FcPuzzle className="h-6 w-6" />
+            ) : (
+              <FcWorkflow className="h-6 w-6" />
             )}
           </div>
           <div className="writing-vertical basis-11/12 pl-3">
@@ -93,17 +97,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           </div>
         </article>
         {/* 페이지네이션 */}
-        <footer>
-          {
-            <Pagination
-              total={selectedData?.length}
-              limit={limit}
-              page={page}
-              setLimit={setLimit}
-              setPage={setPage}
-            />
-          }
-        </footer>
+        <footer></footer>
       </section>
     </Layout>
   );

@@ -26,7 +26,7 @@ export default function Layout({
     () =>
       throttle(() => {
         const currentScrollY = globalThis.scrollY;
-        if (currentScrollY > beforeScrollY.current && currentScrollY > 100) {
+        if (currentScrollY > beforeScrollY.current && currentScrollY > 60) {
           setNavShow(true);
           console.log("스크롤 내려가는 중", currentScrollY);
         } else {
@@ -37,6 +37,7 @@ export default function Layout({
       }, 300),
     [beforeScrollY],
   );
+
   useEffect(() => {
     globalThis.addEventListener("scroll", scrollSensor);
     return () => globalThis.removeEventListener("scroll", scrollSensor);

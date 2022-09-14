@@ -13,7 +13,7 @@ export default function CategoryTabs({ selectedCategory, i }: TabsProps) {
   const onClick = () => {
     tapSound();
     router.push({ query: { category: selectedCategory } }, "/");
-    localStorage.setItem("watchedTab", JSON.stringify({ val: i }));
+    sessionStorage.setItem("watchedTab", String(i));
   };
 
   return (

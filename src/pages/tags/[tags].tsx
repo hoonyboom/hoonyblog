@@ -1,9 +1,10 @@
-import { Layout, MdxComponents } from "@/components";
+import { Layout, MdxComponents, Pagination } from "@/components";
 import { getAllPostTags, getSortedPostsData } from "@/lib/posts";
 import { PostsProps } from "@/pages/index";
 import Link from "next/link";
 import useSound from "use-sound";
 import { filter } from "lodash";
+import { useEffect, useState } from "react";
 
 interface PathProps {
   params: {
@@ -48,6 +49,11 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
   const summary = filter(allTagsData, "excerpt");
   const banner = filter(allTagsData, "image");
 
+  const [limit, setLimit] = useState(6);
+  const [page, setPage] = useState(0);
+  const total = allTagsData.length;
+  const offset = page * limit;
+
   return (
     <Layout siteTitle={`${tag} 〰혜조로그`}>
       <h1 className="pt-16 pl-4">{tag}</h1>
@@ -62,10 +68,15 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
         </div>
       </div>
       <div className="text-base">
-        {allTagsData.map(({ id, title, date, description }) => (
-          <Posts key={id} id={id} title={title} date={date} description={description} />
-        ))}
+        {allTagsData
+          .slice(offset, offset + limit)
+          .map(({ id, title, date, description }) => (
+            <Posts key={id} id={id} title={title} date={date} description={description} />
+          ))}
       </div>
+
+      {/* 페이지네이션 */}
+      <Pagination total={total} limit={limit} page={page} setPage={setPage} />
     </Layout>
   );
 }

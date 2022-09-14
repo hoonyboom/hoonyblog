@@ -1,4 +1,4 @@
-import { /* useState, */ Dispatch, SetStateAction } from "react";
+import { /* useState, */ Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MdxComponents } from "@/components";
 
 interface PaginationProps {
@@ -6,38 +6,49 @@ interface PaginationProps {
   limit: number;
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
-  setLimit: Dispatch<SetStateAction<number>>;
 }
 
-export default function Pagination({
-  total,
-  page,
-  // setPage,
-  limit,
-  setLimit,
-}: PaginationProps) {
-  // const [isActive, setIsActive] = useState([true]);
+export default function Pagination({ total, page, setPage, limit }: PaginationProps) {
+  const [isActive, setIsActive] = useState<boolean[]>([true]);
+  const onClick = (index: number) => {
+    setPage(prev => prev + index);
+    const copy = [...isActive];
+    const watcher = copy.findIndex(val => val === true);
+    copy[watcher] = false;
+    copy[watcher + index] = true;
+    setIsActive(copy);
+    sessionStorage.setItem("Page", String(watcher + index));
+  };
+  useEffect(() => {
+    if (sessionStorage.getItem("Page")) {
+      const watchedPage = Number(sessionStorage.getItem("Page"));
+      const tracker = Array(watchedPage).fill(false);
+      tracker[watchedPage] = true;
+      setPage(watchedPage);
+      setIsActive(tracker);
+    }
+  }, []);
 
   let numPages = 0;
-  if (typeof total === "number") numPages = Math.ceil(total / limit);
+  if (total) numPages = Math.ceil(total / limit);
 
-  const { Note } = MdxComponents;
   return (
-    <div className="flex flex-row justify-center space-x-5 pb-10 text-md">
-      {/* <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+    <div className="flex justify-center space-x-5 pt-8 text-base">
+      <button onClick={() => onClick(-1)} disabled={page === 0}>
         &lt;
-      </button> */}
-      {/* {Array(numPages)
+      </button>
+      {Array(numPages)
         .fill(undefined)
-        .map((undef, i) => {
+        .map((__, i) => {
           return (
             <button
               key={i}
               onClick={() => {
-                setPage(i + 1);
-                const copy = Array(numPages).fill(false);
+                setPage(i);
+                const copy: boolean[] = Array(numPages).fill(false);
                 copy[i] = true;
                 setIsActive(copy);
+                localStorage.setItem("Page", String(i));
               }}
               disabled={isActive[i]}
               className={isActive[i] ? "underline underline-offset-4" : ""}
@@ -45,22 +56,19 @@ export default function Pagination({
               {i + 1}
             </button>
           );
-        })} */}
-      {/* <button onClick={() => setPage(page + 1)} disabled={page === numPages}>
+        })}
+      <button onClick={() => onClick(1)} disabled={page === numPages - 1}>
         &gt;
-      </button> */}
+      </button>
 
       {/* 한무 스크롤 */}
-      <button
+      {/* <button
         onClick={() => {
           setLimit((prev: number) => prev + 7);
         }}
         className={page === numPages ? "hidden text-base" : ""}
       >
-        <Note type="bracket" brackets={["left", "right"]} strokeWidth={2}>
-          more
-        </Note>
-      </button>
+      </button> */}
     </div>
   );
 }

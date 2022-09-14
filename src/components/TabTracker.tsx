@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 export default function TabTracker({ initCategory }: { initCategory: boolean }) {
   const [translateX, setTranslateX] = useState("0%");
   useEffect(() => {
-    if (localStorage.watchedTab) {
-      const xValue = JSON.parse(localStorage.getItem("watchedTab") as string).val;
+    if (sessionStorage.watchedTab) {
+      const xValue = sessionStorage.getItem("watchedTab");
       setTranslateX(`${xValue}00%`);
     }
   }, [initCategory]);

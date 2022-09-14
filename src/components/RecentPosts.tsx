@@ -10,14 +10,14 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   const [beepSound] = useSound("/sounds/beep.mp3", { volume: 0.6 });
   const [isClick, setIsClick] = useState(false);
   const [animation, setAnimation] = useState(false);
-  const Month = new Date().getMonth() + 1;
+  const thisMonth = new Date().getMonth() + 1;
 
   useEffect(() => {
     setAnimation(!animation);
   }, [isClick]);
   useEffect(() => {
-    if (localStorage.getItem("Monthly")) {
-      const data = JSON.parse(localStorage.getItem("Monthly") as string).toggle;
+    if (localStorage.getItem("RecentPots")) {
+      const data = JSON.parse(localStorage.getItem("RecentPots") as string).toggle;
       setIsClick(data);
     }
   }, []);
@@ -27,11 +27,11 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
       <div
         onClick={() => {
           setIsClick(!isClick);
-          localStorage.setItem("Monthly", JSON.stringify({ toggle: !isClick }));
+          localStorage.setItem("RecentPots", JSON.stringify({ toggle: !isClick }));
         }}
         className="relative my-2 flex place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
       >
-        <div className="grow text-center">{Month}月</div>
+        <div className="grow text-center">{thisMonth}月</div>
         <div className="absolute right-2" onClick={() => beepSound()}>
           <BsChevronDown
             className={`duration-700 ${!animation ? "-rotate-180" : "rotate-0"}`}
