@@ -37,7 +37,7 @@ export const Img = (props: ImageProps) => {
       height={9999}
       quality={100}
       alt="image"
-      className="my-3 h-auto w-auto rounded-xl drop-shadow-xl hover:cursor-none"
+      className="my-3 h-auto w-auto rounded-xl drop-shadow-xl"
       {...props}
     />
   );

@@ -11,7 +11,7 @@ export default function CommandPaletteIcon() {
     <>
       <button
         aria-label="Categories"
-        className="relative flex items-center justify-center rounded-md hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-zinc-800/70 dark:hover:text-gray-100"
+        className="relative flex items-center justify-center rounded-md hover:bg-gray-300/30 dark:hover:bg-zinc-800/70"
       >
         <IoCloud
           onMouseDown={() => beep()}

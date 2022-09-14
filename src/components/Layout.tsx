@@ -71,9 +71,9 @@ export default function Layout({
             <article>{children}</article>
             {!home && (
               <footer className="mt-16 ml-5 h-20 text-base md:ml-1">
-                <div onClick={() => router.back()} className="cursor-pointer">
+                <a onClick={() => router.back()} className="no-underline">
                   ← Previous
-                </div>
+                </a>
               </footer>
             )}
           </Twemoji>

@@ -17,8 +17,8 @@ export default function Darkmode() {
   return (
     <button
       aria-label="Darkmode Switch"
-      className={`rounded-md transition-transform duration-300 hover:bg-gray-300/30 hover:text-gray-900
-      dark:hover:bg-zinc-800/30 dark:hover:text-gray-100 md:inline
+      className={`rounded-md transition-transform duration-300 hover:bg-gray-300/30
+      dark:hover:bg-zinc-800/30 md:inline
       ${rotate ? "rotate-0" : "rotate-45"}
       `}
     >

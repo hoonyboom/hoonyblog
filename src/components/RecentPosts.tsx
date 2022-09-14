@@ -23,7 +23,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   }, []);
 
   return (
-    <div className="mb-px cursor-pointer sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
+    <div className="mb-px cursor-fancyHover sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
       <div
         onClick={() => {
           setIsClick(!isClick);

@@ -33,8 +33,12 @@ module.exports = {
       colors: {
         waterMelon: "#ED4C6A",
         orange: "#ffa500",
+        sea: "rgba(9, 132, 227, 0.996)",
       },
-      backgroundColor: {},
+      cursor: {
+        fancy: "url('/images/2022/autumm/cursor.png'), default",
+        fancyHover: "url('/images/2022/autumm/cursor_hover.png'), pointer",
+      },
     },
     screens: {
       sm: "375px",
