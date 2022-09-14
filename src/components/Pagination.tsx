@@ -10,31 +10,31 @@ interface PaginationProps {
 
 export default function Pagination({ total, page, setPage, limit }: PaginationProps) {
   const [isActive, setIsActive] = useState<boolean[]>([true]);
-  const onClick = (index: number) => {
-    setPage(prev => prev + index);
+  const prevNext = (index: -1 | 1) => {
+    setPage(now => now + index);
     const copy = [...isActive];
-    const watcher = copy.findIndex(val => val === true);
-    copy[watcher] = false;
-    copy[watcher + index] = true;
+    const nowWatched = copy.findIndex(val => val === true);
+    copy[nowWatched] = false;
+    copy[nowWatched + index] = true;
     setIsActive(copy);
-    sessionStorage.setItem("Page", String(watcher + index));
+    sessionStorage.setItem("Page", String(nowWatched + index));
   };
   useEffect(() => {
     if (sessionStorage.Page) {
       const watchedPage = Number(sessionStorage.getItem("Page"));
-      const tracker = Array(watchedPage + 1).fill(false);
-      tracker[watchedPage] = true;
+      const pageTracker = Array(watchedPage + 1).fill(false);
+      pageTracker[watchedPage] = true;
       setPage(watchedPage);
-      setIsActive(tracker);
+      setIsActive(pageTracker);
     }
   }, []);
+
   let numPages = 0;
   if (total) numPages = Math.ceil(total / limit);
-  console.log(page, "페이지번호");
-  console.log(isActive, "액티브");
+
   return (
     <div className="flex justify-center space-x-5 pt-8 text-base">
-      <button onClick={() => onClick(-1)} disabled={page === 0}>
+      <button onClick={() => prevNext(-1)} disabled={page === 0}>
         &lt;
       </button>
       {Array(numPages)
@@ -57,7 +57,7 @@ export default function Pagination({ total, page, setPage, limit }: PaginationPr
             </button>
           );
         })}
-      <button onClick={() => onClick(1)} disabled={page === numPages - 1}>
+      <button onClick={() => prevNext(1)} disabled={page === numPages - 1}>
         &gt;
       </button>
 

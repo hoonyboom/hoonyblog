@@ -41,7 +41,7 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
 
   return (
     <Layout
-      siteTitle={`${frontmatter.title} 〰 혜조로구`}
+      siteTitle={`${frontmatter.title} 〰 혜조로그`}
       tags={frontmatter.tags}
       category={frontmatter.categories}
     >
