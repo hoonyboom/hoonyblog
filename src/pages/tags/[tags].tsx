@@ -49,13 +49,13 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
   const summary = filter(allTagsData, "excerpt");
   const banner = filter(allTagsData, "image");
 
-  const [limit, setLimit] = useState(6);
   const [page, setPage] = useState(0);
   const total = allTagsData.length;
+  const limit = 6; // 손수 건드려야 할 부분
   const offset = page * limit;
 
   return (
-    <Layout siteTitle={`${tag} 〰혜조로그`}>
+    <Layout siteTitle={`${tag} 〰 혜조로그`}>
       <h1 className="pt-16 pl-4">{tag}</h1>
       <div className="flex justify-between pt-7 pl-3 pb-12">
         <p className="text-base sm:basis-1/2 md:basis-2/5">
@@ -76,7 +76,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
       </div>
 
       {/* 페이지네이션 */}
-      <Pagination total={total} limit={limit} page={page} setPage={setPage} />
+      <Pagination numPages={Math.ceil(total / limit)} page={page} setPage={setPage} />
     </Layout>
   );
 }
