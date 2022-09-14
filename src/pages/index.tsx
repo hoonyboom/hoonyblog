@@ -35,7 +35,13 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   const isCategory = useRouter().query.category;
   const [selectedData, setSelectedData] = useState<PostsProps[]>();
   const [initCategory, setInitCategory] = useState(false);
-  const deleteOverlapCategories = uniqBy(allPostsData, "categories");
+  const deleteOverlapCategories = uniqBy(allPostsData, "categories").sort(
+    ({ categories: a }, { categories: b }) => {
+      if (a > b) return 1;
+      else if (a < b) return -1;
+      else return 0;
+    },
+  );
   // 페이지네이션
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(7);
