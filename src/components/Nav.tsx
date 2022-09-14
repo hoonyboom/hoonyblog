@@ -20,6 +20,7 @@ export default function Nav({ navShow }: { navShow: boolean }) {
               height={40}
               width={40}
               alt="프로필"
+              onClick={() => sessionStorage.setItem("watchedTab", String(0))}
             />
           </a>
         </Link>

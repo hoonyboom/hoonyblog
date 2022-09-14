@@ -20,18 +20,18 @@ export default function Pagination({ total, page, setPage, limit }: PaginationPr
     sessionStorage.setItem("Page", String(watcher + index));
   };
   useEffect(() => {
-    if (sessionStorage.getItem("Page")) {
+    if (sessionStorage.Page) {
       const watchedPage = Number(sessionStorage.getItem("Page"));
-      const tracker = Array(watchedPage).fill(false);
+      const tracker = Array(watchedPage + 1).fill(false);
       tracker[watchedPage] = true;
       setPage(watchedPage);
       setIsActive(tracker);
     }
   }, []);
-
   let numPages = 0;
   if (total) numPages = Math.ceil(total / limit);
-
+  console.log(page, "페이지번호");
+  console.log(isActive, "액티브");
   return (
     <div className="flex justify-center space-x-5 pt-8 text-base">
       <button onClick={() => onClick(-1)} disabled={page === 0}>
@@ -48,7 +48,7 @@ export default function Pagination({ total, page, setPage, limit }: PaginationPr
                 const copy: boolean[] = Array(numPages).fill(false);
                 copy[i] = true;
                 setIsActive(copy);
-                localStorage.setItem("Page", String(i));
+                sessionStorage.setItem("Page", String(i));
               }}
               disabled={isActive[i]}
               className={isActive[i] ? "underline underline-offset-4" : ""}
