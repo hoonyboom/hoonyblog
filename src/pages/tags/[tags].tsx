@@ -76,7 +76,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
       </div>
 
       {/* 페이지네이션 */}
-      <Pagination numPages={Math.ceil(total / limit)} page={page} setPage={setPage} />
+      <Pagination limit={limit} total={total} page={page} setPage={setPage} />
     </Layout>
   );
 }

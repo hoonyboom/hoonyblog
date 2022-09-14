@@ -1,12 +1,14 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface PaginationProps {
-  numPages: number;
+  numPages?: number;
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
+  limit: number;
+  total: number;
 }
 
-export default function Pagination({ page, setPage, numPages }: PaginationProps) {
+export default function Pagination({ page, setPage, limit, total }: PaginationProps) {
   const [isActive, setIsActive] = useState<boolean[]>([true]);
 
   const prevNext = (index: -1 | 1) => {
@@ -21,13 +23,14 @@ export default function Pagination({ page, setPage, numPages }: PaginationProps)
   useEffect(() => {
     if (sessionStorage.Page) {
       const watchedPage = Number(sessionStorage.getItem("Page"));
+      setPage(watchedPage);
       const pageTracker = Array(watchedPage + 1).fill(false);
       pageTracker[watchedPage] = true;
-      setPage(watchedPage);
       setIsActive(pageTracker);
     }
   }, []);
 
+  const numPages = Math.ceil(total / limit);
   return (
     <>
       {numPages > 1 && (
