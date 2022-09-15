@@ -16,8 +16,8 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
     setAnimation(!animation);
   }, [isClick]);
   useEffect(() => {
-    if (localStorage.getItem("RecentPots")) {
-      const data = JSON.parse(localStorage.getItem("RecentPots") as string).toggle;
+    if (localStorage.getItem("RecentPosts")) {
+      const data = JSON.parse(localStorage.getItem("RecentPosts") as string).toggle;
       setIsClick(data);
     }
   }, []);
@@ -27,7 +27,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
       <div
         onClick={() => {
           setIsClick(!isClick);
-          localStorage.setItem("RecentPots", JSON.stringify({ toggle: !isClick }));
+          localStorage.setItem("RecentPosts", JSON.stringify({ toggle: !isClick }));
           beepSound();
         }}
         className="relative my-2 flex place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
@@ -40,7 +40,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
         </div>
       </div>
       <div
-        className={`grid gap-x-5 text-base duration-1000 sm:grid-cols-1 md:grid-cols-2 ${
+        className={`grid gap-x-5 text-base transition-all duration-1000 sm:grid-cols-1 md:grid-cols-2 ${
           !animation ? "opacity-100" : "opacity-0"
         }`}
       >

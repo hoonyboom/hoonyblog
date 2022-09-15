@@ -9,8 +9,6 @@ interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
   href: string;
 }
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
-  text?: string;
-  css?: string;
   className?: string;
   children?: React.ReactNode;
 }
@@ -39,7 +37,9 @@ export const Img = (props: ImageProps) => {
       alt="image"
       className="my-3 h-auto w-auto rounded-xl drop-shadow-xl"
       {...props}
-    />
+    >
+      <figcaption className="text-center text-sm">{props.children}</figcaption>
+    </Image>
   );
 };
 
@@ -73,7 +73,6 @@ export const Note = (props: NotationProps) => {
       {...props}
     >
       {props.children}
-      {!props.children && <span className={props.css}>{props.text}</span>}
     </RoughNotation>
   );
 };

@@ -39,6 +39,9 @@ module.exports = {
         fancy: "url('/images/2022/autumm/cursor.png'), default",
         fancyHover: "url('/images/2022/autumm/cursor_hover.png'), pointer",
       },
+      backgroundImage: {
+        highlightGreen: "linear-gradient(transparent 60%, rgba(143, 249, 22, 0.5), 60%)",
+      },
     },
     screens: {
       sm: "375px",
