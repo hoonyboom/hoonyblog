@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
   *::-webkit-scrollbar {
-    display: none;
+    @apply hidden;
   }
   ::selection {
     @apply bg-sea text-white;

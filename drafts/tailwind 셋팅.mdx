@@ -3,7 +3,7 @@ title: "Tailwind Setting (with Next.js)"
 date: "2022-09-02"
 categories: "coding"
 tags: "테일윈드"
-description: "Init:"
+description: "Init"
 image: "/images/2022/summer/tailwind_image.png"
 ---
 
@@ -64,8 +64,8 @@ module.exports = {
 ```zsh 설명서
 Tailwind는 공홈 설명이 정말 잘돼있다.
 그래서 클래스마다 어떤 css가 구현된 건지
-기회삼아 찬찬히 살펴보며 공부했다.
-아무리 편리함의 노예라지만 실력은 늘려야 하니까.
+찬찬히 살펴보며 공부했다.
+아무리 편리함의 노예라지만 실력은 늘려야 하니까ㅎ
 
 만약 VSCode 사용자라면 확장프로그램에서
 > Tailwind CSS IntelliSense 를 반드시 설치하자.
@@ -162,7 +162,7 @@ module.exports = {
 @tailwind base;
 @layer base {
   *::-webkit-scrollbar {
-    display: none;
+    @apply hidden;
   }
   html,
   body {

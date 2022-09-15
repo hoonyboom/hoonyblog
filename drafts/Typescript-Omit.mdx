@@ -3,7 +3,7 @@ title: "Typescript <Omit>"
 date: "2022-07-21"
 categories: "coding"
 tags: "타입스크립트"
-description: "Init:"
+description: "Init"
 excerpt: "타입스크립트는 뭐뭐뭐뭐다"
 image: "/images/2022/summer/typescript_image.png"
 ---
@@ -68,7 +68,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 ```
 <br/><br/><br/>
 ### 제네릭이 어떻게 짜여있길래?
-이를 이해하기 위해선 다른 유틸 타입인 <a>Pick</a> 과 <a>Exclude</a> 의 쓰임을 먼저 알아야 했다. 내가 단박에 파악할 깜냥은 안 돼서 다른 분의 설명을 참고했고, 많은 도움이 됐다. 자세한 설명이라면 그분 걸 참고하는 게 나을 것 같다. 아무래도 나는 내가 적고 내가 이해하는 데 좀 더 주안을 두기 때문이다.  
+이를 이해하기 위해선 다른 유틸 타입인 <a>Pick</a> 과 <a>Exclude</a> 의 쓰임을 먼저 알아야 했다. 내가 단박에 파악할 깜냥은 안 돼서 다른 분의 설명을 참고했고, 많은 도움이 됐다. 자세한 설명이라면 그분 걸 참고하는 게 나을 것 같다. 나는 내가 적고 내가 이해하는 데 아무래도 좀 더 주안을 두고 있기 때문이다.  
 <br/>
 아무튼 말로 풀면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 <a>Pick`<`대상, +조건`>`</a>에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit인 것. 그리고 그런 부정논리를 만들어주고 있는 녀석이 Exclude일 뿐이다.  
 간략하게나마 이를 살펴보자
