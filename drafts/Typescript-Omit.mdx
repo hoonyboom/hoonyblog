@@ -19,7 +19,7 @@ image: "/images/2022/summer/typescript_image.png"
 
 ### 발단
 간단히 말해 부모타입에서 필수로 요했던 children을 내 쪽에서 옵셔널하게 바꾸면서 생긴 오류였다 🤔   
-interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지만, 이렇듯 기존값을 뭔가로 다르게 덮어쓰면 돌을 던진다.
+interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지만, 이렇듯 뭔가로 기존값을 다르게 덮어쓰면 돌을 던진다.
 <CH.Scrollycoding rows={11}>
   문제가 된 부분 👾
   ```ts MdxComponents.tsx focus=4 
@@ -54,7 +54,7 @@ interface는 기존 정의에 새로운 값을 추가하는 데엔 관대하지�
 
 ### 방법은 Typescript의 'Omit'
 - 타입스크립트의 유틸타입 중 하나
-- 타입을 extends 해올 때 <Note animationDelay={700}>특정키 값을 제외</Note>하고 상속받는다
+- 타입을 extends 해올 때 <Note animationDelay={1000}>특정키 값을 제외</Note>하고 상속받는다
 <br/>
 공식문서 둘러볼 때 이놈은 필히 쓰겠다 싶더랬다. 사용법은 간단하다.
 ```ts Mdx....tsx mark=2[33:68]
@@ -70,7 +70,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 ### 제네릭이 어떻게 짜여있길래?
 이를 이해하기 위해선 다른 유틸 타입인 <a>Pick</a> 과 <a>Exclude</a> 의 쓰임을 먼저 알아야 했다. 내가 단박에 파악할 깜냥은 안 돼서 다른 분의 설명을 참고했고, 많은 도움이 됐다. 자세한 설명이라면 그분 걸 참고하는 게 나을 것 같다. 아무래도 나는 내가 적고 내가 이해하는 데 좀 더 주안을 두기 때문이다.  
 <br/>
-아무튼 말로 풀면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 <a>Pick`<`대상, 조건`>`</a>에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit인 것. 그리고 그런 부정논리를 만들어주고 있는 녀석이 Exclude일 뿐이다.  
+아무튼 말로 풀면 Omit은 Pick의 반대, 부정형이다. Pick이 제네릭을 통해 조건에 해당되는 값을 가져온다면 Omit은 그것을 제외한 모든 값을 들고 온다. 구조는 동일하다. 단지 <a>Pick`<`대상, +조건`>`</a>에서 '플러스'였던 조건을 '-조건'으로 바꾼 것이 Omit인 것. 그리고 그런 부정논리를 만들어주고 있는 녀석이 Exclude일 뿐이다.  
 간략하게나마 이를 살펴보자
 <br/>
 <br/>
@@ -81,7 +81,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
   일련의 유니온 타입이 나열되어 있을 때 특정 타입을 제외하여 돌려준다. 가령 제네릭의 첫번째 인자가 "A" | "B" | "C" 를 나열한 타입이라고 치자. 그러면 두번째 인자로 들어오는 "B"는 "A" | "C" 를 반환하게 만든다.  
     - _`type Exclude<T, K> = T extends K ? never : T`_
     - extends는 이꼴(=)이다. 조건문에서는 '겹치면', 또는 '속하면'으로 읽어주는 편이 낫다.  
-    : "T중에 K랑 겹치는 애면 없는 셈치고 나머지만 뽑아주라"
+    : "T중에 K랑 겹치는 애면 없는 셈치고 나머지만 남겨주라"
 <br/>
 <br/>
   

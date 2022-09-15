@@ -44,22 +44,22 @@ Mdx는 Md 파일에 Jsx적 요소를 결합한 확장형식이다. 중간에서 
 기타 추가적인 기능은 remark와 rehype의 부대 라이브러리를 통해 보강했다. 가령 중요하게 생각했던 코드 구문 하이라이트의 경우 remark-prism과 code-hike(beta)를 연동시켜 구현했다.
 
 <br /> 당연한 말이지만 마크다운 형식의 글이기 때문에 코드 에디터를 고집할 이유가 없다. 율리시스도
-IA-Writer도, 꾸준히 쓸 수만 있다면 뭐든 괜찮을 듯싶다.
+IA-Writer도, 꾸준히 쓸 수만 있다면 뭐든 괜찮을 것 같다.
 
 ```mdx 예시.mdx
 ---
-title: "Learing Graphql"
-date: "2022-08-25"
-categories: "coding"
-tags: "그큐엘"
-description: "Init:"
-image: "/images/2022/summer/graphql_image.png"
+title: "그렇게 살아가는 것"
+date: "2022-08-26"
+categories: "writing"
+tags: "음악"
+description: "허회경"
+image: "/images/2022/summer/composition.png"
 ---
 
-### API가 무엇이오?
-API: Application Programming Interface의 약자  
-API는 어플리케이션 사이의 소통을 포괄적으로 일컫는 말이다.  
-...
+<Youtube src={'https://www.youtube.com/embed/cHC0ghVev1E'} />
+<Img src={"/images/2022/summer/screen_shot_1.png"} priority/>
+
+으핳핳..🤦🏼‍♀️
 ```
 
 <br />
@@ -91,7 +91,8 @@ Yarn berry를 처음으로 적용했다. 여태 yarn classic을 쓰며 문제도
 <br/>
 yarn berry는 모듈 파일들을 압축된 형식으로 가진다. 참조가 필요할 때 위치를 찾아내 이를 들춰보는 방식이다. (압축됐기에) 작은 용량을 가지며, (트리형 참조가 아니기 때문에) 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다.  
 <br/>
-작은 용량의 이점은 모듈까지 통째로 레포지토리에 올려 관리하게도 한다. 이를 소위 제로-인스톨이라고 부른다. 클론하는 사용자는 package.json의 내용을 따로 인스톨할 필요가 없게 된다. 하지만 내 경우 혼자 쓰는, 그리고 작은 사이트라 그런지 극적인 이점을 체감하긴 어려웠다. 오히려 단점으로 지목되는 호환성 문제 때문에 발목잡히기도 했는데, prettier가 자신의 plugin을 읽을 때 node_modules만을 색인하기 때문에 pnp 방식에서는 아래처럼 그를 찾아 직접 내보내야 했다.
+작은 용량의 이점은 모듈까지 통째로 레포지토리에 올려 관리하게도 한다. 이를 제로-인스톨 방식이라 부른다. 클론하는 사용자는 package.json의 내용을 더이상 따로 인스톨할 필요가 없다.  
+하지만 내 경우 혼자 쓰는, 작은 사이트라 그런지 극적인 이점을 체감하긴 어려웠다. 오히려 단점으로 지목되는 호환성 문제 때문에 발목잡혔는데, prettier가 자신의 plugin을 읽을 때 node_modules만을 색인했기 때문에, PnP 방식에서는 아래처럼 그를 직접 찾아 내보내야 한다.
 
 <CH.Code>
 ```js .prettierrc.js
@@ -110,6 +111,7 @@ nodeLinker: node-modules
 ```
 </CH.Code>
 <br/>
-ㄴ. getStaticProps / getStaticPaths  
+추가예정(~22.09.20)
+ㄴ. getStaticProps / getStaticPaths 💥💥
 ㄷ. 페이지네이션  
 ㄹ. 최적화 : 스크롤링 디바운스, SEO, 웹폰트 경량화(fontTools)
