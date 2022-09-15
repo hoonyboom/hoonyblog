@@ -88,7 +88,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         {/* 태그 리스트 */}
         <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur dark:border-blue-900">
           <div className="flex basis-1/12 items-center justify-center pl-3">
-            {isCategory === "writing" ? (
+            {isCategory === "diarying" ? (
               <FcDislike className="h-6 w-6" />
             ) : isCategory === "reading" ? (
               <FcPuzzle className="h-6 w-6" />
