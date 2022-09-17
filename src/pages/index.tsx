@@ -1,53 +1,109 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { Layout, Date } from '@/components';
-import { siteTitle } from '@/components/layout';
-import { getSortedPostsData } from '@/lib/posts';
-import utilStyles from '@/styles/utils.module.css';
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { getSortedPostsData } from "@/lib/posts";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { uniqBy } from "lodash";
+import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
+import {
+  Layout,
+  Pagination,
+  Profile,
+  RecentPosts,
+  TabTracker,
+  CategoryTabs,
+  TagList,
+} from "@/components";
 
-interface PostsProps {
-  allPostsData: [
-    {
-      id: string,
-      date: string,
-      title: string, 
-    }
-  ]
+export interface PostsProps {
+  id: string;
+  title: string;
+  date: string;
+  categories: string;
+  tags: string;
+  description: string;
+  excerpt?: string;
+  image: string;
 }
-
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
-    props: {
-      allPostsData,
-    }
-  }
+    props: { allPostsData },
+  };
 }
 
-export default function Home({ allPostsData }: PostsProps) {
+export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
+  // 카테고리
+  const isCategory = useRouter().query.category;
+  const [selectedData, setSelectedData] = useState<PostsProps[]>();
+  const [initCategory, setInitCategory] = useState(false);
+  const deleteOverlapCategories = uniqBy(allPostsData, "categories").sort(
+    ({ categories: a }, { categories: b }) => {
+      if (a > b) return 1;
+      else if (a < b) return -1;
+      else return 0;
+    },
+  );
+  // 페이지네이션
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(7);
+  const offset = (page - 1) * limit;
+  // 이달의 글
+  const thisMonth =
+    new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
+  const recentPosts = allPostsData.filter(({ date }) => {
+    return date.substring(0, 7) === thisMonth;
+  });
+
+  useEffect(() => {
+    const initData = allPostsData.filter(({ categories }) => {
+      if (isCategory) return categories === isCategory;
+      return categories === "coding";
+    });
+    const deleteOverlapTags = uniqBy(initData, "tags");
+    setInitCategory(false);
+    setSelectedData(deleteOverlapTags);
+  }, [isCategory, allPostsData]);
+  useEffect(() => {
+    setInitCategory(true);
+    // setLimit(7);
+    // setPage(1);
+  }, [selectedData]);
+  useEffect(() => {
+    if (sessionStorage.Page) sessionStorage.removeItem("Page");
+  }, []);
+
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      
-      <section>
-        <h2 className="text-xxl">Blog</h2>
-        <ul>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className="mb-8 text-lg font-custom first:mt-5" key={id}>
-              <RoughNotation type="box" color="#62caf6" animationDuration={2000}  padding={10} strokeWidth={2} show={true}>
-                <Link href={`/posts/${id}`}>
-                  <a>{title}</a>
-                </Link>
-              </RoughNotation>
-              <br />
-              <small className='card'>
-                <Date dateString={date} />
-              </small>
-            </li>          ))}
-        </ul>
+    <Layout home siteTitle="혜조로그">
+      <Profile initCategory={initCategory} />
+      <RecentPosts recentPosts={recentPosts} />
+      <section className="sm:mx-5 md:mx-10">
+        {/* 카테고리 탭 */}
+        <div className="-mb-2 flex">
+          <TabTracker initCategory={initCategory} />
+        </div>
+        <div className="my-3 flex text-center font-heading">
+          {deleteOverlapCategories?.map(({ categories, id }, i) => (
+            <CategoryTabs selectedCategory={categories} key={id} i={i} />
+          ))}
+        </div>
+        {/* 태그 리스트 */}
+        <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur dark:border-blue-900">
+          <div className="flex basis-1/12 items-center justify-center pl-3">
+            {isCategory === "diarying" ? (
+              <FcDislike className="h-6 w-6" />
+            ) : isCategory === "reading" ? (
+              <FcPuzzle className="h-6 w-6" />
+            ) : (
+              <FcWorkflow className="h-6 w-6" />
+            )}
+          </div>
+          <div className="writing-vertical basis-11/12 pl-3">
+            {selectedData?.slice(offset, offset + limit).map(({ id, tags }) => (
+              <TagList key={id} tags={tags} />
+            ))}
+          </div>
+        </article>
+        {/* 페이지네이션 */}
+        <footer></footer>
       </section>
     </Layout>
   );

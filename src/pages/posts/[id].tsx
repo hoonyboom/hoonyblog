@@ -1,22 +1,19 @@
-import { Layout, Date } from '@/components';
-import { useMemo } from 'react';
-import { getMDXComponent } from 'mdx-bundler/client'
-import { getAllPostIds, getPostData } from '@/lib/posts';
+import { Layout, Date, MdxComponents } from "@/components";
+import { useEffect, useMemo, useState } from "react";
+import { getMDXComponent } from "mdx-bundler/client";
+import { getAllPostIds, getPostData } from "@/lib/posts";
 
-
-
-interface IdProps {
+export interface IdProps {
   params: {
-    id: string
-  }
-};
-
-interface mdxProps {
-  code: string,
+    id: string;
+  };
+}
+export interface MdxProps {
+  code: string;
   frontmatter: {
-    [keys: string]: string
-  }
-};
+    [keys: string]: string;
+  };
+}
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -24,8 +21,7 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-};
-
+}
 export async function getStaticProps({ params }: IdProps) {
   const postData = await getPostData(params.id);
   return {
@@ -33,22 +29,37 @@ export async function getStaticProps({ params }: IdProps) {
       ...postData,
     },
   };
-};
+}
 
+export default function BlogPost({ code, frontmatter }: MdxProps) {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const [fade, setFade] = useState(false);
+  useEffect(() => {
+    setFade(true);
+    return () => setFade(false);
+  }, []);
 
-export default function BlogPost({ code, frontmatter }: mdxProps) {
-  const Component = useMemo(
-    () => getMDXComponent(code), [code]
-  )
-  
   return (
-    <Layout>
-      <h1 className="text-xxxl text-center">{frontmatter.title}</h1>
-      <p>{frontmatter.description}</p>
-      <span className="text-base flex justify-center"><Date dateString={frontmatter.date} /></span>
-      <article className="text-base font-custom m-10">
-        <Component />
-      </article>
+    <Layout
+      siteTitle={`${frontmatter.title} 〰 혜조로그`}
+      tags={frontmatter.tags}
+      category={frontmatter.categories}
+    >
+      <div className={`duration-1000 ${fade ? "opacity-100" : "opacity-0"}`}>
+        <h1 className="text-center text-3xl sm:mt-20 md:mt-28">{frontmatter.title}</h1>
+        <div className="flex justify-center text-base leading-6 sm:mt-3 sm:mb-10 md:mt-5 md:mb-12">
+          <Date dateString={frontmatter.date} />
+        </div>
+        <article
+          className={`keep-all  m-10 font-content ${
+            frontmatter.categories === "diarying" || frontmatter.categories === "reading"
+              ? "word-arita text-mono tracking-tight md:leading-6"
+              : "text-base md:leading-8"
+          } sm:leading-6`}
+        >
+          <Component components={MdxComponents} />
+        </article>
+      </div>
     </Layout>
-  )
-};
+  );
+}

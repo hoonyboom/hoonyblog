@@ -1,0 +1,270 @@
+@tailwind base;
+@layer base {
+  *::-webkit-scrollbar {
+    @apply hidden;
+  }
+  ::selection {
+    @apply bg-sea text-white;
+  }
+  html,
+  body {
+    @apply h-full cursor-fancy scroll-p-8 scroll-smooth font-content;
+  }
+  a {
+    @apply cursor-fancyHover underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
+  }
+  h1 {
+    @apply font-heading text-3xl;
+  }
+  h2 {
+    @apply mb-5 font-heading text-2xl;
+  }
+  h3 {
+    @apply py-4 font-heading text-lg font-bold sm:mt-5 sm:mb-px md:mt-10 md:mb-2;
+  }
+  h4 {
+    @apply pt-4 pb-2 font-heading text-md font-bold text-emerald-600;
+  }
+  h5 {
+    @apply text-base;
+  }
+  ul {
+    @apply list-disc pt-1 pl-6;
+  }
+  ol {
+    @apply list-decimal pt-1 pl-6;
+  }
+  button {
+    @apply cursor-fancyHover;
+  }
+  button:disabled {
+    @apply cursor-fancy;
+  }
+}
+
+@tailwind components;
+@layer components {
+  #__next {
+    @apply h-full w-full;
+  }
+  .wrap {
+    @apply flex items-center justify-center;
+  }
+}
+
+@tailwind utilities;
+@layer utilities {
+  .keep-all {
+    word-break: keep-all;
+  }
+  .align-text-25 {
+    vertical-align: -25%;
+  }
+  .align-text-17 {
+    vertical-align: -17%;
+  }
+  .writing-vertical {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .word-arita {
+    word-spacing: 0.1em;
+  }
+  .word-tightest {
+    word-spacing: -0.85em;
+  }
+  .bg-stripes-gray {
+    background-color: #9ca3af1a;
+    background-image: linear-gradient(
+      135deg,
+      #6b728080 10%,
+      transparent 0,
+      transparent 50%,
+      #6b728080 0,
+      #6b728080 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-cyan {
+    background-color: #22d3ee1a;
+    background-image: linear-gradient(
+      135deg,
+      #06b6d480 10%,
+      transparent 0,
+      transparent 50%,
+      #06b6d480 0,
+      #06b6d480 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-sky {
+    background-color: #38bdf81a;
+    background-image: linear-gradient(
+      135deg,
+      #0ea5e980 10%,
+      transparent 0,
+      transparent 50%,
+      #0ea5e980 0,
+      #0ea5e980 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-blue {
+    background-color: #60a5fa1a;
+    background-image: linear-gradient(
+      135deg,
+      #3b82f680 10%,
+      transparent 0,
+      transparent 50%,
+      #3b82f680 0,
+      #3b82f680 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-indigo {
+    background-color: #818cf81a;
+    background-image: linear-gradient(
+      135deg,
+      #6366f180 10%,
+      transparent 0,
+      transparent 50%,
+      #6366f180 0,
+      #6366f180 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-violet {
+    background-color: #a78bfa1a;
+    background-image: linear-gradient(
+      135deg,
+      #8b5cf680 10%,
+      transparent 0,
+      transparent 50%,
+      #8b5cf680 0,
+      #8b5cf680 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-purple {
+    background-color: #c084fc1a;
+    background-image: linear-gradient(
+      135deg,
+      #a855f780 10%,
+      transparent 0,
+      transparent 50%,
+      #a855f780 0,
+      #a855f780 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-fuchsia {
+    background-color: #e879f91a;
+    background-image: linear-gradient(
+      135deg,
+      #d946ef80 10%,
+      transparent 0,
+      transparent 50%,
+      #d946ef80 0,
+      #d946ef80 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-pink {
+    background-color: #f472b61a;
+    background-image: linear-gradient(
+      135deg,
+      #ec489980 10%,
+      transparent 0,
+      transparent 50%,
+      #ec489980 0,
+      #ec489980 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+  .bg-stripes-white {
+    background-image: linear-gradient(
+      135deg,
+      hsla(0, 0%, 100%, 0.75) 10%,
+      transparent 0,
+      transparent 50%,
+      hsla(0, 0%, 100%, 0.75) 0,
+      hsla(0, 0%, 100%, 0.75) 60%,
+      transparent 0,
+      transparent
+    );
+    background-size: 7.07px 7.07px;
+  }
+}
+
+/*
+폰트설정:
+영어-한글-모노 */
+/* @font-face {
+  font-family: "IBMPlexSans";
+  src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+} */
+@font-face {
+  font-family: "Arita";
+  src: url("/fonts/Arita.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "LeferiPointSpecial";
+  src: url("/fonts/LeferiPointSpecial.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "NunitoSans";
+  src: url("/fonts/NunitoSans-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "IBMPlexMono";
+  src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+
+/* 
+note: Code Hike
+Scroll 전체화면 설정 */
+.ch-code-browser-content > div,
+.ch-code-browser-content > div > span {
+  @apply h-6 font-mono;
+}
+/* Scroll 제목&설명탭 설정 */
+.ch-scrollycoding-step-content p {
+  @apply text-sm leading-6;
+}
+/* 기본화면 설정 */
+.ch-code-scroll-content span,
+.ch-inline-code span {
+  @apply text-mono;
+}

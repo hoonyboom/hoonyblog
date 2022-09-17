@@ -1,0 +1,10 @@
+{
+  "cssTheme": "Catppuccin",
+  "theme": "obsidian",
+  "textFontFamily": "Arita-dotum4.0(OTF)",
+  "interfaceFontFamily": "",
+  "baseFontSize": 21,
+  "baseFontSizeAction": true,
+  "monospaceFontFamily": "Monaco for Powerline",
+  "translucency": false
+}

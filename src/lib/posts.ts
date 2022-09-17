@@ -1,56 +1,59 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { bundleMDX } from 'mdx-bundler';
-import remarkGfm from 'remark-gfm';
-import rehypePrism from 'rehype-prism/lib/src';
-
-interface meta {
-  [key: string]: string
-}
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { bundleMDX } from "mdx-bundler";
+import { remarkCodeHike } from "@code-hike/mdx";
+import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism/lib/src";
+import { theme } from "./search-light";
 
 // const blogDirectory = path.join(process.cwd(), "blog")
-const postsDirectory = path.join(process.cwd(), 'posts');
+const postsDirectory = path.join(process.cwd(), "drafts");
 
-export function getSortedPostsData() {
-  // Get file names under /posts
+export function getSortedPostsData(tags?: string) {
+  // /posts 폴더에 있는 파일 이름 가져오기
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.mdx$/, '');
-
-    // Read markdown file as string
+  const allPostsData = fileNames.map(fileName => {
+    // 파일 이름에서 ".mdx" 확장자명만 제거
+    const id = fileName.replace(/\.mdx$/, "");
+    // 마크다운 파일을 string으로 읽어들이기
     const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-
-    // Combine the data with the id
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    // gray-matter를 통해 마크다운 파일의 메타데어터 섹션 읽기
+    const matterResult = matter(fileContents).data;
+    // 데이터: id와 메타섹션의 정보
     return {
       id,
-      ...matterResult.data,
+      tags: matterResult.tags as string,
+      date: matterResult.date as string,
+      ...matterResult,
     };
   });
-  // Sort posts by date
-  return allPostsData.sort(({ date: a }: meta, { date: b }: meta) => {
-    if (a < b) {
-      return 1;
-    } else if (a > b) {
-      return -1;
-    } else {
-      return 0;
-    }
+
+  // tags 페이지의 경우
+  if (tags) {
+    const postsByTag = allPostsData.filter(post => post.tags === tags);
+    return postsByTag.sort(({ date: a }, { date: b }) => {
+      if (a < b) return 1;
+      else if (a > b) return -1;
+      else return 0;
+    });
+  }
+
+  // 없으면 그냥 날짜 최신순으로 정렬
+  return allPostsData.sort(({ date: a }, { date: b }) => {
+    if (a < b) return 1;
+    else if (a > b) return -1;
+    else return 0;
   });
 }
-
 
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
+  return fileNames.map(fileName => {
     return {
       params: {
-        id: fileName.replace(/\.mdx$/, ''),
+        id: fileName.replace(/\.mdx$/, ""),
       },
     };
   });
@@ -58,12 +61,25 @@ export function getAllPostIds() {
 
 export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.mdx`);
-  const source = fs.readFileSync(fullPath, 'utf8');
+  const source = fs.readFileSync(fullPath, "utf8");
 
-  const { code, frontmatter } = await bundleMDX({source: source, 
+  const { code, frontmatter } = await bundleMDX({
+    source,
     mdxOptions(options) {
-      options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm],
-      options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism]
+      options.remarkPlugins = [
+        remarkGfm,
+        [
+          remarkCodeHike,
+          {
+            theme,
+            showCopyButton: true,
+            staticMediaQuery: "not screen, (max-width: 768px)",
+          },
+        ],
+        ...(options?.remarkPlugins ?? []),
+      ];
+      options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
+
       return options;
     },
   });
@@ -72,5 +88,30 @@ export async function getPostData(id: string) {
     id,
     code,
     frontmatter,
-  }
+  };
 }
+
+export function getAllPostTags() {
+  const data = getSortedPostsData();
+  return data.map(post => {
+    return {
+      params: {
+        tags: post.tags,
+      },
+    };
+  });
+}
+
+// 카테고리 필터링
+// if (categories) {
+//   const categoriesData = allPostsData.filter(post => post.categories === categories);
+//   return categoriesData.sort(({ date: a }, { date: b }) => {
+//     if (a < b) return 1;
+//     else if (a > b) return -1;
+//     else return 0;
+//   });
+//   .map((post, i) => {
+//     return Object.assign(post, { index: i });
+//   })
+//   .reverse();
+// }

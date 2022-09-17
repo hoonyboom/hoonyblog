@@ -35,4 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 # 제외
-/src/pages/api/*
+.obsidian
+/.waiting/
