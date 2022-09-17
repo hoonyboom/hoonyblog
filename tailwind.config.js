@@ -33,20 +33,23 @@ module.exports = {
       colors: {
         waterMelon: "#ED4C6A",
         orange: "#ffa500",
-        sea: "rgba(9, 132, 227, 0.996)",
+        sea: "#0984e3fe",
+        lightGray: "#EAECEF",
+        darkGray: "#363636",
+        salary: "#CAFC9D",
       },
       cursor: {
         fancy: "url('/images/2022/autumm/cursor.png'), default",
         fancyHover: "url('/images/2022/autumm/cursor_hover.png'), pointer",
       },
-      backgroundImage: {
-        highlightGreen: "linear-gradient(transparent 60%, rgba(143, 249, 22, 0.5), 60%)",
+      scrollPadding: {
+        vmax: "14vmax",
       },
     },
     screens: {
       sm: "375px",
       md: "768px",
-      lg: "1024px",
+      lg: "1200px",
       xl: "1440px",
     },
     fontSize: {

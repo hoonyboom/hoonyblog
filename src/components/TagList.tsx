@@ -8,7 +8,12 @@ export default function TagList({ tags }: Partial<PostsProps>) {
   return (
     <div
       onClick={() => tabSound()}
-      className="md:word-tightest my-5 -ml-px border-x border-r-0 border-blue-800/20 px-2 backdrop-blur sm:h-40 md:h-52"
+      className={`${
+        navigator.userAgent.indexOf("Safari") !== -1 &&
+        navigator.userAgent.indexOf("Chrome") === -1
+          ? "word-safari tracking-wider"
+          : "word-tightest"
+      } my-5 -ml-px border-x border-r-0 border-blue-800/20 px-2 backdrop-blur sm:h-40 md:h-52`}
     >
       <Link href={`/tags/${tags}`}>
         <a className="text-md no-underline">{tags}</a>

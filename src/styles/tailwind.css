@@ -8,7 +8,7 @@
   }
   html,
   body {
-    @apply h-full cursor-fancy scroll-p-8 scroll-smooth font-content;
+    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content;
   }
   a {
     @apply cursor-fancyHover underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
@@ -40,6 +40,21 @@
   button:disabled {
     @apply cursor-fancy;
   }
+  code {
+    @apply mx-px rounded-sm bg-lightGray py-px px-1 dark:bg-darkGray;
+  }
+  blockquote {
+    @apply my-2 indent-3;
+  }
+  q {
+    @apply bg-highlight-salary dark:bg-highlight-bora;
+  }
+  figcaption {
+    @apply text-center text-sm;
+  }
+  hr {
+    @apply mb-8 sm:mb-6;
+  }
 }
 
 @tailwind components;
@@ -63,6 +78,10 @@
   .align-text-17 {
     vertical-align: -17%;
   }
+  #footnote-label,
+  .data-footnote-backref {
+    display: none;
+  }
   .writing-vertical {
     writing-mode: vertical-lr;
     text-orientation: upright;
@@ -73,8 +92,20 @@
   .word-arita {
     word-spacing: 0.1em;
   }
+  .word-safari {
+    word-spacing: 0.4em;
+  }
   .word-tightest {
     word-spacing: -0.85em;
+  }
+  .blue-dot {
+    width: 8px;
+    min-width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid rgb(102, 153, 204);
+    background-color: rgb(102, 153, 204);
+    margin: 8px;
   }
   .bg-stripes-gray {
     background-color: #9ca3af1a;
@@ -215,24 +246,32 @@
     );
     background-size: 7.07px 7.07px;
   }
+  ,
+  .bg-highlight-salary {
+    background-image: linear-gradient(
+      transparent calc(50% - 9px),
+      #cafc9d calc(50% - 9px)
+    );
+    background-size: 100% 220%;
+  }
+  .bg-highlight-bora {
+    background-image: linear-gradient(
+      transparent calc(50% - 9px),
+      #3d348b calc(50% - 9px)
+    );
+    background-size: 100% 220%;
+  }
 }
 
 /*
 폰트설정:
 영어-한글-모노 */
-/* @font-face {
-  font-family: "IBMPlexSans";
-  src: url("/fonts/IBMPlexSans-Regular.woff2") format("woff2");
-  font-weight: normal;
-  font-display: block;
-} */
 @font-face {
   font-family: "Arita";
   src: url("/fonts/Arita.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
-
 @font-face {
   font-family: "LeferiPointSpecial";
   src: url("/fonts/LeferiPointSpecial.woff2") format("woff2");

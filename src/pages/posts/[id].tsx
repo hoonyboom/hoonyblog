@@ -2,6 +2,7 @@ import { Layout, Date, MdxComponents } from "@/components";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
+import { H3 } from "@/components/MdxComponents";
 
 export interface IdProps {
   params: {
@@ -57,7 +58,7 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
               : "text-base md:leading-8"
           } sm:leading-6`}
         >
-          <Component components={MdxComponents} />
+          <Component components={{ h3: H3, ...MdxComponents }} />
         </article>
       </div>
     </Layout>

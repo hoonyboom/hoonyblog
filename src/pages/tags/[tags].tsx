@@ -4,7 +4,7 @@ import { PostsProps } from "@/pages/index";
 import Link from "next/link";
 import useSound from "use-sound";
 import { filter } from "lodash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface PathProps {
   params: {
