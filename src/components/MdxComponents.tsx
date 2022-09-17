@@ -9,6 +9,7 @@ import { headerState } from "@/lib/store";
 import { useRecoilState } from "recoil";
 import { EmptyObject, throttle } from "lodash";
 import { stringify } from "querystring";
+import JSXStyle from "styled-jsx/style";
 
 /* 인터페이스 커스텀 타입 확장 */
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
@@ -82,7 +83,7 @@ export const Note = (props: NotationProps) => {
   );
 };
 
-export const H3 = ({ children }: { children: React.ReactNode }) => {
+export const H3 = ({ children }: { children?: React.ReactNode }) => {
   const getAnchor = (text: string) => {
     return text
       .toLowerCase()
