@@ -1,5 +1,6 @@
 import Twemoji from "react-twemoji";
-import { Nav, Seo } from "@/components";
+import { Nav } from "@/components/navigation";
+import { Seo } from "@/components";
 import { useEffect, useState, useMemo, useRef } from "react";
 import { throttle } from "lodash";
 import { useRouter } from "next/router";

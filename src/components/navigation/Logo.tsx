@@ -1,7 +1,7 @@
 import Image from "next/future/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LayoutProps } from "./Layout";
+import { LayoutProps } from "../Layout";
 
 export default function Logo({ children }: LayoutProps) {
   const [transform, setTransform] = useState("translate(0px)");

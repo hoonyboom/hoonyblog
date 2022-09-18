@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Darkmode, CommandPaletteIcon } from "@/components";
+import { Darkmode, CommandPaletteIcon } from "@/components/navigation";
 
 export default function Nav({ navShow }: { navShow: boolean }) {
   return (

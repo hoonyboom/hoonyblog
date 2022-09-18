@@ -1,4 +1,4 @@
-import { Darkmode, CommandPaletteIcon } from "@/components";
+import { Darkmode, CommandPaletteIcon } from "@/components/navigation";
 
 export default function Nav() {
   return (

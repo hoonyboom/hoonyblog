@@ -193,7 +193,7 @@ export const IndexList = () => {
       <div className={`${isClick ? styles.notepad_heading : "bg-transparent"}`}>
         <Img
           onClick={() => setIsClick(!isClick)}
-          className="m-auto h-5 w-5 cursor-fancyHover"
+          className="m-auto h-5 w-5 cursor-fancyHover transition hover:scale-110"
           src={`/images/2022/pinColor/pin-${pinColor[pickColor]}@2x.png`}
         />
       </div>
@@ -204,14 +204,16 @@ export const IndexList = () => {
             return (
               <div key={i}>
                 <div
-                  className={`absolute left-0 transition ${
+                  className={`absolute left-0 duration-300 ${
                     header === `#${activeId}` ? "blue-dot" : "white-dot"
                   }`}
                 ></div>
                 <a
                   href={header}
-                  className={`transition ${
-                    header === `#${activeId}` ? "opacity-100" : "opacity-30"
+                  className={`duration-300 ${
+                    header === `#${activeId}`
+                      ? "scale-125 opacity-100"
+                      : "scale-100 opacity-30"
                   }`}
                 >
                   {Heading}

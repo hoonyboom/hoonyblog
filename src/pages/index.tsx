@@ -3,15 +3,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
+import { Layout /* Pagination */ } from "@/components";
 import {
-  Layout,
   Profile,
   RecentPosts,
   TabTracker,
   CategoryTabs,
   TagList,
-  /* Pagination */
-} from "@/components";
+} from "@/components/home";
 
 export interface PostsProps {
   id: string;
