@@ -17,6 +17,10 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
   className?: string;
   children?: React.ReactNode;
 }
+interface HeadersType {
+  isIntersecting?: boolean;
+  target: { id: string; element?: HTMLHeadingElement };
+}
 
 // 커스텀 컴퍼넌트
 //
@@ -116,7 +120,10 @@ export const IndexList = () => {
   const { Img } = MdxComponents;
   const [isClick, setIsClick] = useState(true);
   const pinColor = ["blue", "green", "orange"];
-  const pickColor = useMemo(() => Math.floor(Math.random() * pinColor.length), []);
+  const pickColor = useMemo(
+    () => Math.floor(Math.random() * pinColor.length),
+    [pinColor.length],
+  );
   const [headers] = useRecoilState(headerState);
   const [activeId, setActiveId] = useState("");
 
@@ -124,27 +131,23 @@ export const IndexList = () => {
     setActiveId: React.Dispatch<React.SetStateAction<string>>,
   ) => {
     const headingElementsRef = useRef<{
-      [key: string]: {
-        [x: string]: any;
-        id: string;
-        element: HTMLHeadingElement;
-      };
+      [key: string]: HeadersType;
     }>({});
+
     useEffect(() => {
-      const callback = (entries: any) => {
-        headingElementsRef.current = entries.reduce(
-          (map: any, headingElement: { target: { id: string | number } }) => {
+      const navigator = <T extends IntersectionObserverEntry>(data: Array<T>) => {
+        headingElementsRef.current = data.reduce(
+          (
+            map: { [key: string]: { target: { id: string } } },
+            headingElement: { target: { id: string } },
+          ) => {
             map[headingElement.target.id] = headingElement;
             return map;
           },
           headingElementsRef.current,
         );
 
-        const visibleHeadings: {
-          [x: string]: any;
-          id: string;
-          element: HTMLHeadingElement;
-        }[] = [];
+        const visibleHeadings: HeadersType[] = [];
         Object.keys(headingElementsRef.current).forEach(key => {
           const headingElement = headingElementsRef.current[key];
           if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
@@ -163,7 +166,7 @@ export const IndexList = () => {
         } else if (visibleHeadings.length < 1) setActiveId("");
       };
 
-      const observer = new IntersectionObserver(callback, {
+      const observer = new IntersectionObserver(navigator, {
         rootMargin: "-100px 0px -50% 0px",
       });
       const headingElements = Array.from(document.querySelectorAll("h3"));
