@@ -43,7 +43,6 @@ export const Img = (props: ImageProps) => {
       width={9999}
       height={9999}
       quality={100}
-      alt="image"
       className="my-3 h-auto w-auto rounded-xl drop-shadow-xl"
       {...props}
     />
@@ -116,7 +115,7 @@ export const H3 = ({ children }: { children?: React.ReactNode }) => {
   );
 };
 
-export const IndexList = () => {
+export const HeadingNavigator = () => {
   const { Img } = MdxComponents;
   const [isClick, setIsClick] = useState(true);
   const [activeId, setActiveId] = useState("");
@@ -195,6 +194,7 @@ export const IndexList = () => {
           onClick={() => setIsClick(!isClick)}
           className="m-auto h-5 w-5 cursor-fancyHover transition hover:scale-110"
           src={`/images/2022/pinColor/pin-${pinColor[pickColor]}@2x.png`}
+          alt={"image"}
         />
       </div>
       <div className={`${isClick ? "opacity-100" : "opacity-0"}`}>
@@ -233,7 +233,7 @@ const MdxComponents = {
   Lnk,
   Youtube,
   Note,
-  IndexList,
+  HeadingNavigator,
 };
 
 export default MdxComponents;

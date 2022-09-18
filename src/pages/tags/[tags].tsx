@@ -63,7 +63,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
         </p>
         <div className="pr-3 sm:basis-1/2 md:basis-3/5">
           {banner.map(({ image, id }) => (
-            <Img src={image} key={id} />
+            <Img src={image} key={id} alt={"image"} />
           ))}
         </div>
       </div>
