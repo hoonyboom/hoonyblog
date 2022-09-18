@@ -7,9 +7,6 @@ import Twemoji from "react-twemoji";
 // recoil Import
 import { headerState } from "@/lib/store";
 import { useRecoilState } from "recoil";
-import { EmptyObject, throttle } from "lodash";
-import { stringify } from "querystring";
-import JSXStyle from "styled-jsx/style";
 
 /* 인터페이스 커스텀 타입 확장 */
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
@@ -93,37 +90,10 @@ export const H3 = ({ children }: { children?: React.ReactNode }) => {
   const anchor = getAnchor(children as string);
   const link = `#${anchor}`;
 
-  const [header, setHeader] = useRecoilState(headerState);
+  const [, setHeaders] = useRecoilState(headerState);
   useEffect(() => {
-    setHeader(prev => [...prev, anchor]);
-  }, []);
-
-  // interface HeadingTypes {
-  //   id: string;
-  //   title: string;
-  //   items: [{ id: string; title: string } | null];
-  // }
-  // const getNestedHeadings = (headingElements: HTMLHeadingElement[]) => {
-  //   const nestedHeadings: HeadingTypes[] = [];
-  //   headingElements.forEach((heading, i) => {
-  //     const { innerText: title, id } = heading;
-  //     if (heading.nodeName === "H3") {
-  //       nestedHeadings.push({ id, title, items: [null] });
-  //     } else if (heading.nodeName === "H4" && nestedHeadings.length > 0) {
-  //       nestedHeadings[nestedHeadings.length - 1].items.push({ id, title });
-  //     }
-  //   });
-  //   return nestedHeadings;
-  // };
-  // const getHeadingsData = () => {
-  //   const [nestedHeadings, setNestedHeadings] = useState<HeadingTypes[]>([]);
-  //   useEffect(() => {
-  //     const headingElements = Array.from(document.querySelectorAll("h3"));
-  //     const newNestedHeadings = getNestedHeadings(headingElements);
-  //     setNestedHeadings(newNestedHeadings);
-  //   }, []);
-  //   return { nestedHeadings };
-  // };
+    setHeaders(prev => [...prev, link]);
+  }, [link, setHeaders]);
 
   return (
     <h3 id={anchor}>
@@ -146,8 +116,63 @@ export const IndexList = () => {
   const { Img } = MdxComponents;
   const [isClick, setIsClick] = useState(true);
   const pinColor = ["blue", "green", "orange"];
-  const pickColor = Math.floor(Math.random() * pinColor.length);
-  const [header] = useRecoilState(headerState);
+  const pickColor = useMemo(() => Math.floor(Math.random() * pinColor.length), []);
+  const [headers] = useRecoilState(headerState);
+  const [activeId, setActiveId] = useState("");
+
+  const useIntersectionObserver = (
+    setActiveId: React.Dispatch<React.SetStateAction<string>>,
+  ) => {
+    const headingElementsRef = useRef<{
+      [key: string]: {
+        [x: string]: any;
+        id: string;
+        element: HTMLHeadingElement;
+      };
+    }>({});
+    useEffect(() => {
+      const callback = (entries: any) => {
+        headingElementsRef.current = entries.reduce(
+          (map: any, headingElement: { target: { id: string | number } }) => {
+            map[headingElement.target.id] = headingElement;
+            return map;
+          },
+          headingElementsRef.current,
+        );
+
+        const visibleHeadings: {
+          [x: string]: any;
+          id: string;
+          element: HTMLHeadingElement;
+        }[] = [];
+        Object.keys(headingElementsRef.current).forEach(key => {
+          const headingElement = headingElementsRef.current[key];
+          if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
+        });
+
+        const getIndexFromId = (id: string) =>
+          headingElements.findIndex(heading => heading.id === id);
+
+        if (visibleHeadings.length === 1) setActiveId(visibleHeadings[0].target.id);
+        else if (visibleHeadings.length > 1) {
+          const sortedVisibleHeadings = visibleHeadings.sort((a, b) => {
+            if (getIndexFromId(a.target.id) > getIndexFromId(b.target.id)) return 1;
+            else return 0;
+          });
+          setActiveId(sortedVisibleHeadings[0].target.id);
+        } else if (visibleHeadings.length < 1) setActiveId("");
+      };
+
+      const observer = new IntersectionObserver(callback, {
+        rootMargin: "-100px 0px -50% 0px",
+      });
+      const headingElements = Array.from(document.querySelectorAll("h3"));
+      headingElements.forEach(element => observer.observe(element));
+      return () => observer.disconnect();
+    }, [setActiveId]);
+  };
+
+  useIntersectionObserver(setActiveId);
 
   return (
     <div
@@ -166,12 +191,22 @@ export const IndexList = () => {
       </div>
       <div className={`${isClick ? "opacity-100" : "opacity-0"}`}>
         <div className={styles.notepad}>
-          {header.map((header, i) => {
-            const Heading = header.replace(/[-]/g, " ");
+          {headers.map((header, i) => {
+            const Heading = header.replace(/[#]/g, " ").replace(/[-]/g, " ");
             return (
               <div key={i}>
-                <a href={`#${header}`}>
-                  {i + 1}. {Heading}
+                <div
+                  className={`absolute left-0 transition ${
+                    header === `#${activeId}` ? "blue-dot" : "white-dot"
+                  }`}
+                ></div>
+                <a
+                  href={header}
+                  className={`transition hover:scale-150 ${
+                    header === `#${activeId}` ? "opacity-100" : "opacity-30"
+                  }`}
+                >
+                  {Heading}
                 </a>
                 <br />
               </div>

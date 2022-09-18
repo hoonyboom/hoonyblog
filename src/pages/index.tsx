@@ -5,12 +5,12 @@ import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
 import {
   Layout,
-  Pagination,
   Profile,
   RecentPosts,
   TabTracker,
   CategoryTabs,
   TagList,
+  /* Pagination */
 } from "@/components";
 
 export interface PostsProps {
@@ -43,8 +43,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     },
   );
   // 페이지네이션
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(7);
+  const [page] = useState(1);
+  const [limit] = useState(7);
   const offset = (page - 1) * limit;
   // 이달의 글
   const thisMonth =

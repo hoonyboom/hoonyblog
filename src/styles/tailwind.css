@@ -107,6 +107,14 @@
     background-color: rgb(102, 153, 204);
     margin: 8px;
   }
+  .white-dot {
+    width: 8px;
+    min-width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin: 8px;
+  }
   .bg-stripes-gray {
     background-color: #9ca3af1a;
     background-image: linear-gradient(

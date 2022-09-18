@@ -28,7 +28,7 @@ export default function Pagination({ page, setPage, limit, total }: PaginationPr
       pageTracker[watchedPage] = true;
       setIsActive(pageTracker);
     }
-  }, []);
+  }, [setPage]);
 
   const numPages = Math.ceil(total / limit);
   return (
