@@ -127,13 +127,19 @@ export const IndexList = () => {
   const [headers] = useRecoilState(headerState);
   const [activeId, setActiveId] = useState("");
 
+  const headingElementsRef = useRef<{
+    [key: string]: HeadersType;
+  }>({});
+
+  useEffect(() => {
+    return () => {
+      headingElementsRef.current = {};
+    };
+  }, []);
+
   const useIntersectionObserver = (
     setActiveId: React.Dispatch<React.SetStateAction<string>>,
   ) => {
-    const headingElementsRef = useRef<{
-      [key: string]: HeadersType;
-    }>({});
-
     useEffect(() => {
       const navigator = <T extends IntersectionObserverEntry>(data: Array<T>) => {
         headingElementsRef.current = data.reduce(
@@ -171,7 +177,9 @@ export const IndexList = () => {
       });
       const headingElements = Array.from(document.querySelectorAll("h3"));
       headingElements.forEach(element => observer.observe(element));
-      return () => observer.disconnect();
+      return () => {
+        observer.disconnect();
+      };
     }, [setActiveId]);
   };
 

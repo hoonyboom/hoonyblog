@@ -28,10 +28,10 @@ export default function Layout({
         const currentScrollY = globalThis.scrollY;
         if (currentScrollY > beforeScrollY.current && currentScrollY > 60) {
           setNavShow(true);
-          console.log("스크롤 내려가는 중", currentScrollY);
+          console.log("스크롤 내려가욧 👇🏼", currentScrollY);
         } else {
           setNavShow(false);
-          console.log("스크롤 올라가는 중", currentScrollY);
+          console.log("스크롤 올라가욧 👆🏻", currentScrollY);
         }
         beforeScrollY.current = currentScrollY;
       }, 300),
