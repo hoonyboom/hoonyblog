@@ -40,7 +40,7 @@
   button:disabled {
     @apply cursor-fancy;
   }
-  code {
+  p code {
     @apply mx-px rounded-sm bg-lightGray py-px px-1 dark:bg-darkGray;
   }
   blockquote {
