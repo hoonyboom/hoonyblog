@@ -124,7 +124,7 @@ export const IndexList = () => {
     () => Math.floor(Math.random() * pinColor.length),
     [pinColor.length],
   );
-  const [headers] = useRecoilState(headerState);
+  const [headers, setHeaders] = useRecoilState(headerState);
   const [activeId, setActiveId] = useState("");
 
   const headingElementsRef = useRef<{
@@ -133,7 +133,7 @@ export const IndexList = () => {
 
   useEffect(() => {
     return () => {
-      headingElementsRef.current = {};
+      setHeaders([]);
     };
   }, []);
 
