@@ -18,7 +18,7 @@ const postsDirectory = path.join(process.cwd(), "drafts");
 const getAllFiles = (dir: string): DataType[] => {
   const folderNames = fs.readdirSync(dir);
   const allFileNames = folderNames.reduce((all: DataType[], name: string) => {
-    const paths = path.join(dir, name); // => 1. ../drafts/각각의 폴더명 2. /drafts/폴더명/각각의 파일명
+    const paths = path.join(dir, name);
     const isDirectory = fs.statSync(paths).isDirectory();
     if (isDirectory) return [...all, ...getAllFiles(paths)];
     else {
@@ -74,6 +74,7 @@ export async function getPostData(id: string) {
   const fullPath = data.find(post => {
     return post.id === `${id}`;
   });
+
   const source = fs.readFileSync(fullPath!.path, "utf8");
 
   const { code, frontmatter } = await bundleMDX({

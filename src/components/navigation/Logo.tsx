@@ -6,20 +6,24 @@ import { LayoutProps } from "../utils/Layout";
 export default function Logo({ children }: LayoutProps) {
   const [transform, setTransform] = useState("translate(0px)");
   useEffect(() => {
-    const width = globalThis.visualViewport!.width;
-    const height = globalThis.visualViewport!.height;
-    let curX = 0;
-    let curY = 0;
-    setInterval(() => {
-      const randomX = Math.random() * width;
-      const randomY = Math.random() * height;
-      const targetX = (randomX + curX) / 2;
-      const targetY = (randomY + curY) / 2;
-      curX = targetX;
-      curY = targetY;
-      const randomRotation = (Math.random() - 0.5) * 10;
-      setTransform(`translate(${targetX}px, ${targetY}px) rotate(${randomRotation}deg)`);
-    }, 3500);
+    if (globalThis.visualViewport) {
+      const width = globalThis.visualViewport.width;
+      const height = globalThis.visualViewport.height;
+      let curX = 0;
+      let curY = 0;
+      setInterval(() => {
+        const randomX = Math.random() * width;
+        const randomY = Math.random() * height;
+        const targetX = (randomX + curX) / 2;
+        const targetY = (randomY + curY) / 2;
+        curX = targetX;
+        curY = targetY;
+        const randomRotation = (Math.random() - 0.5) * 10;
+        setTransform(
+          `translate(${targetX}px, ${targetY}px) rotate(${randomRotation}deg)`,
+        );
+      }, 3500);
+    }
   }, []);
 
   return (
