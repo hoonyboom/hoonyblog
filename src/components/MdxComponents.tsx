@@ -29,7 +29,7 @@ interface HeadersType {
 export const Lnk = (props: LinkProps) => {
   return (
     <Link href={props.href}>
-      <a target="_blank" rel="noopener noreferrer" {...props}>
+      <a target="_blank" rel="noopener noreferrer" className="text-paleBlue" {...props}>
         {props.text}
       </a>
     </Link>
@@ -45,7 +45,7 @@ export const Img = (props: ImageProps) => {
       quality={100}
       className="my-3 h-auto w-auto rounded-xl drop-shadow-xl"
       {...props}
-      alt={props.alt}
+      alt="이미지"
     />
   );
 };

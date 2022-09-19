@@ -1306,7 +1306,7 @@ const RAW_RUNTIME_STATE =
           ["autoprefixer", "virtual:09640317c98613925eaf30aec8011e72c17772cd50ec41bd7c487e97b19d428b014cb2f42ffbe5597390e125e17906d8744e2e181b39aae844972700ecbfab30#npm:10.4.11"],\
           ["@types/postcss", null],\
           ["browserslist", "npm:4.21.4"],\
-          ["caniuse-lite", "npm:1.0.30001405"],\
+          ["caniuse-lite", "npm:1.0.30001406"],\
           ["fraction.js", "npm:4.2.0"],\
           ["normalize-range", "npm:0.1.2"],\
           ["picocolors", "npm:1.0.0"],\
@@ -1415,7 +1415,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/browserslist-npm-4.21.4-7d64a96afc-9.zip/node_modules/browserslist/",\
         "packageDependencies": [\
           ["browserslist", "npm:4.21.4"],\
-          ["caniuse-lite", "npm:1.0.30001405"],\
+          ["caniuse-lite", "npm:1.0.30001406"],\
           ["electron-to-chromium", "npm:1.4.254"],\
           ["node-releases", "npm:2.0.6"],\
           ["update-browserslist-db", "virtual:7d64a96afc8cf9b31b95951ccc2f47931d0cf97faa526fd0d20448bf2c73ddf9f5ef9e5cd28839ae8b5791451df45079a407b3f4978367b4210748169f5848f6#npm:1.0.9"]\
@@ -1480,10 +1480,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["caniuse-lite", [\
-      ["npm:1.0.30001405", {\
-        "packageLocation": "../../.yarn/berry/cache/caniuse-lite-npm-1.0.30001405-84913ebb56-9.zip/node_modules/caniuse-lite/",\
+      ["npm:1.0.30001406", {\
+        "packageLocation": "../../.yarn/berry/cache/caniuse-lite-npm-1.0.30001406-ef77292316-9.zip/node_modules/caniuse-lite/",\
         "packageDependencies": [\
-          ["caniuse-lite", "npm:1.0.30001405"]\
+          ["caniuse-lite", "npm:1.0.30001406"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5462,7 +5462,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.0.20"],\
           ["@types/react-dom", "npm:18.0.6"],\
           ["@types/sass", null],\
-          ["caniuse-lite", "npm:1.0.30001405"],\
+          ["caniuse-lite", "npm:1.0.30001406"],\
           ["fibers", null],\
           ["node-sass", null],\
           ["postcss", "npm:8.4.14"],\

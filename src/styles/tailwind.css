@@ -11,7 +11,10 @@
     @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content;
   }
   a {
-    @apply cursor-fancyHover underline decoration-rose-400/80 decoration-solid underline-offset-8 hover:decoration-wavy;
+    @apply cursor-fancyHover underline decoration-paleBlue decoration-solid underline-offset-8 hover:decoration-wavy;
+  }
+  em {
+    @apply not-italic text-paleBlue;
   }
   h1 {
     @apply font-heading text-3xl;
@@ -41,7 +44,7 @@
     @apply cursor-fancy;
   }
   p code {
-    @apply mx-px rounded-sm bg-lightGray py-px px-1 dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray py-px px-1 dark:bg-darkGray;
   }
   blockquote {
     @apply my-2 indent-3;

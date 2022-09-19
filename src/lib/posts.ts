@@ -7,30 +7,42 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { theme } from "./theme/search-light";
 
-// const blogDirectory = path.join(process.cwd(), "blog")
+interface DataType {
+  id: string;
+  date: string;
+  tags: string;
+  path: string;
+  [key: string]: string;
+}
 const postsDirectory = path.join(process.cwd(), "drafts");
+const getAllFiles = (dir: string): DataType[] => {
+  const folderNames = fs.readdirSync(dir);
+  const allFileNames = folderNames.reduce((all: DataType[], name: string) => {
+    const paths = path.join(dir, name); // => 1. ../drafts/각각의 폴더명 2. /drafts/폴더명/각각의 파일명
+    const isDirectory = fs.statSync(paths).isDirectory();
+    if (isDirectory) return [...all, ...getAllFiles(paths)];
+    else {
+      const id = name.replace(/\.mdx$/, "");
+      const fileContents = fs.readFileSync(paths, "utf-8");
+      const matterResult = matter(fileContents).data;
+      return [
+        ...all,
+        {
+          id,
+          tags: matterResult.tags as string,
+          date: matterResult.date as string,
+          path: paths,
+          ...matterResult,
+        },
+      ];
+    }
+  }, []);
+  return allFileNames;
+};
 
 export function getSortedPostsData(tags?: string) {
-  // /posts 폴더에 있는 파일 이름 가져오기
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map(fileName => {
-    // 파일 이름에서 ".mdx" 확장자명만 제거
-    const id = fileName.replace(/\.mdx$/, "");
-    // 마크다운 파일을 string으로 읽어들이기
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    // gray-matter를 통해 마크다운 파일의 메타데어터 섹션 읽기
-    const matterResult = matter(fileContents).data;
-    // 데이터: id와 메타섹션의 정보
-    return {
-      id,
-      tags: matterResult.tags as string,
-      date: matterResult.date as string,
-      ...matterResult,
-    };
-  });
+  const allPostsData = getAllFiles(postsDirectory);
 
-  // tags 페이지의 경우
   if (tags) {
     const postsByTag = allPostsData.filter(post => post.tags === tags);
     return postsByTag.sort(({ date: a }, { date: b }) => {
@@ -39,8 +51,6 @@ export function getSortedPostsData(tags?: string) {
       else return 0;
     });
   }
-
-  // 없으면 그냥 날짜 최신순으로 정렬
   return allPostsData.sort(({ date: a }, { date: b }) => {
     if (a < b) return 1;
     else if (a > b) return -1;
@@ -49,19 +59,22 @@ export function getSortedPostsData(tags?: string) {
 }
 
 export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = getAllFiles(postsDirectory);
   return fileNames.map(fileName => {
     return {
       params: {
-        id: fileName.replace(/\.mdx$/, ""),
+        id: fileName.id.replace(/\.mdx$/, ""),
       },
     };
   });
 }
 
 export async function getPostData(id: string) {
-  const fullPath = path.join(postsDirectory, `${id}.mdx`);
-  const source = fs.readFileSync(fullPath, "utf8");
+  const data = getAllFiles(postsDirectory);
+  const fullPath = data.find(post => {
+    return post.id === `${id}`;
+  });
+  const source = fs.readFileSync(fullPath!.path, "utf8");
 
   const { code, frontmatter } = await bundleMDX({
     source,
@@ -101,17 +114,3 @@ export function getAllPostTags() {
     };
   });
 }
-
-// 카테고리 필터링
-// if (categories) {
-//   const categoriesData = allPostsData.filter(post => post.categories === categories);
-//   return categoriesData.sort(({ date: a }, { date: b }) => {
-//     if (a < b) return 1;
-//     else if (a > b) return -1;
-//     else return 0;
-//   });
-//   .map((post, i) => {
-//     return Object.assign(post, { index: i });
-//   })
-//   .reverse();
-// }

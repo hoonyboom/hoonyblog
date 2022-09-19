@@ -20,7 +20,7 @@ export interface PostsProps {
   tags: string;
   description: string;
   excerpt?: string;
-  image: string;
+  image?: string;
 }
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
