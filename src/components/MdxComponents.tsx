@@ -45,6 +45,7 @@ export const Img = (props: ImageProps) => {
       quality={100}
       className="my-3 h-auto w-auto rounded-xl drop-shadow-xl"
       {...props}
+      alt={props.alt}
     />
   );
 };
@@ -128,7 +129,7 @@ export const HeadingNavigator = () => {
 
   useEffect(() => {
     return () => setHeaders([]);
-  }, []);
+  }, [setHeaders]);
 
   const useIntersectionObserver = (
     setActiveId: React.Dispatch<React.SetStateAction<string>>,
