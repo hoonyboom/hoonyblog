@@ -1,5 +1,5 @@
 import Image from "next/future/image";
-import { MdxComponents } from "@/components";
+import { MdxComponents } from "@/components/utils";
 
 export default function Profile({ initCategory }: { initCategory: boolean }) {
   const { Note } = MdxComponents;

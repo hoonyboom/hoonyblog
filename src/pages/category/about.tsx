@@ -1,4 +1,4 @@
-import { MdxComponents } from "@/components";
+import { MdxComponents } from "@/components/utils";
 
 export default function About() {
   const { Lnk } = MdxComponents;

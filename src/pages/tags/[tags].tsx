@@ -1,4 +1,4 @@
-import { Layout, MdxComponents, Pagination } from "@/components";
+import { Layout, MdxComponents, Pagination } from "@/components/utils";
 import { getAllPostTags, getSortedPostsData } from "@/lib/posts";
 import { PostsProps } from "@/pages/index";
 import Link from "next/link";
@@ -63,7 +63,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
         </p>
         <div className="pr-3 sm:basis-1/2 md:basis-3/5">
           {banner.map(({ image, id }) => (
-            <Img src={image} key={id} alt={"image"} />
+            <Img src={image!} key={id} alt={"image"} />
           ))}
         </div>
       </div>

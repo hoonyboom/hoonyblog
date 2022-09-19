@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
-import { Layout /* Pagination */ } from "@/components";
+import { Layout /* Pagination */ } from "@/components/utils";
 import {
   Profile,
   RecentPosts,

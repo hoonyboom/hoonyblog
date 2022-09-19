@@ -1,6 +1,6 @@
 import Twemoji from "react-twemoji";
 import { Nav } from "@/components/navigation";
-import { Seo } from "@/components";
+import { Seo } from "@/components/utils";
 import { useEffect, useState, useMemo, useRef } from "react";
 import { throttle } from "lodash";
 import { useRouter } from "next/router";
@@ -32,6 +32,7 @@ export default function Layout({
           console.log("스크롤 내려가욧 👇🏼", currentScrollY);
         } else {
           setNavShow(false);
+          1;
           console.log("스크롤 올라가욧 👆🏻", currentScrollY);
         }
         beforeScrollY.current = currentScrollY;

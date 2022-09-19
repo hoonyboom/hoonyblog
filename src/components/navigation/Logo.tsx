@@ -1,13 +1,13 @@
 import Image from "next/future/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LayoutProps } from "../Layout";
+import { LayoutProps } from "../utils/Layout";
 
 export default function Logo({ children }: LayoutProps) {
   const [transform, setTransform] = useState("translate(0px)");
   useEffect(() => {
-    const width = window.visualViewport.width;
-    const height = window.visualViewport.height;
+    const width = globalThis.visualViewport!.width;
+    const height = globalThis.visualViewport!.height;
     let curX = 0;
     let curY = 0;
     setInterval(() => {
