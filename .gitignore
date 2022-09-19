@@ -11,7 +11,7 @@
 # next.js
 /.next/
 /out/
-
+yarn set version canary && yarn install
 # production
 /build
 
@@ -37,3 +37,12 @@ yarn-error.log*
 # 제외
 .obsidian
 /.waiting/
+
+#yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

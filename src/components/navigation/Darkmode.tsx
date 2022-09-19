@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 import useSound from "use-sound";
