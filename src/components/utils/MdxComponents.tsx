@@ -129,7 +129,7 @@ export const HeadingNavigator = () => {
 
   useEffect(() => {
     return () => setHeaders([]);
-  }, [setHeaders]);
+  }, []);
 
   const useIntersectionObserver = (
     setActiveId: React.Dispatch<React.SetStateAction<string>>,

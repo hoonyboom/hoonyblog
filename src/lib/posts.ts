@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism/lib/src";
 import { theme } from "./theme/search-light";
 
-interface DataType {
+interface FileType {
   id: string;
   date: string;
   tags: string;
@@ -15,18 +15,19 @@ interface DataType {
   [key: string]: string;
 }
 const postsDirectory = path.join(process.cwd(), "drafts");
-const getAllFiles = (dir: string): DataType[] => {
+
+const getAllFiles = (dir: string): FileType[] => {
   const folderNames = fs.readdirSync(dir);
-  const allFileNames = folderNames.reduce((all: DataType[], name: string) => {
-    const paths = path.join(dir, name);
+  const allFileNames = folderNames.reduce((allFiles: FileType[], file: string) => {
+    const paths = path.join(dir, file);
     const isDirectory = fs.statSync(paths).isDirectory();
-    if (isDirectory) return [...all, ...getAllFiles(paths)];
+    if (isDirectory) return [...allFiles, ...getAllFiles(paths)];
     else {
-      const id = name.replace(/\.mdx$/, "");
+      const id = file.replace(/\.mdx$/, "");
       const fileContents = fs.readFileSync(paths, "utf-8");
       const matterResult = matter(fileContents).data;
       return [
-        ...all,
+        ...allFiles,
         {
           id,
           tags: matterResult.tags as string,
