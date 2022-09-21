@@ -36,8 +36,9 @@ module.exports = {
         sea: "#0984e3fe",
         paleBlue: "rgb(102, 153, 204)",
         lightGray: "#EAECEF",
-        smokeWhite: "#F6FAFA",
         darkGray: "#363636",
+        smokeWhite: "#F6FAFA",
+        smokeBlack: "#1E1E1E",
         salary: "#CAFC9D",
       },
       cursor: {

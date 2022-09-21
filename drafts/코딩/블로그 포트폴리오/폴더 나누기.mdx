@@ -107,7 +107,7 @@ export function getSortedPostsData(tags?: string) {
 
 <br/>
 ### Reduce로 배열 데이터 구성하기
-<CH.Scrollycoding rows={20}>
+<CH.Scrollycoding rows={31}>
 *getAllFiles()*  
 fs.readdirSync(dir)는 디렉토리 안의 파일명을 읽는다.
 ```ts posts.ts
@@ -253,7 +253,7 @@ const getAllFiles = (dir: string): FileType[] => {
 
 <small>(모든 주석은 블로그용)</small>
 <br/>
-완성된 함수를 `getSortedPostsData()` 안에서 부르면 오늘의 리팩터링 끝!
+완성된 함수를 `getSortedPostsData()` 안에서 부르면 나름 리팩터링이라고 부를 수 있지 않을까...요?
 ```ts posts.ts focus=2
 export function getSortedPostsData(tags?: string) {
   const allPostsData = getAllFiles(postsDirectory);
@@ -276,7 +276,7 @@ export function getSortedPostsData(tags?: string) {
 ```
 <br/>
 ### After
-나처럼 깔끔해졌다
+나처럼 깔끔해진 모습
 <Img src={'/images/2022/autumm/after.png'} />
 
 <br/>
