@@ -23,14 +23,14 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   }, []);
 
   return (
-    <div className="mb-px cursor-fancyHover sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
+    <div className="mb-px sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
       <div
         onClick={() => {
           setIsClick(!isClick);
           localStorage.setItem("RecentPosts", JSON.stringify({ toggle: !isClick }));
           beepSound();
         }}
-        className="relative my-2 flex place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
+        className="relative my-2 flex cursor-fancyHover place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
       >
         <div className="grow text-center">{thisMonth}月</div>
         <div className="absolute right-2">
