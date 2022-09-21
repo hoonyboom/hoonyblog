@@ -47,16 +47,22 @@
     @apply mx-px rounded-md bg-lightGray py-px px-1 dark:bg-darkGray;
   }
   blockquote {
-    @apply my-2 indent-3;
+    @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 leading-7;
   }
   q {
     @apply bg-highlight-salary dark:bg-highlight-bora;
   }
-  figcaption {
-    @apply text-center text-sm;
+  cite {
+    @apply flex justify-end text-mono not-italic;
+  }
+  small {
+    @apply flex justify-center text-mono;
   }
   hr {
-    @apply mb-8 sm:mb-6;
+    @apply my-10 sm:my-6;
+  }
+  br {
+    @apply leading-4;
   }
 }
 

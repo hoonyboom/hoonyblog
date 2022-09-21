@@ -11,20 +11,20 @@ interface FileType {
   id: string;
   date: string;
   tags: string;
-  path: string;
+  fullpath: string;
   [key: string]: string;
 }
 const postsDirectory = path.join(process.cwd(), "drafts");
 
 const getAllFiles = (dir: string): FileType[] => {
   const folderNames = fs.readdirSync(dir);
-  const allFileNames = folderNames.reduce((allFiles: FileType[], file: string) => {
-    const paths = path.join(dir, file);
-    const isDirectory = fs.statSync(paths).isDirectory();
-    if (isDirectory) return [...allFiles, ...getAllFiles(paths)];
+  const getAllFilesData = folderNames.reduce((allFiles: FileType[], file: string) => {
+    const fullpath = path.join(dir, file);
+    const isDirectory = fs.statSync(fullpath).isDirectory();
+    if (isDirectory) return [...allFiles, ...getAllFiles(fullpath)];
     else {
       const id = file.replace(/\.mdx$/, "");
-      const fileContents = fs.readFileSync(paths, "utf-8");
+      const fileContents = fs.readFileSync(fullpath, "utf-8");
       const matterResult = matter(fileContents).data;
       return [
         ...allFiles,
@@ -32,13 +32,13 @@ const getAllFiles = (dir: string): FileType[] => {
           id,
           tags: matterResult.tags as string,
           date: matterResult.date as string,
-          path: paths,
+          fullpath,
           ...matterResult,
         },
       ];
     }
   }, []);
-  return allFileNames;
+  return getAllFilesData;
 };
 
 export function getSortedPostsData(tags?: string) {
@@ -52,6 +52,7 @@ export function getSortedPostsData(tags?: string) {
       else return 0;
     });
   }
+
   return allPostsData.sort(({ date: a }, { date: b }) => {
     if (a < b) return 1;
     else if (a > b) return -1;
@@ -72,11 +73,11 @@ export function getAllPostIds() {
 
 export async function getPostData(id: string) {
   const data = getAllFiles(postsDirectory);
-  const fullPath = data.find(post => {
+  const path = data.find(post => {
     return post.id === `${id}`;
   });
 
-  const source = fs.readFileSync(fullPath!.path, "utf8");
+  const source = fs.readFileSync(path!.fullpath, "utf8");
 
   const { code, frontmatter } = await bundleMDX({
     source,
