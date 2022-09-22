@@ -317,10 +317,14 @@ Scroll 전체화면 설정 */
 }
 /* Scroll 제목&설명탭 설정 */
 .ch-scrollycoding-step-content p {
-  @apply text-sm leading-6;
+  @apply text-mono leading-6;
 }
 /* 기본화면 설정 */
 .ch-code-scroll-content span,
 .ch-inline-code span {
   @apply text-mono;
+}
+/* Scroll 모바일 화면 */
+.ch-scrollycoding-static > p {
+  @apply pt-7;
 }

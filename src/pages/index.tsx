@@ -74,7 +74,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     <Layout home siteTitle="혜조로그">
       <Profile initCategory={initCategory} />
       <RecentPosts recentPosts={recentPosts} />
-      <section className="sm:mx-5 md:mx-10">
+      <section className="pb-10 sm:mx-5 md:mx-10">
         {/* 카테고리 탭 */}
         <div className="-mb-2 flex">
           <TabTracker initCategory={initCategory} />

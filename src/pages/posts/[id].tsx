@@ -1,4 +1,4 @@
-import { Layout, Date, MdxComponents } from "@/components/utils";
+import { Layout, Date, MdxComponents, Comments } from "@/components/utils";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
@@ -47,7 +47,9 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
       category={frontmatter.categories}
     >
       <div className={`duration-1000 ${fade ? "opacity-100" : "opacity-0"}`}>
-        <h1 className="text-center text-3xl sm:mt-20 md:mt-28">{frontmatter.title}</h1>
+        <h1 className="text-center text-3xl sm:mt-20 sm:px-3 md:mt-28">
+          {frontmatter.title}
+        </h1>
         <div className="flex justify-center text-base leading-6 sm:mt-3 sm:mb-10 md:mt-5 md:mb-12">
           <Date dateString={frontmatter.date} />
         </div>
@@ -60,6 +62,7 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
         </article>
+        <Comments />
       </div>
     </Layout>
   );
