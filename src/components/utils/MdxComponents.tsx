@@ -168,7 +168,7 @@ export const HeadingNavigator = () => {
       };
 
       const observer = new IntersectionObserver(navigator, {
-        rootMargin: "0px 0px -50%",
+        rootMargin: "-50px 0px -50%",
       });
       const headingElements = Array.from(document.querySelectorAll("h3"));
       headingElements.forEach(element => observer.observe(element));
@@ -183,7 +183,7 @@ export const HeadingNavigator = () => {
     <div
       className={`fixed font-heading duration-500 ease-out sm:hidden lg:block ${
         isClick
-          ? "top-28 w-48 opacity-100 lg:right-12 xl:right-[10%]"
+          ? "top-1/4 w-48 opacity-100 lg:right-12 xl:right-[10%]"
           : "top-0 right-0 w-5 opacity-30"
       }`}
     >

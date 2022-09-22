@@ -32,9 +32,9 @@ export default function Layout({
           console.log("스크롤 내려가욧 👇🏼", currentScrollY);
         } else {
           setNavShow(false);
-          1;
           console.log("스크롤 올라가욧 👆🏻", currentScrollY);
         }
+        console.log("몇번?");
         beforeScrollY.current = currentScrollY;
       }, 300),
     [beforeScrollY],
