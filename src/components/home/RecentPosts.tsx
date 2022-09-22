@@ -9,18 +9,18 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   const [tabSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   const [beepSound] = useSound("/sounds/beep.mp3", { volume: 0.6 });
   const [isClick, setIsClick] = useState(false);
-  const [animation, setAnimation] = useState(true);
+  const [animation, setAnimation] = useState(false);
   const thisMonth = new Date().getMonth() + 1;
 
-  useEffect(() => {
-    setAnimation(prev => !prev);
-  }, [isClick]);
   useEffect(() => {
     if (localStorage.getItem("RecentPosts")) {
       const data = JSON.parse(localStorage.getItem("RecentPosts") as string).toggle;
       setIsClick(data);
     }
   }, []);
+  useEffect(() => {
+    setAnimation(prev => !prev);
+  }, [isClick]);
 
   return (
     <div className="mb-px sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
@@ -35,13 +35,13 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
         <div className="grow text-center">{thisMonth}月</div>
         <div className="absolute right-2">
           <BsChevronDown
-            className={`duration-700 ${!animation ? "-rotate-180" : "rotate-0"}`}
+            className={`duration-700 ${animation ? "-rotate-180" : "rotate-0"}`}
           />
         </div>
       </div>
       <div
         className={`grid gap-x-5 text-base transition-all duration-1000 sm:grid-cols-1 md:grid-cols-2 ${
-          !animation ? "opacity-100" : "opacity-0"
+          animation ? "opacity-100" : "opacity-0"
         }`}
       >
         {isClick &&
