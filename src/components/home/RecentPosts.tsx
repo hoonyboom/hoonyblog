@@ -23,7 +23,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   }, [isClick]);
 
   return (
-    <div className="mb-px sm:mx-5 sm:mt-8 md:mx-10 md:mt-16">
+    <div className="mb-px sm:mx-5 sm:mt-12 md:mx-10 md:mt-16">
       <div
         onClick={() => {
           setIsClick(!isClick);
