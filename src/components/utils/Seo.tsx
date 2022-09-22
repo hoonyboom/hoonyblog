@@ -8,6 +8,9 @@ export default function Seo({ siteTitle }: { siteTitle?: string }) {
       <link rel="apple-touch-icon" href="/images/2022/summer/heart.svg" />
       <link rel="mask-icon" href="/images/2022/summer/heart.svg" />
       <link rel="canonical" href="https://chorok.vercel.app" />,
+      <link rel="canonical" href="https://hyezoprk.com" />,
+      <link rel="canonical" href="http://localhost:3000/" />,
+      <link rel="canonical" href="http://10004ok.github.io/" />
       <meta name="description" content="프론트엔드 취준생 블로그" />
       <meta
         property="og:image"

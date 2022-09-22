@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 export default function Comments() {
   const setScript = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
-  const whichTheme = theme === "dark" ? "github-dark" : "github-light";
+
   useEffect(() => {
     const createUtterancesEl = () => {
       const addScript = document.createElement("script");
@@ -22,7 +22,7 @@ export default function Comments() {
     const changeTheme = () => {
       const message = {
         type: "set-theme",
-        theme: whichTheme,
+        theme: theme === "dark" ? "github-dark" : "github-light",
       };
       utteranceEl?.contentWindow?.postMessage(message, "https://utteranc.es/client.js");
     };
