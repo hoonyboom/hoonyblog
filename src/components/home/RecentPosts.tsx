@@ -9,11 +9,11 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   const [tabSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   const [beepSound] = useSound("/sounds/beep.mp3", { volume: 0.6 });
   const [isClick, setIsClick] = useState(false);
-  const [animation, setAnimation] = useState(false);
+  const [animation, setAnimation] = useState(true);
   const thisMonth = new Date().getMonth() + 1;
 
   useEffect(() => {
-    setAnimation(!animation);
+    setAnimation(prev => !prev);
   }, [isClick]);
   useEffect(() => {
     if (localStorage.getItem("RecentPosts")) {

@@ -97,6 +97,7 @@ export const H3 = ({ children }: { children?: React.ReactNode }) => {
   const [, setHeaders] = useRecoilState(headerState);
   useEffect(() => {
     setHeaders(prev => [...prev, link]);
+    return () => setHeaders([]);
   }, [link, setHeaders]);
 
   return (
@@ -120,16 +121,12 @@ export const HeadingNavigator = () => {
   const { Img } = MdxComponents;
   const [isClick, setIsClick] = useState(true);
   const [activeId, setActiveId] = useState("");
-  const [headers, setHeaders] = useRecoilState(headerState);
+  const [headers] = useRecoilState(headerState);
   const pinColor = ["blue", "green", "orange"];
   const pickColor = useMemo(
     () => Math.floor(Math.random() * pinColor.length),
     [pinColor.length],
   );
-
-  useEffect(() => {
-    return () => setHeaders([]);
-  }, []);
 
   const useIntersectionObserver = (
     setActiveId: React.Dispatch<React.SetStateAction<string>>,
@@ -167,11 +164,11 @@ export const HeadingNavigator = () => {
             else return 0;
           });
           setActiveId(sortedVisibleHeadings[0].target.id);
-        } else if (visibleHeadings.length < 1) setActiveId("");
+        }
       };
 
       const observer = new IntersectionObserver(navigator, {
-        rootMargin: "-100px 0px -50% 0px",
+        rootMargin: "0px 0px -50%",
       });
       const headingElements = Array.from(document.querySelectorAll("h3"));
       headingElements.forEach(element => observer.observe(element));

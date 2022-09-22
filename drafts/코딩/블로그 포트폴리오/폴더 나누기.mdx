@@ -6,15 +6,15 @@ tags: "블로그 포트폴리오"
 description: "refactor"
 ---
 <HeadingNavigator />
-포스팅이 늘어나면서 파일 관리가 점점 힘들어지게 됐다. 처음 Next 공식 튜토리얼을 따라갈 때 하나의 폴더를 대상으로만 `posts`를 읽히게 만들어놨기 때문이다. 이거 된다 안된다? 당연히 안된다 🫥  
+포스팅이 늘어나면서 파일 관리가 점점 힘들어지게 됐다. 처음 Next 공식 튜토리얼을 따라갈 때 하나의 폴더를 대상으로만 `posts`를 읽히게 만들어놨기 때문이다. 용납된다 안된다? 당연히 안된다 🫥  
 <br/>
-그래서 오늘은 주제는 계층화(= 세분화, 하위폴더화)다.
+그래서 오늘의 주제는 계층화(= 세분화, 하위폴더화)다.
 
 <hr/>
 
 ### 문제 진단
 
-일단 지금 포스트는 이렇게 읽히고 있다.
+지금 포스트는 이렇게 읽히고 있다.
 
 ```ts src/lib/posts.ts
 // post 보관함을 root의 drafts로 지정
@@ -44,7 +44,7 @@ export function getSortedPostsData(tags?: string) {
 <br/>
 이 모습대로라면 `readdirSync()`가 최상위에 선언된 `drafts` 폴더만을 읽을 수 있다. 직선적, 고정적인 움직임으로 하나의 폴더만 대상이 된다.  
 <br/>
-경로를 읽는 부분을 순환시켜야함이 마땅해 보였다. 근데 막상 해보려니 잘 되지 않았다는 숨기고 싶은 비하인드가..ㅎㅎ recursive한 구조에 아직 미숙한 것 같다😥 다행히 구글링으로 실마리를 찾을 수 있었다. [^1]
+경로를 읽는 부분을 순환시켜야함이 마땅해 보였다. 근데 막상 해보려니 잘 안 됐다는 숨기고 싶은 비하인드가 있고..ㅎㅎ recursive한 구조에 아직 미숙한 것 같다😥 다행히 구글링으로 실마리를 찾을 수 있었다. [^1]
 
 <br/>
 ### 함수 쪼개기
@@ -60,7 +60,7 @@ export function getSortedPostsData(tags?: string) {
 
 지금 상황에 적절한 말처럼 들렸다. 그래서 우선 함수에 칼을 댔고  
 <br/>
-`getSortedPostsData()` 함수의 기능을 아래처럼 분담했다.
+데이터를 구하면서 정렬하던 `getSortedPostsData()`의 기능을 아래처럼 분담했다.
 <CH.Scrollycoding>
 *getAllFiles(  )*  
 반복문을 통해 모든 파일들의 정보를 리턴한다
@@ -276,11 +276,11 @@ export function getSortedPostsData(tags?: string) {
 ```
 <br/>
 ### After
-나처럼 깔끔해졌다
+나처럼 깔끔해진 모습
 <Img src={'/images/2022/autumm/after.png'} />
 
 <br/>
 <hr/>
-#### 참고한 사이트
+#### 참고한 사이트  
 [^1]: <Lnk text={'정인혜 브이로그'} href={'https://velog.io/@inhyejeong59/node%EC%97%90%EC%84%9C-path%EB%A5%BC-%EC%A3%BC%EB%A9%B4-%ED%95%98%EC%9C%84-%EB%AA%A8%EB%93%A0-directory%EC%9D%98-file-%EC%B0%BE%EA%B8%B0'} />
 [^2]: 마틴 파울러, 리팩터링 2판.
