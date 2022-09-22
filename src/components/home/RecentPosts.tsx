@@ -19,8 +19,8 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
     }
   }, []);
   useEffect(() => {
-    setAnimation(prev => !prev);
-  }, [isClick, setAnimation]);
+    setAnimation(isClick);
+  }, [isClick]);
 
   return (
     <div className="mb-px sm:mx-5 sm:mt-12 md:mx-10 md:mt-16">
