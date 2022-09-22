@@ -20,14 +20,14 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   }, []);
   useEffect(() => {
     setAnimation(prev => !prev);
-  }, [isClick]);
+  }, [isClick, setAnimation]);
 
   return (
     <div className="mb-px sm:mx-5 sm:mt-12 md:mx-10 md:mt-16">
       <div
         onClick={() => {
-          setIsClick(!isClick);
           localStorage.setItem("RecentPosts", JSON.stringify({ toggle: !isClick }));
+          setIsClick(!isClick);
           beepSound();
         }}
         className="relative my-2 flex cursor-fancyHover place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
@@ -35,7 +35,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
         <div className="grow text-center">{thisMonth}月</div>
         <div className="absolute right-2">
           <BsChevronDown
-            className={`duration-700 ${animation ? "-rotate-180" : "rotate-0"}`}
+            className={`duration-700 ${animation ? "rotate-0" : "-rotate-180"}`}
           />
         </div>
       </div>
