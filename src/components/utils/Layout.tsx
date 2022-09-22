@@ -34,7 +34,6 @@ export default function Layout({
           setNavShow(false);
           console.log("스크롤 올라가욧 👆🏻", currentScrollY);
         }
-        console.log("몇번?");
         beforeScrollY.current = currentScrollY;
       }, 300),
     [beforeScrollY],
