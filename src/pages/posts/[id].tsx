@@ -1,4 +1,4 @@
-import { Layout, Date, MdxComponents, Comments } from "@/components/utils";
+import { Layout, Date, MdxComponents } from "@/components/utils";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
@@ -62,7 +62,6 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
         </article>
-        <Comments />
       </div>
     </Layout>
   );
