@@ -80,7 +80,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         <div className="-mb-2 flex">
           <TabTracker initCategory={initCategory} />
         </div>
-        <div className="my-3 flex text-center font-semibold">
+        <div className="my-3 flex text-center font-grapeNuts text-md font-bold">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
             <CategoryTabs selectedCategory={categories} key={id} i={i} />
           ))}

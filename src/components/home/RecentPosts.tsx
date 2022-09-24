@@ -10,7 +10,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   const [beepSound] = useSound("/sounds/beep.mp3", { volume: 0.6 });
   const [isClick, setIsClick] = useState(false);
   const [animation, setAnimation] = useState(false);
-  const thisMonth = new Date().getMonth() + 1;
+  const thisMonth = new Date().toLocaleString("en", { month: "short" });
 
   useEffect(() => {
     if (localStorage.getItem("RecentPosts")) {
@@ -30,9 +30,9 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
           setIsClick(!isClick);
           beepSound();
         }}
-        className="relative my-2 flex cursor-fancyHover place-items-center justify-center bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
+        className="relative my-2 flex cursor-fancyHover place-items-center justify-center rounded-md bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
       >
-        <div className="grow text-center">{thisMonth}月</div>
+        <div className="grow text-center font-grapeNuts">{thisMonth}</div>
         <div className="absolute right-2">
           <BsChevronDown
             className={`duration-700 ${animation ? "rotate-0" : "-rotate-180"}`}

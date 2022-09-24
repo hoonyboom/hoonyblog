@@ -77,7 +77,6 @@ export function getAllPostTags() {
     (all: string[], each) => (all.includes(each.tags) ? all : [...all, each.tags]),
     [],
   );
-
   return deleteOverlapTags.map(tag => {
     return {
       params: {

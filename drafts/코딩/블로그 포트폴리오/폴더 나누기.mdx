@@ -1,5 +1,5 @@
 ---
-title: "posts 폴더를 계층화 시키기"
+title: "posts 폴더를 계층화하기"
 date: "2022-09-20"
 categories: "coding"
 tags: "블로그 포트폴리오"
@@ -85,7 +85,7 @@ const getAllFiles = (dir: string) => {
 *getSortedPostsData()*  
 모든 파일들의 데이터를 받아 최신순으로 정렬한다.  
 (태그 페이지는 필터로 받음)
-```ts posts.ts mark=2
+```ts posts.ts mark=2[3:51]
 export function getSortedPostsData(tags?: string) {
   const allPostsData = getAllFiles(postsDirectory);
 
@@ -132,12 +132,12 @@ const getAllFiles = (dir: string) => {
 ---
 *reduce 반복문*  
 파일명을 어레이로 모았으니 반복문을 돌린다.
-```ts posts.ts
+```ts posts.ts focus=3:6
 const getAllFiles = (dir: string) => {
   const folderNames = fs.readdirSync(dir);
   // reduce 메소드를 이용한 어레이 반복 & 맵핑
   const getAllFilesData = folderNames.reduce(()=> {
-
+  
   })
 
   return getAllFilesData;
@@ -146,14 +146,13 @@ const getAllFiles = (dir: string) => {
 ---
 *reduce 간단 설명*  
 첫번째 콜백에서 계산된 리턴값이 두번째, 두번째의 리턴값이 세번째... 마지막까지 넘어간다.
-```ts posts.ts
+```ts posts.ts focus=3:7
 const getAllFiles = (dir: string) => {
   const folderNames = fs.readdirSync(dir);
   // 두번째 인자에는 어레이(folderNames)의 각각의 요소(파일명)들이,
   // 첫번째 인자에는 앞선 반복의 리턴값이 들어온다 
   const getAllFilesData = folderNames.reduce((allFiles, file: string) => {
-
-
+  
   }, [] /* 초기값 */)
 
   return getAllFilesData;
@@ -162,7 +161,7 @@ const getAllFiles = (dir: string) => {
 ---
 *폴더 유무 판별하기*  
 fs의 `isDirectory()` 메소드는 폴더인지 아닌지 boolean 값을 내뱉는다.
-```ts posts.ts
+```ts posts.ts focus=3:8
 const getAllFiles = (dir: string) => {
   const folderNames = fs.readdirSync(dir);
   const getAllFilesData = folderNames.reduce((allFiles, file: string) => {
@@ -170,7 +169,6 @@ const getAllFiles = (dir: string) => {
     const fullpath = path.join(dir, file);
     // 파일의 폴더 유무를 가려낸다 (:boolean)
     const isDirectory = fs.statSync(fullpath).isDirectory();
-
   }, [])
 
   return getAllFilesData;
@@ -180,7 +178,7 @@ const getAllFiles = (dir: string) => {
 *전체적인 로직*  
 폴더를 만나면 재귀함수가 되게끔, 파일을 만나면 오브젝트 형태의 데이터를 리턴하게 만든다.  
 누적값은 배열안에 스프레드로 풀어 계속해서 이어지게끔 한다.
-```ts posts.ts
+```ts posts.ts focus=6:30
 const getAllFiles = (dir: string) => {
   const folderNames = fs.readdirSync(dir);
   const getAllFilesData = folderNames.reduce((allFiles, file: string) => {

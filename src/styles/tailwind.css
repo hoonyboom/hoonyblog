@@ -56,6 +56,9 @@
   cite {
     @apply flex justify-end not-italic;
   }
+  figcaption {
+    @apply flex justify-center text-mono;
+  }
   small {
     @apply flex justify-center text-mono;
   }
@@ -305,6 +308,12 @@
 @font-face {
   font-family: "IBMPlexMono";
   src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "GrapeNuts";
+  src: url("/fonts/GrapeNuts-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
