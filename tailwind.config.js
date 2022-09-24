@@ -71,6 +71,7 @@ module.exports = {
       mono: ["IBMPlexMono", "ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
       content: ["NunitoSans", "Arita"],
+      grapeNuts: ["GrapeNuts"],
     },
     minHeight: {
       content: "100vh",
