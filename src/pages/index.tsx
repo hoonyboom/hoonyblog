@@ -22,6 +22,7 @@ export interface PostsProps {
   excerpt?: string;
   image: string;
 }
+
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   return {
@@ -79,7 +80,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         <div className="-mb-2 flex">
           <TabTracker initCategory={initCategory} />
         </div>
-        <div className="my-3 flex text-center font-heading">
+        <div className="my-3 flex text-center font-semibold">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
             <CategoryTabs selectedCategory={categories} key={id} i={i} />
           ))}

@@ -22,10 +22,6 @@ interface HeadersType {
   target: { id: string; element?: HTMLHeadingElement };
 }
 
-// 커스텀 컴퍼넌트
-//
-//
-// NextLink
 export const Lnk = (props: LinkProps) => {
   return (
     <Link href={props.href}>

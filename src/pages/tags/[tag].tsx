@@ -8,7 +8,7 @@ import { useState } from "react";
 
 interface PathProps {
   params: {
-    tags: string;
+    tag: string;
   };
 }
 interface DataProps {
@@ -24,11 +24,12 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }: PathProps) {
-  const allTagsData = getSortedPostsData(params.tags);
+  const allTagsData = getSortedPostsData(params.tag);
   return {
-    props: { allTagsData, tag: params.tags },
+    props: { allTagsData, tag: params.tag },
   };
 }
+
 const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
   const [tapSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   return (
@@ -37,8 +38,8 @@ const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
         onMouseUp={() => tapSound()}
         className="-my-px flex border-y border-blue-800 py-2 text-right no-underline dark:border-blue-900"
       >
-        <div className="pl-3 text-left sm:basis-2/12 md:basis-1/12">{description}</div>
-        <div className="sm:basis-10/12 sm:pr-3 md:basis-9/12 md:pr-10">{title}</div>
+        <div className="pl-3 text-left sm:basis-4/12 md:basis-3/12">{description}</div>
+        <div className="sm:basis-8/12 sm:pr-3 md:basis-7/12 md:pr-10">{title}</div>
         <div className="basis-2/12 justify-end pr-3 sm:hidden md:inline-flex">{date}</div>
       </a>
     </Link>
@@ -75,8 +76,6 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
             <Posts key={id} id={id} title={title} date={date} description={description} />
           ))}
       </div>
-
-      {/* 페이지네이션 */}
       <Pagination limit={limit} total={total} page={page} setPage={setPage} />
     </Layout>
   );

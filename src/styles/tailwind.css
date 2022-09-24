@@ -23,7 +23,7 @@
     @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply py-4 font-heading text-lg font-bold sm:mt-5 sm:mb-px md:mt-10 md:mb-2;
+    @apply py-4 font-heading text-lg font-bold sm:mt-5 sm:mb-px md:mt-20 md:mb-2;
   }
   h4 {
     @apply pt-4 pb-2 font-heading text-md font-bold text-emerald-600;
@@ -43,8 +43,9 @@
   button:disabled {
     @apply cursor-fancy;
   }
-  p code {
-    @apply mx-px rounded-md bg-lightGray py-px px-1 dark:bg-darkGray;
+  p code,
+  li code {
+    @apply mx-px rounded-md bg-lightGray px-1 dark:bg-darkGray;
   }
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
@@ -267,7 +268,7 @@
   .bg-highlight-salary {
     background-image: linear-gradient(
       transparent calc(50% - 9px),
-      #cafc9d calc(50% - 9px)
+      papayaWhip calc(50% - 9px)
     );
     background-size: 100% 220%;
   }

@@ -61,19 +61,35 @@ export function getSortedPostsData(tags?: string) {
 }
 
 export function getAllPostIds() {
-  const fileNames = getAllFiles(postsDirectory);
-  return fileNames.map(fileName => {
+  const allPostsData = getAllFiles(postsDirectory);
+  return allPostsData.map(post => {
     return {
       params: {
-        id: fileName.id.replace(/\.mdx$/, ""),
+        id: post.id,
+      },
+    };
+  });
+}
+
+export function getAllPostTags() {
+  const allPostsData = getAllFiles(postsDirectory);
+  const deleteOverlapTags = allPostsData.reduce(
+    (all: string[], each) => (all.includes(each.tags) ? all : [...all, each.tags]),
+    [],
+  );
+
+  return deleteOverlapTags.map(tag => {
+    return {
+      params: {
+        tag,
       },
     };
   });
 }
 
 export async function getPostData(id: string) {
-  const data = getAllFiles(postsDirectory);
-  const path = data.find(post => {
+  const allPostsData = getAllFiles(postsDirectory);
+  const path = allPostsData.find(post => {
     return post.id === `${id}`;
   });
 
@@ -105,15 +121,4 @@ export async function getPostData(id: string) {
     code,
     frontmatter,
   };
-}
-
-export function getAllPostTags() {
-  const data = getSortedPostsData();
-  return data.map(post => {
-    return {
-      params: {
-        tags: post.tags,
-      },
-    };
-  });
 }
