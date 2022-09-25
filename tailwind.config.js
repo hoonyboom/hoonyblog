@@ -69,7 +69,7 @@ module.exports = {
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["IBMPlexMono", "ui-monospace", "SFMono-Regular"],
+      mono: ["ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
       content: ["NunitoSans", "Arita"],
       grapeNuts: ["GrapeNuts"],

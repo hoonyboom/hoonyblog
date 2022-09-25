@@ -1,7 +1,7 @@
 import Twemoji from "react-twemoji";
 import { Nav } from "@/components/navigation";
 import { Seo } from "@/components/utils";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { throttle } from "lodash";
 import { useRouter } from "next/router";
 
@@ -23,17 +23,21 @@ export default function Layout({
   const router = useRouter();
   const [navShow, setNavShow] = useState(false);
   const beforeScrollY = useRef(0);
-  const scrollSensor = throttle(() => {
-    const currentScrollY = globalThis.scrollY;
-    if (currentScrollY > beforeScrollY.current && currentScrollY > 60) {
-      setNavShow(true);
-      console.log("스크롤 내려가욧 👇🏼", currentScrollY);
-    } else {
-      setNavShow(false);
-      console.log("스크롤 올라가욧 👆🏻", currentScrollY);
-    }
-    beforeScrollY.current = currentScrollY;
-  }, 300);
+  const scrollSensor = useMemo(
+    () =>
+      throttle(() => {
+        const currentScrollY = globalThis.scrollY;
+        if (currentScrollY > beforeScrollY.current && currentScrollY > 60) {
+          setNavShow(true);
+          console.log("스크롤 내려가욧 👇🏼", currentScrollY);
+        } else {
+          setNavShow(false);
+          console.log("스크롤 올라가욧 👆🏻", currentScrollY);
+        }
+        beforeScrollY.current = currentScrollY;
+      }, 300),
+    [],
+  );
 
   useEffect(() => {
     globalThis.addEventListener("scroll", scrollSensor);
