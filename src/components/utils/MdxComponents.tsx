@@ -66,15 +66,12 @@ export const Youtube = ({ src }: { src: string }) => {
 // RoughNotation
 export const Note = (props: NotationProps) => {
   const [isCalled, setIsCalled] = useState(false);
-  useEffect(() => setIsCalled(true), []);
+  useEffect(() => {
+    setIsCalled(true);
+    return () => setIsCalled(false);
+  }, []);
   return (
-    <RoughNotation
-      show={isCalled}
-      color="skyblue"
-      animationDuration={1200}
-      animationDelay={100}
-      {...props}
-    >
+    <RoughNotation show={isCalled} color="tomato" animationDuration={1200} {...props}>
       {props.children}
     </RoughNotation>
   );

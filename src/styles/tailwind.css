@@ -14,7 +14,7 @@
     @apply cursor-fancyHover underline decoration-paleBlue decoration-solid underline-offset-8 hover:decoration-wavy;
   }
   em {
-    @apply not-italic text-paleBlue;
+    @apply not-italic text-sea;
   }
   h1 {
     @apply font-heading text-3xl;
@@ -45,7 +45,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray px-1 font-content text-darkslateblue dark:bg-darkGray dark:text-orange;
   }
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
@@ -271,14 +271,14 @@
   .bg-highlight-salary {
     background-image: linear-gradient(
       transparent calc(50% - 9px),
-      papayaWhip calc(50% - 9px)
+      papayawhip calc(50% - 9px)
     );
     background-size: 100% 220%;
   }
   .bg-highlight-bora {
     background-image: linear-gradient(
       transparent calc(50% - 9px),
-      #3d348b calc(50% - 9px)
+      darkslateblue calc(50% - 9px)
     );
     background-size: 100% 220%;
   }

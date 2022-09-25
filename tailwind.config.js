@@ -40,6 +40,7 @@ module.exports = {
         smokeWhite: "#F6FAFA",
         smokeBlack: "#1E1E1E",
         salary: "#CAFC9D",
+        darkslateblue: "darkslateblue",
       },
       cursor: {
         fancy: "url('/images/2022/autumm/cursor.png'), default",
