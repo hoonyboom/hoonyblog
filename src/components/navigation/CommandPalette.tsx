@@ -10,7 +10,7 @@ import {
 } from "kbar";
 import { LayoutProps } from "@/components/utils/Layout";
 import { VscGithubInverted, VscTwitter } from "react-icons/vsc";
-import { FcDislike, FcWorkflow } from "react-icons/fc";
+import { FcDislike, FcWorkflow, FcPuzzle } from "react-icons/fc";
 import { SiAboutdotme } from "react-icons/si";
 import { IoCloud } from "react-icons/io5";
 import { GiCircle } from "react-icons/gi";
@@ -29,22 +29,6 @@ export default function CommandPalette({ children }: LayoutProps) {
       icon: <GiCircle className="h-4 w-4" />,
     },
     {
-      id: "writing",
-      name: "Writing",
-      shortcut: ["w"],
-      keywords: "writing",
-      section: "_root",
-      perform: () =>
-        router.push(
-          {
-            pathname: "/",
-            query: { category: "writing" },
-          },
-          "/writing",
-        ),
-      icon: <FcDislike className="h-4 w-4" />,
-    },
-    {
       id: "coding",
       name: "Coding",
       shortcut: ["c"],
@@ -59,6 +43,38 @@ export default function CommandPalette({ children }: LayoutProps) {
           "/coding",
         ),
       icon: <FcWorkflow className="h-4 w-4" />,
+    },
+    {
+      id: "diarying",
+      name: "Diarying",
+      shortcut: ["d"],
+      keywords: "diarying",
+      section: "_root",
+      perform: () =>
+        router.push(
+          {
+            pathname: "/",
+            query: { category: "diarying" },
+          },
+          "/diarying",
+        ),
+      icon: <FcDislike className="h-4 w-4" />,
+    },
+    {
+      id: "reading",
+      name: "Reading",
+      shortcut: ["r"],
+      keywords: "reading",
+      section: "_root",
+      perform: () =>
+        router.push(
+          {
+            pathname: "/",
+            query: { category: "reading" },
+          },
+          "/reading",
+        ),
+      icon: <FcPuzzle className="h-4 w-4" />,
     },
     {
       id: "github",
@@ -84,7 +100,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       shortcut: ["a"],
       keywords: "about",
       section: "README.md",
-      perform: () => router.push("/category/about", "/about"),
+      perform: () => router.push("/about"),
       icon: <SiAboutdotme className="h-4 w-4" />,
     },
     // {
