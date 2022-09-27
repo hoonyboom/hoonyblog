@@ -50,6 +50,7 @@ const dataByCategory = uniqBy(data, "category");
 ---
 ```ts result
 console.log(dataByCategory);
+
 ✨ 결과값
 [
   {
@@ -97,7 +98,7 @@ export function getAllPostTags() {
 <br/>
 2. 중요한 건 역시 리턴인데, reduce의 매력은 이곳이다. *어떤 형태로 누적 데이터를 받을지 사용자 마음이라는 것!* 앞에서처럼 내가 필요한 건 오직 태그뿐이다. 때문에 리턴을 배열로, 안에는 `each.tags`라는 string 자료가 차곡차곡 쌓이게 만들었다.
 <CH.Code>
-```ts posts.ts focus=3:5
+```ts posts.ts focus=3:5 
 export function getAllPostTags() {
   const allPostsData = getAllFiles(postsDirectory);
   const deleteOverlapTags = allPostsData.reduce(
@@ -105,8 +106,7 @@ export function getAllPostTags() {
     [],
   );
 ```
-```ts type.d.ts
-// 참고: 원본데이터의 타입이다. 
+```ts sample.ts
 // allPostsData: FileType[]
 interface FileType {
   id: string;
@@ -134,3 +134,7 @@ export function getAllPostTags() {
 
 <Img src={'/images/2022/autumm/태그중복값3.png'} />
 <small>🎉🎉🎉</small>
+<br/>
+<br/>
+<br/>
+\+ 22/09/25 update: <Lnk text={'Set 중복 제거'} href={'http://localhost:3000/posts/%EC%97%90%EB%9F%AC%20%EB%AA%A8%EC%9D%8C%EC%A7%91'} />

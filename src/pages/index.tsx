@@ -105,8 +105,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
             )}
           </div>
           <div className="writing-vertical basis-11/12 pl-3">
-            {selectedData?.slice(offset, offset + limit).map((a, i) => (
-              <TagList key={i} tags={a} />
+            {selectedData?.slice(offset, offset + limit).map(tag => (
+              <TagList key={tag} tags={tag} />
             ))}
           </div>
         </article>

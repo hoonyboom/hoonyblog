@@ -46,7 +46,9 @@ export function getSortedPostsData(tag?: string) {
 
   if (tag) {
     const postsByTag = allPostsData.filter(post =>
-      typeof post.tags === "string" ? post.tags === tag : post.tags.find(a => a === tag),
+      typeof post.tags === "string"
+        ? post.tags === tag
+        : post.tags.find(tagInArr => tagInArr === tag),
     );
     return postsByTag.sort(({ date: a }, { date: b }) => {
       if (a < b) return 1;

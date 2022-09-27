@@ -1,6 +1,5 @@
 import useSound from "use-sound";
 import Link from "next/link";
-import { PostsProps } from "@/pages";
 
 export default function TagList({ tags }: Partial<PostsProps>) {
   const [tabSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });

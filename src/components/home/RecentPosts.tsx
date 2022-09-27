@@ -1,4 +1,3 @@
-import { PostsProps } from "@/pages";
 import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { FcWorkflow, FcDislike } from "react-icons/fc";

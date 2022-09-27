@@ -1,6 +1,5 @@
 import { Layout, MdxComponents, Pagination } from "@/components/utils";
 import { getAllPostTags, getSortedPostsData } from "@/lib/posts";
-import { PostsProps } from "@/pages/index";
 import Link from "next/link";
 import useSound from "use-sound";
 import { filter } from "lodash";
@@ -25,6 +24,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }: PathProps) {
   const allTagsData = getSortedPostsData(params.tag);
+
   return {
     props: { allTagsData, tag: params.tag },
   };
