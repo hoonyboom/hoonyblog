@@ -85,7 +85,9 @@
     "curly" : [
       "error",
       "multi"
-    ] // if문 중괄호 생략 가능시 생략
+    ], // if문 중괄호 생략 가능시 생략
+    "react-hooks/rules-of-hooks": ["error"],
+    "react-hooks/exhaustive-deps": ["warn"]  // 리액트 의존성 배열 correctness 체크
   },
   "settings": {
     "import/resolver": {
