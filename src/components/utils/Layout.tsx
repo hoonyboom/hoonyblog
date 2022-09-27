@@ -81,7 +81,14 @@ export default function Layout({
             ) : (
               !home && (
                 <footer className="mt-16 ml-3 pb-20 text-base">
-                  <a onClick={() => router.back()} className="no-underline">
+                  <a
+                    onClick={() =>
+                      sessionStorage.path
+                        ? router.push(`${sessionStorage.getItem("path")}`)
+                        : router.push("/")
+                    }
+                    className="no-underline"
+                  >
                     ← Previous
                   </a>
                 </footer>

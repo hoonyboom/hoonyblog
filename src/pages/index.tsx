@@ -1,6 +1,6 @@
 import { getSortedPostsData } from "@/lib/posts";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
 import { Layout /* Pagination */ } from "@/components/utils";
@@ -34,7 +34,8 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리
-  const isCategory = useRouter().query.category;
+  const router = useRouter();
+  const isCategory = router.query.category;
   const [selectedData, setSelectedData] = useState<string[]>();
   const [initCategory, setInitCategory] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories").sort(
@@ -77,6 +78,10 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   }, [selectedData]);
   useEffect(() => {
     if (sessionStorage.Page) sessionStorage.removeItem("Page");
+    if (sessionStorage.watchedTab === "2")
+      router.push({ query: { category: "reading" } });
+    else if (sessionStorage.watchedTab === "1")
+      router.push({ query: { category: "diarying" } });
   }, []);
 
   return (

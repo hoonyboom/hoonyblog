@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { FcWorkflow, FcDislike } from "react-icons/fc";
+import { useRouter } from "next/router";
 import useSound from "use-sound";
 import Link from "next/link";
 
@@ -10,9 +11,10 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
   const [isClick, setIsClick] = useState(false);
   const [animation, setAnimation] = useState(false);
   const thisMonth = new Date().toLocaleString("en", { month: "short" });
+  const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem("RecentPosts")) {
+    if (localStorage.RecentPosts) {
       const data = JSON.parse(localStorage.getItem("RecentPosts") as string).toggle;
       setIsClick(data);
     }
@@ -49,6 +51,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
               <Link key={id} href={`/posts/${id}`}>
                 <a
                   onMouseUp={() => tabSound()}
+                  onClick={() => sessionStorage.setItem("path", router.asPath)}
                   className={
                     "mb-2 flex flex-row justify-between border-slate-600/30 px-5 no-underline sm:border-y-0 sm:py-1 md:border-y md:py-2"
                   }

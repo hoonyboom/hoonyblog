@@ -4,6 +4,7 @@ import Link from "next/link";
 import useSound from "use-sound";
 import { filter } from "lodash";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 interface PathProps {
   params: {
@@ -32,10 +33,12 @@ export async function getStaticProps({ params }: PathProps) {
 
 const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
   const [tapSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
+  const router = useRouter();
   return (
     <Link href={`/posts/${id}`}>
       <a
         onMouseUp={() => tapSound()}
+        onClick={() => sessionStorage.setItem("path", router.asPath)}
         className="-my-px flex border-y border-blue-800 py-2 text-right no-underline dark:border-blue-900"
       >
         <div className="pl-3 text-left sm:basis-4/12 md:basis-3/12">{description}</div>
