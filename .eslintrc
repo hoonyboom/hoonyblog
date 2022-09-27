@@ -10,7 +10,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:tailwindcss/recommended",
-    "plugin:prettier/recommended" // recommend: 항상 아래에!
+    "plugin:prettier/recommended" //* 항상 아래에!
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
