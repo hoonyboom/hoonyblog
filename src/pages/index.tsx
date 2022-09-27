@@ -12,15 +12,17 @@ import {
   TagList,
 } from "@/components/home";
 
-export interface PostsProps {
-  id: string;
-  title: string;
-  date: string;
-  categories: string;
-  tags: string;
-  description: string;
-  excerpt?: string;
-  image: string;
+declare global {
+  interface PostsProps {
+    id: string;
+    title: string;
+    date: string;
+    categories: string;
+    tags: string | string[];
+    description: string;
+    excerpt?: string;
+    image: string;
+  }
 }
 
 export async function getStaticProps() {
@@ -33,7 +35,7 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리
   const isCategory = useRouter().query.category;
-  const [selectedData, setSelectedData] = useState<PostsProps[]>();
+  const [selectedData, setSelectedData] = useState<string[]>();
   const [initCategory, setInitCategory] = useState(false);
   const deleteOverlapCategories = uniqBy(allPostsData, "categories").sort(
     ({ categories: a }, { categories: b }) => {
@@ -58,7 +60,13 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       if (isCategory) return categories === isCategory;
       return categories === "coding";
     });
-    const deleteOverlapTags = uniqBy(initData, "tags");
+    const deleteOverlapTags = initData.reduce(
+      (all: string[], each) =>
+        typeof each.tags === "string"
+          ? [...new Set([...all, each.tags])]
+          : [...new Set([...all, ...each.tags])],
+      [],
+    );
     setInitCategory(false);
     setSelectedData(deleteOverlapTags);
   }, [isCategory, allPostsData]);
@@ -97,8 +105,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
             )}
           </div>
           <div className="writing-vertical basis-11/12 pl-3">
-            {selectedData?.slice(offset, offset + limit).map(({ id, tags }) => (
-              <TagList key={id} tags={tags} />
+            {selectedData?.slice(offset, offset + limit).map((a, i) => (
+              <TagList key={i} tags={a} />
             ))}
           </div>
         </article>

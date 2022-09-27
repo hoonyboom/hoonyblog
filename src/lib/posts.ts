@@ -10,9 +10,9 @@ import { theme } from "./theme/search-light";
 interface FileType {
   id: string;
   date: string;
-  tags: string;
+  tags: string | string[];
   fullpath: string;
-  [key: string]: string;
+  [key: string]: string | string[];
 }
 const postsDirectory = path.join(process.cwd(), "drafts");
 
@@ -30,8 +30,8 @@ const getAllFiles = (dir: string): FileType[] => {
         ...allFiles,
         {
           id,
-          tags: matterResult.tags as string,
-          date: matterResult.date as string,
+          tags: matterResult.tags,
+          date: matterResult.date,
           fullpath,
           ...matterResult,
         },
@@ -41,11 +41,13 @@ const getAllFiles = (dir: string): FileType[] => {
   return getAllFilesData;
 };
 
-export function getSortedPostsData(tags?: string) {
+export function getSortedPostsData(tag?: string) {
   const allPostsData = getAllFiles(postsDirectory);
 
-  if (tags) {
-    const postsByTag = allPostsData.filter(post => post.tags === tags);
+  if (tag) {
+    const postsByTag = allPostsData.filter(post =>
+      typeof post.tags === "string" ? post.tags === tag : post.tags.find(a => a === tag),
+    );
     return postsByTag.sort(({ date: a }, { date: b }) => {
       if (a < b) return 1;
       else if (a > b) return -1;
@@ -74,9 +76,13 @@ export function getAllPostIds() {
 export function getAllPostTags() {
   const allPostsData = getAllFiles(postsDirectory);
   const deleteOverlapTags = allPostsData.reduce(
-    (all: string[], each) => (all.includes(each.tags) ? all : [...all, each.tags]),
+    (all: string[], each) =>
+      typeof each.tags === "string"
+        ? [...new Set([...all, each.tags])]
+        : [...new Set([...all, ...each.tags])],
     [],
   );
+
   return deleteOverlapTags.map(tag => {
     return {
       params: {
