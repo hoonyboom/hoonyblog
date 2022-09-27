@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 export interface LayoutProps {
   children: React.ReactNode;
   home?: boolean;
+  tag?: boolean;
   siteTitle?: string;
   tags?: string;
   category?: string;
@@ -17,6 +18,7 @@ export default function Layout({
   children,
   home,
   siteTitle,
+  tag,
   tags,
   category,
 }: LayoutProps) {
@@ -70,12 +72,20 @@ export default function Layout({
             }}
           >
             <article>{children}</article>
-            {!home && (
+            {tag ? (
               <footer className="mt-16 ml-3 pb-20 text-base">
-                <a onClick={() => router.back()} className="no-underline">
+                <a onClick={() => router.push("/")} className="no-underline">
                   ← Previous
                 </a>
               </footer>
+            ) : (
+              !home && (
+                <footer className="mt-16 ml-3 pb-20 text-base">
+                  <a onClick={() => router.back()} className="no-underline">
+                    ← Previous
+                  </a>
+                </footer>
+              )
             )}
           </Twemoji>
         </section>

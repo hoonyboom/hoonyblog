@@ -4,18 +4,13 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: "/coding",
-        destination: "/",
+        source: "/blog",
+        destination: "/tags/블로그%20포트폴리오",
         permanent: false,
       },
       {
-        source: "/writing",
-        destination: "/",
-        permanent: false,
-      },
-      {
-        source: "/about",
-        destination: "/category/about",
+        source: "/me",
+        destination: "/tags/일기",
         permanent: false,
       },
     ];
