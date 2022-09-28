@@ -1,0 +1,159 @@
+---
+title: 중간 결산
+date: "2022-09-27"
+categories: coding
+tags: 블로그 포트폴리오
+description: etc
+---
+<HeadingNavigator />
+블로그 리빌딩이 얼추 마무리됐다. 예쓰-!  
+실사용을 목적으로 만들었기 때문에 업데이트는 꾸준히 할 거다!  
+하지만 다음 포폴도 있고 해서 오늘은 중간에서 일단락짓는 시간을 가져본다 👻  
+
+
+### Yarn berry
+Yarn berry를 처음으로 적용했다. yarn classic을 써오면서 문제도 불만도 없었으나, 레거시로 돌아선지 한참인데 언제까지 쓰고 있을 순 없다고 판단했다.  
+<br/>
+`yarn berry`는 모듈 파일들을 압축된 형식으로 가진다. 참조가 필요할 때 위치를 찾아내 이를 들춰보는 방식이다. (압축됐기에) 작은 용량을 가지며, (트리형 참조가 아니기 때문에) 유령 의존성이라 불리는 node_modules의 문제를 해결한다고 한다. `제로-인스톨` 방식을 써 모듈까지 통째로 레포지토리에서 버전 관리할 수도 있다. 
+<br/>
+장점만 있는 건 아니다. 호환성 때문인데, 체험으로 말하면 `typescript`나 `prettier`의 플러그인들이 기본적으로 `node_modules`만 참조했기 때문에 애먹는 순간이 있었다. 특히 `zip`파일 특성상 모듈의 <q>타입 정의</q>을 열어보지 못할 때 가장 고민이 됐다. 그 부분을 들여다보면 공부되는 게 많았기 때문이다. 다행히 이 문제들은 모두 해결이 가능했다.[^1]
+
+### SEO
+Seo 컴퍼넌트를 두고 각각의 페이지에 맞게 `title`만 props로 받는다. 점검은 약식이지만 개발자 툴에 있는 <q>Lighthouse</q>로 측정했다. 기기 성능이 점수에 영향을 미치기 때문에 엄정한 진단은 아닐 테지만, 미흡한 사항을 알려주기 때문에 보완용으로 쓰기에 좋다. 현재 노란불인 `권장사항`은 이미지 픽셀값을 원본에 맞추기를 경고하고 있다. 
+<br/>
+<Img src={'/images/2022/autumm/스샷_SEO.webp'} />
+<Img src={'/images/2022/autumm/Seo 점검.webp'} />
+
+
+### 폰트 경량화
+한글 폰트 파일의 무게는 한글의 우수성과 비례한다. 정석대로라면 10,000자를 넘는 글리프를 가지기 때문에 `otf, ttf` 상태에서는 4mb를 차지하는 폰트가 부지기수다.  
+참으로 슬픈 일이 아닐 수 없다.  
+그래서 더더욱 경량화가 요구되는데, 나는 파이썬의 <q>폰트툴즈</q>를 사용해 글리프를 덜어냈다[^2]. `KS X 1001 표준의 2,350자`에 몇자를 더해 필터했고, 웹폰트 형식인 `woff2`로의 변환을 마치면 130kb 정도의 폰트가 탄생한다.  
+라이센스를 확인하고 서버 탑재가 가능한 폰트만을 사용했다. 사용된 폰트는 <Lnk text={'여기'} href={'/about'} />에 정리했다.  
+<Img src={'/images/2022/autumm/스샷_폰트.webp'} />
+
+
+### 마크다운 문법과 컴퍼넌츠, 그리고 스니펫
+사용을 거듭하며 최적화를 마쳤다. 아무튼 지금으로선 그렇다. 자주 사용하는 모듈은 `MdxComponents`에 담아 약간의 커스텀을 가미했고, 대표적으로 `next/link`는 이런 모습이다. 
+```ts MdxComponents.tsx
+...
+import Link from "next/link";
+
+interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
+  text: string;
+  href: string;
+}
+
+export const Lnk = (props: LinkProps) => {
+  return (
+    <Link href={props.href}>
+      <a target="_blank" rel="noopener noreferrer" className="text-paleBlue" {...props}>
+        {props.text}
+      </a>
+    </Link>
+  );
+};
+...
+...
+...
+const MdxComponents = {
+  Img,
+  Lnk,
+  Youtube,
+  Note,
+  HeadingNavigator,
+};
+
+export default MdxComponents;
+```
+<br/>
+이 컴퍼넌트들은 props로, <Lnk text={'mdxBundler'} href={'https://github.com/kentcdodds/mdx-bundler'} />에 직접 디스트럭션으로 풀어 놔서, 별도의 import 없이 `mdx` 파일에서 곧장 사용할 수 있게 했다. 또한 글쓰기 효율을 극대화하기 위해 `마크다운 기호`는 물론, 잘 쓰지 않는 인라인/블록 태그[^3]까지 CSS를 부여해 활용하고 있다.
+<CH.Code>
+  ```mdx sample.mdx
+  ---
+  title: "그렇게 살아가는 것"
+  date: "2022-08-26"
+  categories: "diarying"
+  tags: "음악"
+  description: "허회경"
+  image: "/images/2022/summer/composition.png"
+  ---
+  <Youtube src={'https://www.youtube.com/embed/cHC0ghVev1E'} />
+  <Img src={"/images/2022/summer/screen_shot_1.png"} priority/>
+  
+  ### 으핳핳..🤦🏼‍♀️  
+  
+  > 블럭쿼트 인용문 자리입니다.
+  > <cite>출처는 cite에 담아 오른쪽 정렬로 붙여요</cite>
+  ```
+  ```css tailwind.css
+  ...
+  a {
+    @apply cursor-fancyHover underline decoration-paleBlue decoration-solid underline-offset-8 hover:decoration-wavy;
+  }
+  em {
+    @apply not-italic text-sea;
+  }
+  blockquote {
+    @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
+  }
+  q {
+    @apply bg-highlight-salary dark:bg-highlight-bora;
+  }
+  cite {
+    @apply flex justify-end not-italic;
+  }
+  figcaption {
+    @apply flex justify-center text-mono;
+  }
+  ...
+  ```
+</CH.Code>
+<br/>
+글쓰는 속도에 지장을 받지 위해서는 <q>VsCode 스니펫</q>을 적극 도입했다. 현재 `@`에 단축어를 모아놓고 사용 중이다. 스니펫을 통해 원하는 구문을 불러, 원하는 부분만(`tab`을 이용해 전환한다) 빠르게 에디팅 할 수 있다. 비단 mdx뿐만 아니라 ts, js 등에서도 활용할 수 있기에 앞으로의 코딩에 많은 도움이 될 거 같다.
+```json mdx.json
+{
+  "Image": {
+    "prefix": "@img",
+    "body": "<Img src={'${1:/*url*/}'} />",
+    "description": "NextImage"
+  },
+
+  "Link": {
+    "prefix": "@lnk",
+    "body": "<Lnk text={'${1:/*텍스트*/}'} href={'${2:/*url*/}'} />",
+    "description": "NextLink"
+  },
+
+  "CH.Code1": {
+    "prefix": "@cd_tabs",
+    "body": [
+      "<CH.Code>",
+      "```ts index.tsx",
+      "${1:/*Code Here*/}",
+      "```",
+      "```ts modal.tsx",
+      "${2:/*Code Here*/}",
+      "```",
+      "</CH.Code>"
+    ],
+    "description": "탭 코드"
+  },
+  ...
+  ...    
+}
+```
+<br/>
+<Img src={'/images/2022/autumm/스샷_스니펫1.webp'} />
+<figcaption>골뱅이 입력시 목록이 뜨고</figcaption>
+<Img src={'/images/2022/autumm/스샷_스니펫2.webp'} />
+<figcaption>불러오면 입력이 필요한 부분만 전환되게 마킹했다</figcaption>
+<br/>
+<br/>
+<br/>
+
+#### 참고한 사이트
+
+[^1]: <Lnk text={'ZipFS'} href={'https://yarnpkg.com/getting-started/editor-sdks#vscode'} />
+[^2]: <Lnk text={'폰트툴즈 사용법'} href={'https://www.44bits.io/ko/post/optimization_webfont_with_pyftsubnet'} />
+[^3]: <Lnk text={'인라인/블록 태그 목록'} href={'https://www.w3schools.com/html/html_blocks.asp'} />

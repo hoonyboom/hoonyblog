@@ -9,10 +9,6 @@ import { headerState } from "@/lib/store";
 import { useRecoilState } from "recoil";
 
 /* 인터페이스 커스텀 타입 확장 */
-interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
-  text: string;
-  href: string;
-}
 interface NotationProps extends Omit<RoughNotationProps, "children"> {
   className?: string;
   children?: React.ReactNode;
@@ -20,6 +16,10 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
 interface HeadersType {
   isIntersecting?: boolean;
   target: { id: string; element?: HTMLHeadingElement };
+}
+interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
+  text: string;
+  href: string;
 }
 
 export const Lnk = (props: LinkProps) => {

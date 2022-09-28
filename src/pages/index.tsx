@@ -1,6 +1,6 @@
 import { getSortedPostsData } from "@/lib/posts";
 import { useEffect, useState } from "react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
 import { Layout /* Pagination */ } from "@/components/utils";
@@ -111,7 +111,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
           </div>
           <div className="writing-vertical basis-11/12 pl-3">
             {selectedData?.slice(offset, offset + limit).map(tag => (
-              <TagList key={tag} tags={tag} />
+              <TagList key={tag} tag={tag} />
             ))}
           </div>
         </article>

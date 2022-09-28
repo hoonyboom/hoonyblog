@@ -1,7 +1,7 @@
 import useSound from "use-sound";
 import Link from "next/link";
 
-export default function TagList({ tags }: Partial<PostsProps>) {
+export default function TagList({ tag }: { tag: string }) {
   const [tabSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
 
   return (
@@ -14,8 +14,8 @@ export default function TagList({ tags }: Partial<PostsProps>) {
           : "word-tightest"
       }`}
     >
-      <Link href={`/tags/${tags}`}>
-        <a className="text-md no-underline">{tags}</a>
+      <Link href={`/tags/${tag}`}>
+        <a className="text-md no-underline">{tag}</a>
       </Link>
     </div>
   );

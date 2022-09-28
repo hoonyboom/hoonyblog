@@ -64,7 +64,12 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
       <h1 className="pt-16 pl-4">{tag}</h1>
       <div className="flex justify-between pt-7 pl-3 pb-12">
         <p className="keep-all text-base sm:basis-1/2 md:basis-2/5">
-          {summary.map(({ excerpt }) => excerpt)}
+          {summary.reverse().map(({ excerpt }, i) => (
+            <span key={i}>
+              {excerpt}
+              <br />
+            </span>
+          ))}
         </p>
         <div className="-mt-3 pr-3 sm:basis-1/2 md:basis-3/5">
           {banner.map(({ image, id }) => (
