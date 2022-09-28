@@ -1,6 +1,6 @@
 ---
 title: 중간 결산
-date: "2022-09-27"
+date: "2022-09-28"
 categories: coding
 tags: 블로그 포트폴리오
 description: etc
@@ -19,7 +19,7 @@ Yarn berry를 처음으로 적용했다. yarn classic을 써오면서 문제도 
 장점만 있는 건 아니다. 호환성 때문인데, 체험으로 말하면 `typescript`나 `prettier`의 플러그인들이 기본적으로 `node_modules`만 참조했기 때문에 애먹는 순간이 있었다. 특히 `zip`파일 특성상 모듈의 <q>타입 정의</q>을 열어보지 못할 때 가장 고민이 됐다. 그 부분을 들여다보면 공부되는 게 많았기 때문이다. 다행히 이 문제들은 모두 해결이 가능했다.[^1]
 
 ### SEO
-Seo 컴퍼넌트를 두고 각각의 페이지에 맞게 `title`만 props로 받는다. 점검은 약식이지만 개발자 툴에 있는 <q>Lighthouse</q>로 측정했다. 기기 성능이 점수에 영향을 미치기 때문에 엄정한 진단은 아닐 테지만, 미흡한 사항을 알려주기 때문에 보완용으로 쓰기에 좋다. 현재 노란불인 `권장사항`은 이미지 픽셀값을 원본에 맞추기를 경고하고 있다. 
+Seo 컴퍼넌트를 두고 각각의 페이지에 맞게 `title`만 props로 받는다. 점검은 약식이나마 개발자 툴에 있는 <q>Lighthouse</q>로 측정했다. 기기 성능이 점수에 영향을 미치기 때문에 엄정한 진단은 아닐 테지만, 미흡한 사항을 알려주기 때문에 보완용으로 쓰기에 좋다. 현재 노란불인 `권장사항`은 이미지 픽셀값을 원본에 맞추기를 경고하고 있다. 
 <br/>
 <Img src={'/images/2022/autumm/스샷_SEO.webp'} />
 <Img src={'/images/2022/autumm/Seo 점검.webp'} />
@@ -34,7 +34,9 @@ Seo 컴퍼넌트를 두고 각각의 페이지에 맞게 `title`만 props로 받
 
 
 ### 마크다운 문법과 컴퍼넌츠, 그리고 스니펫
-사용을 거듭하며 최적화를 마쳤다. 아무튼 지금으로선 그렇다. 자주 사용하는 모듈은 `MdxComponents`에 담아 약간의 커스텀을 가미했고, 대표적으로 `next/link`는 이런 모습이다. 
+
+#### 유틸 컴퍼넌트
+사용을 거듭하며 최적화를 마쳤다. 아무튼 지금으로선 그렇다. 자주 사용하는 모듈은 `MdxComponents`에 담아 약간의 커스텀을 가미했다. 대표적으로 `next/link`는 이런 모습이다. 
 ```ts MdxComponents.tsx
 ...
 import Link from "next/link";
@@ -67,7 +69,9 @@ const MdxComponents = {
 export default MdxComponents;
 ```
 <br/>
-이 컴퍼넌트들은 props로, <Lnk text={'mdxBundler'} href={'https://github.com/kentcdodds/mdx-bundler'} />에 직접 디스트럭션으로 풀어 놔서, 별도의 import 없이 `mdx` 파일에서 곧장 사용할 수 있게 했다. 또한 글쓰기 효율을 극대화하기 위해 `마크다운 기호`는 물론, 잘 쓰지 않는 인라인/블록 태그[^3]까지 CSS를 부여해 활용하고 있다.
+#### 마크다운 태그
+이 컴퍼넌트들은 props로, <Lnk text={'mdxBundler'} href={'https://github.com/kentcdodds/mdx-bundler'} />에 직접 디스트럭션으로 풀어 놔서, 별도의 import 없이 `mdx` 파일에서 곧장 사용할 수 있게 했다.  
+또한 글쓰기 효율을 극대화하기 위해 `마크다운 기호`는 물론, 잘 쓰지 않는 인라인/블록 태그[^3]까지 CSS를 부여해 활용하고 있다.
 <CH.Code>
   ```mdx sample.mdx
   ---
@@ -110,7 +114,9 @@ export default MdxComponents;
   ```
 </CH.Code>
 <br/>
-글쓰는 속도에 지장을 받지 위해서는 <q>VsCode 스니펫</q>을 적극 도입했다. 현재 `@`에 단축어를 모아놓고 사용 중이다. 스니펫을 통해 원하는 구문을 불러, 원하는 부분만(`tab`을 이용해 전환한다) 빠르게 에디팅 할 수 있다. 비단 mdx뿐만 아니라 ts, js 등에서도 활용할 수 있기에 앞으로의 코딩에 많은 도움이 될 거 같다.
+#### 스니펫
+글쓰는 속도에 지장을 받지 위해 <q>VsCode 스니펫</q>을 적극 도입했다. 현재 `@`에 단축어를 모아놓고 사용 중이다. 스니펫을 통해 원하는 구문을 불러, 원하는 부분만(`tab`을 이용해 전환한다) 빠르게 에디팅 할 수 있다.  
+비단 mdx뿐만 아니라 ts, js 등에서도 활용할 수 있기에 앞으로의 코딩에 많은 도움이 될 거 같다.
 ```json mdx.json
 {
   "Image": {
