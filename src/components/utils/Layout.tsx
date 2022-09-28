@@ -56,7 +56,7 @@ export default function Layout({
             ? "max-w-4xl"
             : tags === "일기" || category === "reading"
             ? "max-w-xl"
-            : "max-w-2xl"
+            : "max-w-3xl"
         }`}
       >
         <header>
@@ -65,36 +65,48 @@ export default function Layout({
         </header>
 
         <section className="pt-10">
-          <Twemoji
-            options={{
-              className:
-                "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-17 cursor-fancy",
-            }}
-          >
-            <article>{children}</article>
-            {tag ? (
+          {category === "coding" ? (
+            <Twemoji
+              options={{
+                className:
+                  "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-10 cursor-fancy",
+              }}
+            >
+              <article>{children}</article>
+            </Twemoji>
+          ) : (
+            <Twemoji
+              options={{
+                className:
+                  "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-17 cursor-fancy",
+              }}
+            >
+              <article>{children}</article>
+            </Twemoji>
+          )}
+
+          {tag ? (
+            <footer className="mt-16 ml-3 pb-20 text-base">
+              <a onClick={() => router.push("/")} className="no-underline">
+                ← Previous
+              </a>
+            </footer>
+          ) : (
+            !home && (
               <footer className="mt-16 ml-3 pb-20 text-base">
-                <a onClick={() => router.push("/")} className="no-underline">
+                <a
+                  onClick={() =>
+                    sessionStorage.path
+                      ? router.push(`${sessionStorage.getItem("path")}`)
+                      : router.push("/")
+                  }
+                  className="no-underline"
+                >
                   ← Previous
                 </a>
               </footer>
-            ) : (
-              !home && (
-                <footer className="mt-16 ml-3 pb-20 text-base">
-                  <a
-                    onClick={() =>
-                      sessionStorage.path
-                        ? router.push(`${sessionStorage.getItem("path")}`)
-                        : router.push("/")
-                    }
-                    className="no-underline"
-                  >
-                    ← Previous
-                  </a>
-                </footer>
-              )
-            )}
-          </Twemoji>
+            )
+          )}
         </section>
       </div>
     </div>

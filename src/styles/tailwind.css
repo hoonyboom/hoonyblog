@@ -23,10 +23,10 @@
     @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply py-4 font-heading text-lg font-bold sm:mt-5 sm:mb-px md:mt-20 md:mb-2;
+    @apply py-4 font-heading text-lg font-bold sm:mt-12 sm:mb-px md:mt-20 md:mb-5;
   }
   h4 {
-    @apply pt-4 pb-2 font-heading text-md font-bold text-emerald-600;
+    @apply pt-4 pb-2 font-heading text-md2 font-bold text-emerald-600;
   }
   h5 {
     @apply text-base;
@@ -45,7 +45,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 font-content dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray px-1 font-content subpixel-antialiased dark:bg-darkGray;
   }
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
@@ -85,8 +85,8 @@
   .keep-all {
     word-break: keep-all;
   }
-  .align-text-25 {
-    vertical-align: -25%;
+  .align-text-10 {
+    vertical-align: -10%;
   }
   .align-text-17 {
     vertical-align: -17%;
@@ -332,7 +332,7 @@ Scroll 전체화면 설정 */
 /* 기본화면 설정 */
 .ch-code-scroll-content span,
 .ch-inline-code span {
-  @apply font-content text-mono;
+  @apply font-content text-mono subpixel-antialiased;
 }
 /* Scroll 모바일 화면 */
 .ch-scrollycoding-static > p {

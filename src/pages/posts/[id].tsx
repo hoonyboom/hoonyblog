@@ -54,10 +54,10 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
           <Date dateString={frontmatter.date} />
         </div>
         <article
-          className={`keep-all m-10 font-content sm:leading-6 ${
+          className={`keep-all m-10  ${
             frontmatter.categories === "diarying" || frontmatter.categories === "reading"
-              ? "word-arita text-mono tracking-tight md:leading-6"
-              : "text-base md:leading-8"
+              ? "word-arita font-content text-mono leading-6 tracking-tight"
+              : "font-sans text-base2 antialiased sm:leading-7 md:leading-9"
           }`}
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
