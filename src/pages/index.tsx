@@ -82,7 +82,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       router.push({ query: { category: "reading" } });
     else if (sessionStorage.watchedTab === "1")
       router.push({ query: { category: "diarying" } });
-  }, []);
+  }, [router]);
 
   return (
     <Layout home siteTitle="혜조로그">
