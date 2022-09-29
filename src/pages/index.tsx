@@ -36,8 +36,8 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리
   const router = useRouter();
   const isCategory = router.query.category;
-  const [selectedData, setSelectedData] = useState<string[]>();
   const [initCategory, setInitCategory] = useState(false);
+  const [sortedDataByTag, setSortedDataByTag] = useState<string[]>();
   const deleteOverlapCategories = uniqBy(allPostsData, "categories").sort(
     ({ categories: a }, { categories: b }) => {
       if (a > b) return 1;
@@ -69,20 +69,20 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       [],
     );
     setInitCategory(false);
-    setSelectedData(deleteOverlapTags);
+    setSortedDataByTag(deleteOverlapTags);
   }, [isCategory, allPostsData]);
   useEffect(() => {
     setInitCategory(true);
     // setLimit(7);
     // setPage(1);
-  }, [selectedData]);
+  }, [sortedDataByTag]);
   useEffect(() => {
     if (sessionStorage.Page) sessionStorage.removeItem("Page");
     if (sessionStorage.watchedTab === "2")
       router.push({ query: { category: "reading" } });
     else if (sessionStorage.watchedTab === "1")
       router.push({ query: { category: "diarying" } });
-  }, [router]);
+  }, []);
 
   return (
     <Layout home siteTitle="혜조로그">
@@ -95,7 +95,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         </div>
         <div className="my-3 flex text-center font-grapeNuts text-md font-bold">
           {deleteOverlapCategories?.map(({ categories, id }, i) => (
-            <CategoryTabs selectedCategory={categories} key={id} i={i} />
+            <CategoryTabs category={categories} key={id} i={i} />
           ))}
         </div>
         {/* 태그 리스트 */}
@@ -110,7 +110,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
             )}
           </div>
           <div className="writing-vertical basis-11/12 pl-3">
-            {selectedData?.slice(offset, offset + limit).map(tag => (
+            {sortedDataByTag?.slice(offset, offset + limit).map(tag => (
               <TagList key={tag} tag={tag} />
             ))}
           </div>

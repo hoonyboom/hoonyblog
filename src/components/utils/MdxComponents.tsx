@@ -39,7 +39,7 @@ export const Img = (props: ImageProps) => {
       width={1000}
       height={1000}
       quality={100}
-      className="m-auto mb-2 mt-7 h-auto w-auto rounded-xl drop-shadow-xl"
+      className="m-auto mb-2 mt-7 h-fit w-fit rounded-xl drop-shadow-xl"
       {...props}
       alt="이미지"
     />
