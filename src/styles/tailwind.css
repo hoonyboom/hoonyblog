@@ -1,4 +1,7 @@
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   *::-webkit-scrollbar {
     @apply hidden;
@@ -70,7 +73,6 @@
   }
 }
 
-@tailwind components;
 @layer components {
   #__next {
     @apply h-full w-full;
@@ -80,7 +82,6 @@
   }
 }
 
-@tailwind utilities;
 @layer utilities {
   .keep-all {
     word-break: keep-all;

@@ -1,5 +1,5 @@
 module.exports = {
-  plugins: [require("prettier-plugin-tailwindcss")], // yarn berry에선 플러그인 위치를 특정해줘야 함
+  plugins: [require.resolve("prettier-plugin-tailwindcss")], // yarn berry에선 플러그인 위치를 특정해줘야 함
   semi: true,
   tabWidth: 2,
   printWidth: 90,
