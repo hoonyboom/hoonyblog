@@ -1,10 +1,10 @@
 import { Layout, MdxComponents, Pagination } from "@/components/utils";
 import { getAllPostTags, getSortedPostsData } from "@/lib/posts";
-import Link from "next/link";
-import useSound from "use-sound";
 import { filter } from "lodash";
-import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import useSound from "use-sound";
 
 interface PathProps {
   params: {
@@ -31,9 +31,15 @@ export async function getStaticProps({ params }: PathProps) {
   };
 }
 
-const Posts = ({ id, title, date, description }: { [key: string]: string }) => {
+const Posts = ({
+  id,
+  title,
+  date,
+  description,
+}: Pick<PostsProps, "id" | "title" | "date" | "description">) => {
   const [tapSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   const router = useRouter();
+
   return (
     <Link href={`/posts/${id}`}>
       <a
@@ -73,7 +79,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
         </p>
         <div className="-mt-3 pr-3 sm:basis-1/2 md:basis-3/5">
           {banner.map(({ image, id }) => (
-            <Img src={image} key={id} alt={"image"} />
+            <Img src={image} key={id} alt={""} />
           ))}
         </div>
       </div>

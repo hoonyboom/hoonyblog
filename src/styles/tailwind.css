@@ -80,6 +80,9 @@
   .wrap {
     @apply flex items-center justify-center;
   }
+  .btn {
+    @apply bg-stripes-blue rounded-xl border-2 py-3;
+  }
 }
 
 @layer utilities {
