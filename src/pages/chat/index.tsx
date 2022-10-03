@@ -29,7 +29,7 @@ export default function Chat() {
 
 export async function getServerSideProps(ctx: NextPageContext) {
   const session = await getSession(ctx);
-  console.log("왜안돼", session);
+
   return {
     props: {
       session,

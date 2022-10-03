@@ -24,9 +24,7 @@ export default function Auth({ session, reloadSession }: AuthProps) {
       const { data } = await createUsername({ variables: { username } });
       if (!data?.createUsername) throw new Error();
       if (data.createUsername.error) {
-        const {
-          createUsername: { error },
-        } = data;
+        const { error } = data.createUsername;
         toast.error(error);
         return;
       }
@@ -56,9 +54,15 @@ export default function Auth({ session, reloadSession }: AuthProps) {
         </>
       ) : (
         <>
-          <p>MessengerQL</p>
+          <p>채팅방</p>
           <button className="btn" onClick={() => signIn("google")}>
             Continue with Google
+          </button>
+          <button className="btn" onClick={() => signIn("twitter")}>
+            Continue with Twitter
+          </button>
+          <button className="btn" onClick={() => signIn("kakao")}>
+            Continue with Kakao
           </button>
         </>
       )}
