@@ -1,0 +1,30 @@
+---
+title: "[AWS] Could not connect to server 에러"
+date: "2022-10-05"
+categories: coding
+tags: "에러픽스"
+description: postgresql
+---
+
+아오.. DB 땜에 이것저것 번거로운 일이 하나둘이 아니네.  
+Heroku가 11월부로 PSQL을 유료로 돌린다고 해서  
+아마존 RDS로 이주, 연동만 딱 해놓고 자려고 했다.  
+<br/>
+머기업답게 설명도 빠방해서 금방할 줄 알았는데  
+> "Could not connect to server: Connection timed out"  
+
+이 에러 때문에 한시간을 겉돌고야 말았다..  
+대응책을 써놓은 게 있는데 그게 안 먹힌다는 함정이^^^ㅎ  
+빅엿 먹고 구글링으로 5분만에 해결했다.  
+<br/>
+누구든 클라이언트에서 저 에러를 봤다면  
+`VPC > 보안그룹`에 가서 인바운드 규칙을 편집해주면 되는데
+
+<Img src={'/images/에러/[aws]연결 에러2.webp'} />
+기존에 있던 거 삭제하고 새로 찍는 편이 낫다.  
+아니면 IP 중복 어쩌구저쩌구 경고가 뜨거든요.  
+IP는 내 IP로 설정해줬음
+
+<Img src={'/images/에러/[aws]연결 에러1.webp'} />
+
+돌아가서 커넥트되는 거 보면 끝. 잘 수 있다
