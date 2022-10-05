@@ -48,7 +48,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 font-content subpixel-antialiased dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray px-1 py-px font-mono text-base subpixel-antialiased dark:bg-darkGray;
   }
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
@@ -309,12 +309,12 @@
   font-weight: normal;
   font-display: block;
 }
-/* @font-face {
+@font-face {
   font-family: "IBMPlexMono";
   src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
-} */
+}
 @font-face {
   font-family: "GrapeNuts";
   src: url("/fonts/GrapeNuts-Regular.woff2") format("woff2");
@@ -336,7 +336,7 @@ Scroll 전체화면 설정 */
 /* 기본화면 설정 */
 .ch-code-scroll-content span,
 .ch-inline-code span {
-  @apply font-content text-mono subpixel-antialiased;
+  @apply font-mono text-mono subpixel-antialiased;
 }
 /* Scroll 모바일 화면 */
 .ch-scrollycoding-static > p {

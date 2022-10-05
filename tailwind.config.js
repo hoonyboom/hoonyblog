@@ -37,10 +37,11 @@ module.exports = {
         icloud: "#3d84f7",
         paleBlue: "rgb(102, 153, 204)",
         lightGray: "#EAECEF",
-        darkGray: "#363636",
+        darkGray: "#333333",
         smokeWhite: "#F6FAFA",
         smokeBlack: "#1E1E1E",
         salary: "#CAFC9D",
+        jadu: "#D73A4A",
         darkslateblue: "darkslateblue",
       },
       cursor: {
@@ -72,7 +73,7 @@ module.exports = {
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["ui-monospace", "SFMono-Regular"],
+      mono: ["IBMPlexMono", "ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
       content: ["NunitoSans", "Arita"],
       grapeNuts: ["GrapeNuts"],

@@ -27,7 +27,12 @@ const startServer = apolloServer.start();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    process.env.NODE_ENV === "production"
+      ? "https://hyezoprk.com"
+      : "http://localhost:3000",
+  );
 
   if (req.method === "OPTIONS") {
     res.end();
