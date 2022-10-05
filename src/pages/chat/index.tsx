@@ -6,7 +6,6 @@ import { getSession, useSession } from "next-auth/react";
 
 export default function Chat() {
   const { data: session } = useSession();
-
   const reloadSession = () => {
     const event = new Event("visibilitychange");
     document.dispatchEvent(event);
