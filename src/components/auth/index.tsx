@@ -14,9 +14,10 @@ interface AuthProps {
 
 export default function Auth({ session, reloadSession }: AuthProps) {
   const [username, setUsername] = useState("");
-  const [createUsername] = useMutation<CreateUsernameData, CreateUsernameVariables>(
-    UserOperations.Mutations.createUsername,
-  );
+  const [createUsername, { loading, error }] = useMutation<
+    CreateUsernameData,
+    CreateUsernameVariables
+  >(UserOperations.Mutations.createUsername);
 
   const onSubmit = async () => {
     if (!username) return;
@@ -38,7 +39,7 @@ export default function Auth({ session, reloadSession }: AuthProps) {
   };
 
   const debounceInput = useMemo(() => debounce(val => setUsername(val), 500), []);
-  console.log(username);
+
   return (
     <div className="flex flex-col place-items-center space-y-3">
       {session ? (

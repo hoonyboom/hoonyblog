@@ -83,6 +83,9 @@
   .btn {
     @apply bg-stripes-blue rounded-xl border-2 py-3;
   }
+  .avartar {
+    @apply inline-block h-12 w-12 rounded-full ring-2 ring-white;
+  }
 }
 
 @layer utilities {

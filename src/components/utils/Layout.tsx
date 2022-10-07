@@ -54,7 +54,7 @@ export default function Layout({
         className={`container mx-auto ${
           home
             ? "max-w-4xl"
-            : tags === "일기" || category === "reading"
+            : category === "diarying" || category === "reading"
             ? "max-w-xl"
             : "max-w-3xl"
         }`}

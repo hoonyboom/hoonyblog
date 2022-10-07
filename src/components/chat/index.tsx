@@ -1,14 +1,13 @@
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
+import ConversationsWrapper from "./conversations/ConversationsWrapper";
+import FeedWrapper from "./feed/FeedWrapper";
 
-export default function ChatList({ session }: { session: Session }) {
+export default function ChatList({ session }: sessionProps) {
   return (
     <div>
-      <p>닉네임: {session.user?.username}</p>
-      <p>ChatList</p>
-      <button className="btn" onClick={() => signOut()}>
-        Logout
-      </button>
+      <ConversationsWrapper session={session} />
+      <FeedWrapper session={session} />
     </div>
   );
 }
