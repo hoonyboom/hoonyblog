@@ -5,8 +5,16 @@ categories: coding
 tags: "아스트로"
 description: prisma
 ---
-
-### Prisma 기본 탐방
+>
+### Prisma 설치
+```zsh install
+$ yarn add @prsima/client
+$ yarn add -D prisma
+  or
+$ pnpm i @prsima/client
+$ pnpm i -D prisma
+```
+설치가 끝나면 init을 해준다.
 ```zsh
 $ npx prisma init
 ```
@@ -14,11 +22,7 @@ $ npx prisma init
 - `.env` 파일을 root 폴더에 생성한다. 마찬가지로
 - `prisma` 폴더가 root 폴더에 생성되고, 그 안에는 모델이 그려질 `schema.prisma`가 자리잡는다.
 
-```zsh
-$ yarn add -D prisma
-  or
-$ pnpm i -D prisma
-```
+
 
 ### schema.prisma
 만들어진 `schema.prisma`에서 먼저 볼 부분은 db 연결부다.
