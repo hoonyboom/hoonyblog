@@ -43,7 +43,7 @@ export const theme = {
     "editor.findRangeHighlightBackground": "#3a3d4166",
     "editor.findRangeHighlightBorder": "#ffffff00",
     "editor.foldBackground": "#264f784d",
-    "editor.foreground": "#64748b",
+    "editor.foreground": "#d6d6d6",
     "editor.hoverHighlightBackground": "#264f7840",
     "editor.inactiveSelectionBackground": "#264f7890",
     "editor.lineHighlightBackground": "#ffffff0a",
@@ -59,8 +59,8 @@ export const theme = {
     "editorBracketHighlight.foreground2": "#f6a992",
     "editorBracketHighlight.foreground3": "#71d8a6",
     "editorBracketHighlight.foreground4": "#a798ee",
-    "editorBracketHighlight.foreground5": "#fec17b",
-    "editorBracketHighlight.foreground6": "#e7d443",
+    "editorBracketHighlight.foreground5": "#FF7777",
+    "editorBracketHighlight.foreground6": "#0092FF",
     "editorBracketHighlight.unexpectedBracket.foreground": "#db6165",
     "editorBracketMatch.background": "#0064001a",
     "editorBracketMatch.border": "#888888",
@@ -248,7 +248,7 @@ export const theme = {
     "terminal.ansiMagenta": "#bc3fbc",
     "terminal.ansiRed": "#cd3131",
     "terminal.ansiWhite": "#e5e5e5",
-    "terminal.ansiYellow": "#fcdfc2",
+    "terminal.ansiYellow": "#51e1a5",
     "terminal.border": "#1e293b",
     "terminal.foreground": "#cccccc",
     "terminal.selectionBackground": "#ffffff10",
@@ -747,7 +747,7 @@ export const theme = {
     {
       scope: "keyword.operator.logical, keyword.operator.comparison",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -785,7 +785,7 @@ export const theme = {
     {
       scope: "meta.object-binding-pattern-variable.js variable",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -833,7 +833,7 @@ export const theme = {
     {
       scope: "punctuation.definition.template-expression",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -845,7 +845,7 @@ export const theme = {
     {
       scope: "support.class",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -876,7 +876,7 @@ export const theme = {
     {
       scope: "entity.name.tag.yaml",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -949,7 +949,7 @@ export const theme = {
     {
       scope: "entity.expression variable.parameter.name",
       settings: {
-        foreground: "#FF9473",
+        foreground: "#C3A8FE",
       },
     },
     {
@@ -967,13 +967,13 @@ export const theme = {
     {
       scope: "entity.name.tag.html",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
       scope: "entity.other.attribute-name.handlebars",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -986,7 +986,7 @@ export const theme = {
     {
       scope: "meta.tag.js entity.name.tag",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
       },
     },
     {
@@ -1006,7 +1006,7 @@ export const theme = {
     {
       scope: "punctuation.definition.bold.markdown",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
         fontStyle: "bold",
       },
     },
@@ -1057,7 +1057,7 @@ export const theme = {
     {
       scope: "markup.quote",
       settings: {
-        foreground: "#FF9473",
+        foreground: "#C3A8FE",
       },
     },
     {
@@ -1076,7 +1076,7 @@ export const theme = {
     {
       scope: "markup.fenced_code.block.markdown punctuation.definition.markdown",
       settings: {
-        foreground: "#757575",
+        foreground: "#F472B6",
       },
     },
     {
@@ -1103,7 +1103,7 @@ export const theme = {
     {
       scope: "text.html.markdown punctuation.definition.string",
       settings: {
-        foreground: "#FFCC66",
+        foreground: "#FF9473",
         fontStyle: "",
       },
     },
@@ -1314,7 +1314,7 @@ export const theme = {
         "meta.type.parameters entity.name.type",
       ],
       settings: {
-        foreground: "#F472B6",
+        foreground: "#FF9473",
       },
     },
   ],

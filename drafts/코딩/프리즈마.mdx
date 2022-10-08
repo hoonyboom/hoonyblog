@@ -1,0 +1,84 @@
+---
+title: "프리즈마 이해 좌절기"
+date: "2022-10-05"
+categories: coding
+tags: ["아스트로", "블로그 포트폴리오"]
+description: prisma
+---
+<HeadingNavigator />
+늘 말하지만 나는 똥멍청이다. 남들은 한번에 딱딱 이해하는 걸 나는 두번 세번 네번은 반복해야 겨우 이해하곤 했다. 코딩은 더하면 더했지 예외일 수 없다. 프리즈마도 확실히 정리하지 않고 유야무야 넘어가니 이게 쓰면서 좀체 자신이 없다. 나는 멋모르고 오용할 때도 자신은 있어야 한다고 생각하는데, `nextAuth`나 `astroAuth`를 다루면서 왔다갔다 헷갈리는 내가 싫었다.  
+<br/>
+프리즈마를 정확한 타이밍에, 또 정확한 위치에서 다룰 수 있도록 개념을 잡아본다. 빠샤 🐣
+
+### What is Prisma?
+다행인지 불행인지ㅋㅋ <Lnk text='프리즈마는' href='https://www.prisma.io/docs/concepts/overview/what-is-prisma' /> 공홈 설명이 지나치리만큼 상세하다. 사용법이야 어떤 집단이든 소상히 기록하기 마련이라지만, 왜 프리즈마인지, 다른 ORMs의 어떤 점을 극복하려 했으며 프리즈마를 씀으로써 얻게 될 이점을(디스를 곁들여) 강하게 어필하고 있다ㅎ 아마 자기들도 빡쳐서 만든 듯  
+<br/>
+여기서 ORM이 뭔지 그 역사를 되짚는 건 초점에 어긋나는 일일 것 같다. 이해력이 더딘 나는 그저 프리즈마가 오브젝트적인 사고(코드)방식을 DB에 입히려 했으며, 쿼리 형태의 단순함과 함께, 클라이언트에 타입 안정성과 자동완성 기능을 보장한다- 정도로만 이해를 세웠다.  
+<br/>
+프론트엔드 입장에서 와닿았던 부분은 이 부분인데
+<Img src='/images/2022/autumm/스샷_프리즈마1.webp' />
+<br/>
+웹앱 개발자의 사고방식은 `Object`인데 SQL은 여전히 `Table`에 머문다. 이게 첫째, 근본적인 문제고, SQL문을 새로이 학습하여 이게 맞나? 매순간 씨름해야 하는 순간도 개발자들에게 여전히 문턱으로 남아 있다. 이 간극을 좁히려 한 것이 ORM다. 그럼 기존 ORM는 뭐가 문제였지?
+<Img src='/images/2022/autumm/스샷_프리즈마2.webp' />
+<figcaption>Prisma vs Others</figcaption>
+<br/>
+이 부분은 내가 노력해도 잘 이해가 가지 않는다.. 코드적으로는 도통 이해가 안 가는데  
+💎 기존 ORM가 Object인 척하려 노력했지만, 관계를 열 때 쓰이는 건 결국 `dot notation`이 아닌 `JOIN`이었다. 그리고 이 맵핑 과정은 필시 성능 저하를 초래하게 만들었는데.. (흠흠;;)  
+<br/>
+프리즈마는 당연히 이 지점을 극복하거나 피하려고 했을 테다. 근데 이러다가는 이해가 아니라 번역이 더 많은 지면을 차지할 거 같으니(최악이다) 실례를 직접 본 다음, 마지막에 정리를 한번 하는 게 나을 듯싶다.
+<br/>
+
+### 셋업
+일단 설치부터 하고 보자.
+
+```zsh install
+$ yarn add @prsima/client
+$ yarn add -D prisma
+  or
+$ pnpm i @prsima/client
+$ pnpm i -D prisma
+```
+<br/>
+설치가 됐으면 init을 해주는데,
+```zsh
+$ npx prisma init
+```
+이 명령어는
+- `.env` 파일을 root 폴더에 생성한다.
+- 마찬가지로 `prisma` 폴더가 root 폴더에 생성되고, 그 안에는 모델을 그릴 핵심 파일인 `schema.prisma`가 자리잡는다.
+<br/>
+<br/>
+#### schema.prisma
+만들어진 `schema.prisma`에서 먼저 볼 부분은 db 연결부다.
+```prisma schema.prisma focus=6:7
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+`provider`에는 사용하고 있는 db 이름을,  
+`.env` 파일에는 "DATABASE_URL" 만들고 내 db의 `endpoint`를 적어 넣는다.  
+<br/>
+🧨 <q>psql</q>과 <q>mongodb</q>의 포맷
+  ```js .env
+  // 하이라이트를 위해 쌍따옴표를 쳤음
+  // psql
+  DATABASE_URL = "postgres://YourUserName:YourPassword@YourHostname:5432/YourDatabaseName;"
+
+  // mongodb
+  DATABASE_URL = "mongodb+srv://YourUserName:YourPassword@..."
+  ```
+
+
+
+
+<br/>
+---
+<br/>
+#### 참고한 사이트
+1. <Lnk text='왜 프리즈마를 쓸까?' href='https://www.prisma.io/docs/concepts/overview/why-prisma' />
+2. <Lnk text='프리즈마는 ORM인가요?' href='https://www.prisma.io/docs/concepts/overview/prisma-in-your-stack/is-prisma-an-orm' />

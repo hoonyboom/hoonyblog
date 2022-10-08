@@ -86,6 +86,26 @@
   .avartar {
     @apply inline-block h-12 w-12 rounded-full ring-2 ring-white;
   }
+  /* 
+  note: Code Hike
+  Scroll 전체화면 설정 */
+  .ch-code-browser-content > div,
+  .ch-code-browser-content > div > span {
+    @apply h-6 font-mono;
+  }
+  /* Scroll 제목&설명탭 설정 */
+  .ch-scrollycoding-step-content p {
+    @apply text-mono leading-6;
+  }
+  /* 기본화면 설정 */
+  .ch-code-scroll-content span,
+  .ch-inline-code span {
+    @apply font-mono text-mono subpixel-antialiased;
+  }
+  /* Scroll 모바일 화면 */
+  .ch-scrollycoding-static > p {
+    @apply pt-7;
+  }
 }
 
 @layer utilities {
@@ -323,25 +343,4 @@
   src: url("/fonts/GrapeNuts-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
-}
-
-/* 
-note: Code Hike
-Scroll 전체화면 설정 */
-.ch-code-browser-content > div,
-.ch-code-browser-content > div > span {
-  @apply h-6 font-mono;
-}
-/* Scroll 제목&설명탭 설정 */
-.ch-scrollycoding-step-content p {
-  @apply text-mono leading-6;
-}
-/* 기본화면 설정 */
-.ch-code-scroll-content span,
-.ch-inline-code span {
-  @apply font-mono text-mono subpixel-antialiased;
-}
-/* Scroll 모바일 화면 */
-.ch-scrollycoding-static > p {
-  @apply pt-7;
 }
