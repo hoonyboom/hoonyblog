@@ -15,12 +15,12 @@ module.exports = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/graphql",
-        destination: "https://hyezoprk.com/api/graphql",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: "/api/graphql",
+  //       destination: "https://hyezoprk.com/api/graphql",
+  //     },
+  //   ];
+  // },
 };
