@@ -1,4 +1,4 @@
-import UserOperations from "@/graphql/operations/user";
+import UserOperations from "@/lib/graphql/operations/user";
 import { CreateUsernameData, CreateUsernameVariables } from "@/utils/types";
 import { useMutation } from "@apollo/client";
 import { debounce } from "lodash";

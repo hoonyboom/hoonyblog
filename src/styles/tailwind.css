@@ -26,7 +26,7 @@
     @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply py-4 font-heading text-lg font-bold sm:mt-12 sm:mb-px md:mt-20 md:mb-5;
+    @apply relative py-4 font-heading text-lg font-bold sm:mt-12 sm:mb-px md:mt-20 md:mb-5;
   }
   h4 {
     @apply pt-4 pb-2 font-heading text-md2 font-bold text-emerald-600;
@@ -86,6 +86,13 @@
   .avartar {
     @apply inline-block h-12 w-12 rounded-full ring-2 ring-white;
   }
+  .anchor-link {
+    @apply absolute -translate-x-10 opacity-0 duration-150;
+  }
+  h3:hover .anchor-link {
+    @apply opacity-100;
+  }
+
   /* 
   note: Code Hike
   Scroll 전체화면 설정 */

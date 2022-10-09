@@ -1,4 +1,4 @@
-import userOperations from "@/graphql/operations/user";
+import userOperations from "@/lib/graphql/operations/user";
 import {
   CreateConversationdata,
   CreateConversationInput,
@@ -12,7 +12,7 @@ import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import Participants from "./Participants";
 import UserSearchList from "./UserSearchList";
-import ConversationOperations from "@/graphql/operations/conversation";
+import ConversationOperations from "@/lib/graphql/operations/conversation";
 import { Session } from "next-auth";
 
 interface ModalProps {

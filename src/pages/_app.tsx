@@ -7,7 +7,7 @@ import "@code-hike/mdx/dist/index.css";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
 import { ApolloProvider } from "@apollo/client";
-import { apolloClient } from "@/graphql/apollo-client";
+import { apolloClient } from "@/lib/graphql/apollo-client";
 import { Toaster } from "react-hot-toast";
 
 export default function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {

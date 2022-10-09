@@ -1,18 +1,16 @@
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { PrismaClient } from "@prisma/client";
 import { ApolloServer } from "apollo-server-micro";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
+import Cors from "micro-cors";
+import prisma from "@/lib/graphql/prismadb";
 
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
-
-const prisma = new PrismaClient();
-// const pubsub =
 
 const apolloServer = new ApolloServer({
   schema,
@@ -27,11 +25,14 @@ const startServer = apolloServer.start();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", "https://studio.apollographql.com");
   res.setHeader(
-    "Access-Control-Allow-Origin",
-    process.env.NODE_ENV === "production"
-      ? "https://hyezoprk.com"
-      : "http://localhost:3000",
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers",
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD",
   );
 
   if (req.method === "OPTIONS") {

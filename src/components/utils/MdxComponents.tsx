@@ -101,7 +101,7 @@ export const H3 = ({ children }: { children?: React.ReactNode }) => {
             "inline cursor-fancyHover m-px sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 align-text-17",
         }}
       >
-        <a className="no-underline" href={link}>
+        <a className="anchor-link no-underline" href={link}>
           💡&nbsp;
         </a>
         {children}
