@@ -5,11 +5,14 @@ import { ApolloServer } from "apollo-server-micro";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import prisma from "@/lib/graphql/prismadb";
+import Cors from "micro-cors";
 
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
+
+const cors = Cors();
 
 const apolloServer = new ApolloServer({
   schema,
@@ -22,18 +25,7 @@ const apolloServer = new ApolloServer({
 });
 const startServer = apolloServer.start();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "https://hyezoprk.com");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers",
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD",
-  );
-
+export default cors(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "OPTIONS") {
     res.end();
     return false;
@@ -43,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   await apolloServer.createHandler({
     path: "/api/graphql",
   })(req, res);
-}
+});
 
 export const config = {
   api: {
