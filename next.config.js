@@ -19,7 +19,7 @@ module.exports = {
     return [
       {
         source: "/api/graphql",
-        destination: "https://api.hyezoprk.com/:path*",
+        destination: "https://hyezoprk.com/api/graphql",
       },
     ];
   },
