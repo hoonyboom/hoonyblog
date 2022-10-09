@@ -18,8 +18,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: "https://hyezoprk.com/:path*",
+        source: "/api/graphql",
+        destination: "https://api.hyezoprk.com/:path*",
       },
     ];
   },
