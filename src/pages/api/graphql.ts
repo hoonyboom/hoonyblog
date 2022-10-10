@@ -1,10 +1,10 @@
+import prisma from "@/lib/graphql/prismadb";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { ApolloServer } from "apollo-server-nextjs";
 import { getSession } from "next-auth/react";
-import prisma from "@/lib/graphql/prismadb";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -26,7 +26,7 @@ const apolloServer = new ApolloServer({
 export default apolloServer.createHandler({
   expressGetMiddlewareOptions: {
     cors: {
-      origin: "*",
+      origin: "https://hyezoprk.com",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
       credentials: true,
       allowedHeaders: "Content-Type, Authorization",
