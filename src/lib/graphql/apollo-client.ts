@@ -6,10 +6,10 @@ const httpLink = new HttpLink({
       ? "https://hyezoprk.com/api/graphql"
       : "http://localhost:3000/api/graphql"
   }`,
-  credentials: "include",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // credentials: "include",
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 export const apolloClient = new ApolloClient({
