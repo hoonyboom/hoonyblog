@@ -823,6 +823,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cors@npm:^2":
+  version: 2.8.12
+  resolution: "@types/cors@npm:2.8.12"
+  checksum: cebfe092ba9a94b2077cda564efd6f13e173ff70a7884eb70210bfcefb585778aabb3873e7bc477ef1602c130b5ecf80978809e1212190343a5788be30250ea2
+  languageName: node
+  linkType: hard
+
 "@types/debug@npm:^4.0.0":
   version: 4.1.7
   resolution: "@types/debug@npm:4.1.7"
@@ -908,24 +915,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micro-cors@npm:^0":
-  version: 0.1.2
-  resolution: "@types/micro-cors@npm:0.1.2"
-  dependencies:
-    "@types/micro": "npm:*"
-  checksum: b5b6a0843c9013269cea2ce0541b8382cb8ee1bcea45e4b59915e745ad5337ca06ad7f3b8c2cf4040aab487c05814fbe1c6f14dea7229599b31279a273520e0d
-  languageName: node
-  linkType: hard
-
-"@types/micro@npm:*":
-  version: 7.3.7
-  resolution: "@types/micro@npm:7.3.7"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: e36b46565b807593f2031ec054f114c498961b11626c05d8fc80ceda9ff14ea4ecc9b779bce43af70a12fdf17b16bc13e28adde50ddd9b7c9911f64b486d9027
-  languageName: node
-  linkType: hard
-
 "@types/ms@npm:*":
   version: 0.7.31
   resolution: "@types/ms@npm:0.7.31"
@@ -933,17 +922,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:>12":
-  version: 18.7.23
-  resolution: "@types/node@npm:18.7.23"
-  checksum: 83f50561f3858e514d864cea3fbfc3142ec58a6acaf9c405609776b97b67a4692309feb1b9f928cca8ebdc964554a2e02480feb98f1774881ce440a9df722924
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:18.7.18":
   version: 18.7.18
   resolution: "@types/node@npm:18.7.18"
   checksum: 833883d724d9f980c6918f1a52f396cb351bf22e83b787481c992402e702e4a3658bd3ff5b561c878d3d9e253fb315eb6f7eb0db95804222669f18d3b54ea0f2
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:>12":
+  version: 18.7.23
+  resolution: "@types/node@npm:18.7.23"
+  checksum: 83f50561f3858e514d864cea3fbfc3142ec58a6acaf9c405609776b97b67a4692309feb1b9f928cca8ebdc964554a2e02480feb98f1774881ce440a9df722924
   languageName: node
   linkType: hard
 
@@ -1820,8 +1809,8 @@ __metadata:
     "@next-auth/prisma-adapter": "npm:^1.0.4"
     "@prisma/client": "npm:4.4.0"
     "@tanstack/react-query": "npm:^4.8.0"
+    "@types/cors": "npm:^2"
     "@types/lodash": "npm:^4.14.185"
-    "@types/micro-cors": "npm:^0"
     "@types/node": "npm:18.7.18"
     "@types/react": "npm:18.0.20"
     "@types/react-dom": "npm:18.0.6"
@@ -1830,6 +1819,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^5.37.0"
     apollo-server-micro: "npm:^3.10.2"
     autoprefixer: "npm:^10.4.11"
+    cors: "npm:^2.8.5"
     date-fns: "npm:^2.29.3"
     esbuild: "npm:^0.15.8"
     eslint: "npm:8.23.1"
@@ -1848,7 +1838,6 @@ __metadata:
     lodash: "npm:^4.17.21"
     mdx-bundler: "npm:^9.0.1"
     micro: "npm:^9.4.1"
-    micro-cors: "npm:^0.1.1"
     next: "npm:12.3.0"
     next-auth: "npm:^4.12.2"
     next-themes: "npm:^0.2.1"
@@ -2015,6 +2004,16 @@ __metadata:
   version: 3.25.3
   resolution: "core-js-pure@npm:3.25.3"
   checksum: d3558bf34386e2bbaf713d8dcb7c7620da11548504735d3347e4d5d45561dc7c835f58f87ee24b2c77da26f2112793fc763ae8be0aa5bfcddd20890b1ea837d6
+  languageName: node
+  linkType: hard
+
+"cors@npm:^2.8.5":
+  version: 2.8.5
+  resolution: "cors@npm:2.8.5"
+  dependencies:
+    object-assign: "npm:^4"
+    vary: "npm:^1"
+  checksum: 8451ae4bb9710e6cc03c61283b226747397162b54d12cf77e257184e6bd568387864d6a817bba9752c2febb686fe45a14b7b0ce6f68e3e70d25df2ba6e17e80e
   languageName: node
   linkType: hard
 
@@ -4640,13 +4639,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micro-cors@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "micro-cors@npm:0.1.1"
-  checksum: e7a57495b58762702d8e21c32dd99a9ce4258669e6cb4a4584a85061355892b68aabb374772771462e38651742ba90fd47bc25d704d129b5fad242649b806b1f
-  languageName: node
-  linkType: hard
-
 "micro@npm:^9.4.1":
   version: 9.4.1
   resolution: "micro@npm:9.4.1"
@@ -5527,7 +5519,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.1.1":
+"object-assign@npm:^4, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: f5cd1f2f1e82e12207e4f2377d9d7d90fbc0d9822a6afa717a6dcab6930d8925e1ebbbb25df770c31ff11335ee423459ba65ffa2e53999926c328b806b4d73d6
@@ -7468,6 +7460,13 @@ __metadata:
   version: 1.0.11
   resolution: "value-or-promise@npm:1.0.11"
   checksum: aafd10c8aa583d3298c7f0108fd06388b5bc7932cf9b31fac91ac2b0177e1196259f7e1812e9f6eaaf55e131a911e668e1d9cfb46431364f671cde052a38ec4b
+  languageName: node
+  linkType: hard
+
+"vary@npm:^1":
+  version: 1.1.2
+  resolution: "vary@npm:1.1.2"
+  checksum: b1db20d4be443aec48b8efab73386f83d947b7033b6b2f5a0c7ba4a1f9bc0200cb4cb396712468761f8edfe48dd68a6fdee7c65689b90937a2d767c714d25883
   languageName: node
   linkType: hard
 

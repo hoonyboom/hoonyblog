@@ -1,14 +1,18 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-micro";
 import { getSession } from "next-auth/react";
 import prisma from "@/lib/graphql/prismadb";
-import Cors from "micro-cors";
-import { send } from "micro";
-import { NextApiRequest, NextApiResponse } from "next";
+import Cors from "cors";
 
-const cors = Cors({});
+const cors = Cors({
+  methods: ["POST", "GET", "HEAD", "OPTIONS"],
+  credentials: true,
+  preflightContinue: true,
+});
+
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
@@ -25,19 +29,25 @@ const apolloServer = new ApolloServer({
 });
 const startServer = apolloServer.start();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // if (req.method === "OPTIONS") {
-  //   res.end();
-  //   return false;
-  // }
+function runMiddleware(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  fn: (req: NextApiRequest, res: NextApiResponse, result: any) => void,
+) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) return reject(result);
 
-  await startServer;
-  const handle = await apolloServer.createHandler({
-    path: "/api/graphql",
+      return resolve(result);
+    });
   });
+}
 
-  return cors((req, res) => {
-    req.method === "OPTIONS" ? send(res, 200, "ok") : handle(req, res);
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  await startServer;
+  await runMiddleware(req, res, cors);
+  await apolloServer.createHandler({
+    path: "/api/graphql",
   })(req, res);
 }
 
@@ -46,5 +56,3 @@ export const config = {
     bodyParser: false,
   },
 };
-
-// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
