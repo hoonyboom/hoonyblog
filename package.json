@@ -17,6 +17,7 @@
     "@prisma/client": "4.4.0",
     "@tanstack/react-query": "^4.8.0",
     "apollo-server-micro": "^3.10.2",
+    "apollo-server-nextjs": "^3.0.1",
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
     "graphql": "^16.6.0",
