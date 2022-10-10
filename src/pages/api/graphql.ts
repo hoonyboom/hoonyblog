@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { ApolloServer, gql } from "apollo-server-nextjs";
+import { ApolloServer } from "apollo-server-nextjs";
 import { getSession } from "next-auth/react";
 import prisma from "@/lib/graphql/prismadb";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
@@ -29,16 +29,11 @@ export default apolloServer.createHandler({
     cors: {
       origin: "*",
       credentials: true,
+      preflightContinue: true,
+      allowedHeaders: "Content-Type, Authorization",
     },
   },
 });
-
-// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-//   await startServer;
-//   await apolloServer.createHandler({
-//     path: "/api/graphql",
-//   })(req, res);
-// }
 
 export const config = {
   api: {
