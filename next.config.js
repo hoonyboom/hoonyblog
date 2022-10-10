@@ -19,18 +19,18 @@ module.exports = {
       },
     ];
   },
-  async rewrites() {
-    return [
-      // {
-      //   source: "/api/graphql",
-      //   destination: "https://hyezoprk.com",
-      // },
-      {
-        source: "/api/graphql",
-        destination: "https://studio.apollographql.com/",
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     // {
+  //     //   source: "/api/graphql",
+  //     //   destination: "https://hyezoprk.com",
+  //     // },
+  //     {
+  //       source: "/api/graphql",
+  //       destination: "https://studio.apollographql.com/",
+  //     },
+  //   ];
+  // },
   async headers() {
     return [
       {

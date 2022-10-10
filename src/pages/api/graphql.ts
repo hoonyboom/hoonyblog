@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
@@ -24,31 +23,22 @@ const apolloServer = new ApolloServer({
 });
 const startServer = apolloServer.start();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "https://studio.apollographql.com");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD",
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Headers",
-  );
-
+export default cors(async (req, res) => {
   if (req.method === "OPTIONS") {
     res.end();
     return false;
   }
 
   await startServer;
-  await apolloServer.createHandler({
+  return await apolloServer.createHandler({
     path: "/api/graphql",
   })(req, res);
-}
+});
 
 export const config = {
   api: {
     bodyParser: false,
   },
 };
+
+// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
