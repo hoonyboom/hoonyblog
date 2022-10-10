@@ -33,8 +33,8 @@ export default function Logo({ children }: LayoutProps) {
           <Image
             src="/images/snoopy.gif"
             alt="Home"
-            width={0}
-            height={0}
+            width={214}
+            height={224}
             priority
             className="fixed opacity-[.8] transition-all duration-3000 ease-in-out sm:top-5 sm:left-5 sm:h-10 sm:w-10 md:top-16 md:left-32 md:h-12 md:w-12"
             style={{ transform }}

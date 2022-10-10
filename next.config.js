@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  swcMinify: true,
+  // images: {
+  //   domains: ["yts.mx"],
+  // },
   async redirects() {
     return [
       {
@@ -17,9 +21,13 @@ module.exports = {
   },
   async rewrites() {
     return [
+      // {
+      //   source: "/api/graphql",
+      //   destination: "https://hyezoprk.com",
+      // },
       {
         source: "/api/graphql",
-        destination: "https://hyezoprk.com/api/graphql",
+        destination: "https://studio.apollographql.com",
       },
     ];
   },
