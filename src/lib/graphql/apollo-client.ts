@@ -7,6 +7,9 @@ const httpLink = new HttpLink({
       : "http://localhost:3000/api/graphql"
   }`,
   credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export const apolloClient = new ApolloClient({
