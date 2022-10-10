@@ -1,8 +1,8 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-micro";
-import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import prisma from "@/lib/graphql/prismadb";
 
@@ -33,11 +33,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   //   "Access-Control-Allow-Methods",
   //   "POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD",
   // );
-
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return false;
-  }
 
   await startServer;
   await apolloServer.createHandler({
