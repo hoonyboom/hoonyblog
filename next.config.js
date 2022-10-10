@@ -21,10 +21,10 @@ module.exports = {
   },
   async rewrites() {
     return [
-      {
-        source: "https://studio.apollographql.com",
-        destination: "https://hyezoprk.com",
-      },
+      // {
+      //   source: "/api/graphql",
+      //   destination: "https://hyezoprk.com",
+      // },
       {
         source: "/api/graphql",
         destination: "/",
