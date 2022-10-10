@@ -11,6 +11,7 @@ const cors = Cors({
   methods: ["POST", "GET", "HEAD", "OPTIONS"],
   credentials: true,
   preflightContinue: true,
+  origin: "*",
 });
 
 const schema = makeExecutableSchema({
