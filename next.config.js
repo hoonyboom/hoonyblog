@@ -27,7 +27,7 @@ module.exports = {
       // },
       {
         source: "/api/graphql",
-        destination: "/",
+        destination: "https://studio.apollographql.com/",
       },
     ];
   },
