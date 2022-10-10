@@ -29,7 +29,6 @@ export default apolloServer.createHandler({
       origin: "*",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
       credentials: true,
-      preflightContinue: true,
       allowedHeaders: "Content-Type, Authorization",
     },
   },
