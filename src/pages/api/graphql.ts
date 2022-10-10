@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";

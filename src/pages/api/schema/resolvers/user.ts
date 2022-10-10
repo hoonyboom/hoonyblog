@@ -1,6 +1,6 @@
 import { CreateUsernameResponse, GraphqlContext } from "@/utils/types";
 import { User } from "@prisma/client";
-import { ApolloError } from "apollo-server-micro";
+import { ApolloError } from "apollo-server-nextjs";
 
 const resolvers = {
   Query: {
