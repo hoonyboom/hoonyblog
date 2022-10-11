@@ -9,7 +9,7 @@ const httpLink = new HttpLink({
   headers: {
     "Content-Type": "application/json",
   },
-  // credentials: "include",
+  credentials: "include",
 });
 
 export const apolloClient = new ApolloClient({
