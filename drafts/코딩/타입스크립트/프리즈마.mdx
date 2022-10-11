@@ -2,7 +2,7 @@
 title: "프리즈마 이해 고군분투기"
 date: "2022-10-09"
 categories: coding
-tags: ["아스트로", "블로그 포트폴리오"]
+tags: ["타입스크립트", "블로그 포트폴리오"]
 description: prisma
 ---
 <HeadingNavigator />
@@ -87,11 +87,11 @@ generator client {
   ```
 <br/>
 2. **_모델링_**  
-연결을 마친 뒤엔 데이터 모델들을 정의해준다. 이 쿼리 형태의 모델들은
+연결을 마친 뒤엔 데이터 모델들을 정의해준다. 이 쿼리 형태의 모델들은  
    - DB에서 `Table`(RDBS) 또는 `Collection`(NoSQL)으로 맵핑된다.
-   - 그큐엘의 `typeDefs`처럼, `Prisma Client`에서 쿼리 API로 사용될 것이다.  
-<br/>
-데이터 모델을 짜는 데는 다양한 명령어가 개입했다. 솔직히 여기서 쫄리는 사람 많을 거 같다. 내가 그랬으니까ㅎ 가령 `@map, @@map`은 스키마 파일과 DB의 대소문자 불균형 문제를 해결하는 데 쓰이고, 관계형 같은 경우 `@relation(fields:[필드명], refrerences: [참조값])`의 형태로 사용되고 있었다.  
+   - 그큐엘의 `typeDefs`처럼, `Prisma Client`에서 쿼리 API로 사용될 것이다.
+   <br/>
+데이터 모델을 짜는 데는 다양한 명령어가 개입하고 있었다. 여기서 쫄리는 사람 많을 거 같다. 내가 그랬으니까ㅎ 가령 `@map, @@map`은 스키마 파일과 DB의 대소문자 불균형 문제를 해결하는 데 쓰인다고 하고, 관계형 같은 경우 `@relation(fields:[필드명], refrerences: [참조값])`의 형태로 사용되고 있었다.  
 세부사항은 <Lnk text='공홈' href='https://www.prisma.io/docs/concepts/components/prisma-schema/relations' />에서 정독해보는 게 낫다.! 언제나 공홈부터!!
 
 ```prisma schema.prisma focus=10:50

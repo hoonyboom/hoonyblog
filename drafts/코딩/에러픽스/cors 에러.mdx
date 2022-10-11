@@ -1,0 +1,29 @@
+---
+title: 순수악 그자체 cors
+date: "2022-10-10"
+categories: coding
+tags: "에러픽스"
+description: cors
+---
+
+으어어어어 지난 이틀 cors 때문에 아무것도 못했으니..  
+언젠간 마주쳐야 했지만 그게 왜 이번이었는지ㅜㅜ 진짜 퍼진다 🫠🫠🫠   
+
+### CORS?
+CORS 에러에 관한 글은 넘치도록 많다. 이딴 게 왜 있어 날 이리 괴롭히는지 원망스러운 글도 많고 해결책도 그만큼이다. 어찌보면 복붙 수준에서 해결됐을 에러일 수 있지만, 내 경우 어떤 솔루션도 먹히지 않았다.  
+<br/>
+해결책은 크게 두 줄기로 나뉘는 것 같다.  
+1. 서버 쪽에서 `cors` 셋팅을 다듬거나  
+2. 클라이언트 쪽에서 `proxy` 또는 `rewrites`를 통해 우회로를 만들거나  
+<br/>
+그럼에도 나는 이 오류를 지우지 못했다
+<Img src='/images/에러/스샷_cors1.webp' />
+<figcaption>삐빅! same-origin이 아닙니다!</figcaption>
+
+### 사실 내 문제는
+얼핏 보면 <q>Scheme, Host, Port</q> 다 일치하는데 뭐가 문젠데? 싶지만 그거 제대로 안 본 거였다...ㅋㅋㅋㅋ  
+로컬에선 제대로 돌아가는 걸 단서 삼았어야 했는데 그러지 못한 죄로 이틀을 헌납했읍니다.. 후  
+
+<Lnk text='아폴로GQL의 CORS 설명' href='https://www.apollographql.com/docs/apollo-server/v4/security/cors/' />
+<Lnk text='프리즈마의 CORS 설명' href='https://www.prisma.io/blog/enabling-cors-for-express-graphql-apollo-server-1ef999bfb38d' />
+<Lnk text='Leire Polo의 CORS 설명' href='https://medium.com/tribalscale/stop-cursing-cors-c2cbb4997057' />
