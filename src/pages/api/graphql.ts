@@ -26,7 +26,7 @@ const apolloServer = new ApolloServer({
 export default apolloServer.createHandler({
   expressGetMiddlewareOptions: {
     cors: {
-      origin: "*",
+      origin: ["https://www.youtube.com", "https://soundcloud.com"],
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
       credentials: true,
       allowedHeaders: "Content-Type, Authorization",
