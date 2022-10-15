@@ -36,7 +36,7 @@ module.exports = {
         sea: "#0984e3fe",
         icloud: "#3d84f7",
         paleBlue: "rgb(102, 153, 204)",
-        lightGray: "#EAECEF",
+        lightGray: "#EDF1F2",
         darkGray: "#333333",
         smokeWhite: "#F6FAFA",
         smokeBlack: "#1E1E1E",

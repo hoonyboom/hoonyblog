@@ -1,3 +1,4 @@
+import ConversationOperations from "@/lib/graphql/operations/conversation";
 import userOperations from "@/lib/graphql/operations/user";
 import {
   CreateConversationdata,
@@ -8,23 +9,25 @@ import {
 } from "@/utils/types";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { debounce } from "lodash";
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
+import { Session } from "next-auth";
+import { useRouter } from "next/router";
+import { useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import Participants from "./Participants";
 import UserSearchList from "./UserSearchList";
-import ConversationOperations from "@/lib/graphql/operations/conversation";
-import { Session } from "next-auth";
 
 interface ModalProps {
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
   session: Session;
+  onClick: () => void;
 }
 
-export default function Modal({ isOpen, setIsOpen, session }: ModalProps) {
+export default function Modal({ isOpen, onClick, session }: ModalProps) {
   const {
     user: { id: userId },
   } = session;
+
+  const router = useRouter();
 
   const [username, setUsername] = useState("");
   const [participants, setParticipants] = useState<SearchedUser[]>([]);
@@ -59,7 +62,27 @@ export default function Modal({ isOpen, setIsOpen, session }: ModalProps) {
       const { data } = await createConversation({
         variables: { participantIds },
       });
-      console.log("Jere is Data", data);
+
+      if (!data?.createConversation) throw new Error("Failed to Create Conversation");
+
+      const {
+        createConversation: { conversationId },
+      } = data;
+
+      router.push({
+        query: {
+          conversationId,
+        },
+      });
+
+      /**
+       * Clear state and close modal
+       * on Successful creation
+       */
+
+      setParticipants([]);
+      setUsername("");
+      onClick();
     } catch (error) {
       const err = error as ErrorEvent;
       toast.error(err.message);
@@ -102,10 +125,7 @@ export default function Modal({ isOpen, setIsOpen, session }: ModalProps) {
             </>
           )}
         </div>
-        <button
-          className="bg-stripes-blue rounded-lg p-3 text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <button className="bg-stripes-blue rounded-lg p-3 text-white" onClick={onClick}>
           닫기
         </button>
       </div>

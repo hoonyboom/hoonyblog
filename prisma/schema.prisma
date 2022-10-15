@@ -4,7 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "darwin"]
 }
 
@@ -40,14 +40,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
-  email         String?   @unique
-  username      String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
+  name                    String?
+  email                   String?                   @unique
+  username                String?                   @unique
+  emailVerified           DateTime?                 @map("email_verified")
+  image                   String?
+  accounts                Account[]
+  sessions                Session[]
+  ConversationParticipant ConversationParticipant[]
+  Message                 Message[]
 
   @@map("users")
 }
@@ -63,3 +65,35 @@ model VerificationToken {
 }
 
 // 
+
+model Conversation {
+  id                     String                    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt              DateTime                  @default(now())
+  updatedAt              DateTime                  @updatedAt
+  ConversationParticipant ConversationParticipant[]
+  Message                Message[]
+  latestMesssageId       String?                    @unique
+  latestMesssage         Message?                  @relation(fields: [latestMesssageId], references: [id], name: "latestConversationMessage", onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ConversationParticipant {
+  id                   String       @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  userId               String
+  conversationId       String
+  user                 User         @relation(fields: [userId], references: [id])
+  conversation         Conversation @relation(fields: [conversationId], references: [id])
+  hasSeenLatestMessage Boolean
+}
+
+model Message {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  senderId       String
+  conversationId String
+  sender         User          @relation(fields: [senderId], references: [id])
+  isLatestIn     Conversation? @relation(name: "latestConversationMessage")
+  conversation   Conversation  @relation(fields: [conversationId], references: [id])
+}

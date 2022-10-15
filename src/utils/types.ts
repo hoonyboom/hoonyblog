@@ -1,4 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import {
+  conversationPopulated,
+  participantPopulated,
+} from "@/pages/api/schema/resolvers/conversation";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { Session } from "next-auth";
 
 /**
@@ -43,6 +47,18 @@ export interface SearchedUser {
 /**
  * Conversations
  */
+
+export type ConversationPopulated = Prisma.ConversationGetPayload<{
+  include: typeof conversationPopulated;
+}>;
+
+export type participantPopulated = Prisma.ConversationParticipantGetPayload<{
+  include: typeof participantPopulated;
+}>;
+
+export interface ConversationData {
+  conversation: ConversationPopulated[];
+}
 
 export interface CreateConversationdata {
   createConversation: {

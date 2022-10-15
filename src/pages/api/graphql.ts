@@ -2,9 +2,9 @@ import prisma from "@/lib/graphql/prismadb";
 import { resolvers, typeDefs } from "@/pages/api/schema";
 import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
-// import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { ApolloServer } from "apollo-server-nextjs";
 import { getSession } from "next-auth/react";
+import { WebSocketServer } from "ws";
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -19,8 +19,6 @@ const apolloServer = new ApolloServer({
     const session = await getSession({ req });
     return { session, prisma };
   },
-  // introspection: true,
-  // plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
 export default apolloServer.createHandler({
