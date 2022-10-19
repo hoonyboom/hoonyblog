@@ -1,12 +1,6 @@
 import ConversationOperations from "@/lib/graphql/operations/conversation";
 import userOperations from "@/lib/graphql/operations/user";
-import {
-  CreateConversationdata,
-  CreateConversationInput,
-  SearchedUser,
-  SearchUsersData,
-  SearchUsersInput,
-} from "@/utils/types";
+import { SearchedUser, SearchUsersData, SearchUsersInput } from "@/utils/types";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { debounce } from "lodash";
 import { Session } from "next-auth";
@@ -36,10 +30,9 @@ export default function Modal({ isOpen, onClick, session }: ModalProps) {
     SearchUsersInput
   >(userOperations.Queries.searchUser);
 
-  const [createConversation] = useMutation<
-    CreateConversationdata,
-    CreateConversationInput
-  >(ConversationOperations.Mutations.createConversation);
+  const [createConversation] = useMutation(
+    ConversationOperations.Mutations.createConversation,
+  );
 
   const onSearch = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -8,6 +8,7 @@ generator client {
   binaryTargets = ["native", "darwin"]
 }
 
+// Next-auth Setting
 model Account {
   id                       String  @id @default(auto()) @map("_id") @db.ObjectId
   userId                   String  @map("user_id")
@@ -40,16 +41,15 @@ model Session {
 }
 
 model User {
-  id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
-  name                    String?
-  email                   String?                   @unique
-  username                String?                   @unique
-  emailVerified           DateTime?                 @map("email_verified")
-  image                   String?
-  accounts                Account[]
-  sessions                Session[]
-  ConversationParticipant ConversationParticipant[]
-  Message                 Message[]
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  username      String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  Comment       Comment[]
 
   @@map("users")
 }
@@ -64,36 +64,21 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
-// 
-
-model Conversation {
-  id                     String                    @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt              DateTime                  @default(now())
-  updatedAt              DateTime                  @updatedAt
-  ConversationParticipant ConversationParticipant[]
-  Message                Message[]
-  latestMesssageId       String?                    @unique
-  latestMesssage         Message?                  @relation(fields: [latestMesssageId], references: [id], name: "latestConversationMessage", onDelete: NoAction, onUpdate: NoAction)
+// for Comments setting
+model Post {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Comment   Comment[]
 }
 
-model ConversationParticipant {
-  id                   String       @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt            DateTime     @default(now())
-  updatedAt            DateTime     @updatedAt
-  userId               String
-  conversationId       String
-  user                 User         @relation(fields: [userId], references: [id])
-  conversation         Conversation @relation(fields: [conversationId], references: [id])
-  hasSeenLatestMessage Boolean
-}
-
-model Message {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  senderId       String
-  conversationId String
-  sender         User          @relation(fields: [senderId], references: [id])
-  isLatestIn     Conversation? @relation(name: "latestConversationMessage")
-  conversation   Conversation  @relation(fields: [conversationId], references: [id])
+model Comment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  postId    String?  @db.ObjectId
+  post      Post?    @relation(fields: [postId], references: [id])
+  User      User?    @relation(fields: [nickname], references: [username])
+  nickname  String?
+  message   String
 }

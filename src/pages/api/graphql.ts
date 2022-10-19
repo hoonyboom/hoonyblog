@@ -4,7 +4,7 @@ import { GraphqlContext } from "@/utils/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-nextjs";
 import { getSession } from "next-auth/react";
-import { WebSocketServer } from "ws";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -19,6 +19,7 @@ const apolloServer = new ApolloServer({
     const session = await getSession({ req });
     return { session, prisma };
   },
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
 });
 
 export default apolloServer.createHandler({

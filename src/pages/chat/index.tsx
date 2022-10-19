@@ -4,6 +4,16 @@ import { Layout } from "@/components/utils";
 import { NextPageContext } from "next";
 import { getSession, useSession } from "next-auth/react";
 
+export async function getServerSideProps(ctx: NextPageContext) {
+  const session = await getSession(ctx);
+
+  return {
+    props: {
+      session,
+    },
+  };
+}
+
 export default function Chat() {
   const { data: session } = useSession();
   const reloadSession = () => {
@@ -24,14 +34,4 @@ export default function Chat() {
       </div>
     </Layout>
   );
-}
-
-export async function getServerSideProps(ctx: NextPageContext) {
-  const session = await getSession(ctx);
-
-  return {
-    props: {
-      session,
-    },
-  };
 }

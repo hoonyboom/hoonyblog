@@ -1,7 +1,4 @@
-import { ApolloClient, InMemoryCache, HttpLink, split } from "@apollo/client";
-import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
-import { getMainDefinition } from "@apollo/client/utilities";
-import { createClient } from "graphql-ws";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 const httpLink = new HttpLink({
   uri: `${
@@ -13,6 +10,11 @@ const httpLink = new HttpLink({
     "Content-Type": "application/json",
   },
   credentials: "include",
+});
+
+export const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
 });
 
 /**
@@ -45,8 +47,3 @@ const httpLink = new HttpLink({
 //         httpLink,
 //       )
 //     : httpLink;
-
-export const apolloClient = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-});

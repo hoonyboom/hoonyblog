@@ -6,6 +6,7 @@ import { Session } from "next-auth";
 import { signIn } from "next-auth/react";
 import { useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import { SiKakaotalk, SiTwitter, SiGoogle } from "react-icons/si";
 
 interface AuthProps {
   session: Session | null;
@@ -41,32 +42,32 @@ export default function Auth({ session, reloadSession }: AuthProps) {
   const debounceInput = useMemo(() => debounce(val => setUsername(val), 500), []);
 
   return (
-    <div className="flex flex-col place-items-center space-y-3">
+    <>
       {session ? (
-        <>
-          <p>Create a Username</p>
+        <div className="flex flex-col place-items-center justify-center gap-1">
+          <p>닉네임</p>
           <input
             type="text"
-            placeholder="Enter A Username"
+            placeholder="What's yours?"
             onChange={e => debounceInput(e.target.value)}
             className="text-center"
           />
-          <button onClick={onSubmit}>Save</button>
-        </>
+          <button onClick={onSubmit}>저장</button>
+        </div>
       ) : (
-        <>
+        <div className="flex place-items-center justify-end gap-3">
           <p>채팅방</p>
           <button className="btn" onClick={() => signIn("google")}>
-            Continue with Google
+            <SiGoogle />
           </button>
           <button className="btn" onClick={() => signIn("twitter")}>
-            Continue with Twitter
+            <SiTwitter />
           </button>
           <button className="btn" onClick={() => signIn("kakao")}>
-            Continue with Kakao
+            <SiKakaotalk />
           </button>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }

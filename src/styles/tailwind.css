@@ -81,7 +81,7 @@
     @apply flex items-center justify-center;
   }
   .btn {
-    @apply bg-stripes-blue rounded-xl border-2 py-3;
+    @apply bg-stripes-fuchsia rounded-xl p-1;
   }
   .avartar {
     @apply inline-block h-12 w-12 rounded-full ring-2 ring-white;
@@ -98,11 +98,11 @@
   Scroll 전체화면 설정 */
   .ch-code-browser-content > div,
   .ch-code-browser-content > div > span {
-    @apply h-6 font-mono;
+    @apply h-6 font-mono subpixel-antialiased;
   }
   /* Scroll 제목&설명탭 설정 */
   .ch-scrollycoding-step-content p {
-    @apply text-mono leading-6;
+    @apply text-mono leading-6 subpixel-antialiased;
   }
   /* 기본화면 설정 */
   .ch-code-scroll-content span,
@@ -111,7 +111,7 @@
   }
   /* Scroll 모바일 화면 */
   .ch-scrollycoding-static > p {
-    @apply pt-7;
+    @apply pt-7 subpixel-antialiased;
   }
 }
 

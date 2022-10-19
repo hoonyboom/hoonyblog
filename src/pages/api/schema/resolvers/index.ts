@@ -1,6 +1,7 @@
 import { merge } from "lodash";
 import userResolvers from "./user";
-import conversationResolvers from "./conversation";
+import postResolvers from "./post";
 
-const resolvers = merge({}, userResolvers, conversationResolvers);
+const resolvers = merge({}, userResolvers, postResolvers);
+
 export default resolvers;

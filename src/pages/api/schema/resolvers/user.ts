@@ -1,5 +1,5 @@
 import { CreateUsernameResponse, GraphqlContext } from "@/utils/types";
-import { User } from "@prisma/client";
+import { type User } from "@prisma/client";
 import { ApolloError } from "apollo-server-nextjs";
 
 const resolvers = {
@@ -12,7 +12,7 @@ const resolvers = {
       const { username: searchedUsersName } = args;
       const { session, prisma } = context;
 
-      if (!session?.user) throw new ApolloError("Not Authorized");
+      if (!session?.user) throw new ApolloError("Not Authorize");
 
       const {
         user: { username: myUsername },

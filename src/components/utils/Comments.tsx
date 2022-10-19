@@ -1,36 +1,41 @@
-import { useTheme } from "next-themes";
-import { useEffect, useRef } from "react";
+import Auth from "@/components/auth";
+import { CommentList } from "@/components/utils";
+import PostOperator from "@/lib/graphql/operations/post";
+import { loadCommentsData, loadCommentsInput } from "@/utils/types";
+import { useQuery } from "@apollo/client";
+import { useSession } from "next-auth/react";
 
-export default function Comments() {
-  const setScript = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
+export default function Comments({ postId }: { postId: string }) {
+  const { data: session } = useSession();
+  const reloadSession = () => {
+    const event = new Event("visibilitychange");
+    document.dispatchEvent(event);
+  };
 
-  useEffect(() => {
-    const createUtterancesEl = () => {
-      const addScript = document.createElement("script");
-      addScript.async = true;
-      addScript.crossOrigin = "anonymous";
-      addScript.src = "https://utteranc.es/client.js";
-      addScript.setAttribute("repo", "10004ok/blogComment");
-      addScript.setAttribute("issue-term", "title");
-      addScript.setAttribute("label", "✨💬✨");
-      addScript.setAttribute("theme", "github-light");
+  const { data, loading, error } = useQuery<loadCommentsData, loadCommentsInput>(
+    PostOperator.Queries.loadComments,
+    {
+      variables: { postId },
+    },
+  );
 
-      setScript.current?.appendChild(addScript);
-    };
-
-    const changeTheme = () => {
-      const message = {
-        type: "set-theme",
-        theme: theme === "dark" ? "github-dark" : "github-light",
-      };
-      utteranceEl?.contentWindow?.postMessage(message, "https://utteranc.es/client.js");
-    };
-
-    const utteranceEl: HTMLIFrameElement | null | undefined =
-      setScript.current?.querySelector("iframe.utterances-frame");
-    utteranceEl ? changeTheme() : createUtterancesEl();
-  }, [theme]);
-
-  return <div ref={setScript}></div>;
+  return (
+    <div className="bg-stripes-sky mt-10">
+      <div>
+        {session?.user?.username ? (
+          <CommentList session={session} postId={postId} />
+        ) : (
+          <Auth session={session} reloadSession={reloadSession} />
+        )}
+        <div>
+          {/* {data?.comments.map(c => (
+            <div key={c.id}>
+              <span>{c.nickname}</span>
+              <span>{c.message}</span>
+            </div>
+          ))} */}
+        </div>
+      </div>
+    </div>
+  );
 }

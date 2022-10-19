@@ -2,9 +2,9 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-  // images: {
-  //   domains: ["yts.mx"],
-  // },
+  images: {
+    domains: ["lh3.googleusercontent.com"],
+  },
   async redirects() {
     return [
       {

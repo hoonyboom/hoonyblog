@@ -1,7 +1,3 @@
-import {
-  conversationPopulated,
-  participantPopulated,
-} from "@/pages/api/schema/resolvers/conversation";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { Session } from "next-auth";
 
@@ -45,27 +41,48 @@ export interface SearchedUser {
 }
 
 /**
+ * Post
+ */
+export interface createCommentResponse {
+  success?: boolean;
+  error?: string;
+}
+
+export interface loadCommentsData {
+  comments: Comment[];
+}
+export interface loadCommentsInput {
+  postId: string;
+}
+export interface Comment {
+  id: string;
+  nickname: string;
+  message: string;
+  createdAt: Date;
+}
+
+/**
  * Conversations
  */
 
-export type ConversationPopulated = Prisma.ConversationGetPayload<{
-  include: typeof conversationPopulated;
-}>;
+// export type ConversationPopulated = Prisma.ConversationGetPayload<{
+//   include: typeof conversationPopulated;
+// }>;
 
-export type participantPopulated = Prisma.ConversationParticipantGetPayload<{
-  include: typeof participantPopulated;
-}>;
+// export type participantPopulated = Prisma.ConversationParticipantGetPayload<{
+//   include: typeof participantPopulated;
+// }>;
 
-export interface ConversationData {
-  conversation: ConversationPopulated[];
-}
+// export interface ConversationData {
+//   conversation: ConversationPopulated[];
+// }
 
-export interface CreateConversationdata {
-  createConversation: {
-    conversationId: string;
-  };
-}
+// export interface CreateConversationdata {
+//   createConversation: {
+//     conversationId: string;
+//   };
+// }
 
-export interface CreateConversationInput {
-  participantIds: string[];
-}
+// export interface CreateConversationInput {
+//   participantIds: string[];
+// }

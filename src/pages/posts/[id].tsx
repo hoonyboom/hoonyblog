@@ -1,4 +1,4 @@
-import { Layout, Date, MdxComponents } from "@/components/utils";
+import { Layout, Date, MdxComponents, Comments } from "@/components/utils";
 import { useEffect, useMemo, useState } from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPostIds, getPostData } from "@/lib/posts";
@@ -14,6 +14,7 @@ export interface MdxProps {
   frontmatter: {
     [keys: string]: string;
   };
+  id: string;
 }
 
 export async function getStaticPaths() {
@@ -25,6 +26,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }: IdProps) {
   const postData = await getPostData(params.id);
+
   return {
     props: {
       ...postData,
@@ -32,7 +34,7 @@ export async function getStaticProps({ params }: IdProps) {
   };
 }
 
-export default function BlogPost({ code, frontmatter }: MdxProps) {
+export default function BlogPost({ code, frontmatter, id }: MdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   const [fade, setFade] = useState(false);
   useEffect(() => {
@@ -61,6 +63,8 @@ export default function BlogPost({ code, frontmatter }: MdxProps) {
           }`}
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
+          {/* 댓글영역 */}
+          <Comments postId={id} />
         </article>
       </div>
     </Layout>
