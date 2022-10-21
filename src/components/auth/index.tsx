@@ -1,5 +1,5 @@
 import UserOperations from "@/lib/graphql/operations/user";
-import { CreateUsernameData, CreateUsernameVariables } from "@/utils/types";
+import { CreateUsernameData, CreateUsernameInput } from "@/types";
 import { useMutation } from "@apollo/client";
 import { debounce } from "lodash";
 import { Session } from "next-auth";
@@ -17,7 +17,7 @@ export default function Auth({ session, reloadSession }: AuthProps) {
   const [username, setUsername] = useState("");
   const [createUsername, { loading, error }] = useMutation<
     CreateUsernameData,
-    CreateUsernameVariables
+    CreateUsernameInput
   >(UserOperations.Mutations.createUsername);
 
   const onSubmit = async () => {
@@ -30,7 +30,6 @@ export default function Auth({ session, reloadSession }: AuthProps) {
         toast.error(error);
         return;
       }
-
       toast.success("로그인 성공 🚀");
       reloadSession();
     } catch (error) {

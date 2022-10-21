@@ -1,4 +1,4 @@
-import { CreateCommentResponse, GraphqlContext } from "@/utils/types";
+import { CreateCommentResponse, GraphqlContext } from "@/types";
 import { ApolloError } from "apollo-server-nextjs";
 import { type Comment } from "@prisma/client";
 

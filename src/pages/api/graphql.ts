@@ -1,6 +1,6 @@
 import prisma from "@/lib/graphql/prismadb";
 import { resolvers, typeDefs } from "@/pages/api/schema";
-import { GraphqlContext } from "@/utils/types";
+import { GraphqlContext } from "@/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-nextjs";
 import { getSession } from "next-auth/react";

@@ -1,10 +1,10 @@
-import { ApolloQueryResult, useMutation } from "@apollo/client";
+import commentOperator from "@/lib/graphql/operations/comment";
+import { CreateCommentData, CreateCommentInput } from "@/types";
+import { useMutation } from "@apollo/client";
 import { debounce } from "lodash";
 import { Session } from "next-auth";
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import commentOperator from "@/lib/graphql/operations/comment";
-import { CreateCommentData, CreateCommentInput } from "@/utils/types";
 import toast from "react-hot-toast";
 
 declare global {
@@ -17,7 +17,7 @@ interface CommentType extends sessionProps {
   refetch: () => void;
 }
 
-export default function CommentList({ session, postId, refetch }: CommentType) {
+export default function CommentForm({ session, postId, refetch }: CommentType) {
   const [message, setMessage] = useState("");
   const debounceInput = useMemo(() => debounce(val => setMessage(val), 500), []);
   const [createComment] = useMutation<CreateCommentData, CreateCommentInput>(

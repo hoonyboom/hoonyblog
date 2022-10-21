@@ -1,8 +1,9 @@
-import { Layout, Date, MdxComponents, Comments } from "@/components/utils";
-import { useEffect, useMemo, useState } from "react";
-import { getMDXComponent } from "mdx-bundler/client";
-import { getAllPostIds, getPostData } from "@/lib/posts";
+import { Comments } from "@/components/comment";
+import { Date, Layout, MdxComponents } from "@/components/utils";
 import { H3 } from "@/components/utils/MdxComponents";
+import { getAllPostIds, getPostData } from "@/lib/posts";
+import { getMDXComponent } from "mdx-bundler/client";
+import { useEffect, useMemo, useState } from "react";
 
 export interface IdProps {
   params: {

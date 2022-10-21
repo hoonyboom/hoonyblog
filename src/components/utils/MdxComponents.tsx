@@ -5,7 +5,7 @@ import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 import styles from "./[MdxComponents].module.css";
 import Twemoji from "react-twemoji";
 // recoil Import
-import { headerState } from "@/lib/store";
+import { headerState } from "@/lib/atoms";
 import { useRecoilState } from "recoil";
 
 /* 인터페이스 커스텀 타입 확장 */
