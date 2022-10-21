@@ -1,0 +1,29 @@
+---
+title: 타입스크립트의 Date 타입
+date: "2022-10-21"
+categories: coding
+tags: ["타입스크립트", "에러픽스"]
+description: fix
+---
+타입스크립트엔 `Date` 타입이 있다.  
+말만 들어도 날짜, `TimeStamp`를 전담하는 타입 같은데 과연 그럴까?  
+<br/>
+<Img src='/images/에러/스샷_Date타입.webp' />
+<br/>
+아쉽게도 이건 무늬만 날짜 타입이었다.  
+`Date`를 쓸 수는 있지만 <q>Json이 Date Object를 지원하지 않기에</q> 실상은 `string`이라고 한다. 그리고 이를 Date로 파싱하는 기능 따위 타입스크립트에는 없다.
+<br/>
+<Img src='/images/에러/스샷_Date디비.webp' />
+<br/>
+그래서 DB의 `TimeStamp`를 곧장 `Date`로 받아 쓸라 셈치면 `invalid time value` 에러가 뜬다. 타입은 일치하는데 막상 까보면 `Date`가 아니라는 아이러니한 상황.. ㅎㅎ  
+<br/>
+아싸리 string으로 받아 이를 Date 타입으로 파씽하면 `new Intl.DateTimeFormat()`의 인수로 얌전하게 들어간다.
+<Img src='/images/에러/스샷_Date파싱.webp' />
+<figcaption>webp로 변환하니 색이 많이 빠지는군;;</figcaption>
+
+<br/>
+<br/>
+#### 참고한 사이트
+1. <Lnk text='There is not a Date type in typescript' href='https://stackoverflow.com/questions/43503623/how-to-declare-a-date-attribute-on-angular2-model' />
+2. <Lnk text='Intl.DateTime formatter get invalid time' href='https://stackoverflow.com/questions/73645872/intl-datetime-formatter-get-invalid-time-every-time-even-after-rerendering-compo' />
+
