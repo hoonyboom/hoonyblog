@@ -1,9 +1,10 @@
 import Auth from "@/components/auth";
 import { CommentList } from "@/components/utils";
-import PostOperator from "@/lib/graphql/operations/post";
-import { loadCommentsData, loadCommentsInput } from "@/utils/types";
 import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/react";
+import commentOperator from "@/lib/graphql/operations/comment";
+import { LoadCommentsData, LoadCommentsInput } from "@/utils/types";
+import Image from "next/image";
 
 export default function Comments({ postId }: { postId: string }) {
   const { data: session } = useSession();
@@ -12,29 +13,37 @@ export default function Comments({ postId }: { postId: string }) {
     document.dispatchEvent(event);
   };
 
-  const { data, loading, error } = useQuery<loadCommentsData, loadCommentsInput>(
-    PostOperator.Queries.loadComments,
+  const { data, loading, error, refetch } = useQuery<LoadCommentsData, LoadCommentsInput>(
+    commentOperator.Queries.loadComments,
     {
       variables: { postId },
     },
   );
 
+  console.log(data);
+
   return (
-    <div className="bg-stripes-sky mt-10">
+    <div className="mt-10 p-5">
       <div>
         {session?.user?.username ? (
-          <CommentList session={session} postId={postId} />
+          <CommentList session={session} postId={postId} refetch={refetch} />
         ) : (
           <Auth session={session} reloadSession={reloadSession} />
         )}
-        <div>
-          {/* {data?.comments.map(c => (
-            <div key={c.id}>
-              <span>{c.nickname}</span>
-              <span>{c.message}</span>
+        {data &&
+          data.loadComments.map(comment => (
+            <div className="flex flex-col place-items-start pt-5" key={comment.id}>
+              <Image
+                src={comment.profileImage}
+                alt=""
+                width={30}
+                height={30}
+                className="rounded-full"
+              />
+              <span>{comment.nickname}</span>
+              <span className="flexflex-1">{comment.message}</span>
             </div>
-          ))} */}
-        </div>
+          ))}
       </div>
     </div>
   );

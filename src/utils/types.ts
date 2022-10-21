@@ -19,7 +19,6 @@ export interface CreateUsernameVariables {
 export interface GraphqlContext {
   session: Session | null;
   prisma: PrismaClient;
-  // pubsub:
 }
 
 export interface CreateUsernameResponse {
@@ -41,24 +40,36 @@ export interface SearchedUser {
 }
 
 /**
- * Post
+ * Comment
  */
-export interface createCommentResponse {
-  success?: boolean;
-  error?: string;
+export interface LoadCommentsData {
+  loadComments: LoadComment[];
 }
-
-export interface loadCommentsData {
-  comments: Comment[];
-}
-export interface loadCommentsInput {
+export interface LoadCommentsInput {
   postId: string;
 }
-export interface Comment {
+export interface LoadComment {
   id: string;
   nickname: string;
   message: string;
+  postId: string;
+  profileImage: string;
   createdAt: Date;
+  updatedAt: Date;
+  parentId: string;
+}
+
+export interface CreateCommentData {
+  success?: boolean;
+  error?: string;
+}
+export interface CreateCommentInput {
+  message: string;
+  postId: string;
+}
+export interface CreateCommentResponse {
+  success?: boolean;
+  error?: string;
 }
 
 /**

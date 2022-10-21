@@ -31,7 +31,7 @@ export default function Auth({ session, reloadSession }: AuthProps) {
         return;
       }
 
-      toast.success("Username successfully created! 🚀");
+      toast.success("로그인 성공 🚀");
       reloadSession();
     } catch (error) {
       const err = error as ErrorEvent;
@@ -56,7 +56,7 @@ export default function Auth({ session, reloadSession }: AuthProps) {
         </div>
       ) : (
         <div className="flex place-items-center justify-end gap-3">
-          <p>채팅방</p>
+          <p>Question?</p>
           <button className="btn" onClick={() => signIn("google")}>
             <SiGoogle />
           </button>

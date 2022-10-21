@@ -1,6 +1,6 @@
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGODB_URI")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -10,75 +10,84 @@ generator client {
 
 // Next-auth Setting
 model Account {
-  id                       String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId                   String  @map("user_id")
+  id                       String  @id @default(cuid())
+  userId                   String
   type                     String
   provider                 String
-  providerAccountId        String  @map("provider_account_id")
-  refresh_token            String? @db.String
-  access_token             String? @db.String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
   expires_at               Int?
   token_type               String?
   scope                    String?
-  id_token                 String? @db.String
+  id_token                 String? @db.Text
   session_state            String?
-  refresh_token_expires_in Int? // for Kakao
+  refresh_token_expires_in Int?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@map("accounts")
 }
 
 model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  sessionToken String   @unique @map("session_token")
-  userId       String   @map("user_id")
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("sessions")
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
+  emailVerified DateTime?
   username      String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  image         String?
+  image         String?   @unique
   accounts      Account[]
   sessions      Session[]
-  Comment       Comment[]
-
-  @@map("users")
+  likes         Like[]
+  role          Role      @default(VISITOR)
+  nickname      Comment[] @relation("getUserName")
+  profileImage  Comment[] @relation("getUserImage")
 }
 
 model VerificationToken {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
   identifier String
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("verificationtokens")
 }
 
-// for Comments setting
-model Post {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Comment   Comment[]
-}
-
+// Comments
 model Comment {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  postId    String?  @db.ObjectId
-  post      Post?    @relation(fields: [postId], references: [id])
-  User      User?    @relation(fields: [nickname], references: [username])
-  nickname  String?
-  message   String
+  id           String    @id @default(cuid())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  message      String
+  postId       String
+  user         User      @relation("getUserName", fields: [nickname], references: [username])
+  nickname     String
+  image        User      @relation("getUserImage", fields: [profileImage], references: [image])
+  profileImage String
+  parent       Comment?  @relation("NestedComments", fields: [parentId], references: [id])
+  parentId     String?
+  children     Comment[] @relation("NestedComments")
+  likes        Like[]
+  secret       Boolean   @default(false)
+}
+
+model Like {
+  user      User    @relation(fields: [userId], references: [id])
+  comment   Comment @relation(fields: [commentId], references: [id])
+  userId    String
+  commentId String
+
+  @@id([userId, commentId])
+}
+
+enum Role {
+  VISITOR
+  ADMIN
 }

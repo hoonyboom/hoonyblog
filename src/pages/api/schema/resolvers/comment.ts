@@ -1,6 +1,6 @@
-import { createCommentResponse, GraphqlContext } from "@/utils/types";
-import { type Comment } from "@prisma/client";
+import { CreateCommentResponse, GraphqlContext } from "@/utils/types";
 import { ApolloError } from "apollo-server-nextjs";
+import { type Comment } from "@prisma/client";
 
 const resolvers = {
   Query: {
@@ -9,19 +9,19 @@ const resolvers = {
       args: { postId: string },
       context: GraphqlContext,
     ): Promise<Array<Comment>> => {
-      const { postId: parentPostId } = args;
-      const { prisma } = context;
+      const { postId } = args;
+      const { session, prisma } = context;
 
       try {
-        const comments = await prisma.comment.findMany({
+        const loadComments = prisma.comment.findMany({
           where: {
-            postId: parentPostId,
+            postId,
           },
         });
-        return comments;
+        return loadComments;
       } catch (error) {
         const err = error as ErrorEvent;
-        throw new ApolloError(err?.message);
+        throw new ApolloError(err.message);
       }
     },
   },
@@ -29,10 +29,10 @@ const resolvers = {
   Mutation: {
     createComment: async (
       _: any,
-      args: { postId: string; message: string },
+      args: { message: string; postId: string },
       context: GraphqlContext,
-    ): Promise<createCommentResponse> => {
-      const { message } = args;
+    ): Promise<CreateCommentResponse> => {
+      const { message, postId } = args;
       const { session, prisma } = context;
 
       if (!session?.user)
@@ -40,16 +40,24 @@ const resolvers = {
           error: "로그인 해주세요",
         };
 
-      const { username: nickname } = session.user;
-
       try {
-        await prisma.comment.create({
+        const data = await prisma.comment.create({
           data: {
             message,
-            nickname,
+            postId,
+            user: {
+              connect: {
+                id: session.user.id,
+              },
+            },
+            image: {
+              connect: {
+                id: session.user.id,
+              },
+            },
           },
         });
-
+        console.log(data);
         return { success: true };
       } catch (error) {
         const err = error as ErrorEvent;

@@ -1,30 +1,35 @@
-import { useMutation } from "@apollo/client";
+import { ApolloQueryResult, useMutation } from "@apollo/client";
+import { debounce } from "lodash";
 import { Session } from "next-auth";
 import Image from "next/image";
-import PostOperator from "@/lib/graphql/operations/post";
+import { useMemo, useState } from "react";
+import commentOperator from "@/lib/graphql/operations/comment";
+import { CreateCommentData, CreateCommentInput } from "@/utils/types";
 import toast from "react-hot-toast";
-import { useMemo, useRef, useState } from "react";
-import { debounce } from "lodash";
 
 declare global {
   interface sessionProps {
     session: Session;
-    postId?: string;
   }
 }
+interface CommentType extends sessionProps {
+  postId: string;
+  refetch: () => void;
+}
 
-export default function CoomentList({ session, postId }: sessionProps) {
+export default function CommentList({ session, postId, refetch }: CommentType) {
   const [message, setMessage] = useState("");
   const debounceInput = useMemo(() => debounce(val => setMessage(val), 500), []);
-  const [createComment] = useMutation(PostOperator.Mutations.createComment);
-
-  const onCreateComment = async () => {
+  const [createComment] = useMutation<CreateCommentData, CreateCommentInput>(
+    commentOperator.Mutations.createComment,
+  );
+  const onClick = async () => {
     try {
-      const { data } = await createComment({
-        variables: { postId, message },
+      const data = await createComment({
+        variables: { message, postId },
       });
-
       console.log(data);
+      refetch();
     } catch (error) {
       const err = error as ErrorEvent;
       toast.error(err.message);
@@ -33,8 +38,8 @@ export default function CoomentList({ session, postId }: sessionProps) {
 
   return (
     <>
-      <p>글쓰는 인풋</p>
-      <div className="flex place-items-center gap-2">
+      <p>Comments 💍</p>
+      <div className="flex place-items-center gap-2 pt-6">
         <Image
           src={session.user.image}
           alt=""
@@ -44,8 +49,9 @@ export default function CoomentList({ session, postId }: sessionProps) {
         />
         <span>{session.user.username}</span>
         <input type="text" onChange={e => debounceInput(e.target.value)} />
-        {/* 그큐엘 뮤테이트로 인풋내용+auth유저정보로 Comment 데이터 저장  */}
-        <button onClick={onCreateComment}>reply</button>
+        <button onClick={onClick} disabled={!message}>
+          reply
+        </button>
       </div>
     </>
   );

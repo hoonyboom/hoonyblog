@@ -6,23 +6,26 @@ const Query = {
       query loadComments($postId: String!) {
         loadComments(postId: $postId) {
           id
-          createdAt
-          nickname
           message
+          nickname
+          profileImage
+          parentId
+          createdAt
         }
       }
     `,
   },
   Mutations: {
     createComment: gql`
-      mutation createComment($postId: String!, $message: String!) {
-        createComment(postId: $postId, message: $message) {
+      mutation createComment($message: String!, $postId: String!) {
+        createComment(message: $message, postId: $postId) {
           success
           error
         }
       }
     `,
   },
+  Subscriptions: {},
 };
 
 export default Query;

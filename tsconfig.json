@@ -26,7 +26,10 @@
     "**/*.ts",
     "**/*.tsx",
     "postcss.config.js",
-    "tailwind.config.js"
+    "tailwind.config.js",
+    ".waiting/post.ts",
+    ".waiting/operation/post.ts",
+    ".waiting/typedefs/post.ts"
   ],
   "exclude": ["node_modules"]
 }
