@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { LoadCommentsData } from "@/types";
+import { LoadComment, LoadCommentsData } from "@/types";
 import { ApolloError } from "@apollo/client";
 
 interface CommentListProps {
-  data?: LoadCommentsData;
-  error?: ApolloError;
-  loading: boolean;
+  data: LoadComment[];
 }
 
-export default function CommentList({ data, loading, error }: CommentListProps) {
-  if (error) throw new ApolloError(error);
-  if (loading) return <div>Loading...</div>;
+export default function CommentList({ data }: CommentListProps) {
+  const dateFormatter = new Intl.DateTimeFormat(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
   return (
     <>
       {data &&
-        data.loadComments.map(({ id, profileImage, nickname, message }) => (
+        data.map(({ id, profileImage, nickname, message, createdAt }) => (
           <div className="flex flex-col place-items-start pt-5" key={id}>
             <Image
               src={profileImage}
@@ -27,6 +27,7 @@ export default function CommentList({ data, loading, error }: CommentListProps) 
             />
             <span>{nickname}</span>
             <span className="flexflex-1">{message}</span>
+            <span>{dateFormatter.format(Date.parse(createdAt))}</span>
           </div>
         ))}
     </>
