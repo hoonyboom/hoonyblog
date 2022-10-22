@@ -4,9 +4,7 @@ import { H3 } from "@/components/utils/MdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useEffect, useMemo, useState } from "react";
-import { Comment, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Comment } from "@prisma/client";
 import { type LoadComment } from "@/types";
 
 export interface IdProps {
@@ -19,7 +17,7 @@ export interface MdxProps {
   frontmatter: {
     [keys: string]: string;
   };
-  allComments: LoadComment[];
+  // allComments: LoadComment[];
   id: string;
 }
 
@@ -30,34 +28,33 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
+
 export async function getStaticProps({ params }: IdProps) {
   const postData = await getPostData(params.id);
-  const getComment = await prisma.comment.findMany({
-    where: {
-      postId: params.id,
-    },
-  });
-  const allComments = getComment.reduce((all: LoadComment[], each: Comment) => {
-    const comment = { ...each };
-    const modifiedComment = {
-      ...comment,
-      createdAt: String(comment.createdAt),
-      updatedAt: String(comment.updatedAt),
-    };
-    return [...all, modifiedComment];
-  }, []);
-
-  console.log(allComments);
+  // const getComment = await prisma.comment.findMany({
+  //   where: {
+  //     postId: params.id,
+  //   },
+  // });
+  // const allComments = getComment.reduce((all: LoadComment[], each: Comment) => {
+  //   const comment = { ...each };
+  //   const modifiedComment = {
+  //     ...comment,
+  //     createdAt: String(comment.createdAt),
+  //     updatedAt: String(comment.updatedAt),
+  //   };
+  //   return [...all, modifiedComment];
+  // }, []);
 
   return {
     props: {
-      allComments,
+      // allComments,
       ...postData,
     },
   };
 }
 
-export default function BlogPost({ code, frontmatter, id, allComments }: MdxProps) {
+export default function BlogPost({ code, frontmatter, id /* allComments */ }: MdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   const [fade, setFade] = useState(false);
   useEffect(() => {
@@ -87,7 +84,7 @@ export default function BlogPost({ code, frontmatter, id, allComments }: MdxProp
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
           {/* 댓글영역 */}
-          <Comments postId={id} allComments={allComments} />
+          <Comments postId={id} /* allComments={allComments}  */ />
         </article>
       </div>
     </Layout>

@@ -4,19 +4,22 @@ import { LoadComment, LoadCommentsData } from "@/types";
 import { ApolloError } from "@apollo/client";
 
 interface CommentListProps {
-  data: LoadComment[];
+  data?: LoadCommentsData;
+  error?: ApolloError;
+  loading: boolean;
 }
 
-export default function CommentList({ data }: CommentListProps) {
+export default function CommentList({ data, error, loading }: CommentListProps) {
   const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
   });
-
+  if (error) throw new ApolloError(error);
+  if (loading) return <div>🚧 🚧 🚧</div>;
   return (
     <>
       {data &&
-        data.map(({ id, profileImage, nickname, message, createdAt }) => (
+        data.loadComments.map(({ id, profileImage, nickname, message, createdAt }) => (
           <div className="flex flex-col place-items-start pt-5" key={id}>
             <Image
               src={profileImage}
