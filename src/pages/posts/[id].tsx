@@ -5,8 +5,6 @@ import { getAllPostIds, getPostData } from "@/lib/posts";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useEffect, useMemo, useState } from "react";
 import { Comment, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 import { type LoadComment } from "@/types";
 
 export interface IdProps {
@@ -32,6 +30,7 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params }: IdProps) {
+  const prisma = new PrismaClient();
   const postData = await getPostData(params.id);
   const getComment = await prisma.comment.findMany({
     where: {
@@ -47,8 +46,6 @@ export async function getStaticProps({ params }: IdProps) {
     };
     return [...all, modifiedComment];
   }, []);
-
-  console.log(allComments);
 
   return {
     props: {

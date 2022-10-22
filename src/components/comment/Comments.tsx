@@ -15,7 +15,6 @@ export default function Comments({ allComments: data, postId }: CommentsProps) {
     document.dispatchEvent(event);
   };
 
-  console.log(data);
   return (
     <div className="mt-10 p-5">
       <div>
