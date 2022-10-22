@@ -14,7 +14,7 @@ declare global {
 }
 interface CommentType extends sessionProps {
   postId: string;
-  refetch: () => void;
+  refetch?: () => void;
 }
 
 export default function CommentForm({ session, postId, refetch }: CommentType) {
@@ -29,7 +29,7 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
         variables: { message, postId },
       });
       console.log(data);
-      refetch();
+      // refetch();
     } catch (error) {
       const err = error as ErrorEvent;
       toast.error(err.message);

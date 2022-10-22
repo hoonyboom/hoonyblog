@@ -1,9 +1,13 @@
-import { Comments } from "@/components/comment";
 import { Date, Layout, MdxComponents } from "@/components/utils";
+import { Comments } from "@/components/comment";
 import { H3 } from "@/components/utils/MdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { getMDXComponent } from "mdx-bundler/client";
 import { useEffect, useMemo, useState } from "react";
+import { Comment, PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+import { type LoadComment } from "@/types";
 
 export interface IdProps {
   params: {
@@ -15,11 +19,13 @@ export interface MdxProps {
   frontmatter: {
     [keys: string]: string;
   };
+  allComments: LoadComment[];
   id: string;
 }
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
+
   return {
     paths,
     fallback: false,
@@ -27,15 +33,32 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }: IdProps) {
   const postData = await getPostData(params.id);
+  const getComment = await prisma.comment.findMany({
+    where: {
+      postId: params.id,
+    },
+  });
+  const allComments = getComment.reduce((all: LoadComment[], each: Comment) => {
+    const comment = { ...each };
+    const modifiedComment = {
+      ...comment,
+      createdAt: String(comment.createdAt),
+      updatedAt: String(comment.updatedAt),
+    };
+    return [...all, modifiedComment];
+  }, []);
+
+  console.log(allComments);
 
   return {
     props: {
+      allComments,
       ...postData,
     },
   };
 }
 
-export default function BlogPost({ code, frontmatter, id }: MdxProps) {
+export default function BlogPost({ code, frontmatter, allComments, id }: MdxProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   const [fade, setFade] = useState(false);
   useEffect(() => {
@@ -65,7 +88,7 @@ export default function BlogPost({ code, frontmatter, id }: MdxProps) {
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
           {/* 댓글영역 */}
-          <Comments postId={id} />
+          <Comments allComments={allComments} postId={id} />
         </article>
       </div>
     </Layout>

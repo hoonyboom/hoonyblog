@@ -51,7 +51,8 @@ export interface LoadComment {
   profileImage: string;
   createdAt: string;
   updatedAt: string;
-  parentId: string;
+  parentId: string | null;
+  secret: boolean;
 }
 
 export interface CreateCommentData {
