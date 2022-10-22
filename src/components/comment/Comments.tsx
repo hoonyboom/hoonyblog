@@ -1,7 +1,9 @@
 import Auth from "@/components/auth";
 import { CommentForm, CommentList } from "@/components/comment";
-import { LoadComment } from "@/types";
+import { LoadComment, LoadCommentsData, LoadCommentsInput } from "@/types";
+import { useQuery } from "@apollo/client";
 import { useSession } from "next-auth/react";
+import commentOperator from "@/lib/graphql/operations/comment";
 
 interface CommentsProps {
   allComments: LoadComment[];
@@ -15,11 +17,20 @@ export default function Comments({ allComments: data, postId }: CommentsProps) {
     document.dispatchEvent(event);
   };
 
+  const { data: queryData, refetch } = useQuery<LoadCommentsData, LoadCommentsInput>(
+    commentOperator.Queries.loadComments,
+    {
+      variables: { postId },
+    },
+  );
+
+  console.log(queryData);
+
   return (
     <div className="mt-10 p-5">
       <div>
         {session?.user?.username ? (
-          <CommentForm session={session} postId={postId} /* refetch={refetch} */ />
+          <CommentForm session={session} postId={postId} refetch={refetch} />
         ) : (
           <Auth session={session} reloadSession={reloadSession} />
         )}
