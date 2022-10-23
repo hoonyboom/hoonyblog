@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { debounce } from "lodash";
 import { Session } from "next-auth";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 declare global {
@@ -19,17 +19,21 @@ interface CommentType extends sessionProps {
 
 export default function CommentForm({ session, postId, refetch }: CommentType) {
   const [message, setMessage] = useState("");
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const debounceInput = useMemo(() => debounce(val => setMessage(val), 500), []);
   const [createComment] = useMutation<CreateCommentData, CreateCommentInput>(
     commentOperator.Mutations.createComment,
   );
   const onClick = async () => {
     try {
-      const data = await createComment({
+      await createComment({
         variables: { message, postId },
       });
-      console.log(data);
       refetch();
+      if (inputRef.current) {
+        inputRef.current.value = "";
+        setMessage("");
+      }
     } catch (error) {
       const err = error as ErrorEvent;
       toast.error(err.message);
@@ -37,8 +41,8 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
   };
 
   return (
-    <>
-      <p>Comments 💍</p>
+    <div className="mt-16">
+      <p>▾ Comment</p>
       <div className="flex place-items-center gap-2 pt-6">
         <Image
           src={session.user.image}
@@ -48,11 +52,21 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
           className="rounded-full"
         />
         <span>{session.user.username}</span>
-        <input type="text" onChange={e => debounceInput(e.target.value)} />
-        <button onClick={onClick} disabled={!message}>
+      </div>
+      <div className="mt-3 flex">
+        <textarea
+          ref={inputRef}
+          onChange={e => debounceInput(e.target.value)}
+          className="basis-5/6 resize-none rounded-xl border-[1px] border-black/10 px-3 py-2"
+        />
+        <button
+          onClick={onClick}
+          disabled={!message}
+          className="disabled:bg-stripes-gray ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud text-white transition duration-500 disabled:text-black"
+        >
           reply
         </button>
       </div>
-    </>
+    </div>
   );
 }
