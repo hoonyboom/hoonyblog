@@ -24,6 +24,24 @@ const Query = {
         }
       }
     `,
+
+    deleteComment: gql`
+      mutation deleteComment($commentId: String!, $nickname: String!) {
+        deleteComment(commentId: $commentId, nickname: $nickname) {
+          success
+          error
+        }
+      }
+    `,
+
+    updateComment: gql`
+      mutation updateComment($commentId: String!, $message: String!) {
+        updateComment(commendId: $commentId, message: $message) {
+          success
+          error
+        }
+      }
+    `,
   },
   Subscriptions: {},
 };

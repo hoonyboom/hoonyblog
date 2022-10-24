@@ -5,9 +5,21 @@ const typeDefs = gql`
 
   type Mutation {
     createComment(message: String, postId: String): CreateCommentResponse
+    deleteComment(commentId: String, nickname: String): DeleteCommentResponse
+    updateComment(commentId: String): UpdateCommentResponse
   }
 
   type CreateCommentResponse {
+    success: Boolean
+    error: String
+  }
+
+  type DeleteCommentResponse {
+    success: Boolean
+    error: String
+  }
+
+  type UpdateCommentResponse {
     success: Boolean
     error: String
   }

@@ -33,6 +33,7 @@ module.exports = {
       colors: {
         waterMelon: "#ED4C6A",
         orange: "#ffa500",
+        favBlue: "#0000b9",
         sea: "#0984e3fe",
         icloud: "#3d84f7",
         paleBlue: "rgb(102, 153, 204)",
@@ -50,6 +51,10 @@ module.exports = {
       },
       scrollPadding: {
         vmax: "14vmax",
+      },
+      backgroundImage: {
+        blob: "url('/images/2022/blob/blob1.svg')",
+        close: "url('/images/2022/blob/close.png')",
       },
     },
     screens: {

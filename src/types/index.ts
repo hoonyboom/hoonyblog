@@ -67,3 +67,29 @@ export interface CreateCommentResponse {
   success?: boolean;
   error?: string;
 }
+
+export interface DeleteCommentData {
+  success?: boolean;
+  error?: string;
+}
+export interface DeleteCommentInput {
+  commentId: string;
+  nickname: string;
+}
+export interface DeleteCommentResponse {
+  success?: boolean;
+  error?: string;
+}
+
+export interface UpdateCommentData {
+  success?: boolean;
+  error?: string;
+}
+export interface UpdateCommentInput {
+  commentId: string;
+  message: string;
+}
+export interface UpdateCommentResponse {
+  success?: boolean;
+  error?: string;
+}

@@ -6,6 +6,7 @@ interface IconBtnProps {
   isActive?: boolean;
   color?: string;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 export default function IconBtn({
@@ -13,10 +14,13 @@ export default function IconBtn({
   isActive,
   color,
   children,
-  ...props
+  onClick,
 }: IconBtnProps) {
   return (
-    <button className={`opacity-10 transition hover:opacity-100 ${isActive ? "" : ""} `}>
+    <button
+      className={`opacity-10 transition hover:opacity-100 ${isActive ? "" : ""} `}
+      onClick={onClick}
+    >
       <div className="flex place-items-center">
         <span className={`${children != null ? "mr-1" : ""}`}>
           <Icon fill={color} />

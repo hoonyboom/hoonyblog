@@ -24,14 +24,17 @@ export default function Comments({ postId }: CommentsProps) {
   );
 
   return (
-    <div className="mt-10 p-5">
-      <div className="max-w-xl font-content text-mono">
-        {session?.user?.username ? (
-          <CommentForm session={session} postId={postId} refetch={refetch} />
-        ) : (
-          <Auth session={session} reloadSession={reloadSession} />
-        )}
-        <CommentList data={data} error={error} loading={loading} />
+    <div className="mx-auto mt-10 max-w-xl p-5">
+      <div className="font-content text-mono">
+        <Auth session={session} reloadSession={reloadSession} />
+        <CommentForm session={session} postId={postId} refetch={refetch} />
+        <CommentList
+          data={data}
+          error={error}
+          loading={loading}
+          refetch={refetch}
+          session={session}
+        />
       </div>
     </div>
   );

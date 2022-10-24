@@ -7,29 +7,27 @@ import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
-declare global {
-  interface sessionProps {
-    session: Session;
-  }
-}
-interface CommentType extends sessionProps {
+interface CommentType {
   postId: string;
   refetch: () => void;
+  session: Session | null;
 }
 
 export default function CommentForm({ session, postId, refetch }: CommentType) {
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const debounceInput = useMemo(() => debounce(val => setMessage(val), 500), []);
+  const debounceInput = useMemo(() => debounce(val => setMessage(val), 300), []);
   const [createComment] = useMutation<CreateCommentData, CreateCommentInput>(
     commentOperator.Mutations.createComment,
   );
+
   const onClick = async () => {
     try {
-      await createComment({
+      const data = await createComment({
         variables: { message, postId },
       });
       refetch();
+      console.log(data);
       if (inputRef.current) {
         inputRef.current.value = "";
         setMessage("");
@@ -41,28 +39,31 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
   };
 
   return (
-    <div className="mt-16">
-      <p>▾ Comment</p>
-      <div className="flex place-items-center gap-2 pt-6">
-        <Image
-          src={session.user.image}
-          alt=""
-          width={30}
-          height={30}
-          className="rounded-full"
-        />
-        <span>{session.user.username}</span>
+    <div className="mt-10 select-none">
+      <p className="mb-5">▾ Comment</p>
+      <div className="flex place-items-center gap-2">
+        {session?.user.username ? (
+          <Image
+            src={session.user.image}
+            alt=""
+            width={30}
+            height={30}
+            className="rounded-full"
+          />
+        ) : null}
+        <span>{session?.user.username}</span>
       </div>
       <div className="mt-3 flex">
         <textarea
+          spellCheck="false"
           ref={inputRef}
           onChange={e => debounceInput(e.target.value)}
           className="basis-5/6 resize-none rounded-xl border-[1px] border-black/10 px-3 py-2"
         />
         <button
           onClick={onClick}
-          disabled={!message}
-          className="disabled:bg-stripes-gray ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud text-white transition duration-500 disabled:text-black"
+          disabled={!message || !session?.user.username}
+          className="disabled:bg-stripes-gray $ ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud text-white transition disabled:cursor-not-allowed disabled:text-black"
         >
           reply
         </button>
