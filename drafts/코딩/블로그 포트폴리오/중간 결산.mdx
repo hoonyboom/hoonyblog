@@ -70,7 +70,7 @@ const MdxComponents = {
 export default MdxComponents;
 ```
 <br/>
-이 컴퍼넌트들은 <Lnk text={'mdxBundler'} href={'https://github.com/kentcdodds/mdx-bundler'} />에 디스트럭션(props)으로 풀어 전달했다. 별도의 import 없이도 `mdx` 파일에서 곧장 사용할 수 있게 됐다.  
+이 컴퍼넌트들은 디스트럭션(props)으로 풀어 <Lnk text={'mdxBundler'} href={'https://github.com/kentcdodds/mdx-bundler'} />에 직접 전달했다. 별도의 import 없이도 `mdx` 파일에서 곧장 사용할 수 있다.  
 <br/>
 #### 마크다운 태그
 글쓰기 효율을 극대화하기 위해 마크다운 기호와 더불어 다양한 인라인/블록 태그[^3]를 활용했다.
@@ -118,7 +118,7 @@ export default MdxComponents;
 <br/>
 #### 스니펫
 글쓰는 속도에 지장을 받지 않기 위해서 <q>VsCode 스니펫</q>을 썼다. 스니펫을 통해 원하는 구문을 불러, 원하는 부분만(`tab`을 이용해 전환) 빠르게 에디팅 할 수 있었다.  
-비단 mdx뿐만 아니라 개발 전반에 활용할 수 있는 보조 기능이기에 앞으로의 코딩에 많은 도움이 될 거 같다.
+비단 mdx뿐만 아니라 개발 전반에 활용할 수 있는 보조 기능이다. 앞으로의 코딩에 많은 편의를 줄 거 같다.
 ```json mdx.json
 {
   "Image": {

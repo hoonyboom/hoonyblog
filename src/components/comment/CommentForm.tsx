@@ -56,9 +56,10 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
       <div className="mt-3 flex">
         <textarea
           spellCheck="false"
+          placeholder="💥 로그인 하셔야 합니당"
           ref={inputRef}
           onChange={e => debounceInput(e.target.value)}
-          className="basis-5/6 resize-none rounded-xl border-[1px] border-black/10 px-3 py-2"
+          className="h-20 basis-5/6 resize-none rounded-xl border-[1px] border-black/10 px-3 py-2 leading-5"
         />
         <button
           onClick={onClick}

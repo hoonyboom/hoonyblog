@@ -8,6 +8,7 @@ import { commentOperator } from "@/lib/graphql/operations";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { Session } from "next-auth";
+import { MdxComponents } from "@/components/utils";
 
 interface CommentProps {
   comment: LoadComment;
@@ -16,6 +17,7 @@ interface CommentProps {
 }
 
 export default function Comment({ comment, refetch, session }: CommentProps) {
+  const { Note } = MdxComponents;
   const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
@@ -53,8 +55,18 @@ export default function Comment({ comment, refetch, session }: CommentProps) {
             {dateFormatter.format(Date.parse(createdAt))}
           </span>
         </div>
-        <span className="pb-2">{nickname}</span>
-        <span className="mx-3 whitespace-pre-line break-words">{message}</span>
+        <div className="pb-2">
+          <Note
+            type="underline"
+            iterations={1}
+            padding={1}
+            strokeWidth={2}
+            color="#93dff8"
+          >
+            <span className="px-1 font-bold text-darkslateblue">{nickname}</span>
+          </Note>
+        </div>
+        <span className="mx-3 whitespace-pre-line break-words leading-6">{message}</span>
         <div className="mr-1 flex justify-end gap-3 pt-1">
           <IconBtn Icon={FaHeart} aria-label="Like" color="navy">
             3
