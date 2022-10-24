@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { IconType } from "react-icons/lib";
 
 interface IconBtnProps {

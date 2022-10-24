@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { LoadComment } from "@/types";
-import IconBtn from "./IconBtn";
-import { FaComment, FaEdit, FaHeart, FaTrash } from "react-icons/fa";
-import { useMutation } from "@apollo/client";
-import { commentOperator } from "@/lib/graphql/operations";
-import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
-import { Session } from "next-auth";
 import { MdxComponents } from "@/components/utils";
+import { commentOperator } from "@/lib/graphql/operations";
+import { LoadComment } from "@/types";
+import { useMutation } from "@apollo/client";
+import { Session } from "next-auth";
+import Image from "next/image";
+import toast from "react-hot-toast";
+import { FaComment, FaEdit, FaHeart, FaTrash } from "react-icons/fa";
+import IconBtn from "./IconBtn";
 
 interface CommentProps {
   comment: LoadComment;
@@ -37,11 +35,18 @@ export default function Comment({ comment, refetch, session }: CommentProps) {
     }
   };
   const [UpdateComment] = useMutation(commentOperator.Mutations.updateComment);
-  // const onEdit = () => {};
+  const onEdit = async () => {
+    try {
+      await UpdateComment();
+    } catch (error) {
+      const err = error as ErrorEvent;
+      toast.error(err.message);
+    }
+  };
 
   return (
     <>
-      <div className="mt-2 flex flex-col rounded-lg border-[1px] border-black/10 p-3">
+      <div className="mt-2 flex flex-col rounded-lg border-[1px] border-black/10 p-3 dark:border-white/10">
         <div className="flex justify-between pb-2">
           <Image
             src={profileImage}
@@ -74,11 +79,7 @@ export default function Comment({ comment, refetch, session }: CommentProps) {
           <IconBtn Icon={FaComment} aria-label="Reply" color="navy" />
           {session?.user.username === nickname ? (
             <>
-              <IconBtn
-                Icon={FaEdit}
-                aria-label="Edit"
-                color="navy" /* onClick={() => {}} */
-              />
+              <IconBtn Icon={FaEdit} aria-label="Edit" color="navy" onClick={onEdit} />
               <IconBtn
                 Icon={FaTrash}
                 aria-label="Delete"

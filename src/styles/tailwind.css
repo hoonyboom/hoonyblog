@@ -305,7 +305,7 @@
   .bg-highlight-salary {
     background-image: linear-gradient(
       transparent calc(50% - 9px),
-      papayawhip calc(50% - 9px)
+      #cafc9d calc(50% - 9px)
     );
     background-size: 100% 220%;
   }
@@ -351,4 +351,3 @@
   font-weight: normal;
   font-display: block;
 }
-

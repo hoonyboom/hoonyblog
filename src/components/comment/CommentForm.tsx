@@ -64,7 +64,7 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
         <button
           onClick={onClick}
           disabled={!message || !session?.user.username}
-          className="disabled:bg-stripes-gray $ ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud text-white transition disabled:cursor-not-allowed disabled:text-black"
+          className="disabled:bg-stripes-gray $ ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud transition disabled:cursor-not-allowed"
         >
           reply
         </button>
