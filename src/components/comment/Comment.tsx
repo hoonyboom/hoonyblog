@@ -65,10 +65,7 @@ export default function Comment({ comment, refetch, session }: CommentProps) {
               <IconBtn
                 Icon={FaEdit}
                 aria-label="Edit"
-                color="navy"
-                onClick={() => {
-                  onEdit;
-                }}
+                color="navy" /* onClick={() => {}} */
               />
               <IconBtn
                 Icon={FaTrash}
