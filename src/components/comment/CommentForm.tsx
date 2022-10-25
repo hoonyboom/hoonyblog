@@ -1,33 +1,66 @@
 import commentOperator from "@/lib/graphql/operations/comment";
-import { CreateCommentData, CreateCommentInput } from "@/types";
+import {
+  CreateCommentData,
+  CreateCommentInput,
+  ReplyCommentData,
+  ReplyCommentInput,
+  UpdateCommentData,
+  UpdateCommentInput,
+} from "@/types";
 import { useMutation } from "@apollo/client";
 import { debounce } from "lodash";
 import { Session } from "next-auth";
-import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
+import Image from "next/future/image";
+import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 interface CommentType {
   postId: string;
   refetch: () => void;
   session: Session | null;
+  parentId?: string;
+  commentId?: string;
+  setIsReplying?: Dispatch<SetStateAction<boolean>>;
+  setIsEditing?: Dispatch<SetStateAction<boolean>>;
+  autofocus?: boolean;
+  leftMessage?: string;
 }
 
-export default function CommentForm({ session, postId, refetch }: CommentType) {
+export default function CommentForm({
+  session,
+  postId,
+  refetch,
+  parentId,
+  setIsReplying,
+  setIsEditing,
+  autofocus,
+  commentId,
+  leftMessage,
+}: CommentType) {
   const [message, setMessage] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const debounceInput = useMemo(() => debounce(val => setMessage(val), 300), []);
+
   const [createComment] = useMutation<CreateCommentData, CreateCommentInput>(
     commentOperator.Mutations.createComment,
   );
+  const [ReplyComment] = useMutation<ReplyCommentData, ReplyCommentInput>(
+    commentOperator.Mutations.replyComment,
+  );
+  const [UpdateComment] = useMutation<UpdateCommentData, UpdateCommentInput>(
+    commentOperator.Mutations.updateComment,
+  );
 
-  const onClick = async () => {
+  useEffect(() => {
+    if (leftMessage && inputRef.current) inputRef.current.value = leftMessage;
+  }, [leftMessage]);
+
+  const onCreate = async () => {
     try {
-      const data = await createComment({
+      await createComment({
         variables: { message, postId },
       });
       refetch();
-      console.log(data);
       if (inputRef.current) {
         inputRef.current.value = "";
         setMessage("");
@@ -38,9 +71,42 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
     }
   };
 
+  const onReply = async () => {
+    if (parentId && setIsReplying && inputRef.current)
+      try {
+        await ReplyComment({
+          variables: { message, postId, parentId },
+        });
+        setIsReplying(false);
+        setMessage("");
+        inputRef.current.value = "";
+        refetch();
+      } catch (error) {
+        const err = error as ErrorEvent;
+        toast.error(err.message);
+      }
+  };
+
+  const onEdit = async () => {
+    if (commentId && setIsEditing && inputRef.current) {
+      console.log(commentId, message);
+      try {
+        await UpdateComment({
+          variables: { commentId, message },
+        });
+        setIsEditing(false);
+        setMessage("");
+        inputRef.current.value = "";
+        refetch();
+      } catch (error) {
+        const err = error as ErrorEvent;
+        toast.error(err.message);
+      }
+    }
+  };
+
   return (
-    <div className="mt-10 select-none">
-      <p className="mb-5">▾ Comment</p>
+    <div className="select-none">
       <div className="flex place-items-center gap-2">
         {session?.user.username ? (
           <Image
@@ -55,6 +121,7 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
       </div>
       <div className="mt-3 flex">
         <textarea
+          autoFocus={autofocus}
           spellCheck="false"
           placeholder="💥 로그인 하셔야 합니당"
           ref={inputRef}
@@ -62,11 +129,11 @@ export default function CommentForm({ session, postId, refetch }: CommentType) {
           className="h-20 basis-5/6 resize-none rounded-xl border-[1px] border-black/10 px-3 py-2 leading-5"
         />
         <button
-          onClick={onClick}
+          onClick={parentId ? onReply : commentId ? onEdit : onCreate}
           disabled={!message || !session?.user.username}
           className="disabled:bg-stripes-gray $ ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud transition disabled:cursor-not-allowed"
         >
-          reply
+          {parentId ? "reply" : commentId ? "edit" : "post"}
         </button>
       </div>
     </div>

@@ -9,7 +9,7 @@ interface CommentsProps {
   postId: string;
 }
 
-export default function Comments({ postId }: CommentsProps) {
+export default function CommentLayout({ postId }: CommentsProps) {
   const { data: session } = useSession();
   const reloadSession = () => {
     const event = new Event("visibilitychange");
@@ -27,6 +27,7 @@ export default function Comments({ postId }: CommentsProps) {
     <div className="mx-auto mt-10 max-w-xl p-5">
       <div className="font-content text-mono">
         <Auth session={session} reloadSession={reloadSession} />
+        <p className="mb-5 mt-10 select-none ">▾ Comment</p>
         <CommentForm session={session} postId={postId} refetch={refetch} />
         <CommentList
           data={data}

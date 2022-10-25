@@ -1,5 +1,6 @@
-export { default as Comments } from "./Comments";
-export { default as CommentForm } from "../comment/CommentForm";
-export { default as CommentList } from "../comment/CommentList";
-export { default as Comment } from "../comment/Comment";
-export { default as IconBtn } from "../comment/IconBtn";
+export { default as CommentLayout } from "./CommentLayout";
+export { default as CommentForm } from "./CommentForm";
+export { default as CommentList } from "./CommentList";
+export { default as Comment } from "./Comment";
+export { default as AllComments } from "./AllComments";
+export { default as IconBtn } from "./IconBtn";

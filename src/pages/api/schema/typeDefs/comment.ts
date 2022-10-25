@@ -4,9 +4,14 @@ const typeDefs = gql`
   scalar Date
 
   type Mutation {
-    createComment(message: String, postId: String): CreateCommentResponse
-    deleteComment(commentId: String, nickname: String): DeleteCommentResponse
-    updateComment(commentId: String): UpdateCommentResponse
+    createComment(message: String!, postId: String!): CreateCommentResponse!
+    deleteComment(commentId: String!, nickname: String!): DeleteCommentResponse!
+    updateComment(commentId: String!, message: String!): UpdateCommentResponse!
+    replyComment(
+      postId: String!
+      message: String!
+      parentId: String!
+    ): ReplyCommentResponse!
   }
 
   type CreateCommentResponse {
@@ -24,9 +29,14 @@ const typeDefs = gql`
     error: String
   }
 
+  type ReplyCommentResponse {
+    success: Boolean
+    error: String
+  }
+
   type Like {
-    commentId: String
-    userId: String
+    commentId: String!
+    userId: String!
   }
 
   type Comment {
@@ -41,7 +51,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    loadComments(postId: String): [Comment]
+    loadComments(postId: String!): [Comment!]!
   }
 `;
 

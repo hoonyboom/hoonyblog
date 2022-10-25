@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { Session } from "next-auth";
 
 export interface GraphqlContext {
@@ -90,6 +90,25 @@ export interface UpdateCommentInput {
   message: string;
 }
 export interface UpdateCommentResponse {
+  success?: boolean;
+  error?: string;
+}
+
+export interface ReplyCommentData {
+  success?: boolean;
+  error?: string;
+}
+export interface ReplyCommentInput {
+  postId: string;
+  message: string;
+  parentId: string;
+}
+export interface ReplyCommentResponse {
+  success?: boolean;
+  error?: string;
+}
+
+export interface ToggleLikeResponse {
   success?: boolean;
   error?: string;
 }

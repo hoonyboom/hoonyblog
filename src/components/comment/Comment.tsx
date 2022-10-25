@@ -1,28 +1,44 @@
-import { MdxComponents } from "@/components/utils";
+import { AllComments, CommentForm, IconBtn } from "@/components/comment";
 import { commentOperator } from "@/lib/graphql/operations";
-import { LoadComment } from "@/types";
+import { DeleteCommentData, DeleteCommentInput, LoadComment } from "@/types";
 import { useMutation } from "@apollo/client";
 import { Session } from "next-auth";
 import Image from "next/image";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaComment, FaEdit, FaHeart, FaTrash } from "react-icons/fa";
-import IconBtn from "./IconBtn";
 
-interface CommentProps {
-  comment: LoadComment;
+interface CommProps extends LoadComment {
   refetch: () => void;
   session: Session | null;
+  getReplies: (parentId: string) => LoadComment[];
 }
 
-export default function Comment({ comment, refetch, session }: CommentProps) {
-  const { Note } = MdxComponents;
+export default function Comment({
+  id,
+  message,
+  profileImage,
+  postId,
+  nickname,
+  createdAt,
+  refetch,
+  session,
+  getReplies,
+  parentId,
+}: CommProps) {
+  const [isReplying, setIsReplying] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const dateFormatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
     timeStyle: "short",
   });
 
-  const { id, profileImage, createdAt, nickname, message } = comment;
-  const [DeleteComment] = useMutation(commentOperator.Mutations.deleteComment);
+  const childComments = { loadComments: getReplies(id) };
+  const [areChildrenHidden, setAreChildrenHidden] = useState(false);
+
+  const [DeleteComment] = useMutation<DeleteCommentData, DeleteCommentInput>(
+    commentOperator.Mutations.deleteComment,
+  );
   const onDelete = async () => {
     try {
       await DeleteComment({
@@ -34,52 +50,64 @@ export default function Comment({ comment, refetch, session }: CommentProps) {
       toast.error(err.message);
     }
   };
-  const [UpdateComment] = useMutation(commentOperator.Mutations.updateComment);
-  const onEdit = async () => {
-    try {
-      await UpdateComment();
-    } catch (error) {
-      const err = error as ErrorEvent;
-      toast.error(err.message);
-    }
-  };
 
   return (
     <>
       <div className="mt-2 flex flex-col rounded-lg border-[1px] border-black/10 p-3 dark:border-white/10">
-        <div className="flex justify-between pb-2">
-          <Image
-            src={profileImage}
-            alt=""
-            width={30}
-            height={30}
-            layout="fixed"
-            className="rounded-full"
-          />
-          <span className="mr-1 text-sm">
-            {dateFormatter.format(Date.parse(createdAt))}
-          </span>
-        </div>
-        <div className="pb-2">
-          <Note
-            type="underline"
-            iterations={1}
-            padding={1}
-            strokeWidth={2}
-            color="#93dff8"
-          >
-            <span className="px-1 font-bold text-darkslateblue">{nickname}</span>
-          </Note>
-        </div>
-        <span className="mx-3 whitespace-pre-line break-words leading-6">{message}</span>
+        {isEditing ? (
+          <div className="mt-1 ml-3">
+            <CommentForm
+              session={session}
+              postId={postId}
+              refetch={refetch}
+              setIsEditing={setIsEditing}
+              autofocus
+              commentId={id}
+              leftMessage={message}
+            />
+          </div>
+        ) : (
+          <>
+            <div className="flex justify-between pb-2">
+              <Image
+                src={profileImage}
+                alt=""
+                width={30}
+                height={30}
+                layout="fixed"
+                className="rounded-full"
+              />
+              <span className="mr-1 text-sm">
+                {dateFormatter.format(Date.parse(createdAt))}
+              </span>
+            </div>
+            <span className="px-1 pb-2 font-bold text-darkslateblue">{nickname}</span>
+            <span className="mx-3 whitespace-pre-line break-words leading-6">
+              {message}
+            </span>
+          </>
+        )}
+
         <div className="mr-1 flex justify-end gap-3 pt-1">
           <IconBtn Icon={FaHeart} aria-label="Like" color="navy">
             3
           </IconBtn>
-          <IconBtn Icon={FaComment} aria-label="Reply" color="navy" />
+          {!parentId && (
+            <IconBtn
+              Icon={FaComment}
+              aria-label={isReplying ? "답글 취소" : "답글 달기"}
+              color="navy"
+              onClick={() => setIsReplying(prev => !prev)}
+            />
+          )}
           {session?.user.username === nickname ? (
             <>
-              <IconBtn Icon={FaEdit} aria-label="Edit" color="navy" onClick={onEdit} />
+              <IconBtn
+                Icon={FaEdit}
+                aria-label={isEditing ? "수정 취소" : "수정"}
+                color="navy"
+                onClick={() => setIsEditing(prev => !prev)}
+              />
               <IconBtn
                 Icon={FaTrash}
                 aria-label="Delete"
@@ -89,6 +117,45 @@ export default function Comment({ comment, refetch, session }: CommentProps) {
             </>
           ) : null}
         </div>
+
+        {isReplying && (
+          <div className="mt-1 ml-3">
+            <CommentForm
+              session={session}
+              postId={postId}
+              refetch={refetch}
+              parentId={id}
+              setIsReplying={setIsReplying}
+              autofocus={true}
+            />
+          </div>
+        )}
+
+        {childComments?.loadComments?.length > 0 && (
+          <>
+            <div className={`flex ${areChildrenHidden ? "hidden" : "block"}`}>
+              <button
+                className="relative mt-2 w-4 -translate-x-1/2 cursor-pointer border-0 bg-none p-0 outline-none"
+                aria-label="답글 숨김"
+                onClick={() => setAreChildrenHidden(true)}
+              ></button>
+              <div className="flex-1 pl-2">
+                <AllComments
+                  comments={childComments}
+                  getReplies={getReplies}
+                  refetch={refetch}
+                  session={session}
+                />
+              </div>
+            </div>
+            <button
+              className={`mt-1 ${!areChildrenHidden ? "hidden" : "block"}`}
+              onClick={() => setAreChildrenHidden(false)}
+            >
+              답글 보기
+            </button>
+          </>
+        )}
       </div>
     </>
   );

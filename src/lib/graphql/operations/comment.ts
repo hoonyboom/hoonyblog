@@ -6,6 +6,7 @@ const Query = {
       query loadComments($postId: String!) {
         loadComments(postId: $postId) {
           id
+          postId
           message
           nickname
           profileImage
@@ -25,9 +26,9 @@ const Query = {
       }
     `,
 
-    deleteComment: gql`
-      mutation deleteComment($commentId: String!, $nickname: String!) {
-        deleteComment(commentId: $commentId, nickname: $nickname) {
+    replyComment: gql`
+      mutation replyComment($message: String!, $postId: String!, $parentId: String!) {
+        replyComment(message: $message, postId: $postId, parentId: $parentId) {
           success
           error
         }
@@ -36,13 +37,23 @@ const Query = {
 
     updateComment: gql`
       mutation updateComment($commentId: String!, $message: String!) {
-        updateComment(commendId: $commentId, message: $message) {
+        updateComment(commentId: $commentId, message: $message) {
+          success
+          error
+        }
+      }
+    `,
+
+    deleteComment: gql`
+      mutation deleteComment($commentId: String!, $nickname: String!) {
+        deleteComment(commentId: $commentId, nickname: $nickname) {
           success
           error
         }
       }
     `,
   },
+
   Subscriptions: {},
 };
 

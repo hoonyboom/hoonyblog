@@ -1,4 +1,4 @@
-import { Comments } from "@/components/comment";
+import { CommentLayout } from "@/components/comment";
 import { Date, Layout, MdxComponents } from "@/components/utils";
 import { H3 } from "@/components/utils/MdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
@@ -66,7 +66,7 @@ export default function BlogPost({ code, frontmatter, id }: MdxProps) {
         >
           <Component components={{ h3: H3, ...MdxComponents }} />
           {/* 댓글영역 */}
-          <Comments postId={id} />
+          <CommentLayout postId={id} />
         </article>
       </div>
     </Layout>
