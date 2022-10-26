@@ -1,13 +1,14 @@
 import {
   CreateCommentResponse,
   DeleteCommentResponse,
-  UpdateCommentResponse,
   GraphqlContext,
   ReplyCommentResponse,
+  UpdateCommentResponse,
   ToggleLikeResponse,
+  LoadComments,
 } from "@/types";
+import { type Comment } from "@prisma/client";
 import { ApolloError } from "apollo-server-nextjs";
-import { type Like, type Comment } from "@prisma/client";
 
 const resolvers = {
   Query: {
@@ -15,48 +16,41 @@ const resolvers = {
       _: any,
       args: { postId: string },
       context: GraphqlContext,
-    ): Promise<Array<Comment>> => {
+    ): Promise<LoadComments[]> => {
       const { postId } = args;
-      const { session, prisma } = context;
+      const { prisma } = context;
 
       try {
         const loadComments = await prisma.comment.findMany({
           where: {
             postId,
           },
+          orderBy: {
+            createdAt: "asc",
+          },
+          select: {
+            id: true,
+            nickname: true,
+            message: true,
+            parentId: true,
+            postId: true,
+            secret: true,
+            createdAt: true,
+            updatedAt: true,
+            profileImage: true,
+            _count: {
+              select: { likes: true },
+            },
+          },
         });
+        console.log(loadComments);
+
         return loadComments;
       } catch (error) {
         const err = error as ErrorEvent;
         throw new ApolloError(err.message);
       }
     },
-
-    // loadLikes: async (
-    //   _: any,
-    //   args: { postId: string },
-    //   context: GraphqlContext,
-    // ): Promise<Like[]> => {
-    //   const { postId } = args;
-    //   const { session, prisma } = context;
-    //   try {
-    //     const allCommentsByPost = await prisma.comment.findMany({
-    //       where: { postId },
-    //     });
-    //     const loadLikes = await prisma.like.findMany({
-    //       where: {
-    //         userId: session?.user.id,
-    //         commentId: {
-    //           in: allCommentsByPost.map(comment => comment.id),
-    //         },
-    //       },
-    //     });
-    //     return loadLikes;
-    //   } catch (error) {
-    //     const err = error as ErrorEvent;
-    //     throw new ApolloError(err.message);
-    //   }
-    // },
   },
 
   Mutation: {
@@ -74,7 +68,7 @@ const resolvers = {
         };
 
       try {
-        const data = await prisma.comment.create({
+        await prisma.comment.create({
           data: {
             message,
             postId,
@@ -90,7 +84,7 @@ const resolvers = {
             },
           },
         });
-        console.log(data);
+
         return { success: true };
       } catch (error) {
         const err = error as ErrorEvent;
@@ -130,6 +124,7 @@ const resolvers = {
             },
           },
         });
+
         return { success: true };
       } catch (error) {
         const err = error as ErrorEvent;
@@ -183,6 +178,9 @@ const resolvers = {
           data: {
             message,
           },
+          select: {
+            message: true,
+          },
         });
         return { success: true };
       } catch (error) {
@@ -193,37 +191,50 @@ const resolvers = {
       }
     },
 
-    // toggleLike: async (
-    //   _: any,
-    //   args: { commentId: string },
-    //   context: GraphqlContext,
-    // ): Promise<ToggleLikeResponse> => {
-    //   const { commentId } = args;
-    //   const { session, prisma } = context;
+    toggleLike: async (
+      _: any,
+      args: { commentId: string },
+      context: GraphqlContext,
+    ): Promise<ToggleLikeResponse> => {
+      const { commentId } = args;
+      const { session, prisma } = context;
 
-    //   if (!session?.user.id)
-    //     return {
-    //       error: "로그인이 필요합니다.",
-    //     };
+      if (!session?.user.id)
+        return {
+          error: "로그인이 필요합니다.",
+        };
 
-    //   const data = {
-    //     commentId,
-    //     userId: session.user.id,
-    //   };
+      const data = {
+        commentId,
+        userId: session.user.id,
+      };
 
-    //   try {
-    //     await prisma.like.findUnique({
-    //       where: { userId_commentId: data },
-    //     });
+      try {
+        const like = await prisma.like.findUnique({
+          where: { userId_commentId: data },
+        });
 
-    //     return { success: true };
-    //   } catch (error) {
-    //     const err = error as ErrorEvent;
-    //     return {
-    //       error: err.message,
-    //     };
-    //   }
-    // },
+        if (like === null)
+          return await prisma.like.create({ data }).then(() => {
+            return { success: true };
+          });
+        else
+          return await prisma.like
+            .delete({
+              where: {
+                userId_commentId: data,
+              },
+            })
+            .then(() => {
+              return { success: true };
+            });
+      } catch (error) {
+        const err = error as ErrorEvent;
+        return {
+          error: err.message,
+        };
+      }
+    },
   },
 };
 

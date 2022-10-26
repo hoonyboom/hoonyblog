@@ -12,6 +12,7 @@ const typeDefs = gql`
       message: String!
       parentId: String!
     ): ReplyCommentResponse!
+    toggleLike(commentId: String!): ToggleLikeResponse!
   }
 
   type CreateCommentResponse {
@@ -34,9 +35,9 @@ const typeDefs = gql`
     error: String
   }
 
-  type Like {
-    commentId: String!
-    userId: String!
+  type ToggleLikeResponse {
+    success: Boolean
+    error: String
   }
 
   type Comment {
@@ -48,10 +49,16 @@ const typeDefs = gql`
     createdAt: Date
     updatedAt: Date
     parentId: String
+    secret: Boolean
+    _count: Like
+  }
+
+  type Like {
+    likes: Int
   }
 
   type Query {
-    loadComments(postId: String!): [Comment!]!
+    loadComments(postId: String!): [Comment]!
   }
 `;
 

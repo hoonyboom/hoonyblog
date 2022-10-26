@@ -4,7 +4,6 @@ import { GraphqlContext } from "@/types";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { ApolloServer } from "apollo-server-nextjs";
 import { getSession } from "next-auth/react";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -19,13 +18,16 @@ const apolloServer = new ApolloServer({
     const session = await getSession({ req });
     return { session, prisma };
   },
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
 });
 
 export default apolloServer.createHandler({
   expressGetMiddlewareOptions: {
     cors: {
-      origin: ["https://www.youtube.com", "https://soundcloud.com"],
+      origin: [
+        "https://www.youtube.com",
+        "https://soundcloud.com",
+        "https://studio.apollographql.com",
+      ],
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
       credentials: true,
       allowedHeaders: "Content-Type, Authorization",

@@ -36,15 +36,15 @@ export default function CommentList({
     return group;
   }, [comments]);
 
-  if (error) throw new ApolloError(error);
-  if (loading) return <div className="text-center">🚧 🚧 🚧</div>;
-
   const getReplies = (parentId: string) => {
     return commentsByParentId[parentId];
   };
 
   const rootComments: { loadComments: LoadComment[] } =
     commentsByParentId["rootComments"];
+
+  if (error) throw new ApolloError(error);
+  if (loading) return <div className="mt-5 text-center">🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧 </div>;
 
   return (
     <div className="mt-5">

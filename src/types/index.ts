@@ -53,6 +53,23 @@ export interface LoadComment {
   updatedAt: string;
   parentId: string | null;
   secret: boolean;
+  _count: {
+    likes: number;
+  };
+}
+export interface LoadComments {
+  id: string;
+  nickname: string;
+  message: string;
+  postId: string;
+  profileImage: string;
+  createdAt: Date;
+  updatedAt: Date;
+  parentId: string | null;
+  secret: boolean;
+  _count: {
+    likes: number;
+  };
 }
 
 export interface CreateCommentData {
@@ -108,6 +125,13 @@ export interface ReplyCommentResponse {
   error?: string;
 }
 
+export interface ToggleLikeData {
+  success?: boolean;
+  error?: string;
+}
+export interface ToggleLikeInput {
+  commentId: string;
+}
 export interface ToggleLikeResponse {
   success?: boolean;
   error?: string;

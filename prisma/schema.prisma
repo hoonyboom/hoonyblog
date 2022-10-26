@@ -60,7 +60,7 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Comments
+// Comments를 만들어보자!! 할 수 있다!!
 model Comment {
   id           String    @id @default(cuid())
   createdAt    DateTime  @default(now())
@@ -69,9 +69,9 @@ model Comment {
   postId       String
   user         User      @relation("getUserName", fields: [nickname], references: [username])
   nickname     String
-  image        User      @relation("getUserImage", fields: [profileImage], references: [image])
+  image        User      @relation("getUserImage", fields: [profileImage], references: [image], onUpdate: Cascade)
   profileImage String
-  parent       Comment?  @relation("NestedComments", fields: [parentId], references: [id])
+  parent       Comment?  @relation("NestedComments", fields: [parentId], references: [id], onDelete: Cascade)
   parentId     String?
   children     Comment[] @relation("NestedComments")
   likes        Like[]
@@ -79,10 +79,11 @@ model Comment {
 }
 
 model Like {
-  user      User    @relation(fields: [userId], references: [id])
-  comment   Comment @relation(fields: [commentId], references: [id])
-  userId    String
-  commentId String
+  user       User    @relation(fields: [userId], references: [id])
+  comment    Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  userId     String
+  commentId  String
+  likedByMe  Boolean @default(true)
 
   @@id([userId, commentId])
 }

@@ -12,6 +12,10 @@ const Query = {
           profileImage
           parentId
           createdAt
+          secret
+          _count {
+            likes
+          }
         }
       }
     `,
@@ -47,6 +51,15 @@ const Query = {
     deleteComment: gql`
       mutation deleteComment($commentId: String!, $nickname: String!) {
         deleteComment(commentId: $commentId, nickname: $nickname) {
+          success
+          error
+        }
+      }
+    `,
+
+    toggleLike: gql`
+      mutation toggleLike($commentId: String!) {
+        toggleLike(commentId: $commentId) {
           success
           error
         }

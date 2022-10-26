@@ -58,7 +58,9 @@ CREATE TABLE "Comment" (
     "message" TEXT NOT NULL,
     "postId" TEXT NOT NULL,
     "nickname" TEXT NOT NULL,
+    "profileImage" TEXT NOT NULL,
     "parentId" TEXT,
+    "secret" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Comment_pkey" PRIMARY KEY ("id")
 );
@@ -67,6 +69,8 @@ CREATE TABLE "Comment" (
 CREATE TABLE "Like" (
     "userId" TEXT NOT NULL,
     "commentId" TEXT NOT NULL,
+    "likedByMe" BOOLEAN NOT NULL DEFAULT true,
+    "likedCount" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Like_pkey" PRIMARY KEY ("userId","commentId")
 );
@@ -84,13 +88,13 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_image_key" ON "User"("image");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Comment_postId_key" ON "Comment"("postId");
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -100,6 +104,9 @@ ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_nickname_fkey" FOREIGN KEY ("nickname") REFERENCES "User"("username") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Comment" ADD CONSTRAINT "Comment_profileImage_fkey" FOREIGN KEY ("profileImage") REFERENCES "User"("image") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Comment"("id") ON DELETE SET NULL ON UPDATE CASCADE;

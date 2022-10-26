@@ -1,6 +1,12 @@
 import { AllComments, CommentForm, IconBtn } from "@/components/comment";
 import { commentOperator } from "@/lib/graphql/operations";
-import { DeleteCommentData, DeleteCommentInput, LoadComment } from "@/types";
+import {
+  DeleteCommentData,
+  DeleteCommentInput,
+  LoadComment,
+  ToggleLikeData,
+  ToggleLikeInput,
+} from "@/types";
 import { useMutation } from "@apollo/client";
 import { Session } from "next-auth";
 import Image from "next/image";
@@ -25,6 +31,7 @@ export default function Comment({
   session,
   getReplies,
   parentId,
+  _count,
 }: CommProps) {
   const [isReplying, setIsReplying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -50,6 +57,23 @@ export default function Comment({
       toast.error(err.message);
     }
   };
+
+  const [ToggleLike] = useMutation<ToggleLikeData, ToggleLikeInput>(
+    commentOperator.Mutations.toggleLike,
+  );
+  const onLike = async () => {
+    try {
+      await ToggleLike({
+        variables: { commentId: id },
+      });
+      refetch();
+    } catch (error) {
+      const err = error as ErrorEvent;
+      toast.error(err.message);
+    }
+  };
+
+  const { likes } = _count;
 
   return (
     <>
@@ -89,8 +113,8 @@ export default function Comment({
         )}
 
         <div className="mr-1 flex justify-end gap-3 pt-1">
-          <IconBtn Icon={FaHeart} aria-label="Like" color="navy">
-            3
+          <IconBtn Icon={FaHeart} aria-label="Like" color="navy" onClick={onLike}>
+            {likes}
           </IconBtn>
           {!parentId && (
             <IconBtn

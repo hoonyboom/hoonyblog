@@ -100,7 +100,7 @@ export default function Layout({
                       ? router.push(`${sessionStorage.getItem("path")}`)
                       : router.push("/")
                   }
-                  className="no-underline"
+                  className="select-none no-underline"
                 >
                   ← Previous
                 </a>

@@ -49,10 +49,10 @@ export default function Auth({ session, reloadSession }: AuthProps) {
   const debounceInput = useMemo(() => debounce(val => setUsername(val), 300), []);
 
   return (
-    <>
+    <div className="relative">
       {session?.user.username ? (
         <div
-          className="fixed top-1 right-4 select-none text-sm hover:cursor-pointer "
+          className="absolute right-2 top-12 select-none text-sm opacity-10 duration-300 hover:cursor-pointer hover:text-jadu hover:opacity-100"
           onClick={() => signOut()}
         >
           Sign Out
@@ -92,6 +92,6 @@ export default function Auth({ session, reloadSession }: AuthProps) {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 }

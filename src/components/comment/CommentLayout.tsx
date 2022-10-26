@@ -22,7 +22,7 @@ export default function CommentLayout({ postId }: CommentsProps) {
       variables: { postId },
     },
   );
-
+  console.log(data);
   return (
     <div className="mx-auto mt-10 max-w-xl p-5">
       <div className="font-content text-mono">
