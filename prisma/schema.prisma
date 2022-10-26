@@ -79,11 +79,10 @@ model Comment {
 }
 
 model Like {
-  user       User    @relation(fields: [userId], references: [id])
-  comment    Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  userId     String
-  commentId  String
-  likedByMe  Boolean @default(true)
+  user      User    @relation(fields: [userId], references: [id])
+  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  userId    String
+  commentId String
 
   @@id([userId, commentId])
 }

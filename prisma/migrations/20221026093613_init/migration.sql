@@ -69,8 +69,6 @@ CREATE TABLE "Comment" (
 CREATE TABLE "Like" (
     "userId" TEXT NOT NULL,
     "commentId" TEXT NOT NULL,
-    "likedByMe" BOOLEAN NOT NULL DEFAULT true,
-    "likedCount" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Like_pkey" PRIMARY KEY ("userId","commentId")
 );
@@ -109,10 +107,10 @@ ALTER TABLE "Comment" ADD CONSTRAINT "Comment_nickname_fkey" FOREIGN KEY ("nickn
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_profileImage_fkey" FOREIGN KEY ("profileImage") REFERENCES "User"("image") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Comment" ADD CONSTRAINT "Comment_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Comment"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Comment" ADD CONSTRAINT "Comment_parentId_fkey" FOREIGN KEY ("parentId") REFERENCES "Comment"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Like" ADD CONSTRAINT "Like_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Like" ADD CONSTRAINT "Like_commentId_fkey" FOREIGN KEY ("commentId") REFERENCES "Comment"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Like" ADD CONSTRAINT "Like_commentId_fkey" FOREIGN KEY ("commentId") REFERENCES "Comment"("id") ON DELETE CASCADE ON UPDATE CASCADE;

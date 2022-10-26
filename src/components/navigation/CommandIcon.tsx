@@ -15,25 +15,25 @@ export default function CommandPaletteIcon() {
       >
         <IoCloud
           onMouseDown={() => beep()}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+          // onMouseEnter={() => setHover(true)}
+          // onMouseLeave={() => setHover(false)}
           onClick={query.toggle}
           className="h-6 w-6"
           fill="skyblue"
         />
-        {<MouseHoverPopup hover={hover} />}
+        {/* {<MouseHoverPopup hover={hover} />} */}
       </button>
     </>
   );
 }
 
-const MouseHoverPopup = ({ hover }: { hover: boolean }) => {
-  return (
-    <div
-      className={`absolute top-9 h-8 w-24 items-center justify-center rounded-md text-sm outline-dotted outline-1 outline-sky-300 transition-opacity duration-200 sm:hidden md:flex
-      ${hover ? "opacity-100" : "opacity-0"}`}
-    >
-      Cmd/Ctrl + K
-    </div>
-  );
-};
+// const MouseHoverPopup = ({ hover }: { hover: boolean }) => {
+//   return (
+//     <div
+//       className={`absolute top-9 h-8 w-24 items-center justify-center rounded-md text-sm outline-dotted outline-1 outline-sky-300 transition-opacity duration-200 sm:hidden md:flex
+//       ${hover ? "opacity-100" : "opacity-0"}`}
+//     >
+//       Cmd/Ctrl + K
+//     </div>
+//   );
+// };

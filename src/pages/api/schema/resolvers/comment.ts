@@ -6,14 +6,14 @@ import {
   UpdateCommentResponse,
   ToggleLikeResponse,
   LoadComments,
+  Root,
 } from "@/types";
-import { type Comment } from "@prisma/client";
 import { ApolloError } from "apollo-server-nextjs";
 
 const resolvers = {
   Query: {
     loadComments: async (
-      _: any,
+      _: Root,
       args: { postId: string },
       context: GraphqlContext,
     ): Promise<LoadComments[]> => {
@@ -28,22 +28,12 @@ const resolvers = {
           orderBy: {
             createdAt: "asc",
           },
-          select: {
-            id: true,
-            nickname: true,
-            message: true,
-            parentId: true,
-            postId: true,
-            secret: true,
-            createdAt: true,
-            updatedAt: true,
-            profileImage: true,
+          include: {
             _count: {
               select: { likes: true },
             },
           },
         });
-        console.log(loadComments);
 
         return loadComments;
       } catch (error) {
@@ -55,7 +45,7 @@ const resolvers = {
 
   Mutation: {
     createComment: async (
-      _: any,
+      _: Root,
       args: { message: string; postId: string },
       context: GraphqlContext,
     ): Promise<CreateCommentResponse> => {
@@ -95,7 +85,7 @@ const resolvers = {
     },
 
     replyComment: async (
-      _: any,
+      _: Root,
       args: { postId: string; parentId: string; message: string },
       context: GraphqlContext,
     ): Promise<ReplyCommentResponse> => {
@@ -135,7 +125,7 @@ const resolvers = {
     },
 
     deleteComment: async (
-      _: any,
+      _: Root,
       args: { commentId: string; nickname: string },
       context: GraphqlContext,
     ): Promise<DeleteCommentResponse> => {
@@ -163,7 +153,7 @@ const resolvers = {
     },
 
     updateComment: async (
-      _: any,
+      _: Root,
       args: { commentId: string; message: string },
       context: GraphqlContext,
     ): Promise<UpdateCommentResponse> => {
@@ -192,7 +182,7 @@ const resolvers = {
     },
 
     toggleLike: async (
-      _: any,
+      _: Root,
       args: { commentId: string },
       context: GraphqlContext,
     ): Promise<ToggleLikeResponse> => {

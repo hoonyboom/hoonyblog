@@ -6,6 +6,8 @@ export interface GraphqlContext {
   prisma: PrismaClient;
 }
 
+export type Root = any;
+
 /**
  * * 유저
  */

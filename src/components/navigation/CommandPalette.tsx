@@ -92,7 +92,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "twitter",
       section: "public",
       perform: () => window.open("https://twitter.com/hyezoprk", "_blank"),
-      icon: <VscTwitter className="h-4 w-4" />,
+      icon: <VscTwitter className="h-4 w-4" fill="#1DA1F2" />,
     },
     {
       id: "about",

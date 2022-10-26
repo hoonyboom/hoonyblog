@@ -31,7 +31,7 @@ export default function Comment({
   session,
   getReplies,
   parentId,
-  _count,
+  _count: { likes },
 }: CommProps) {
   const [isReplying, setIsReplying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -72,8 +72,6 @@ export default function Comment({
       toast.error(err.message);
     }
   };
-
-  const { likes } = _count;
 
   return (
     <>
