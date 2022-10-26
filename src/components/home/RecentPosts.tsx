@@ -33,7 +33,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
         }}
         className="relative my-2 flex cursor-fancyHover place-items-center justify-center rounded-md bg-blue-800 py-1 text-md text-white dark:bg-blue-900"
       >
-        <div className="grow text-center font-grapeNuts">{thisMonth}</div>
+        <div className="grow select-none text-center font-grapeNuts">{thisMonth}</div>
         <div className="absolute right-2">
           <BsChevronDown
             className={`duration-700 ${animation ? "rotate-0" : "-rotate-180"}`}
@@ -52,9 +52,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
                 <a
                   onMouseUp={() => tabSound()}
                   onClick={() => sessionStorage.setItem("path", router.asPath)}
-                  className={
-                    "mb-2 flex flex-row justify-between border-slate-600/30 px-5 no-underline sm:border-y-0 sm:py-1 md:border-y md:py-2"
-                  }
+                  className="mb-2 flex flex-row justify-between border-slate-600/30 px-5 no-underline sm:border-y-0 sm:py-1 md:border-y md:py-2"
                 >
                   <div>
                     {categories === "coding" ? (

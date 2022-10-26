@@ -10,7 +10,6 @@ export interface LayoutProps {
   home?: boolean;
   tag?: boolean;
   siteTitle?: string;
-  tags?: string;
   category?: string;
 }
 
@@ -19,7 +18,6 @@ export default function Layout({
   home,
   siteTitle,
   tag,
-  tags,
   category,
 }: LayoutProps) {
   const router = useRouter();
@@ -29,13 +27,10 @@ export default function Layout({
     () =>
       throttle(() => {
         const currentScrollY = globalThis.scrollY;
-        if (currentScrollY > beforeScrollY.current && currentScrollY > 60) {
+        if (currentScrollY > beforeScrollY.current && currentScrollY > 60)
           setNavShow(true);
-          console.log("스크롤 내려가욧 👇🏼", currentScrollY);
-        } else {
-          setNavShow(false);
-          console.log("스크롤 올라가욧 👆🏻", currentScrollY);
-        }
+        else setNavShow(false);
+
         beforeScrollY.current = currentScrollY;
       }, 300),
     [],

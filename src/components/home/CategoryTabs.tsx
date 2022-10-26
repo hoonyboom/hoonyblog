@@ -17,7 +17,7 @@ export default function CategoryTabs({ category, i }: TabsProps) {
   };
 
   return (
-    <div onClick={onClick} className="basis-1/3 cursor-fancyHover">
+    <div onClick={onClick} className="basis-1/3 cursor-fancyHover select-none">
       {category}
     </div>
   );
