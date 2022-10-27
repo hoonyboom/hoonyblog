@@ -49,7 +49,7 @@ export default function BlogPost({ code, frontmatter, id }: MdxProps) {
       category={frontmatter.categories}
     >
       <div className={`duration-1000 ${fade ? "opacity-100" : "opacity-0"}`}>
-        <h1 className="text-center text-3xl sm:mt-20 sm:px-3 md:mt-28">
+        <h1 className="overflow-hidden text-ellipsis text-center text-3xl sm:mt-20 sm:px-3 md:mt-28">
           {frontmatter.title}
         </h1>
         <div className="flex justify-center text-base leading-6 sm:mt-3 sm:mb-10 md:mt-5 md:mb-12">

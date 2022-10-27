@@ -24,7 +24,7 @@ export default function CommentLayout({ postId }: CommentsProps) {
   );
 
   return (
-    <div className="mx-auto mt-10 max-w-xl p-5">
+    <div className="mx-auto mt-10 max-w-xl sm:p-0 md:p-5">
       <div className="font-content text-mono">
         <Auth session={session} reloadSession={reloadSession} />
         <p className="mb-5 mt-10 select-none ">▾ Comment</p>
