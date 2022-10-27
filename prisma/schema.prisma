@@ -60,7 +60,7 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Comments를 만들어보자!! 할 수 있다!!
+// 코멘트
 model Comment {
   id           String    @id @default(cuid())
   createdAt    DateTime  @default(now())
