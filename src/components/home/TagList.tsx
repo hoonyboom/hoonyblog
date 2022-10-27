@@ -14,8 +14,8 @@ export default function TagList({ tag }: { tag: string }) {
           : "word-tightest"
       }`}
     >
-      <Link href={`/tags/${tag}`}>
-        <a className="text-md no-underline">{tag}</a>
+      <Link href={`/tags/${tag}`} className="text-md no-underline">
+        {tag}
       </Link>
     </div>
   );

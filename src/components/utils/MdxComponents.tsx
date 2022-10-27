@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Image, { ImageProps } from "next/future/image";
+import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 import styles from "./[MdxComponents].module.css";
@@ -24,10 +24,13 @@ interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
 
 export const Lnk = (props: LinkProps) => {
   return (
-    <Link href={props.href}>
-      <a target="_blank" rel="noopener noreferrer" className="text-paleBlue" {...props}>
-        {props.text}
-      </a>
+    <Link
+      href={props.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-paleBlue"
+    >
+      {props.text}
     </Link>
   );
 };

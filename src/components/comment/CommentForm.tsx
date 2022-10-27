@@ -10,7 +10,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { debounce } from "lodash";
 import { Session } from "next-auth";
-import Image from "next/future/image";
+import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import toast from "react-hot-toast";
 

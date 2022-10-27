@@ -96,7 +96,6 @@ export default function Comment({
                 alt=""
                 width={30}
                 height={30}
-                layout="fixed"
                 className="rounded-full"
               />
               <span className="mr-1 text-sm">

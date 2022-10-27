@@ -41,16 +41,15 @@ const Posts = ({
   const router = useRouter();
 
   return (
-    <Link href={`/posts/${id}`}>
-      <a
-        onMouseUp={() => tapSound()}
-        onClick={() => sessionStorage.setItem("path", router.asPath)}
-        className="-my-px flex border-y border-blue-800 py-2 text-right no-underline dark:border-blue-900"
-      >
-        <div className="pl-3 text-left sm:basis-4/12 md:basis-3/12">{description}</div>
-        <div className="sm:basis-8/12 sm:pr-3 md:basis-7/12 md:pr-10">{title}</div>
-        <div className="basis-2/12 justify-end pr-3 sm:hidden md:inline-flex">{date}</div>
-      </a>
+    <Link
+      href={`/posts/${id}`}
+      onMouseUp={() => tapSound()}
+      onClick={() => sessionStorage.setItem("path", router.asPath)}
+      className="-my-px flex border-y border-blue-800 py-2 text-right no-underline dark:border-blue-900"
+    >
+      <div className="pl-3 text-left sm:basis-4/12 md:basis-3/12">{description}</div>
+      <div className="sm:basis-8/12 sm:pr-3 md:basis-7/12 md:pr-10">{title}</div>
+      <div className="basis-2/12 justify-end pr-3 sm:hidden md:inline-flex">{date}</div>
     </Link>
   );
 };

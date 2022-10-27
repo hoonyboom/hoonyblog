@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import { MdxComponents } from "@/components/utils";
 
 export default function Profile({ initCategory }: { initCategory: boolean }) {
