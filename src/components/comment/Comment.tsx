@@ -73,6 +73,8 @@ export default function Comment({
     }
   };
 
+  console.log(likes);
+
   return (
     <>
       <div className="mt-2 flex flex-col rounded-lg border-[1px] border-black/10 p-3 dark:border-white/10">
@@ -90,7 +92,7 @@ export default function Comment({
           </div>
         ) : (
           <>
-            <div className="flex justify-between pb-2">
+            <div className="flex place-items-center justify-between pb-2">
               <Image
                 src={profileImage}
                 alt=""
