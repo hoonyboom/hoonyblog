@@ -92,13 +92,3 @@ enum Role {
   VISITOR
   ADMIN
 }
-
-//  const data = {
-//         commentId,
-//         userId: session.user.id,
-//       };
-
-//       try {
-//         const like = await prisma.like.findUnique({
-//           where: { userId_commentId: data },
-//         });
