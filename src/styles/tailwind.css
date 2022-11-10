@@ -71,6 +71,9 @@
   br {
     @apply leading-4;
   }
+  details {
+    @apply rounded-lg p-5 open:bg-white open:shadow-lg open:ring-1 open:ring-black/5 dark:open:bg-slate-900 dark:open:ring-white/10;
+  }
 }
 
 @layer components {
