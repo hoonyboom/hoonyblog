@@ -1,0 +1,282 @@
+---
+title: 자바스크립트 자가진단 3
+date: '2022-11-09'
+categories: coding
+tags: 자바스크립트
+description: 3rd
+---
+<HeadingNavigator />
+
+### 31. 이벤트 버블링
+```js
+<div onclick="console.log('div')">
+  <p onclick="console.log('p')">Click here!</p>
+</div>
+```
+<details>
+  <summary>p태그를 클릭하면 출력된 로그는 무엇일까?</summary>
+    <>
+    - 내 생각 : p div
+    - 이유? : 이벤트 버블링이 일어나 다시 거슬러오를 때 부모 요소에도 이벤트를 발생시킨다. 
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 32. call()과 bind()
+```js
+const person = { name: 'Lydia' };
+
+function sayHi(age) {
+  console.log(`${this.name} is ${age}`);
+}
+
+sayHi.call(person, 21);
+sayHi.bind(person, 21);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : Lydia is 21, Lydia is 21
+    - 이유? : (`person`, 21)의 데이터를 바인딩해 함수 내부로 보낸다.
+    - 사족 : -
+    - 오답노트 : call()은 인자를 받고 바로 실행시키는 반면 bind()는 묶기만 할 뿐이다. 즉시 실행되지 않기에 log에 뜨는 것은 `function`이다.
+    </>
+</details>
+
+### 33. 함수의 타입
+```js
+function sayHi() {
+  return (() => 0)();
+}
+
+console.log(typeof sayHi());
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "function"
+    - 이유? : 리턴값이 무엇이든 일단 `function`이기 때문이다.
+    - 사족 : -
+    - 오답노트 : 바보. 완전 틀렸다. sayHi()는 즉시 호출 함수 표현식(IIFE)다. 말이 어렵지만 ()를 붙인 순간 이미 실행된 것. 따라서 0을 반환하고 타입은 `number`다.  
+은 모두 `object`에 속한다.. 진짜 정신 차려야 한다.  
+    </>
+</details>
+
+### 34. false값
+```js
+0;
+new Number(0);
+('');
+(' ');
+new Boolean(false);
+undefined;
+```
+<details>
+  <summary>이 값 중 어느 것이 거짓 같은 값일까</summary>
+    <>
+    - 내 생각 : 0, (''), new Boolean(false), undefined
+    - 이유? : 모두다 `false`로 취급되는 값들이다.
+    - 사족 : -
+    - 오답노트 : 생성자 함수의 타입은 `object`다. 값은 `false` 일지라도.
+    </>
+</details>
+
+### 35. typeof의 반환값
+```js
+console.log(typeof typeof 1);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "string"
+    - 이유? : typeof "number"의 타입은 "string"일 것이다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 36. 배열의 빈자리
+```js
+const numbers = [1, 2, 3];
+numbers[10] = 11;
+console.log(numbers);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : [1, 2, 3, 7 x null, 11]
+    - 이유? : 3~10까지의 공백은 `null`값으로 대신된다.
+    - 사족 : -
+    - 오답노트 : `null`이 아닌 `empty slots`라는 것을 생성한다고 한다. 실질적으로 `undefined`와 동일한 값. 실행 위치(브라우저 or node)에 따라 달리 보인다고 함.
+    </>
+</details>
+
+### 37. 변수와 파라미터
+```js
+(() => {
+  let x, y;
+  try {
+    throw new Error();
+  } catch (x) {
+    (x = 1), (y = 2);
+    console.log(x);
+  }
+  console.log(x);
+  console.log(y);
+})();
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 1 undefined 2
+    - 이유? : catch() 함수 내에서 `x=1`을 실행하지만 그 `x`는 catch의 파라미터로서의 x다. 외부의 x는 여전히 이니셜라이되지않 태. 반면 `y=2`는 외부의 변수 y에 맞닿음으로써 값을 가진다. 
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 38. 자바스크립트의 구성품
+```js
+A: primitive 또는 object
+B: function 또는 object
+C: 함정 문제! objects만
+D: number 또는 object
+```
+<details>
+  <summary>JavaScript의 모든 것은...</summary>
+    <>
+    - 내 생각 : A
+    - 이유? : 자바스크립트는 원시값들과 오브젝트들로 구성된 프로그래밍 언어다
+    - 사족 : 원시형과 오브젝트를 구별하는 방법은 원시형에는 속성이나 메써드가 없는 것이다.! 하지만 원시형이 원시형의 인스턴스처럼 메써드를 갖다 써도 작동이 되는 모습을 볼 수 있는데, 자바스크립트는 원시형의 데이터에 임시로 이들의 래퍼 클래스를 적용해 표현식이 끝나는 즉시 바로 이를 폐기한다고 한다. 
+    - 오답노트 : - 
+    </>
+</details>
+
+### 39. 배열의 reduce 메써드
+```js
+[
+  [0, 1],
+  [2, 3],
+].reduce(
+  (acc, cur) => {
+    return acc.concat(cur);
+  },
+  [1, 2]
+);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : [1, 2, 0, 1, 2, 3]
+    - 이유? : 초기값은 [1, 2]고, 이어 배열 각각의 요소들을 이어붙이게 된다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 40. 논리연산자 !
+```js
+!!null;
+!!'';
+!!1;
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : false false true
+    - 이유? : 거짓으로 취급되는 값이 있다. `null`, `("")`, `undefined`, `NaN` ...
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 41. setInterval의 브라우저 작동 방식
+```js
+setInterval(() => console.log('Hi'), 1000);
+```
+<details>
+  <summary>setInterval 메소드는 브라우저에게 무엇을 반환할까?</summary>
+    <>
+    - 내 생각 : 유니크한 id
+    - 이유? : 내부의 함수라고 생각했지만, 효율적인 일처리를 위해 id값을 반환하지 않을까...?
+    - 사족 : -
+    - 오답노트 : `id` 값이 부여되고 clearInterval() 함수의 간격을 없애기 위해 사용될 수 있다고 하는데...
+    </>
+</details>
+
+### 42. spread operator
+```js
+[...'Lydia'];
+```
+<details>
+  <summary>무엇이 반환될까?</summary>
+    <>
+    - 내 생각 : ["L", "y", "d", "i", "a"]
+    - 이유? : 문자열 "Lydia"를 풀어놓는다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 43. generator 생성자 함수
+```js
+function* generator(i) {
+  yield i;
+  yield i * 2;
+}
+
+const gen = generator(10);
+
+console.log(gen.next().value);
+console.log(gen.next().value);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 10, 20
+    - 이유? : next()로 제너레이터를 부를 때, 부른 횟수를 기억해서 그에 대응하는 값을 내보낸다.
+    - 사족 : 세번째 `yeild`는 없으므로 그 이후의 호출은 `undefined`로 뜰 것이다.
+    - 오답노트 : - 
+    </>
+</details>
+
+### 44. Propmise.race()
+```js
+const firstPromise = new Promise((res, rej) => {
+  setTimeout(res, 500, 'one');
+});
+
+const secondPromise = new Promise((res, rej) => {
+  setTimeout(res, 100, 'two');
+});
+
+Promise.race([firstPromise, secondPromise]).then((res) => console.log(res));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : one, two
+    - 이유? : `race`라는 이름에서 짐작하여 일종의 `async` 효과를 내는 게 아닌가 생각했다. 첫번째 프로미스가 두번째 프로미스에게 바통을 넘기는 식으로 말이다.
+    - 사족 : `race`를 처음 알게 됐다.
+    - 오답노트 : 복수의 프로미스를 `Promise.race`에 넘겨주면, *최초의 프로미스를 해결/거부한다*. 이 상황에서 최초는 500ms를 가진 `secondPromise` 프로미스다. 따라서 그의 해결값인 `two`가 출력된다.
+    </>
+</details>
+
+### 45. 참조의 복사
+```js
+let person = { name: 'Lydia' };
+const members = [person];
+person = null;
+
+console.log(members);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `[{ name: "Lydia" }]`
+    - 이유? : 한 오브젝트를 등호로 같게 가져올 때 그건 값복사가 아닌 참조, 주소값의 복사다. 원 데이터인 `person`이 집({})을 버리고 형변환을 한대도 그건 집을 떠나는 것이지 무너뜨리는 것이 아니다. 따라서 `members`는 여전히 `{name: "Lydia"}`를 간직한다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>

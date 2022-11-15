@@ -1,0 +1,304 @@
+---
+title: 자바스크립트 자가진단 5
+date: '2022-11-09'
+categories: coding
+tags: 자바스크립트
+description: 5th
+---
+<HeadingNavigator />
+
+### 61. ++ 단항 연산자의 위치
+```js
+let num = 10;
+
+const increaseNumber = () => num++;
+const increasePassedNumber = number => number++;
+
+const num1 = increaseNumber();
+const num2 = increasePassedNumber(num1);
+
+console.log(num1);
+console.log(num2);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 11, 12
+    - 이유? : unary operator ++의 계산에 의해 값이 증가한다.
+    - 사족 : -
+    - 오답노트 : 순서를 잘 봐야 한다. 출력되는 부분은 변수 부분이고 계산은 그다음이다. 첫번째 함수로 리턴되는 값은 10이며, 후에 값이 1 증가한다. (전역변수 num = 11) num1의 값은 여전히 10이며, num2에서도 같은 일이 되풀이 된다. 따라서 10, 10이 찍힌다.
+    </>
+</details>
+
+### 62. 디폴트 파라미터
+```js
+const value = { number: 10 };
+
+const multiply = (x = { ...value }) => {
+  console.log((x.number *= 2));
+};
+
+multiply();
+multiply();
+multiply(value);
+multiply(value);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 20, 20, 20, 40
+    - 이유? : 디폴트로 value값을 복사하여 가져온다. 이때 참조값을 복사하여 계산해도 원본값은 그대로이기 때문에 두번 거듭해도 값은 20이다. 반면 원본값을 인자로 받았을 땐 계산된 값이 반영되기 때문에 값이 40으로 늘어난다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 63. Array.reduce()
+```js
+[1, 2, 3, 4].reduce((x, y) => console.log(x, y));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 1, 2 / undefined, 3 / undefined, 4
+    - 이유? : x의 자리는 누적값(Accumlate) y의 자리는 현재값(Current)이 들어온다. 세번째 인수인 초기값이 비어있기 때문에 배열의 첫번째 요소가 초기값이 되도록 두번째 요소부터 함수가 실행된다. 즉 x(acc)= 1, y(cur)=2가 출력된다. 현재값 y는 이렇게 계속 진행한다. x의 값으로는 return에 의해 설계된 어떤 누적값이 들어와야 하지만, 여기서는 아무것도 계산되지 않기에 `undefined`를 띄운다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 64. 부모-자식 클래스
+```js
+class Dog {
+  constructor(name) {
+    this.name = name;
+  }
+};
+
+class Labrador extends Dog {
+  // 1
+  constructor(name, size) {
+    this.size = size;
+  }
+  // 2
+  constructor(name, size) {
+    super(name);
+    this.size = size;
+  }
+  // 3
+  constructor(size) {
+    super(name);
+    this.size = size;
+  }
+  // 4
+  constructor(name, size) {
+    this.name = name;
+    this.size = size;
+  }
+
+};
+```
+<details>
+  <summary>Dog 클래스를 성공적으로 확장할 수 있는 생성자는 어느 것일까?</summary>
+    <>
+    - 내 생각 : 2
+    - 이유? : 인수로 name을 넘겨받고 이는 부모 클래스에 super()로 넘긴다. 
+    - 사족 : 자식 클래스는 super()를 부르기 전까지 `this` 키워드에 접근할 수 없다.
+    - 오답노트 : - 
+    </>
+</details>
+
+### 65. Import
+```js index.js
+console.log('running index.js');
+import { sum } from './sum.js';
+console.log(sum(1, 2));
+```
+```js sum.js
+console.log('running sum.js');
+export const sum = (a, b) => a + b;
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `running sum.js`, `running index.js`, `3`
+    - 이유? : `import`된 모듈부터 먼저 파싱된다.
+    - 사족 : `require()`은 코드가 등장한 시점에 모듈을 로드한다는 점에서 둘의 차이가 있다.
+    - 오답노트 : - 
+    </>
+</details>
+
+### 66. Symbol
+```js
+console.log(Number(2) === Number(2));
+console.log(Boolean(false) === Boolean(false));
+console.log(Symbol('foo') === Symbol('foo'));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : true, true, false
+    - 이유? : 심볼은 고유값이다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 67. String.padStart()
+```js
+const name = 'Lydia Hallie';
+console.log(name.padStart(13));
+console.log(name.padStart(2));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : " Lydia Hallie", "Lydia Hallie"
+    - 이유? : padding(공백), 자리를 차지하는 최소 문자를 결정한다. 현재 `name`의 글자는 12자이다. 부족한 만큼의 글자를 공백이 채운다.
+    - 사족 :
+    - 오답노트 : - 
+    </>
+</details>
+
+### 68. 이모지의 처리
+```js
+console.log('🥑' + '💻');
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "🥑💻"
+    - 이유? : 따옴표에 넣었기 때문에 unicode 값이 아니라 문자열로 계산되지 않을까?
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 69. 제너레이터 yield
+```js
+function* startGame() {
+  const answer = yield 'Do you love JavaScript?';
+  if (answer !== 'Yes') {
+    return "Oh wow... Guess we're gone here";
+  }
+  return 'JavaScript loves you back ❤️';
+}
+
+const game = startGame();
+console.log(/* 1 */); // Do you love JavaScript?
+console.log(/* 2 */); // JavaScript loves you back ❤️
+```
+<details>
+  <summary>console.log 표현식 뒤에 언급된 값을 어떻게 출력할 수 있을까?</summary>
+    <>
+    - 내 생각 : game.next().value, game.next("Yes").value
+    - 이유? : 제너레이터에서 next().value는 yield값 = answer 를 내보낸다. 이 answer의 값이 "Yes"일 때 'JavaScript loves you back ❤️'를 리턴하므로 next() 안에 그 값을 넣어준다.
+    - 사족 : next() 함수가 전달한 파라미터의 값은 이전 `yield`를 대체한다고 한다. answer를 `Yes`로 만들기 위해 그에 인수를 넣는다.
+    - 오답노트 : - 
+    </>
+</details>
+
+### 70. String.raw
+```js
+console.log(String.raw`Hello\nworld`);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : Hello\nworld
+    - 이유? : 줄바꿈이 일어나야 하지만, `raw`에 의해 날것 그대로 출력될 거 같다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 71. await된 promise의 진행
+```js
+async function getData() {
+  return await Promise.resolve('I made it!');
+}
+
+const data = getData();
+console.log(data);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "I made it!"
+    - 이유? : resolve()를 해결해야 한다.
+    - 사족 : -
+    - 오답노트 : 해결하기 위해서는 `.then()` 또는 `try`문이 나와야 한다. 지금은 그 전의 상태로 await에 걸려 있는 상태다. `Promise {<pending/>}`을 출력한다.
+    </>
+</details>
+
+### 72. Array.push()
+```js
+function addToList(item, list) {
+  return list.push(item);
+}
+
+const result = addToList('apple', ['banana']);
+console.log(result);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : ['banana', 'apple']
+    - 이유? : 바나나가 담긴 배열에 애플을 푸쉬했다.
+    - 사족 : -
+    - 오답노트 : list를 리턴한 게 아니라 list.push(item)을 리턴했다. 이 경우 push는 요소가 추가된 배열의 길이를 리턴한다.
+    </>
+</details>
+
+### 73. Object.freeze()
+```js
+const box = { x: 10, y: 20 };
+
+Object.freeze(box);
+
+const shape = box;
+shape.x = 100;
+
+console.log(shape);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `{ x: 10, y: 20 }`
+    - 이유? : 얼린 오브젝트는 수정할 수 없다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 74. 디스트럭션
+```js
+const { name: myName } = { name: 'Lydia' };
+
+console.log(name);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : ReferenceError
+    - 이유? : `myName`은 디스트럭션에 의해 "Lydia"의 값을 가지지만(구조 파괴에 의한 변수 생성), `name`을 지칭하는 것은 현재 아무것도 없다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 75. 순수함수
+```js
+function sum(a, b) {
+  return a + b;
+}
+```
+<details>
+  <summary>이것은 순수 함수일까?</summary>
+    <>
+    - 내 생각 : Yes
+    - 이유? : ...
+    - 사족 : 순수 함수는 항상 같은 결과를 반환하는 함수다. 1과 1을 천만번 집어넣어도 2가 나오면 그걸 순수 함수라고 한다.
+    - 오답노트 : - 
+    </>
+</details>

@@ -1,0 +1,313 @@
+---
+title: 자바스크립트 자가진단 6
+date: '2022-11-09'
+categories: coding
+tags: 자바스크립트
+description: 6th
+---
+<HeadingNavigator />
+
+점수: `10/15`
+
+### 76. 클로저 함수
+```js
+const add = () => {
+  const cache = {};
+  return (num) => {
+    if (num in cache) {
+      return `From cache! ${cache[num]}`;
+    } else {
+      const result = num + 10;
+      cache[num] = result;
+      return `Calculated! ${result}`;
+    }
+  };
+};
+
+const addFunction = add();
+console.log(addFunction(10));
+console.log(addFunction(10));
+console.log(addFunction(5 * 2));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : Calculated! 20 From cache! 20 From cache! 20
+    - 이유? : 클로저 함수다. add()를 할당받은 시점에서 addFunction은 하나의 독자적인 우주고, `cache`값 등 자신이 태어난 환경을 기억한다(memorized). 여기서 `addFunction()`의 인수는 `return`의 인수로 들어간다. 관건은 5 * 2가 어떻게 처리되냐인데, 연산이 되어 10으로 들어갈 거라 생각했다.
+    - 사족 : -
+    - 오답노트 : - 
+    </>
+</details>
+
+### 77. let ~ in 과 let ~ of
+```js
+const myLifeSummedUp = ['☕', '💻', '🍷', '🍫'];
+
+for (let item in myLifeSummedUp) {
+  console.log(item);
+}
+
+for (let item of myLifeSummedUp) {
+  console.log(item);
+}
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "☕" "💻" "🍷" "🍫" 그리고 0 1 2 3
+    - 이유? : let~in은 배열의 값을, let~of는 배열의 인덱스를 반환한다고 생각했다.
+    - 오답노트 : 반대였다. 배열은 사실 다음과 같이 볼 수 있다. {0: "☕", 1: "💻", 2: "🍷", 3: "🍫"}. 우리가 쉽게 배열 인덱스라 부르는 것은 오브젝트의 키값이다.  
+    let~in은 "Enumerable"(열거가능한) 속성을, let~of는 "iterable"(반복가능한) 속성을 추출한다. 여기서 열거가능한 속성은 (사실은 오브젝트인)배열의 키값 = 그러니까 인덱스다. 반복가능한 속성은 그에 할당된 값 = 배열의 요소다.
+    - 사족 : 키값은 반복가능한 속성이 아닌가? Enumerable과 Iterable의 명명 기준이 뭘까?
+    </>
+</details>
+
+### 78. 배열 요소의 연산
+```js
+const list = [1 + 2, 1 * 2, 1 / 2];
+console.log(list);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : [3, 2, 0.5]
+    - 이유? : 정상적으로 연산이 될 것 같다.
+    - 사족 : 배열은 모든 값을 가질 수 있다. string|number|object|...[]
+    - 오답노트 : -
+    </>
+</details>
+
+### 79. 인수가 들어오지 않았을 때의 타입
+```js
+function sayHi(name) {
+  return `Hi there, ${name}`;
+}
+
+console.log(sayHi());
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : Hi there, undefined
+    - 이유? : 타입스크립트에서 파라미터가 옵셔널할 때 `undefined`가 붙었다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 80. 
+```js
+var status = '😎';
+
+setTimeout(() => {
+  const status = '😍';
+
+  const data = {
+    status: '🥑',
+    getStatus() {
+      return this.status;
+    },
+  };
+
+  console.log(data.getStatus());
+  console.log(data.getStatus.call(this));
+}, 0);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "🥑" 그리고 "😍"
+    - 이유? : 첫번째 this는 data의 블록 스코프에 걸린다. 따라서 아보카도가 출력된다. 두번째에는 콜을 통해 상위 객체에 this를 연결하고 실행했다. 따라서 하트얼굴이 출력된다.
+    - 사족 : -
+    - 오답노트 : 함수에서, `this` 키워드는 *함수가 속해 있는 객체*를 참조한다. setTimeout()에서 `this`가 참조하는 것은 전역객체다. 따라서 선글라스가 출력된다.
+    </>
+</details>
+
+### 81. 오브젝트의 참조
+```js
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
+
+let city = person.city;
+city = 'Amsterdam';
+
+console.log(person);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : { name: "Lydia", age: 21, city: undefined }
+    - 이유? : city를 참조에서 값으로 재할당했다. person 오브젝트와는 연이 끊어졌고, 그럼 남은 person의 값이 무엇이냐가 문제다. 난 `let city = person.city`는 사실 `let city = person.city = undefined`와 같다고 생각했다. 보이진 않지만 오브젝트에 값 할당이 일어난 거라고 말이다.
+    - 사족 : -
+    - 오답노트 : person.city가 `undefined`값을 가지는 것은 맞지만, city가 person 객체 자체를 참조하는 것은 아니다. city는 person 객체에서 city라는 속성의 값을 자신의 현재 값으로 요청했을 뿐이다. 결국 원래의 오브젝트가 반환된다.
+    </>
+</details>
+
+### 82. const의 생존범위
+```js
+function checkAge(age) {
+  if (age < 18) {
+    const message = "Sorry, you're too young.";
+  } else {
+    const message = "Yay! You're old enough!";
+  }
+
+  return message;
+}
+
+console.log(checkAge(21));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : ReferenceError
+    - 이유? : message의 생존범위는 블록 스코프다. if문을 빠져나오지 못하고 소멸됐기 때문에 바깥의 리턴은 message가 무엇인지 알지 못한다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 83. 여러 개의 then()
+```js
+fetch('https://www.website.com/api/user/1')
+  .then((res) => res.json())
+  .then((res) => console.log(res));
+```
+<details>
+  <summary>어떤 종류의 정보가 출력될까?</summary>
+    <>
+    - 내 생각 : 이전 .then()에서 callback된 결과
+    - 이유? : .then()이 연속될 경우 이전에서 resolve 된 값이 이어진다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 84. true 만들기
+```js
+function getName(name) {
+  const hasName = //
+}
+```
+<details>
+  <summary>true를 인수로 전달할 수 없도록 주어졌을 때, hasName을 true로 설정할 수 있는 방법은 어느 것일까?</summary>
+    <>
+    - 내 생각 : 
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : 질문을 잘못 이해했다. `true`로 취급되는 모든 값을 못 받는 줄 알았다. 어떤 타입의 인수가 들어와도 `true | false` 값을 나타내기 위해선 `!!name`밖에 정답이 없다.
+    </>
+</details>
+
+### 85. String 인덱싱
+```js
+console.log('I want pizza'[0]);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "I"
+    - 이유? : 원시값이지만 `String 래퍼`에 의해 순간 객체처럽 취급된다. 어레이와 같이 숨은 키=인덱스값이 글자마다 붙어, 대괄호 인덱싱은 물론 `indexOf`와 같은 프로토타입 메써드를 사용할 수 있게 된다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 86. Default Parameter
+```js
+function sum(num1, num2 = num1) {
+  console.log(num1 + num2);
+}
+
+sum(10);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 20
+    - 이유? :  두번째 인수를 넘겨받지 못했을 때, num2의 기본값은 num1이다.  
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 87. import * from 
+```js module.js
+export default () => 'Hello world';
+export const name = 'Lydia';
+```
+```js index.js
+import * as data from './module';
+
+console.log(data);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : { default: [Function (anonymous)], name: "Lydia" }
+    - 이유? : * 와일드카드를 통해 module의 객체 전체를 가져온다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 88. 클래스의 타입
+```js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+const member = new Person('John');
+console.log(typeof member);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "object"
+    - 이유? : typeof 연산자는 원시타입을 검출한다. 인스턴스인 member의 본질은 `object`다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 89. Array.push()
+```js
+let newList = [1, 2, 3].push(4);
+
+console.log(newList.push(5));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : Error
+    - 이유? : 앞선 문제에도 나왔는데, `[1, 2, 3].push(4)`는 베열 `[1, 2, 3, 4]`가 아니라 배열의 크기를 리턴한다. 4.push()는 성립하지 않으므로 `Error`가 뜬다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 90. 함수의 프로토타입
+```js
+function giveLydiaPizza() {
+  return 'Here is pizza!';
+}
+
+const giveLydiaChocolate = () =>
+  "Here's chocolate... now go hit the gym already.";
+
+console.log(giveLydiaPizza.prototype);
+console.log(giveLydiaChocolate.prototype);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : { constructor: ...} { constructor: ...}
+    - 이유? : 프로토타입을 가지지 않는 객체는 사용자가 중괄호를 열어 직접 만든 객체, new Object() 제너레이터로 만든 객체뿐이다. 일반함수든 화살표함수든 프로토타입은 `object`다.
+    - 사족 : -
+    - 오답노트 : ... 화살표 함수도 `prototype` 속성을 가지지 않는다고 한다.
+    </>
+</details>

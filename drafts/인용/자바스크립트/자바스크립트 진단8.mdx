@@ -1,0 +1,267 @@
+---
+title: 자바스크립트 자가진단 8
+date: '2022-11-09'
+categories: coding
+tags: 자바스크립트
+description: 8th
+---
+<HeadingNavigator />
+
+### 106. Object.entries() 
+```js 
+const person = {
+  name: 'Lydia',
+  age: 21,
+};
+
+for (const [x, y] of Object.entries(person)) {
+  console.log(x, y);
+}
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : name Lydia 그리고 age 21
+    - 이유? : Object.entries()는 오브젝트의 키와 값 한쌍을 배열에 담아 내보낸다. 그를 디스트럭션 문법으로 와해하여 값을 직접 불러오고 있다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 107. rest parameter의 포지션
+```js
+function getItems(fruitList, ...args, favoriteFruit) {
+  return [...fruitList, ...args, favoriteFruit]
+}
+
+getItems(["banana", "apple"], "pear", "orange")
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : SyntaxError
+    - 이유? : `rest parameter`는 파라미터의 끝자리에 위치해야만 한다. 나머지 모든 인수를 배열에 담아 받겠다는 의미이며, 마지막 하나를 따로 둔다고 해서 예외로 빼주지 않는다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 108. return
+```js
+function nums(a, b) {
+  if (a > b) console.log('a is bigger');
+  else console.log('b is bigger');
+  return;
+  a + b;
+}
+
+console.log(nums(4, 2));
+console.log(nums(1, 2));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : a is bigger, undefined 그리고 b is bigger, undefined
+    - 이유? : 모든 함수는 `return`을 만나면 끝이 난다. `return`이 아무 일도 수행 않고 맥없이 종료되었으므로 반환되는 값은 `undefined`다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 109. class의 중복선언
+```js
+class Person {
+  constructor() {
+    this.name = 'Lydia';
+  }
+}
+
+Person = class AnotherPerson {
+  constructor() {
+    this.name = 'Sarah';
+  }
+};
+
+const member = new Person();
+console.log(member.name);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "Sarah"
+    - 이유? : 클래스는 function의 감투다. function이 중복선언 되었을 때 덮어쓰기가 가능한 것처럼 클래스도 나중의 것을 덮어 쓸 것이다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 110. Symbol
+```js
+const info = {
+  [Symbol('a')]: 'b',
+};
+
+console.log(info);
+console.log(Object.keys(info));
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : { a: "b" } 그리고 ["a"]
+    - 이유? : 키값이 `Symbol`로 선언됐다고 해도, 그 표면은 오브젝트와 똑같이 보일 것이다.
+    - 사족 : -
+    - 오답노트 : 심볼은 *열거 불가능*하다. Object.keys()는 열거 가능한 키를 반환하는데 해당되지 않으므로 빈 배열이다. 전체를 출력하면 본모습 그대로 드러난다.
+    </>
+</details>
+
+### 111. 화살표 함수에서 오브젝트의 리턴
+```js
+const getList = ([x, ...y]) => [x, y]
+const getUser = user => { name: user.name, age: user.age }
+
+const list = [1, 2, 3, 4]
+const user = { name: "Lydia", age: 21 }
+
+console.log(getList(list))
+console.log(getUser(user))
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :  `[1, [2, 3, 4]]`, `{ name: "Lydia", age: 21 }`
+    - 이유? : `[1, 2, 3, 4]`가 `[x, ...y]`의 형태가 되려면 `y=[2, 3, 4]`가 돼야 한다. 이를 리턴에 대입하면 `[1, [2, 3, 4]]`가 나온다. 
+    - 사족 : -
+    - 오답노트 : 화살표 함수에서 값 하나만 리턴될 땐 중괄호도 return도 생략이 가능하다. (`user => { return XYZ; }` == `user => XYZ;`) 이런 간소화는 화살표 함수를 직관적으로 보이게 만든다. 문제는 XYZ가 오브젝트일 때 발생한다. 이때 화살표는 또 중괄호를 맞닥뜨리게 되는데, 앞선 중괄호 생략의 메커니즘이 혼선을 주는 모양이다. 그래서 오브젝트를 리턴할 땐 반드시 괄호()로 그 주위를 감싸줘야 한다고 한다. 그렇지 않으면 `undefined`가 리턴된다.
+    </>
+</details>
+
+### 112. 다양한 에러의 유형
+```js
+const name = 'Lydia';
+
+console.log(name());
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : TypeError
+    - 이유? : name은 함수가 아니다. 함수가 아닌 것(String 타입)을 함수처럼 사용할 땐 `TypeError`가 난다.
+    - 사족 : ReferenceErrors는 말 그대로 접근하려고 하는 값의 *참조*를 찾을 수 없을 때 던져진다. SyntaxError는 정해진 구문을 오타 냈을 때 던져진다.
+    - 오답노트 : -
+    </>
+</details>
+
+### 113. 
+```js
+// 🎉✨ 이번이 내 100번째 질문이에요! ✨🎉
+
+const output = `${[] && 'Im'}possible!
+You should${'' && `n't`} see a therapist after so much JavaScript lol`;
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 114. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 115. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 116. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 117. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 118. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 119. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 120. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
