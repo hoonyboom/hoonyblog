@@ -7,7 +7,51 @@ description: 9th
 ---
 <HeadingNavigator />
 
-### 86. 
+### 121. 함수의 연쇄
+```js
+const add = (x) => (y) => (z) => {
+  console.log(x, y, z);
+  return x + y + z;
+};
+
+add(4)(5)(6);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `4, 5, 6`
+    - 이유? : 함수는 객체고, 파라미터는 변수다. 상위 함수에서 받은 인수는 하위 함수에서도 살아 있을 거라고 생각했다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 122. 
+```js
+async function* range(start, end) {
+  for (let i = start; i <= end; i++) {
+    yield Promise.resolve(i);
+  }
+}
+
+(async () => {
+  const gen = range(1, 3);
+  for await (const item of gen) {
+    console.log(item);
+  }
+})();
+```
+<details>
+  <summary>무엇이 출력될까?</summary>엇
+    <>
+    - 내 생각 : 기
+    - 이유? : `await`의 누락으로 `Promise.resolve(i)`의 순위가 뒤로 밀려 걸려 있게 된다(루프는 세번 돈 상태다).
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 123. 
 ```js
 
 ```
@@ -21,3 +65,170 @@ description: 9th
     </>
 </details>
 
+### 124. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 125. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 126. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 127. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 128. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 129. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 130. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 131. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 132. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 133. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 134. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 135. 
+```js
+
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 :
+    - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>

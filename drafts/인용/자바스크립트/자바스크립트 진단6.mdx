@@ -56,7 +56,7 @@ for (let item of myLifeSummedUp) {
     <>
     - 내 생각 : "☕" "💻" "🍷" "🍫" 그리고 0 1 2 3
     - 이유? : let~in은 배열의 값을, let~of는 배열의 인덱스를 반환한다고 생각했다.
-    - 오답노트 : 반대였다. 배열은 사실 다음과 같이 볼 수 있다. {0: "☕", 1: "💻", 2: "🍷", 3: "🍫"}. 우리가 쉽게 배열 인덱스라 부르는 것은 오브젝트의 키값이다.  
+    - 오답노트 : 반대였다. 배열은 사실 다음과 같이 볼 수 있다. `{0: "☕", 1: "💻", 2: "🍷", 3: "🍫"}`. 우리가 쉽게 배열 인덱스라 부르는 것은 오브젝트의 키값이다.  
     let~in은 "Enumerable"(열거가능한) 속성을, let~of는 "iterable"(반복가능한) 속성을 추출한다. 여기서 열거가능한 속성은 (사실은 오브젝트인)배열의 키값 = 그러니까 인덱스다. 반복가능한 속성은 그에 할당된 값 = 배열의 요소다.
     - 사족 : 키값은 반복가능한 속성이 아닌가? Enumerable과 Iterable의 명명 기준이 뭘까?
     </>
@@ -138,7 +138,7 @@ console.log(person);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : { name: "Lydia", age: 21, city: undefined }
+    - 내 생각 : `{ name: "Lydia", age: 21, city: undefined }`
     - 이유? : city를 참조에서 값으로 재할당했다. person 오브젝트와는 연이 끊어졌고, 그럼 남은 person의 값이 무엇이냐가 문제다. 난 `let city = person.city`는 사실 `let city = person.city = undefined`와 같다고 생각했다. 보이진 않지만 오브젝트에 값 할당이 일어난 거라고 말이다.
     - 사족 : -
     - 오답노트 : person.city가 `undefined`값을 가지는 것은 맞지만, city가 person 객체 자체를 참조하는 것은 아니다. city는 person 객체에서 city라는 속성의 값을 자신의 현재 값으로 요청했을 뿐이다. 결국 원래의 오브젝트가 반환된다.
@@ -246,7 +246,7 @@ console.log(data);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : { default: [Function (anonymous)], name: "Lydia" }
+    - 내 생각 : `{ default: [Function (anonymous)], name: "Lydia" }`
     - 이유? : * 와일드카드를 통해 module의 객체 전체를 가져온다.
     - 사족 : -
     - 오답노트 : -
@@ -305,7 +305,7 @@ console.log(giveLydiaChocolate.prototype);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : { constructor: ...} { constructor: ...}
+    - 내 생각 : `{ constructor: ...} { constructor: ...}`
     - 이유? : 프로토타입을 가지지 않는 객체는 사용자가 중괄호를 열어 직접 만든 객체, new Object() 제너레이터로 만든 객체뿐이다. 일반함수든 화살표함수든 프로토타입은 `object`다.
     - 사족 : -
     - 오답노트 : ... 화살표 함수도 `prototype` 속성을 가지지 않는다고 한다.

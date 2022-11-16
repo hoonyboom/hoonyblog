@@ -7,261 +7,329 @@ description: 8th
 ---
 <HeadingNavigator />
 
-### 106. Object.entries() 
-```js 
+### 106. Array의 다양한 메써드들
+```js
+const emojis = ['✨', '🥑', '😍'];
+
+emojis.map((x) => x + '✨');
+emojis.filter((x) => x !== '🥑');
+emojis.find((x) => x !== '🥑');
+emojis.reduce((acc, cur) => acc + '✨');
+emojis.slice(1, 2, '✨');
+emojis.splice(1, 2, '✨');
+```
+<details>
+  <summary>다음 중 원본 배열을 수정하는 method는 무엇일까?</summary>
+    <>
+    - 내 생각 : splice
+    - 이유? : 다른 것들을 원배열을 재료삼아 새로운 데이터를 리턴한다. `find`는 조건에 해당되는 요소를 리턴한다. `reduce`는 사용자 설정하기 나름이다. splice()는 원본 데이터를 직접 잘라내고 붙여넣는다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 107. 오브젝트 데이터 수정
+```js
+const food = ['🍕', '🍫', '🥑', '🍔'];
+const info = { favoriteFood: food[0] };
+
+info.favoriteFood = '🍝';
+
+console.log(food);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : ['🍕', '🍫', '🥑', '🍔'];
+    - 이유? : info 객체 `favoriteFood`의 값이 바뀌었다. 새로운 값으로 대체한 것이지 원래 있던 `food`의 데이터를 수정한 것이 아니다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 108. JSON.parse()
+```js
+JSON.parse();
+```
+<details>
+  <summary>이 메소드는 무엇을 할까?</summary>
+    <>
+    - 내 생각 : JSON을 JavaScript 값으로 Parses
+    - 이유? : `JSON.Stringify()`에 의해 포장되었던 값을 다시 돌려놓는다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 109. TDZ
+```js
+let name = 'Lydia';
+
+function getName() {
+  console.log(name);
+  let name = 'Sarah';
+}
+
+getName();
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : ReferenceError
+    - 이유? : 객체 안에서 변수의 선언은 호이스팅된다. `getName()` 객체 안에서(함수도 객체니까) `name`은 새롭게 선언된다. 하지만 `let, const`의 이니셜라이징은 할당이 이루어지는 줄에서 실시된다. 이때 변수의 접근은 `var`라면 `undefined`를 띄울 겠지만 `let`은 `ReferenceError`다.
+    - 사족 : 선언만 호이스팅되고 값에는 접근할 수 없는 `let, const`의 이런 상황을 `TDZ(Temporal Dead Zone, 일시적 사각지대)`라고 부른다.
+    - 오답노트 : -
+    </>
+</details>
+
+### 110. yield*
+```js
+function* generatorOne() {
+  yield ['a', 'b', 'c'];
+}
+
+function* generatorTwo() {
+  yield* ['a', 'b', 'c'];
+}
+
+const one = generatorOne();
+const two = generatorTwo();
+
+console.log(one.next().value);
+console.log(two.next().value);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `['a', 'b', 'c']`, `a`
+    - 이유? : 제너레이터 함수의 와일드카드에 따라 `yield`가 내보내는 값이 달라진다. 원래라면 yield의 해당 줄 전체를 내보낸다. 하지만 `yield*`의 경우 그 안에서도 단계가 생겨 배열의 경우 요소 하나하나를 진행할 것이다.
+    - 사족 : 정확히 말하면 반복 가능한 객체의 값을 차례대로 return한다. 그다음의 `console.log(two.next().value)`의 출력은 `"b"`다.
+    - 오답노트 : -
+    </>
+</details>
+
+### 111. 템플릿 리터럴
+```js
+console.log(`${((x) => x)('I love')} to program`);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `I love to program`
+    - 이유? : 이렇게 말해도 좋은지 모르겠지만, 백틱을 이용한 템플릿 리터럴 안에서 `${}`(표현식)의 공간은 문자열이 아닌 빈 객체, 도화지다. 이곳에서 흔히 논리 연산을 통해 특정값을 리턴한다. 함수라고 안 될까? "I love"가 리턴될 것이다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 112. interval
+```js
+let config = {
+  alert: setInterval(() => {
+    console.log('Alert!');
+  }, 1000),
+};
+
+config = null;
+```
+<details>
+  <summary>무슨 일이 발생할까?</summary>
+    <>
+    - 내 생각 : `결코 config.alert()를 호출 하지 않고, config 는 null이다.`
+    - 이유? : config에 `alert`라는 메서드가 있다. 그게 다다. 객체에 속성읠 정의만 했을 뿐 실행시키진 않았다. 따라서 아무 일도 없고, config는 null이다.
+    - 사족 : -
+    - 오답노트 : `interval`은 호출하지 않아도 동작하는구나.. 또한 `setInterval`이 화살표 함수이기 때문에 config를 null로 만들어도 기존 객체는 유지된다고 한다. 콜백 함수는 여전히 원 객체를 참조한다. 이를 없애기 위해서는 `clearInterval(config.alert)`로 직접 삭제해줘야 한다.
+    </>
+</details>
+
+### 113. new Map()
+```js
+const myMap = new Map();
+const myFunc = () => 'greeting';
+
+myMap.set(myFunc, 'Hello world!');
+
+//1
+myMap.get('greeting');
+//2
+myMap.get(myFunc);
+//3
+myMap.get(() => 'greeting')
+```
+<details>
+  <summary>어느 method가 값 'Hello world!'를 반환할까?</summary>
+    <>
+    - 내 생각 : 2
+    - 이유? : myMap에 `set()` 메써드로 등록된 건 `myFunc` 뿐이다. 그 값은 `Hello world!`다.
+    - 사족 : 키에는 `() => greeting`이 통째로 등록된다. `get()`의 인수는 **객체의 키값**이므로 이는 참조의 성격을 띤다. 다시 말해 `myFunc`의 () => 'greeting'는 그냥 () => 'greeting'과는 다르다.
+    - 오답노트 : -
+    </>
+</details>
+
+### 114. default parameter & copy
+```js
 const person = {
   name: 'Lydia',
   age: 21,
 };
 
-for (const [x, y] of Object.entries(person)) {
-  console.log(x, y);
-}
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 : name Lydia 그리고 age 21
-    - 이유? : Object.entries()는 오브젝트의 키와 값 한쌍을 배열에 담아 내보낸다. 그를 디스트럭션 문법으로 와해하여 값을 직접 불러오고 있다.
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
-
-### 107. rest parameter의 포지션
-```js
-function getItems(fruitList, ...args, favoriteFruit) {
-  return [...fruitList, ...args, favoriteFruit]
-}
-
-getItems(["banana", "apple"], "pear", "orange")
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 : SyntaxError
-    - 이유? : `rest parameter`는 파라미터의 끝자리에 위치해야만 한다. 나머지 모든 인수를 배열에 담아 받겠다는 의미이며, 마지막 하나를 따로 둔다고 해서 예외로 빼주지 않는다.
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
-
-### 108. return
-```js
-function nums(a, b) {
-  if (a > b) console.log('a is bigger');
-  else console.log('b is bigger');
-  return;
-  a + b;
-}
-
-console.log(nums(4, 2));
-console.log(nums(1, 2));
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 : a is bigger, undefined 그리고 b is bigger, undefined
-    - 이유? : 모든 함수는 `return`을 만나면 끝이 난다. `return`이 아무 일도 수행 않고 맥없이 종료되었으므로 반환되는 값은 `undefined`다.
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
-
-### 109. class의 중복선언
-```js
-class Person {
-  constructor() {
-    this.name = 'Lydia';
-  }
-}
-
-Person = class AnotherPerson {
-  constructor() {
-    this.name = 'Sarah';
-  }
+const changeAge = (x = { ...person }) => (x.age += 1);
+const changeAgeAndName = (x = { ...person }) => {
+  x.age += 1;
+  x.name = 'Sarah';
 };
 
-const member = new Person();
-console.log(member.name);
+changeAge(person);
+changeAgeAndName();
+
+console.log(person);
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "Sarah"
-    - 이유? : 클래스는 function의 감투다. function이 중복선언 되었을 때 덮어쓰기가 가능한 것처럼 클래스도 나중의 것을 덮어 쓸 것이다.
+    - 내 생각 : `{ name: "Lydia", age: 22 }`
+    - 이유? : 두 함수 모두 기본값이 person의 복사본이다. 이는 person이 아니다. 첫번째 함수의 경우 person을 인자로 받았기 때문에 수정이 이루어진다. 하지만 두번째 함수는 person과 상관없다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 110. Symbol
+### 115. spread operator
 ```js
-const info = {
-  [Symbol('a')]: 'b',
+function sumValues(x, y, z) {
+  return x + y + z;
+}
+// A: sumValues([...1, 2, 3])
+// B: sumValues([...[1, 2, 3]])
+// C: sumValues(...[1, 2, 3])
+// D: sumValues([1, 2, 3])
+```
+<details>
+  <summary>어느 선택지가 6을 반환할까?</summary>
+    <>
+    - 내 생각 : C
+    - 이유? : 배열을 통째로 풀어 각자가 숫자인 인수로 전달해야 한다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 116. +=
+```js
+let num = 1;
+const list = ['🥳', '🤠', '🥰', '🤪'];
+
+console.log(list[(num += 1)]);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : ReferenceError
+    - 이유? : `num += 1`은 `num = num+1`이다. 배열은 사실 오브젝트고 각각의 인덱싱은 보이지 않는 키값이다. 그렇다면 `num=num+1`이라는 키를 참조하려 할 것이다. 그게 될까?
+    - 사족 : -
+    - 오답노트 : 바보다. 괄호 안은 문자로 곧장 반환되는 영역이 아니라 연산이 실행되는 공간이다. 따라서 `num++`가 계산되고 이 값은 2다.
+    </>
+</details>
+
+### 117. optional chaining
+```js
+const person = {
+  firstName: 'Lydia',
+  lastName: 'Hallie',
+  pet: {
+    name: 'Mara',
+    breed: 'Dutch Tulip Hound',
+  },
+  getFullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
 };
 
-console.log(info);
-console.log(Object.keys(info));
+console.log(person.pet?.name);
+console.log(person.pet?.family?.name);
+console.log(person.getFullName?.());
+console.log(member.getLastName?.());
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : { a: "b" } 그리고 ["a"]
-    - 이유? : 키값이 `Symbol`로 선언됐다고 해도, 그 표면은 오브젝트와 똑같이 보일 것이다.
-    - 사족 : -
-    - 오답노트 : 심볼은 *열거 불가능*하다. Object.keys()는 열거 가능한 키를 반환하는데 해당되지 않으므로 빈 배열이다. 전체를 출력하면 본모습 그대로 드러난다.
-    </>
-</details>
-
-### 111. 화살표 함수에서 오브젝트의 리턴
-```js
-const getList = ([x, ...y]) => [x, y]
-const getUser = user => { name: user.name, age: user.age }
-
-const list = [1, 2, 3, 4]
-const user = { name: "Lydia", age: 21 }
-
-console.log(getList(list))
-console.log(getUser(user))
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :  `[1, [2, 3, 4]]`, `{ name: "Lydia", age: 21 }`
-    - 이유? : `[1, 2, 3, 4]`가 `[x, ...y]`의 형태가 되려면 `y=[2, 3, 4]`가 돼야 한다. 이를 리턴에 대입하면 `[1, [2, 3, 4]]`가 나온다. 
-    - 사족 : -
-    - 오답노트 : 화살표 함수에서 값 하나만 리턴될 땐 중괄호도 return도 생략이 가능하다. (`user => { return XYZ; }` == `user => XYZ;`) 이런 간소화는 화살표 함수를 직관적으로 보이게 만든다. 문제는 XYZ가 오브젝트일 때 발생한다. 이때 화살표는 또 중괄호를 맞닥뜨리게 되는데, 앞선 중괄호 생략의 메커니즘이 혼선을 주는 모양이다. 그래서 오브젝트를 리턴할 땐 반드시 괄호()로 그 주위를 감싸줘야 한다고 한다. 그렇지 않으면 `undefined`가 리턴된다.
-    </>
-</details>
-
-### 112. 다양한 에러의 유형
-```js
-const name = 'Lydia';
-
-console.log(name());
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 : TypeError
-    - 이유? : name은 함수가 아니다. 함수가 아닌 것(String 타입)을 함수처럼 사용할 땐 `TypeError`가 난다.
-    - 사족 : ReferenceErrors는 말 그대로 접근하려고 하는 값의 *참조*를 찾을 수 없을 때 던져진다. SyntaxError는 정해진 구문을 오타 냈을 때 던져진다.
+    - 내 생각 : `"Mara"`, `undefined`, `"Lydia Hallie"`, `ReferenceError`
+    - 이유? : pet에서 family를 찾지만 없으므로 `undefined`다. `member`는 어디에도 선언된 적 없지만 이를 객체처럼 접근하려 하고 있다. 참조에러가 날 것이다.
+    - 사족 : 마지막 콘솔이 `console.log(person.getLastName?.())`였다면 어땠을까. 옵셔널 체이닝에 의해 없음이 드러나므로 이것도 `undefined`다.
     - 오답노트 : -
     </>
 </details>
 
-### 113. 
+### 118. 배열의 indexOf()
 ```js
-// 🎉✨ 이번이 내 100번째 질문이에요! ✨🎉
+const groceries = ['banana', 'apple', 'peanuts'];
 
-const output = `${[] && 'Im'}possible!
-You should${'' && `n't`} see a therapist after so much JavaScript lol`;
+if (groceries.indexOf('banana')) {
+  console.log('We have to buy bananas!');
+} else {
+  console.log(`We don't have to buy bananas!`);
+}
 ```
+
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `We don't have to buy bananas!`
+    - 이유? : `indexOf()`로 찾는 요소의 값이 존재하면 `0`을 아니면 `-1`을 던진다. `"banana"`는 존재하고 따라서 0, `false`다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 114. 
+### 119. setter
 ```js
+const config = {
+  languages: [],
+  set language(lang) {
+    return this.languages.push(lang);
+  },
+};
 
+console.log(config.language);
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `function language(lang) { this.languages.push(lang) }`
+    - 이유? : `set`을 통해 객체에 함수를 저장했다.
     - 사족 : -
-    - 오답노트 : -
+    - 오답노트 : `setter`는 데이터를 추가/수정만 할 뿐 실제 값을 유지하지 않는다. 특정값을 반환하는 것은 `getter` 함수다.
     </>
 </details>
 
-### 115. 
+### 120. 비교연산
 ```js
+const name = 'Lydia Hallie';
 
+console.log(!typeof name === 'object');
+console.log(!typeof name === 'string');
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : true, false
+    - 이유? : typeof name 의 값은 `"string"`이다.
     - 사족 : -
-    - 오답노트 : -
+    - 오답노트 : 비교연산을 시작하기 전에 `!` 논리연산부터 들어간다. 따라서 왼쪽항은 둘다 `false`가 된다. 내가 풀었던 방식은 비교연산자 `!==`가 적용됐을 때다.
     </>
 </details>
 
-### 116. 
-```js
 
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
 
-### 117. 
-```js
 
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
 
-### 118. 
-```js
 
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
 
-### 119. 
-```js
 
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
 
-### 120. 
-```js
 
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
+
+
+
+
+
