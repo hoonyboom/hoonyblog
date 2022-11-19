@@ -26,7 +26,7 @@ add(4)(5)(6);
     </>
 </details>
 
-### 122. 
+### 122. for await ... of
 ```js
 async function* range(start, end) {
   for (let i = start; i <= end; i++) {
@@ -44,50 +44,71 @@ async function* range(start, end) {
 <details>
   <summary>무엇이 출력될까?</summary>엇
     <>
-    - 내 생각 : 기
-    - 이유? : `await`의 누락으로 `Promise.resolve(i)`의 순위가 뒤로 밀려 걸려 있게 된다(루프는 세번 돈 상태다).
+    - 내 생각 : `1 2 3`
+    - 이유? : gen에는 해결되지 않은 값 `Promise.resolve(1)` `Promise.resolve(2)` `Promise.resolve(3)`이 들어오고 `await`가 걸린 for~of 반복문에서 이는 풀어진다. 
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 123. 
+### 123. 파라미터의 타입 지정
 ```js
+const myFunc = ({ x, y, z }) => {
+  console.log(x, y, z);
+};
 
+myFunc(1, 2, 3);
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `undefined undefined undefined`
+    - 이유? : 파라미터는 오브젝트 하나를 받는다. 하지만 들어간 건 숫자 1, 2, 3이다. 
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 124. 
+### 124. new Intl.NumberFormat()
 ```js
+function getFine(speed, amount) {
+  const formattedSpeed = new Intl.NumberFormat('en-US', {
+    style: 'unit',
+    unit: 'mile-per-hour',
+  }).format(speed);
 
+  const formattedAmount = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(amount);
+
+  return `The driver drove ${formattedSpeed} and has to pay ${formattedAmount}`;
+}
+
+console.log(getFine(130, 300));
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `The driver drove 130 mph and has to pay $300.00`
+    - 이유? : `new Intl.NumberFormat()`을 이용해 스타일을 지정했다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 125. 
+### 125. 디스트럭션
 ```js
+const spookyItems = ['👻', '🎃', '🕸'];
+({ item: spookyItems[3] } = { item: '💀' });
 
+console.log(spookyItems);
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `['👻', '🎃', '🕸', '💀'];`
+    - 이유? : 디스트럭션에 의해 `spookyItems[3] = "💀"`이 된다.
     - 사족 : -
     - 오답노트 : -
     </>
@@ -95,139 +116,222 @@ async function* range(start, end) {
 
 ### 126. 
 ```js
+const name = 'Lydia Hallie';
+const age = 21;
 
+console.log(Number.isNaN(name));
+console.log(Number.isNaN(age));
+
+console.log(isNaN(name));
+console.log(isNaN(age));
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `false false true false`
+    - 이유? : 숫자를 인수로 받아 계산될 수 있는 숫자인지 판단한다고 생각했다. 
+    - 사족 : `Number.isNaN()`은 `숫자면서 NaN`이면 true를 아니면 false를 내뱉는다. `isNaN`은 전달한 값이 숫자인지 아닌지 확인할 수 있다. 
+    - 오답노트 : -
+    </>
+</details>
+
+### 127. TBZ
+```js
+const randomValue = 21;
+
+function getInfo() {
+  console.log(typeof randomValue);
+  const randomValue = 'Lydia Hallie';
+}
+
+getInfo();
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `ReferenceError`
+    - 이유? : 앞에서 똑같은 문제가 나왔는데, 함수 내에서 새로이 선언된 `const` randomvalue가 함수 객체 최상단으로 호이스팅된다. 이니셜라이징은 이뤄지지 않은 상태다. 참조 에러가 난다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 127. 
+### 128. try ... catch ... finally
 ```js
+const myPromise = Promise.resolve('Woah some cool data');
 
+(async () => {
+  try {
+    console.log(await myPromise);
+  } catch {
+    throw new Error(`Oops didn't work`);
+  } finally {
+    console.log('Oh finally!');
+  }
+})();
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `Woah some cool data Oh finally!`
+    - 이유? : `try()`가 성공하기 때문에 `catch()` 예외처리를 건너 뛰고 `finally()`로 향한다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 128. 
+### 129. Array.flat()
 ```js
+const emojis = ['🥑', ['✨', '✨', ['🍕', '🍕']]];
 
+console.log(emojis.flat(1));
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `['🥑', '✨', '✨', ['🍕', '🍕']]`
+    - 이유? : 이렇게 표현하는 게 맞는지 모르겠지만, 현재 배열의 깊이는 2이다(기본을 0으로 봤을 때). `flat()`은 이를 평평하게 해다. 지금 같은 경우 깊이 1, 그러니까 배열 안에서 가장 먼저 등장하는 배열 하나를 그 상위 배열에 풀어놓는다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 129. 
+### 130. 오브젝트 참조
 ```js
+class Counter {
+  constructor() {
+    this.count = 0;
+  }
 
+  increment() {
+    this.count++;
+  }
+}
+
+const counterOne = new Counter();
+counterOne.increment();
+counterOne.increment();
+
+const counterTwo = counterOne;
+counterTwo.increment();
+
+console.log(counterOne.count);
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : 3
+    - 이유? :  counterTwo는 counterOne과 같은 객체를 참조한다. counterTwo의 값을 1 증가시켰다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 130. 
+### 131. Call Stack, Queue
 ```js
+const myPromise = Promise.resolve(Promise.resolve('Promise!'));
 
+function funcOne() {
+  myPromise.then((res) => res).then((res) => console.log(res));
+  setTimeout(() => console.log('Timeout!'), 0);
+  console.log('Last line!');
+}
+
+async function funcTwo() {
+  const res = await myPromise;
+  console.log(await res);
+  setTimeout(() => console.log('Timeout!'), 0);
+  console.log('Last line!');
+}
+
+funcOne();
+funcTwo();
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `Last line! Promise! Promise! Last line! Timeout! Timeout!`
+    - 이유? : `funcOne`이 실행되고, `Promise` 처리에는 시간이 걸린다. `await`가 걸려있지 않기 때문에 다음줄을 먼저 실행한다. `setTimeout()`은 콜스택이 아니라 루프를 거쳐 큐에 대기명단을 올린다.
+    `funcTwo`가 실행되고 `Promise`의 해결을 기다린다. 이번에도 `setTimeout()`은 마지막에 실행된다. 
+    - 사족 : 접근이 완전 틀렸다. `setTimeout` 콜백함수는 루프가 아닌 브라우저의 `WEB API`에 의해 처리된다. 그리고 이는 큐의 낮은 순위로 보내진다.  
+    `Promise`는 콜스택에 들어갔지만, `.then()`의 콜백함수 부분이 큐로 보내진다. 이후 콜스택이 비워졌을 때 처리된다. 따라서 `await`가 걸린 `funcTwo`의 Promise가 먼저 처리된다(전체에서 두번째). 
+    - 오답노트 : -
+    </>
+</details>
+
+### 132. import * & export default
+```js sum.js
+export default function sum(x) {
+  return x + x;
+}
+```
+```js index.js
+import * as sum from './sum';
+```
+<details>
+  <summary>index.js에서 sum.js 안에 있는 sum을 호출하려면 어떻게 해야 할까?</summary>
+    <>
+    - 내 생각 : `sum.default(4)`
+    - 이유? : `와일드카드(*)`로 모듈 전체를 가져왔고 `default`로 내보낸 변수는 모듈 객체에 `{ default: ~}` 로 들어온다.
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 131. 
+### 133. new Proxy() 
 ```js
+const handler = {
+  set: () => console.log('Added a new property!'),
+  get: () => console.log('Accessed a property!'),
+};
 
+const person = new Proxy({}, handler);
+
+person.name = 'Lydia';
+person.name;
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
+    - 내 생각 : `Added a new property! Accessed a property!`
+    - 이유? : 솔직히 프록시의 역할을 잘 모르겠다. handler엔 `set`, `get` 함수를 심었다. person에 프로프러티를 추가했고 이를 호출했다.
+    - 사족 : `Proxy` 객체를 사용하면, 두번째 인수로 전달한 객체에 사용자 지정동작을 추가할 수 있다고 한다. `set`과 `get`을 설정하면 값이 추가되거나 호출될 때의 반응을 심을 수 있다.
     - 오답노트 : -
     </>
 </details>
 
-### 132. 
+### 134. Object.seal()
 ```js
+const person = { name: 'Lydia Hallie' };
 
+Object.seal(person);
 ```
 <details>
-  <summary>무엇이 출력될까?</summary>
+  <summary> 다음 중 어느 것이 person 객체를 수정할 수 있을까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `Object.assign(person, { age: 21 })`
+    - 이유? : `Object.seal()`을 통해 데이터를 감췄다. 그 뉘앙스에서, 닷 접근은 금지될 거라고 생각했다.
     - 사족 : -
-    - 오답노트 : -
+    - 오답노트 : `Object.seal()`을 사용하면 새로운 속성이 *추가*되거나, 존재하는 *속성*이 제거되는 것을 막는다. 이미 존재하는 값의 수정은 가능하다.
     </>
 </details>
 
-### 133. 
+### 135. Object.freeze()
 ```js
+const person = {
+  name: 'Lydia Hallie',
+  address: {
+    street: '100 Main St',
+  },
+};
 
+Object.freeze(person);
 ```
 <details>
-  <summary>무엇이 출력될까?</summary>
+  <summary> 다음 중 어느 것이 person 객체를 수정할 수 있을까?</summary>
     <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
-
-### 134. 
-```js
-
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
-    - 사족 : -
-    - 오답노트 : -
-    </>
-</details>
-
-### 135. 
-```js
-
-```
-<details>
-  <summary>무엇이 출력될까?</summary>
-    <>
-    - 내 생각 :
-    - 이유? : 
+    - 내 생각 : `person.address.street = "101 Main St"`
+    - 이유? : person.address는 새로운 객체이기 때문에 직접적인 동결의 대상은 아닐 것 같았다.
     - 사족 : -
     - 오답노트 : -
     </>

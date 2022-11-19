@@ -1,11 +1,13 @@
 ---
 title: 자바스크립트 자가진단 4
-date: '2022-11-09'
+date: '2022-11-11'
 categories: coding
 tags: 자바스크립트
 description: 4th
 ---
 <HeadingNavigator />
+
+정답: `10/15`
 
 ### 46. for ~ in 반복문
 ```js
@@ -21,42 +23,45 @@ for (const item in person) {
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : name, age
-    - 이유? : 프로퍼티만 넘긴다.
-    - 사족 : Object.keys()의 내부동작으로 볼 수 있을 것 같다.
+    - 내 생각 : `name`, `age`
+    - 이유? : 오브젝트의 키만 넘긴다.
+    ---
+    - 사족 : `Object.keys()`의 내부동작으로 볼 수 있을 것 같다.
     - 오답노트 : - 
     </>
 </details>
 
-### 47. 다른 타입 간의 덧셈
+### 47. 타입이 다른 값들의 덧셈
 ```js
 console.log(3 + 4 + '5');
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "75"
+    - 내 생각 : `"75"`
     - 이유? : 숫자 타입끼리 덧셈이 일어나고, 후에 "5"와 결합하면서 문자로 변형될 것이다.
-    - 사족 : 앞선 문제에서도 나왔는데, 숫자+문자에서 우선순위는 문자쪽으로 쏠린다.
+    ---
+    - 사족 : 앞선 문제에서 `숫자+문자`의 우선순위는 문자쪽에 있다는 것을 봤다.
     - 오답노트 : - 
     </>
 </details>
 
-### 48. parseInt
+### 48. parseInt(  )
 ```js
 const num = parseInt('7*6', 10);
 ```
 <details>
-  <summary>num의 값을 뭘까?</summary>
+  <summary>num의 값은 뭘까?</summary>
     <>
-    - 내 생각 : 42
+    - 내 생각 : `42`
     - 이유? : `parseInt`는 문자열을 인수로 받아 숫자로 변형시킨다. 두번째 인수는 n진수를 결정한다.
+    ---
+    - 오답노트 : 정답은 `7`이다. 계산이 처리될 거라 생각했는데, *파싱 단계에서 숫자가 아닌 문자를 만나면 진행을 중지한다*고 한다. 따라서 계산 대상으로 넘겨지는 것은 `7` 뿐이다.
     - 사족 : -
-    - 오답노트 : 정답은 `7`이다. 계산이 처리될 거라 생각했는데*, 파싱 단계에서 숫자가 아닌 문자를 만나면 진행을 중지한다*고 한다. 따라서 계산 대상으로 넘겨지는 것은 `7` 뿐이다.
     </>
 </details>
 
-### 49. 함수의 return;
+### 49. 함수의 return
 ```js
 [1, 2, 3].map((num) => {
   if (typeof num === 'number') return;
@@ -66,14 +71,15 @@ const num = parseInt('7*6', 10);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : [3 x empty]
-    - 이유? : 모두 숫자 타입이므로 `return 아무것도없음`이 넘겨진다. 이때 무슨 값으로 들어가냐가 관건인데 앞선 문제에서 봤듯 `empty`로 자리를 메꿀 거라 생각했다. 
-    - 사족 : -
+    - 내 생각 : `[3 x empty]`
+    - 이유? : 배열의 요소들이 모두 숫자 타입이므로 `return 아무것도없음`이 넘겨진다. 이때 무슨 값으로 들어가냐가 관건인데 앞선 문제에서 봤듯 `empty`로 자리를 메꿀 거라 생각했다. 
+    ---
     - 오답노트 : 정답은 `[undefined x 3]`다. 함수는 값을 반환하지 않을 때 `undefined`를 내보낸다.
+    - 사족 : `empty`는 배열에 값이 추가돼서 요소 간의 공백이 생길 때 만들어진다.
     </>
 </details>
 
-### 50. 변수의 데이터 수정
+### 50. 오브젝트 인수의 데이터 수정
 ```js
 function getInfo(member, year) {
   member.name = 'Lydia';
@@ -91,8 +97,9 @@ console.log(person, birthYear);
   <summary>무엇이 출력될까?</summary>
     <>
     - 내 생각 : `{name: "Lydia"}, "1997"`
-    - 이유? : 인수로 들어가면서 person은 내부값이 변환되어 저장된다. 반면 `birthYear`은 인수로 들어가 함수 내부에서만 값이 조정되는 것이고 그 원본값에는 영향을 받지 않는다.
-    - 사족 : -
+    - 이유? : 함수에 인수로 들어갔을 때 데이터 수정에 어떤 차이가 있는지를 보여준다. 오브젝트의 경우 참조하는 객체에 직접적으로 반영된다. String과 같은 다른 원시값의 경우에 값은 복사본으로 들어가서, 함수 안에서만 변경/유지된다.
+    ---
+    - 사족 : 인수로 들어갈 때 오브젝트 역시 복사본이지만, 이는 값복사가 아닌 참조의 복사다. 같은 주소를 가리키므로 한쪽에서의 수정이 다른 쪽에 영향을 준다.
     - 오답노트 : - 
     </>
 </details>
@@ -117,14 +124,15 @@ sayHi();
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "It worked! Hello world!"
+    - 내 생각 : `"It worked! Hello world!"`
     - 이유? : try 안에서 greeting()을 실행했고, 성공하여 빠져나간다.
+    ---
+    - 오답노트 : `throw`는 예외처리 계의 `return`이다. `throw`가 던져지는 즉시 예외처리, `catch`문으로 빠져나간다. 인수로는 이 `throw`를 리턴한 값이 전해진다. `"Oh no an error: Hello world!"`가 출력된다.
     - 사족 : -
-    - 오답노트 : `throw`는 `return`이 아니다. 예외처리에서의 `return`인데 try 블록 안에서 이를 읽으면 catch문으로 자연스레 빠지게 된다. catch(e)는 이 `throw`를 반환한다.
     </>
 </details>
 
-### 52. class의 상속
+### 52. 클래스의 상속
 ```js
 function Car() {
   this.make = 'Lamborghini';
@@ -137,10 +145,11 @@ console.log(myCar.make);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : Lamborghini
+    - 내 생각 : `Lamborghini`
     - 이유? : 생성자에 걸어놓은 `this.make`가 우선할 것 같다.
+    ---
+    - 오답노트 : `Maserati`를 출력한다. 속성을 리턴할 때, 값은 생성자에 걸어둔 값이 아닌 리턴하는 값과 같다고 한다. 값이 겹칠 때 `return`이 우선한다.
     - 사족 : -
-    - 오답노트 : Maserati를 출력한다. 속성을 반환할 때, 속성값은 생성자에 설정한 값이 아닌, 반환된 값과 같다고 한다. 값이 겹칠 때 `return`이 우선.
     </>
 </details>
 
@@ -156,8 +165,9 @@ console.log(typeof y);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "undefined", "number"
-    - 이유? : 함수 바깥에서 `let x`는 알 수 없다. y는 자바스크립트에 의해 `globalThis.y`로 자의적으로 선언되기 때문에 밖에서도 읽을 수 있다.
+    - 내 생각 : `"undefined"`, `"number"`
+    - 이유? : 함수 바깥에서 `let x`는 알 수 없다. y는 변수명이 없이 쓰였고, 이는 자바스크립트에서 `globalThis.y`로 임의 선언되기 때문에 밖에서도 읽을 수 있다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -186,9 +196,10 @@ pet.bark();
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "Woof I am Mara", typeError
-    - 이유? : Dog의 프로토타입에 bark()라는 메써드가 추가되었고 인스턴스인 pet은 그를 위임받는다. 이어 삭제를 거치는데, 함수가 아닌 것을 함수처럼 실행하려 했기 때문에 `typeError` 오류를 던진다.
-    - 사족 : 프로토타입도 객체다. 따라서 `delete`를 사용해 속성을 삭제할 수 있다.
+    - 내 생각 : `"Woof I am Mara"`, `typeError`
+    - 이유? : 부모클래스 Dog의 프로토타입에 `bark()` 메써드가 추가되었고 인스턴스인 pet은 그를 위임받는다. 프로토타입이 삭제된 후에는 함수가 아닌 것을 함수처럼 실행하려 했기 때문에 `typeError` 오류를 던진다.
+    ---
+    - 사족 : 클래스도 객체다. `delete`를 사용해 프로토타입을 삭제할 수 있다.
     - 오답노트 : - 
     </>
 </details>
@@ -204,7 +215,8 @@ console.log(set);
     <>
     - 내 생각 : `{1, 2, 3, 4}`
     - 이유? : Set 제너레이터는 중복값을 없앤 객체를 반환한다.
-    - 사족 : 다시 배열로 만들 때 spread operator 또는 Array.from() 활용할 수 있다. [...set]
+    ---
+    - 사족 : 다시 배열로 만들 때 `spread operator` 또는 `Array.from()` 활용할 수 있다. [...set]
     - 오답노트 : - 
     </>
 </details>
@@ -224,10 +236,11 @@ console.log(myCounter);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : 11
+    - 내 생각 : `11`
     - 이유? : `defalut`로 내보낸 값 `counter`를 `myCounter`로 이름붙여 가져왔다. 이 값은 10이었으므로 1을 증가시키면 11이 된다.
+    ---
+    - 오답노트 : 정답은 `Error`다. import된 모듈은 `read-only`라고 한다..
     - 사족 : -
-    - 오답노트 : 정답은 `Error`다. import된 모듈은 `read-only`다..
     </>
 </details>
 
@@ -242,9 +255,11 @@ console.log(delete age);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : false, true
-    - 이유? : 임의로 선언된 age는 `globalThis.age`, 즉 전역객체의 속성으로 들어간다. `delete` 오퍼레이터는 객체의 속성을 제거하는 연산자다.
-    - 사족 : var, const 또는 let 키워드로 선언된 변수은 delete 연산자를 사용해서 삭제될 수 없다고 한다. 
+    - 내 생각 : `false`, `true`
+    - 이유? : 임의로 선언된 age는 `globalThis.age`, 즉 전역객체의 프로퍼티로 들어간다. `delete` 오퍼레이터는 객체의 속성을 제거하는 연산자다.  
+    `const` 변수는 지울 수 없다.
+    ---
+    - 사족 : `const` 뿐만 아니라 모든 변수는(`var`, `let`) `delete` 연산자를 사용해서 삭제할 수 없다고 한다. `var age = 20`이 `globalThis.age = 20`과 같은 효과라고 해도 말이다.
     - 오답노트 : - 
     </>
 </details>
@@ -259,8 +274,9 @@ console.log(y);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : 1
-    - 이유? : 디스트럭션 원칙이 적용돼 배열의 첫번째 요소가 출력된다.
+    - 내 생각 : `1`
+    - 이유? : 디스트럭션 원칙이 적용돼 배열 내부의 요소와 조응한다. 첫번째 요소가 출력된다.
+    ---
     - 사족 : -
     - 오답노트 : - 
     </>
@@ -277,13 +293,14 @@ console.log(admin);
   <summary>무엇이 출력될까?</summary>
     <>
     - 내 생각 : `{ admin: true, name: "Lydia", age: 21 }`
-    - 이유? : 스프레드 오퍼레이터를 사용해 user의 값을 복사=풀어놨다.
+    - 이유? : `spread operator`를 사용해 user의 값을 가져와 복사=풀어놨다.
+    ---
     - 사족 : -
     - 오답노트 : - 
     </>
 </details>
 
-### 60. JSON.stringify
+### 60. JSON.stringify(  )
 ```js
 const settings = {
   username: 'lydiahallie',
@@ -298,12 +315,9 @@ console.log(data);
   <summary>무엇이 출력될까?</summary>
     <>
     - 내 생각 : `"{"level": 19, "health": 90}"`
-    - 이유? : 객체를 제이슨화했다. 두번째 인수는 일종의 필터링 역할을 하여 조건을 충족(해당되는) 프로퍼티만 반환하게 만든다.
-    - 사족 : 두번째 인자를 `replacer`라고 부르며, 배열 또는 함수가 올 수 있다. 함수일 경우 함수의 리턴값이 JSON 문자열에 추가할 속성의 값이 된다.
+    - 이유? : 객체를 제이슨화했다. 두번째 인수는 일종의 필터링 역할을 하여 조건을 충족하는 프로퍼티만 반환하게 한다.
+    ---
+    - 사족 : 두번째 인자 자리를 `replacer`라고 부르며, 배열 또는 함수가 올 수 있다. 함수일 경우 함수의 리턴값이 키로 사용된다.
     - 오답노트 : - 
     </>
 </details>
-
-
-
-

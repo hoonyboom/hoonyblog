@@ -1,13 +1,15 @@
 ---
 title: 자바스크립트 자가진단 5
-date: '2022-11-09'
+date: '2022-11-12'
 categories: coding
 tags: 자바스크립트
 description: 5th
 ---
 <HeadingNavigator />
 
-### 61. ++ 단항 연산자의 위치
+정답: `/15`
+
+### 61. ++ 증감연산자
 ```js
 let num = 10;
 
@@ -23,10 +25,11 @@ console.log(num2);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : 11, 12
-    - 이유? : unary operator ++의 계산에 의해 값이 증가한다.
+    - 내 생각 : `11`, `12`
+    - 이유? : `++`에 의해 값이 증가한다.
+    ---
+    - 오답노트 : 순서를 잘 봐야 한다. 출력되는 부분은 변수 부분이고 계산은 그다음에 붙고 있다. 따라서 첫번째 함수로 10이 리턴되고 그다음에 값이 1 증가한다. num2에서도 같은 일이 되풀이된다. 따라서 `10`, `10`이 출력된다.
     - 사족 : -
-    - 오답노트 : 순서를 잘 봐야 한다. 출력되는 부분은 변수 부분이고 계산은 그다음이다. 첫번째 함수로 리턴되는 값은 10이며, 후에 값이 1 증가한다. (전역변수 num = 11) num1의 값은 여전히 10이며, num2에서도 같은 일이 되풀이 된다. 따라서 10, 10이 찍힌다.
     </>
 </details>
 
@@ -46,22 +49,24 @@ multiply(value);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : 20, 20, 20, 40
-    - 이유? : 디폴트로 value값을 복사하여 가져온다. 이때 참조값을 복사하여 계산해도 원본값은 그대로이기 때문에 두번 거듭해도 값은 20이다. 반면 원본값을 인자로 받았을 땐 계산된 값이 반영되기 때문에 값이 40으로 늘어난다.
+    - 내 생각 : `20`, `20`, `20`, `40`
+    - 이유? : `spread operator` 이용해 value의 값을 복사하여 가져오고 있다. 이는 참조의 복사(=공유)가 아닌 새로운 객체다. 그래서 인수가 없을 때 출력되는 값은 언제나 `20`이다. 반면 value를 직접 인자로 받았을 땐 참조값에 수정이 일어나, 두번 거듭하면 값이 `40`이 된다.
+    ---
     - 사족 : -
     - 오답노트 : - 
     </>
 </details>
 
-### 63. Array.reduce()
+### 63. Array.reduce(  )
 ```js
 [1, 2, 3, 4].reduce((x, y) => console.log(x, y));
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : 1, 2 / undefined, 3 / undefined, 4
-    - 이유? : x의 자리는 누적값(Accumlate) y의 자리는 현재값(Current)이 들어온다. 세번째 인수인 초기값이 비어있기 때문에 배열의 첫번째 요소가 초기값이 되도록 두번째 요소부터 함수가 실행된다. 즉 x(acc)= 1, y(cur)=2가 출력된다. 현재값 y는 이렇게 계속 진행한다. x의 값으로는 return에 의해 설계된 어떤 누적값이 들어와야 하지만, 여기서는 아무것도 계산되지 않기에 `undefined`를 띄운다.
+    - 내 생각 : `1, 2`, `undefined, 3`, `undefined, 4`
+    - 이유? : x자리는 누적값(Accumlate) y 자리는 현재값(Current)이 들어온다. 초기값 설정 자리인 세번째 인수는 비어 있다. 때문에 배열의 첫번째 요소가 초기값이 되고, 두번째 요소부터 함수가 실행된다. 즉 첫 시도에서 `x(acc) = 1`, `y(cur) = 2`가 출력된다. 이런 식으로 현재값 y에는 뒷요소가 들어올 것이다. 그렇다면 x의 값은? x의 값으로는 리턴되는 어떤 설계가 있어야 하나, 여기서는 아무것도 마련되어 있지 않다. `undefined`를 띄운다.
+    ---
     - 사족 : -
     - 오답노트 : - 
     </>
@@ -102,7 +107,8 @@ class Labrador extends Dog {
   <summary>Dog 클래스를 성공적으로 확장할 수 있는 생성자는 어느 것일까?</summary>
     <>
     - 내 생각 : 2
-    - 이유? : 인수로 name을 넘겨받고 이는 부모 클래스에 super()로 넘긴다. 
+    - 이유? : `super()`를 통해 부모클래스와 이어져 있다. 인수로 넘겨 받은 `name`은 그에 넘기고, 자신은 `size`를 취하고 있다.
+    --- 
     - 사족 : 자식 클래스는 super()를 부르기 전까지 `this` 키워드에 접근할 수 없다.
     - 오답노트 : - 
     </>
@@ -123,7 +129,8 @@ export const sum = (a, b) => a + b;
     <>
     - 내 생각 : `running sum.js`, `running index.js`, `3`
     - 이유? : `import`된 모듈부터 먼저 파싱된다.
-    - 사족 : `require()`은 코드가 등장한 시점에 모듈을 로드한다는 점에서 둘의 차이가 있다.
+    ---
+    - 사족 : `require()`은 코드가 등장한 시점에 모듈이 로드된다. 모듈부터 로드하는 `import`와 이런 점에서 차이가 있다.
     - 오답노트 : - 
     </>
 </details>
@@ -137,14 +144,15 @@ console.log(Symbol('foo') === Symbol('foo'));
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : true, true, false
-    - 이유? : 심볼은 고유값이다.
-    - 사족 : -
+    - 내 생각 : `true`, `true`, `false`
+    - 이유? : 모든 심볼은 고유하다. 
+    ---
+    - 사족 : 래퍼 클래스가 아니라 `new Number()`, `new Boolean()`이었다면 이들의 답은 `false`다.
     - 오답노트 : - 
     </>
 </details>
 
-### 67. String.padStart()
+### 67. String.padStart(  )
 ```js
 const name = 'Lydia Hallie';
 console.log(name.padStart(13));
@@ -153,9 +161,10 @@ console.log(name.padStart(2));
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : " Lydia Hallie", "Lydia Hallie"
-    - 이유? : padding(공백), 자리를 차지하는 최소 문자를 결정한다. 현재 `name`의 글자는 12자이다. 부족한 만큼의 글자를 공백이 채운다.
-    - 사족 :
+    - 내 생각 : `" Lydia Hallie"`, `"Lydia Hallie"`
+    - 이유? : *pad*ding(공백), 자리를 차지하는 최소 문자를 결정한다. 현재 `name`의 글자는 열두자다. 부족한 만큼의 글자를 공백이 채운다. `name.padStart(2)`의 경우 진작 충족되었기에 아무런 영향이 없다.
+    ---
+    - 사족 : -
     - 오답노트 : - 
     </>
 </details>
@@ -167,8 +176,9 @@ console.log('🥑' + '💻');
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "🥑💻"
+    - 내 생각 : `"🥑💻"`
     - 이유? : 따옴표에 넣었기 때문에 unicode 값이 아니라 문자열로 계산되지 않을까?
+    ---
     - 사족 : -
     - 오답노트 : - 
     </>
@@ -191,8 +201,9 @@ console.log(/* 2 */); // JavaScript loves you back ❤️
 <details>
   <summary>console.log 표현식 뒤에 언급된 값을 어떻게 출력할 수 있을까?</summary>
     <>
-    - 내 생각 : game.next().value, game.next("Yes").value
-    - 이유? : 제너레이터에서 next().value는 yield값 = answer 를 내보낸다. 이 answer의 값이 "Yes"일 때 'JavaScript loves you back ❤️'를 리턴하므로 next() 안에 그 값을 넣어준다.
+    - 내 생각 : `game.next().value`, `game.next("Yes").value`
+    - 이유? : 제너레이터에서 `next().value`는 yield의 값을 내보낸다. 그리고 이 값은 `answer` 변수에 할당돼 있다. 따라서 `next()`의 인수 부분에 값을 넣으면 그건 `answer`의 값을 덮어쓴다.
+    ---
     - 사족 : next() 함수가 전달한 파라미터의 값은 이전 `yield`를 대체한다고 한다. answer를 `Yes`로 만들기 위해 그에 인수를 넣는다.
     - 오답노트 : - 
     </>

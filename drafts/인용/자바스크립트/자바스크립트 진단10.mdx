@@ -7,15 +7,451 @@ description: 10th
 ---
 <HeadingNavigator />
 
-### 86. 
+### 136. 디폴트 파라미터
 ```js
+const add = (x) => x + x;
 
+function myFunc(num = 2, value = add(num)) {
+  console.log(num, value);
+}
+
+myFunc();
+myFunc(3);
 ```
 <details>
-  <summary>색이 출력될까?</summary>
+  <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 :
+    - 내 생각 : `2, 4`, `3, 6`
+    - 이유? : 인수를 하나도 전달하지 않아도, 두 인수 모두 `default parameter`가 설정돼 있기 때문에 정상적으로 작동할 것 같다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 137. '#' 변수
+```js
+class Counter {
+  #number = 10;
+
+  increment() {
+    this.#number++;
+  }
+
+  getNum() {
+    return this.#number;
+  }
+}
+
+const counter = new Counter();
+counter.increment();
+
+console.log(counter.#number);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 
+    - 이유? : 잘 모르겠다. 클래스 안에서 `#`이 어떤 역할을 하고 있는 걸까?
+    - 사족 : -
+    - 오답노트 : ES2020에서 `#`을 사용하면 `private` 변수를 만들 수 있다. 인스턴스 등 클래스 외부에선 이에 접근할 수 없다. SyntaxError가 던져진다.
+    </>
+</details>
+
+### 138. yield*
+```js
+const teams = [
+  { name: 'Team 1', members: ['Paul', 'Lisa'] },
+  { name: 'Team 2', members: ['Laura', 'Tim'] },
+];
+
+function* getMembers(members) {
+  for (let i = 0; i < members.length; i++) {
+    yield members[i];
+  }
+}
+
+function* getTeams(teams) {
+  for (let i = 0; i < teams.length; i++) {
+    // ✨ SOMETHING IS MISSING HERE ✨
+  }
+}
+
+const obj = getTeams(teams);
+obj.next(); // { value: "Paul", done: false }
+obj.next(); // { value: "Lisa", done: false }
+```
+<details>
+  <summary>무엇이 빠졌을까?</summary>
+    <>
+    - 내 생각 : `yield* getMembers(teams[i].members)`
+    - 이유? : 반복가능한 요소를 하나씩, 순차적으로 넣고 있다. 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 139. 디폴트 파라미터
+```js
+const person = {
+  name: 'Lydia Hallie',
+  hobbies: ['coding'],
+};
+
+function addHobby(hobby, hobbies = person.hobbies) {
+  hobbies.push(hobby);
+  return hobbies;
+}
+
+addHobby('running', []);
+addHobby('dancing');
+addHobby('baking', person.hobbies);
+
+console.log(person.hobbies);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `["coding", "dancing", "baking"]`
+    - 이유? : hobbies의 디폴트로 person.hobbies를 설정했다. 두 번째 인수가 생략될시 hobbies는 person.hobbies를 참조한다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 140. super()
+```js
+class Bird {
+  constructor() {
+    console.log("I'm a bird. 🦢");
+  }
+}
+
+class Flamingo extends Bird {
+  constructor() {
+    console.log("I'm pink. 🌸");
+    super();
+  }
+}
+
+const pet = new Flamingo();
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `I'm pink. 🌸 I'm a bird. 🦢`
+    - 이유? : 부모 클래스의 상속은 `super()`를 통해서다.
+    - 사족 : `super()`가 실행되기 전까지 자식 클래스에선 `this`를 사용할 수 없다.
+    - 오답노트 : -
+    </>
+</details>
+
+### 141. const 배열 데이터의 수정
+```js
+const emojis = ['🎄', '🎅🏼', '🎁', '⭐'];
+
+/* 1 */ emojis.push('🦌');
+/* 2 */ emojis.splice(0, 2);
+/* 3 */ emojis = [...emojis, '🥂'];
+/* 4 */ emojis.length = 0;
+```
+<details>
+  <summary>다음 중 어느 것의 결과가 오류일까?</summary>
+    <>
+    - 내 생각 : 3 and 4
+    - 이유? : 3번, `const` 재선언, 재할당이 불가능하다. 하지만 오브젝트, 어레이의 내부값의 수정에는 영향을 받지 않는다. length는 `readonly` 속성이어야 할 거 같다.
+    - 사족 : -
+    - 오답노트 : `length` 속성을 통해 배열의 크기를 조절할 수 있다. 배열을 초기화할 수도 있다.
+    </>
+</details>
+
+### 142. 반복가능한 오브젝트
+```js
+const person = {
+  name: "Lydia Hallie",
+  age: 21
+}
+
+[...person] // ["Lydia Hallie", 21]
+```
+<details>
+  <summary>person에 무엇을 추가해야 [...person]의 결과로 ["Lydia Hallie", 21]를 얻을 수 있을까?</summary>
+    <>
+    - 내 생각 : 
+    - 이유? : 객체의 프로퍼티(키)는 제외하고 할당값만 풀어져 있다. 이를 위한 메써드는 `Object.values()`이다. 각각의 속성들에 대해 이를 적용시키려면 내부에서 반복문을 돌려야 하는데 이 부분을 잘 모르겠다.
+    - 사족 : `Array` `TypedArray` `String` `Map` `Set`는 `iterator`를 내장하고 있다.
+    - 오답노트 : 객체는 기본적으로 반복 불가능하지만 `iterator protocol`이 제공되면 반복할 수 있다고 한다. 이 부분은 따로 포스팅해서 다루겠다.
+    </>
+</details>
+
+### 143. forEach 반복문
+```js
+let count = 0;
+const nums = [0, 1, 2, 3];
+
+nums.forEach((num) => {
+  if (num) count += 1;
+});
+
+console.log(count);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : 3
+    - 이유? : forEach에 의해 nums의 요소 수만큼 if문이 반복된다. 0은 false이므로 이를 제외, 세 번 카운팅될 것이다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 144. 옵셔널 체이닝
+```js
+function getFruit(fruits) {
+  console.log(fruits?.[1]?.[1]);
+}
+
+getFruit([['🍊', '🍌'], ['🍍']]);
+getFruit();
+getFruit([['🍍'], ['🍊', '🍌']]);
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `undefined`, `undefined`, `🍌`
     - 이유? : 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 145. 인스턴스
+```js
+class Calc {
+	constructor() {
+		this.count = 0 
+	}
+
+	increase() {
+		this.count++
+	}
+}
+
+const calc = new Calc()
+new Calc().increase()
+
+console.log(calc.count)
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `0`
+    - 이유? : 인스턴스는 언제나 새로운 객체다. `new Calc().increase()`의 증가와 `calc`는 관련이 없다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 146. Object.assign()
+```js
+const user = {
+	email: "e@mail.com",
+	password: "12345"
+}
+
+const updateUser = ({ email, password }) => {
+	if (email) {
+		Object.assign(user, { email })
+	}
+
+	if (password) {
+		user.password = password
+	}
+
+	return user
+}
+
+const updatedUser = updateUser({ email: "new@email.com" })
+
+console.log(updatedUser === user)
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `true`
+    - 이유? : `Object.assign()`을 이용해 오브젝트 속성을 수정할 수 있다. 여기에선 이메일을 인수로 받아 user 오브젝트에 있던 `email`을 수정했다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 147. 배열 데이터의 수정
+```js
+const fruit = ['🍌', '🍊', '🍎']
+
+fruit.slice(0, 1)
+fruit.splice(0, 1)
+fruit.unshift('🍇')
+
+console.log(fruit)
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `['🍇', '🍊', '🍎']`
+    - 이유? : 원본 배열을 수정하는 것은 `splice()`다. 첫번째 인수는 시작점, 두번째 인수는 개수를 뜻한다. 따라서 첫번째 요소만 잘라낸다. 후에 포도를 앞에서부터 추가한다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 148. object Object
+```js
+const animals = {};
+let dog = { emoji: '🐶' }
+let cat = { emoji: '🐈' }
+
+animals[dog] = { ...dog, name: "Mara" }
+animals[cat] = { ...cat, name: "Sara" }
+
+console.log(animals[dog])
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `{ emoji: "🐈", name: "Sara" }`
+    - 이유? : 오브젝트를 객체의 키값으로 사용했다. 객체의 키는 일반적으로 문자고(혹은 심볼) 이는 오브젝트를 문자처럼 취급하려 한다. 오브젝트를 문자처럼 읽을 때 반환되는 값은 `object Object`다. 현재 그 값은 처음에는 강아지, 이어서는 고양이로 덧씌워져 있다. 콘솔을 찍었을 때 따라서 반환되는 값은 고양이다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 149. 화살표 함수의 this
+```js
+const user = {
+	email: "my@email.com",
+	updateEmail: email => {
+		this.email = email
+	}
+}
+
+user.updateEmail("new@email.com")
+console.log(user.email)
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `my@email.com`
+    - 이유? : 화살표 함수 안에서 `this`의 대상은 사뭇 다르다. 함수가 현재 포함된 객체가 아니라, 그 객체의 상위를 지칭한다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 150. 
+```js
+const promise1 = Promise.resolve('First')
+const promise2 = Promise.resolve('Second')
+const promise3 = Promise.reject('Third')
+const promise4 = Promise.resolve('Fourth')
+
+const runPromises = async () => {
+	const res1 = await Promise.all([promise1, promise2])
+	const res2  = await Promise.all([promise3, promise4])
+	return [res1, res2]
+}
+
+runPromises()
+	.then(res => console.log(res))
+	.catch(err => console.log(err))
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `[['First', 'Second'], ['Third', 'Fourth']]`
+    - 이유? : 다중 프로미스를 처리할 때 `Promise.all()`을 쓴다. 해결된 res1의 값은 `["First", "Second"]`다. res2도 똑같이 진행된다.
+    - 사족 : -
+    - 오답노트 : `Promise.all()` 메써드는 하나의 프로미스라도 실패하면 `rejected` 된다. promise3은 `resolve`가 아닌 `reject`값을 가지고 있다. 이로 인해 `runPromises` 실행시 `catch`가 발동하여 "Third"만 출력된다.
+    </>
+</details>
+
+### 151. 오브젝트 만들기
+```js
+const keys = ["name", "age"]
+const values = ["Lydia", 22]
+
+const method = /* ?? */
+Object[method](keys.map((_, i) => {
+	return [keys[i], values[i]]
+})) // { name: "Lydia", age: 22 }
+```
+<details>
+  <summary>무엇이 method의 값이어야 `{ name: "Lydia", age: 22 }`를 출력할까?</summary>
+    <>
+    - 내 생각 : `fromEntries`
+    - 이유? : `Object.fromEntries()`는 배열 `[key,value]`를 받아 객체의 속성으로 삼는다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 152. 검증
+```js
+const createMember = ({ email, address = {}}) => {
+	const validEmail = /.+\@.+\..+/.test(email)
+	if (!validEmail) throw new Error("Valid email pls")
+
+	return {
+		email,
+		address: address ? address : null
+	}
+}
+
+const member = createMember({ email: "my@email.com" })
+console.log(member)
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : `{ email: "my@email.com", address: {} }`
+    - 이유? : 검증을 통해 `email`을 통과했고 리턴으로 이어진다. 빈 객체는 존재하는 값이므로 `{}`이 그대로 들어간다. 
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>
+
+### 153. 부정논리 연산자
+```js
+let randomValue = { name: "Lydia" }
+randomValue = 23
+
+if (!typeof randomValue === "string") {
+	console.log("It's not a string!")
+} else {
+	console.log("Yay it's a string!")
+}
+```
+<details>
+  <summary>무엇이 출력될까?</summary>
+    <>
+    - 내 생각 : "Yay it's a string!"
+    - 이유? : randomValue의 타입은 `number`다. 이는 진짜 같은 값이고 부정논리 연산자에 의해 false로 변환된다. 이는 `string` 타입과 아무 연관이 없으므로 else문이 실행된다.
+    - 사족 : -
+    - 오답노트 : -
+    </>
+</details>  
+
+### 154. 전역객체
+```js
+A: true
+B: false
+C: 경우에 따라 다르다
+```
+<details>
+  <summary>JavaScript의 전역 실행 컨텍스트는 두가지를 만든다: 전역객체와 "this" 키워드.</summary>
+    <>
+    - 내 생각 : `true`
+    - 이유? : `globalThis`, `global`, `window` 그리고 특정 조건을 제외한 `this`는 전역객체를 부른다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
