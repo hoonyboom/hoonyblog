@@ -1,13 +1,15 @@
 ---
 title: 자바스크립트 자가진단 7
-date: '2022-11-09'
+date: '2022-11-14'
 categories: coding
 tags: 자바스크립트
 description: 7th
 ---
 <HeadingNavigator />
 
-### 91. Object.entries() 
+점수 : `14/15`
+
+### 91. Object.entries(  ) 
 ```js 
 const person = {
   name: 'Lydia',
@@ -21,8 +23,9 @@ for (const [x, y] of Object.entries(person)) {
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : name Lydia 그리고 age 21
-    - 이유? : Object.entries()는 오브젝트의 키와 값 한쌍을 배열에 담아 내보낸다. 그를 디스트럭션 문법으로 와해하여 값을 직접 불러오고 있다.
+    - 내 생각 : `name, Lydia` 그리고 `age, 21`
+    - 이유? : `Object.entries()`는 오브젝트의 키와 값 한쌍을 배열에 담아 보낸다. 그를 디스트럭션 문법으로 와해하여 값을 직접 불러오고 있다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -39,8 +42,9 @@ getItems(["banana", "apple"], "pear", "orange")
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : SyntaxError
+    - 내 생각 : `SyntaxError`
     - 이유? : `rest parameter`는 파라미터의 끝자리에 위치해야만 한다. 나머지 모든 인수를 배열에 담아 받겠다는 의미이며, 마지막 하나를 따로 둔다고 해서 예외로 빼주지 않는다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -61,14 +65,15 @@ console.log(nums(1, 2));
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : a is bigger, undefined 그리고 b is bigger, undefined
+    - 내 생각 : `a is bigger`, `undefined` 그리고 `b is bigger`, `undefined`
     - 이유? : 모든 함수는 `return`을 만나면 끝이 난다. `return`이 아무 일도 수행 않고 맥없이 종료되었으므로 반환되는 값은 `undefined`다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 94. class의 중복선언
+### 94. 클래스의 중복
 ```js
 class Person {
   constructor() {
@@ -88,8 +93,9 @@ console.log(member.name);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "Sarah"
-    - 이유? : 클래스는 function의 감투다. function이 중복선언 되었을 때 덮어쓰기가 가능한 것처럼 클래스도 나중의 것을 덮어 쓸 것이다.
+    - 내 생각 : `Sarah`
+    - 이유? : 클래스는 `function`의 감투다. `function`이 중복선언 되었을 때 덮어쓰기가 가능한 것처럼 클래스도 나중의 것을 덮어 쓸 것이다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -109,8 +115,9 @@ console.log(Object.keys(info));
     <>
     - 내 생각 : `{ a: "b" }` 그리고 `["a"]`
     - 이유? : 키값이 `Symbol`로 선언됐다고 해도, 그 표면은 오브젝트와 똑같이 보일 것이다.
+    ---
+    - 오답노트 : 심볼은 *열거 불가능*하다. `Object.keys()`는 열거 가능한 값(오브젝트의 키)들을 반환하는데 해당되지 않으므로 빈 배열이다. 하지만 전체를 출력하면 심볼값이 드러난다.
     - 사족 : -
-    - 오답노트 : 심볼은 *열거 불가능*하다. Object.keys()는 열거 가능한 키를 반환하는데 해당되지 않으므로 빈 배열이다. 전체를 출력하면 본모습 그대로 드러난다.
     </>
 </details>
 
@@ -130,8 +137,9 @@ console.log(getUser(user))
     <>
     - 내 생각 :  `[1, [2, 3, 4]]`, `{ name: "Lydia", age: 21 }`
     - 이유? : `[1, 2, 3, 4]`가 `[x, ...y]`의 형태가 되려면 `y=[2, 3, 4]`가 돼야 한다. 이를 리턴에 대입하면 `[1, [2, 3, 4]]`가 나온다. 
+    ---
+    - 오답노트 : 화살표 함수에선 값 하나만 리턴할 땐 *중괄호도 return도 생략이 가능*하다. (`user => { return XYZ; }` == `user => XYZ;`) 이런 간소화는 화살표 함수를 직관적으로 보이게 만들지만 문제는 리턴값이 오브젝트일 때 발생한다. 이때 화살표는 또 중괄호를 맞닥뜨리게 되는데, 앞선 중괄호 생략의 메커니즘이 혼선을 주는 모양이다. 그래서 오브젝트를 리턴할 땐 반드시 괄호()로 그 주위를 감싸줘야 한다. 그렇지 않으면 `undefined`가 리턴된다.
     - 사족 : -
-    - 오답노트 : 화살표 함수에서 값 하나만 리턴될 땐 중괄호도 return도 생략이 가능하다. (`user => { return XYZ; }` == `user => XYZ;`) 이런 간소화는 화살표 함수를 직관적으로 보이게 만든다. 문제는 XYZ가 오브젝트일 때 발생한다. 이때 화살표는 또 중괄호를 맞닥뜨리게 되는데, 앞선 중괄호 생략의 메커니즘이 혼선을 주는 모양이다. 그래서 오브젝트를 리턴할 땐 반드시 괄호()로 그 주위를 감싸줘야 한다고 한다. 그렇지 않으면 `undefined`가 리턴된다.
     </>
 </details>
 
@@ -144,9 +152,10 @@ console.log(name());
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : TypeError
+    - 내 생각 : `TypeError`
     - 이유? : name은 함수가 아니다. 함수가 아닌 것(String 타입)을 함수처럼 사용할 땐 `TypeError`가 난다.
-    - 사족 : ReferenceErrors는 말 그대로 접근하려고 하는 값의 *참조*를 찾을 수 없을 때 던져진다. SyntaxError는 정해진 구문을 오타 냈을 때 던져진다.
+    ---
+    - 사족 : `ReferenceErrors`는 말 그대로 접근하려고 하는 값의 *참조*를 찾을 수 없을 때 던져진다. `SyntaxError`는 정해진 구문을 오타 냈을 때 던져진다.
     - 오답노트 : -
     </>
 </details>
@@ -161,6 +170,7 @@ You should${'' && `n't`} see a therapist after so much JavaScript lol`;
     <>
     - 내 생각 : `Impossible! You should see a therapist after so much JavaScript lol`
     - 이유? : 모든 배열은 `Array`의 인스턴스다. 안이 비어 있어도 `true`로 취급된다. 반면 문자 `''`은 false로 취급돼서 이 리터럴 템플릿은 실행되지 않는다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -178,7 +188,8 @@ console.log(one, two, three);
   <summary>무엇이 출력될까?</summary>
     <>
     - 내 생각 : `{}, "", []`
-    - 이유? : || 연산자는 참이 하나라도 있으면 그 값을 반환한다. two의 경우 참이 나올 때까지 연산을 진행하는데, 끝까지 없으므로 마지막 계산 대상인 `''`를 반환할 거라 생각했다. 마찬가지 논리로 three의 경우 `[]`이 참이기에 그 자리에서 종료된다.
+    - 이유? : `||` 연산자는 참이 하나라도 있으면 그 값을 반환한다. two의 경우 참이 나올 때까지 연산을 진행하는데, `true`를 찾으려 마지막까지 가서 결국 `''`을 리턴한다. 마찬가지 논리로 three의 경우 `[]`이 참이기에 그 자리에서 종료된다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -204,8 +215,9 @@ secondFunction();
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : `second, I have resolved!`, `I have resolved!, second`
-    - 이유? : 첫번째 함수를 실행했고 .then()의 처리가 오래 걸리기에 `second`부터 출력된다. 두번째 함수에서 `await`이 걸렸고 이는 이를 해결해야 다음 줄로 명령이 넘어가는 것을 의미한다.
+    - 내 생각 : `second`, `I have resolved!`, `I have resolved!`, `second`
+    - 이유? : 첫번째 함수를 실행했고 `.then()`의 처리가 오래 걸리기에 `second`부터 출력된다. 두번째 함수에서는 `await`이 걸렸고 이를 해결해야 다음으로 넘어간다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
@@ -219,12 +231,6 @@ set.add(1);
 set.add('Lydia');
 set.add({ name: 'Lydia' });
 
-{
-  1: undefined,
-  "Lidia": undefined,
-  { name: "Lydia" }: undefined
-}
-
 for (let item of set) {
   console.log(item + 2);
 }
@@ -234,12 +240,13 @@ for (let item of set) {
     <>
     - 내 생각 : `3`, `Lydia2`, `[object Object]2`
     - 이유? : 차례대로 숫자덧셈, 문자더하기, 오브젝트 더하기가 일어난다.  
+    ---
     - 사족 : 연산을 위해 `Object`는 문자화된다. 일반 객체를 문자화하면 `[object Object]`가 되고 여기에 문자더하기가 일어난다.
     - 오답노트 : -
     </>
 </details>
 
-### 102. Promise.resolve()
+### 102. Promise.resolve(  )
 ```js
 Promise.resolve(5);
 ```
@@ -248,8 +255,9 @@ Promise.resolve(5);
     <>
     - 내 생각 : `Promise {<pending/>: 5}`
     - 이유? : 문제를 던지고 가만히 있는 상태다. 해결을 요하려면 `.then(), await, try()` 등으로 진행시켜야 한다.
+    ---
+    - 오답노트 : 메써드 자체는 resolved된 값을 리턴한다고 한다(`fulfilled`).
     - 사족 : -
-    - 오답노트 : 메써드 그 자체는 resolved된 값을 리턴한다고 한다(`fulfilled`).
     </>
 </details>
 
@@ -271,13 +279,14 @@ compareMembers(person);
   <summary>무엇이 출력될까?</summary>
     <>
     - 내 생각 : `They are the same!`
-    - 이유? : person2는 person을 참조한다. 그리고 person1에 person이 들어왔다. 이 둘은  각각이 아니라 같은 주소, 메모리의 동일한 주소를 가리키고 있다.
+    - 이유? : person2는 person을 참조한다. 그리고 person1에 person이 들어왔다. 이 둘은 각각이 아니라 같은 주소, 메모리의 동일한 주소를 가리키고 있다.
+    ---
     - 사족 : -
     - 오답노트 : -
     </>
 </details>
 
-### 104. 오브젝트의 괄호 표기법과 점 표기법
+### 104. Dot Notation
 ```js
 const colorConfig = {
   red: true,
@@ -294,10 +303,11 @@ console.log(colorConfig.colors[1]);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : `undefined`
-    - 이유? : 이건 colorConfig 객체에서 colors라는 키가 있는지, 없어도 일단 찾아보라고 요청하는 것과 같다. 이때 키는 문자열이고 따라서 colorConfig.o 의 값을 찾아볼 것이다. 그런 건 없다.
-    - 사족 : `colorConfig[colors[1]]`로 출력하면 답은 `true`다.
-    - 오답노트 : 순서가 대단히 잘못됐다ㅋㅋ 우선 colors란 키를 찾아본다고 한다. 그 값은 `undefined`다. *그리고 나서*, `[1]`을 사용해 인덱싱한다. `undefined`는 인덱싱을 실행시킬 수 있는 대상, 타입이 아니므로 `TypeError`를 던진다.
+    - 내 생각 : `TypeError`
+    - 이유? : 파이프라인을 따라 colors란 값이 오브젝트 안에 있는지를 먼저 찾는다. 없으므로 `undefined`고, 괄호 인덱싱은 여기에 붙는다.
+    ---
+    - 사족 : -
+    - 오답노트 : -
     </>
 </details>
 
@@ -308,8 +318,9 @@ console.log('❤️' === '❤️');
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : true
+    - 내 생각 : `true`
     - 이유? : 문자로 감싼 이모지이기 때문에 타입도 값도 같을 것이다.
+    ---
     - 사족 : 문자로 감싸기 이전에 이모지 자체가 특정한 문자값을 지닌 유니코드다. (`"U+2764 U+FE0F"`).
     - 오답노트 : -
     </>

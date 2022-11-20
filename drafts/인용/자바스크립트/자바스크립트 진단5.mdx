@@ -7,7 +7,7 @@ description: 5th
 ---
 <HeadingNavigator />
 
-정답: `/15`
+점수 : `12/15`
 
 ### 61. ++ 증감연산자
 ```js
@@ -202,28 +202,29 @@ console.log(/* 2 */); // JavaScript loves you back ❤️
   <summary>console.log 표현식 뒤에 언급된 값을 어떻게 출력할 수 있을까?</summary>
     <>
     - 내 생각 : `game.next().value`, `game.next("Yes").value`
-    - 이유? : 제너레이터에서 `next().value`는 yield의 값을 내보낸다. 그리고 이 값은 `answer` 변수에 할당돼 있다. 따라서 `next()`의 인수 부분에 값을 넣으면 그건 `answer`의 값을 덮어쓴다.
+    - 이유? : 제너레이터에서 `next().value`는 yield의 값을 내보낸다. 그리고 `next()` 함수에 인수를 전달하면 그건 이전 `yield`의 값을 덮어 쓴다.
     ---
-    - 사족 : next() 함수가 전달한 파라미터의 값은 이전 `yield`를 대체한다고 한다. answer를 `Yes`로 만들기 위해 그에 인수를 넣는다.
+    - 사족 : -
     - 오답노트 : - 
     </>
 </details>
 
-### 70. String.raw
+### 70. String.raw(  )
 ```js
 console.log(String.raw`Hello\nworld`);
 ```
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : Hello\nworld
-    - 이유? : 줄바꿈이 일어나야 하지만, `raw`에 의해 날것 그대로 출력될 거 같다.
-    - 사족 : -
+    - 내 생각 : `Hello\nworld`
+    - 이유? : 원래라면 줄바꿈이 일어나야 했지만, `raw`에 의해 날것 그대로 출력될 거 같다.
+    ---
+    - 사족 : `String.raw()`는 escapes(\n, \v, \t 등.)를 허용하지 않는다. 
     - 오답노트 : - 
     </>
 </details>
 
-### 71. await된 promise의 진행
+### 71. Promise await
 ```js
 async function getData() {
   return await Promise.resolve('I made it!');
@@ -235,14 +236,15 @@ console.log(data);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : "I made it!"
-    - 이유? : resolve()를 해결해야 한다.
+    - 내 생각 : `"I made it!"`
+    - 이유? : resolve()를 해결한다.
+    ---
+    - 오답노트 : 해결하기 위해서는 `.then()` 또는 `try`문이 나와야 한다. 지금은 그 전의 상태로, 리턴된 값을 가지지만 `await`에 걸려 있는 상태다. `Promise {<pending/>}`을 출력한다.
     - 사족 : -
-    - 오답노트 : 해결하기 위해서는 `.then()` 또는 `try`문이 나와야 한다. 지금은 그 전의 상태로 await에 걸려 있는 상태다. `Promise {<pending/>}`을 출력한다.
     </>
 </details>
 
-### 72. Array.push()
+### 72. Array.push(  )
 ```js
 function addToList(item, list) {
   return list.push(item);
@@ -256,12 +258,13 @@ console.log(result);
     <>
     - 내 생각 : ['banana', 'apple']
     - 이유? : 바나나가 담긴 배열에 애플을 푸쉬했다.
+    ---
+    - 오답노트 : list를 리턴한 게 아니라 `list.push(item)`을 리턴했다. 이 경우 push는 요소가 추가된 배열의 길이를 리턴한다.
     - 사족 : -
-    - 오답노트 : list를 리턴한 게 아니라 list.push(item)을 리턴했다. 이 경우 push는 요소가 추가된 배열의 길이를 리턴한다.
     </>
 </details>
 
-### 73. Object.freeze()
+### 73. Object.freeze(  )
 ```js
 const box = { x: 10, y: 20 };
 
@@ -277,7 +280,8 @@ console.log(shape);
     <>
     - 내 생각 : `{ x: 10, y: 20 }`
     - 이유? : 얼린 오브젝트는 수정할 수 없다.
-    - 사족 : -
+    ---
+    - 사족 : 얼린 오브젝트 내에 또다른 오브젝트가 있다면, 그 속성은 수정할 수 있다.
     - 오답노트 : - 
     </>
 </details>
@@ -291,14 +295,15 @@ console.log(name);
 <details>
   <summary>무엇이 출력될까?</summary>
     <>
-    - 내 생각 : ReferenceError
+    - 내 생각 : `ReferenceError`
     - 이유? : `myName`은 디스트럭션에 의해 "Lydia"의 값을 가지지만(구조 파괴에 의한 변수 생성), `name`을 지칭하는 것은 현재 아무것도 없다.
+    ---
     - 사족 : -
     - 오답노트 : - 
     </>
 </details>
 
-### 75. 순수함수
+### 75. 순수 함수
 ```js
 function sum(a, b) {
   return a + b;
@@ -307,9 +312,10 @@ function sum(a, b) {
 <details>
   <summary>이것은 순수 함수일까?</summary>
     <>
-    - 내 생각 : Yes
+    - 내 생각 : `Yes`
     - 이유? : ...
-    - 사족 : 순수 함수는 항상 같은 결과를 반환하는 함수다. 1과 1을 천만번 집어넣어도 2가 나오면 그걸 순수 함수라고 한다.
+    ---
+    - 사족 : 순수 함수는 항상 같은 결과를 반환하는 함수다. 1과 1을 천만번 집어넣어도 2가 나오면 그건 순수 함수다.
     - 오답노트 : - 
     </>
 </details>
