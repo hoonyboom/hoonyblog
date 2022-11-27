@@ -45,7 +45,7 @@ async function* range(start, end) {
 })();
 ```
 <details>
-  <summary>무엇이 출력될까?</summary>엇
+  <summary>무엇이 출력될까?</summary>
     <>
     - 내 생각 : `1 2 3`
     - 이유? : gen에는 해결되지 않은 값 `Promise.resolve(1)` `Promise.resolve(2)` `Promise.resolve(3)`이 들어온다. `await`는 이들의 해결을 기다린다. 
@@ -121,7 +121,7 @@ console.log(spookyItems);
     </>
 </details>
 
-### 126. 
+### 126. isNaN(  )
 ```js
 const name = 'Lydia Hallie';
 const age = 21;
@@ -138,13 +138,14 @@ console.log(isNaN(age));
     - 내 생각 : `false`, `false`, `true`, `false`
     - 이유? : `isNaN`은 전달한 값이 숫자인지 아닌지 확인한다.
     ---
-    - 사족 : `isNaN`의 모호함 때문에 `Number.isNaN()`을 사용하라고 한다(mdn web docs). 문자 `"37"`을 숫자로 치환해서 받는다든지, `true`를 숫자로 받는다든지 등. `isNaN('blabla') // true`.  
+    - 사족 : `isNaN`의 모호함 때문에 `Number.isNaN()`을 사용하라고 한다(mdn web docs). 문자 `"37"`을 숫자로 치환해서 받는다든지, `true`를 숫자로 받는다든지 등의 문제가 있다.  
+    `isNaN('37') // false`.  
     `Number.isNaN()`은 `숫자면서 NaN`이면 true, 아니면 false를 내뱉는다.
     - 오답노트 : -
     </>
 </details>
 
-### 127. TBZ
+### 127. TDZ
 ```js
 const randomValue = 21;
 
@@ -161,7 +162,7 @@ getInfo();
     - 내 생각 : `ReferenceError`
     - 이유? : 앞에서도 나온 문제다. 함수 내에서 새로이 선언된 `const` randomvalue가 함수 객체 최상단으로 호이스팅된다. 이니셜라이징은 이뤄지지 않은 상태다. 참조 에러가 난다.
     ---
-    - 사족 : -
+    - 사족 : Temporal Dead Zone, 일시적 사각지대라고 흔히 번역된다.
     - 오답노트 : -
     </>
 </details>
