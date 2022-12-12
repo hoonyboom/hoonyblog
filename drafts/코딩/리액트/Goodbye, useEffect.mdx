@@ -1,0 +1,27 @@
+---
+title: Gooybye, useEffect
+date: '2022-12-06'
+categories: coding
+tags: 리액트
+description: init 
+---
+<HeadingNavigator />
+
+<Youtube src='https://www.youtube.com/embed/bGzanfKVFeU' />
+<figcaption>Goodbye, useEffect - David Khourshid</figcaption>
+<Youtube src='https://www.youtube.com/embed/MFj_S0Nof90' />
+<figcaption>Why I Don’t Use useEffect In My React Components - Kyle</figcaption>
+
+
+### useEffect의 작동 방식
+- 명령적 방식: 뭔가 일어날 때 이 효과(기능)도 실행시켜줘
+- 선언적 방식: 뭔가 일어날 때 그게 state도 바꿀 건데, 의존성으로 걸린 그 state에 따라 이 효과(기능)도 실행시켜줘. 단, 몇몇 조건을 충족시킬 때만. 
+
+#### Defendences are the wrong mental model for effrects
+We just want effects to execute when things happen not exactly when things change.
+
+- Effect가 활용되어야 하는 곳은 subscription (지속적인 구독, 추적)
+- 단발성인 곳에서 Effect는? 이벤트 핸들러에 직접 구현
+  
+  it's meant to be put into smaller custom hooks that deal with that logic for you,
+  and that allows you to write really 

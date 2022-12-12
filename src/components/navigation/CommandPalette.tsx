@@ -91,7 +91,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       shortcut: ["t"],
       keywords: "twitter",
       section: "public",
-      perform: () => window.open("https://twitter.com/hyezoprk", "_blank"),
+      perform: () => window.open("https://twitter.com/", "_blank"),
       icon: <VscTwitter className="h-4 w-4" fill="#1DA1F2" />,
     },
     {

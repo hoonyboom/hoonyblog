@@ -1,0 +1,56 @@
+---
+title: [review]useState
+date: '2022-12-03'
+categories: coding
+tags: react
+description: useState 
+---
+<HeadingNavigator />
+
+### 사용하기 전에..
+> React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every componenet render.
+리액트 훅은 반복문이나 조건문 안에 사용하면 에러를 냄.
+왜? 
+
+
+### useState
+처음 한번만 동작하게 하려면 함수형으로 실행한다
+```tsx
+function App(){
+  // 콜백함수로 설정시 컴퍼넌트 리렌더링시 실행되지 않음
+  const [ count, setCount ] = useState(() => countInitial())
+  function decrementCount(){
+    setCount(prev => prev - 1)
+  }
+  function incrementCount(){
+    setCount(prev => prev + 1)
+  }
+
+  return (
+    <>
+      <button onClick={decrementCount}>-</button>
+        <span>{count}</span>
+      <button onClick={incrementCount}>+</button>
+    </>
+  )
+}
+
+function countInitial(){
+  console.log("run function");
+  return 3
+}
+```
+
+
+useRef
+useMemo
+useCallback
+useReducer
+useTransition
+useDeferredValue
+
+useLayoutEffect
+useDebugValue
+useImperativeHandle
+useId
+
