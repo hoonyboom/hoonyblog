@@ -73,8 +73,6 @@ export default function Comment({
     }
   };
 
-  console.log(likes);
-
   return (
     <>
       <div className="mt-2 flex flex-col rounded-lg border-[1px] border-black/10 p-3 dark:border-white/10">

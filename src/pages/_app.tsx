@@ -9,7 +9,6 @@ import { Session } from "next-auth";
 import { ApolloProvider } from "@apollo/client";
 import { apolloClient } from "@/lib/graphql/apollo-client";
 import { Toaster } from "react-hot-toast";
-import localFont from "@next/font/local";
 
 export default function MyApp({ Component, pageProps }: AppProps<{ session: Session }>) {
   return (
