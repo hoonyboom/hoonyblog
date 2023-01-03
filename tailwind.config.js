@@ -44,6 +44,7 @@ module.exports = {
         salary: "#CAFC9D",
         jadu: "#D73A4A",
         darkslateblue: "darkslateblue",
+        paleYellow: "#F7E596",
       },
       cursor: {
         fancy: "url('/images/2022/autumm/cursor.png'), default",
@@ -67,7 +68,7 @@ module.exports = {
       sm: "clamp(0.67rem, calc(0.59rem + 0.22vw), 0.76rem);",
       mono: "clamp(0.76rem, calc(0.64rem + 0.28vw), 0.86rem);",
       base: "clamp(0.81rem, calc(0.69rem + 0.33vw), 0.97rem);",
-      base2: "clamp(0.86rem, calc(0.76rem + 0.42vw), 1.08rem);",
+      base2: "clamp(0.85rem, calc(0.74rem + 0.44vw), 1.05rem);",
       md: "clamp(0.9rem, calc(0.82rem + 0.55vw), 1.22rem);",
       md2: "clamp(0.94rem, calc(0.83rem + 0.6vw), 1.32rem);",
       lg: "clamp(1.17rem, calc(0.95rem + 0.88vw), 1.76rem)",
