@@ -1,0 +1,131 @@
+---
+title: "React Hooks"
+date: "2023-01-16"
+categories: coding
+tags: 리액트
+description: hooks 
+---
+<HeadingNavigator />
+
+### 사용 전 주의사항
+1. 반복문이나 조건문 안에서 사용하지 말 것
+2. 함수 컴퍼넌트 최상단에 놓을 것
+
+> React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every componenet render.
+
+
+### useState
+처음 한번만 동작하게 하려면 함수형으로 실행한다
+```tsx
+function App(){
+  // 콜백함수로 설정시 컴퍼넌트 리렌더링시 실행되지 않음
+  const [ count, setCount ] = useState(() => countInitial())
+  function decrementCount(){
+    setCount(prev => prev - 1)
+  }
+  function incrementCount(){
+    setCount(prev => prev + 1)
+  }
+
+  return (
+    <>
+      <button onClick={decrementCount}>-</button>
+        <span>{count}</span>
+      <button onClick={incrementCount}>+</button>
+    </>
+  )
+}
+
+function countInitial(){
+  console.log("run function");
+  return 3
+}
+```
+
+
+### useRef
+The important thing to note about refs versus state is that a ref does not cause your component to reupdate when it gets changed.
+ So instead of using a state, let's do something called useRefs.
+컴퍼넌트가 리렌더링 될 때도 값이 리셋되지 않고 보존된다.
+
+### useMemo
+when you upadte state and react it's going to re-render your entire component,
+so it's going to run this entire function from top to bottom which means thatthis slow function gets called every single time that we render our app component.
+캐싱하는 역할. 매순간 재계산할 필요없다.
+useEffect처럼 의존성 스테이트를 설정하여 쓴다.
+남발할 경우 과도한 메모리 차지가 일어나기 떄문에 꼭 필요한 부분만 쓸 것.
+- 연산이 복잡해서 느려지는 부분: 컴퍼넌트 렌더링마다 일어나지 않게 특정 의존성 상태의 변화에만 반응.
+- 오브젝트나 어레이를 참조하는 변수: 왜냐면 오브젝트는 컴퍼넌트가 리렌더링될 때마다 새로운 참조값을 가지는 오브젝트를 생성하기 때문. 내용은 같지만 주소는 다른 오브젝트들이 계속 만들어지는 것.
+때문에 오브젝트를 유즈메모 안에서 콜백으로 리턴해주면 처음의 참조값을 계속 보존한다.
+
+### useCallback
+useMemo takes a function and it's going to return to you the return value of that function but,
+useCallback is different it takes a function but that is actually what the useCallback returns
+so in this example here were if we had useMemo instead of useCallback,
+what would happen is getItems() would be just set to this array here instead of being set to this entire function while with useCallback
+Since we're returning the actual function we pass to it getItems() is being set to this entire function and not just the return value of that function which allows us to use this as a functio later on in our application heree where we actually call getItems() and this allow us to actually pass parameters to this function.
+
+파라미터가 가변적일 때 유즈콜백
+필요없거나 고정적일 때 유즈메모
+불필요한 리렌더링(컴퍼넌트 전체의 리렌더링)에 무신경하게 만듦
+많은 연산(느린 연산)을 하는 경우에만 사용할 것을 권장
+
+
+### useReducer
+
+
+### useTransition
+it allows us to make two different state changes at the same time
+and rank them in order of how important we want them to be wherether we want it to be a high priority
+useState의 우선순위는 항상 high.
+우선순위를 낮게 주고 싶을 때 useTransition을 쓴다.
+
+batch에 의해 다중의 setState가 한 기능에 엮여있을 때,
+useTransition을 이용해 우선순위를 부여할 수 있음.
+(startTransition이 연산되고 있을 때는 isPending을 보여주고, 이는 high priority에 의해 무기한 연기될 수 있음)
+
+이 역시 무거운 연산을 사용하는 곳에서만 사용하길 권장.
+
+```tsx
+import { useTransition } from "react"
+
+function App(){
+  const [ isPending, startTransition ] = useTransition
+  const [ input, setInput ] = useState("")
+  const [ list, setList ] = useState([])
+
+  function handleChange(e){
+    setInput(e.target.value)
+    startTransition(()=>{
+      const l = []
+      for (let i=0; i<20000; i++){
+        l.push(e.target.value)
+      }
+      setList(l)
+    })
+  }
+}
+```
+
+### useDeferredValue
+디바운스나 쓰로틀의 기능을 리액트 차원에서 제공해주고 있었다.
+시간지정 같은 것은 못하고 일이 끝나면 이걸 처리해주세요, 정도.
+인풋값에 디바운스를 걸어 연산을 줄이곤 하는데 앞으로는 이를 대신 사용해도 손색이 없을 듯
+
+
+### useLayoutEffect 
+The important thing about useEffect() is that this is asynchrous so what happens is react is going to calculate out all your dom changes, it's going to render your dom out to the screeen and then at some point these useEffect() are going to run in the background but they're not going to block the dom they happen asynchrously in the background
+
+useLayoutEffect() is not asynchrous now if I change this 
+
+돔이 다 그려지고 나서야 작동. 하지만 동기적으로 작동하기 떄문에 일처리가 끝나야 다음으로 넘아간다.
+useRef()로 돔을 직접 조작할 일이 있으면 쓸모가.. 하지만 일반적으론 잘 쓰지 않을 거 같다.
+
+
+### useDebugValue
+
+
+
+### useImperativeHandle
+### useId
+ 
