@@ -7,15 +7,29 @@ description: init
 ---
 <HeadingNavigator />
 
+
+`useEffect`에 관한 컨퍼런스 영상을 하나 보았다(<i>React Brussel 2022</i>).  
+그의 요지는 `useEffect`는 라이프사이클 훅이 아니라는 것!  
+요컨대 의존성 배열에 따른 동기화가 이 훅의 진짜 존재 이유라는 것이다.  
+
+> useEffect: In state transitions. Always.
+<br/>
+
+새로운 내용을 배운 건 아니었지만 훅의 의도, 개념을 정리하는 데는 도움이 된 것 같다.  
+짧게나마 정리해본다.
+
+
 ### useEffect's mental model
+<Img src='/images/2023/react/useEffect mental model.webp' />
+<figcaption>useEffect는 라이프사이클을 위한 게 아니에요</figcaption>
+<br/>
+
 ```tsx Effect!
 useEffect(() => {
   doSomething();
+  return () => cleanup();
 }, [whenever, these, things, update])
 ```
-<Img src='/images/2023/react/useEffect mental model.webp' />
-<figcaption>useEffect는 라이프사이클 도구가 아니에요</figcaption>
-<br/>
 
 Effect가 필요하지 않은 상황
 - 렌더링을 위해 데이터를 변화시켜야 할 때 `Effect`를 쓸 이유가 없다. 
@@ -24,14 +38,14 @@ Effect가 필요하지 않은 상황
 Effect가 필요한 상황
 - 외부 시스템과 동기화를 위해서는 `Effect`를 사용해야 한다. 
 
-- `props`나 `state`를 이용해 뭔가를 계산할 때 `state`로 처리하지 말것. 일반적인 컨텍스트 변수 `const, let`을 이용해서 렌더링마다 재연산이 이뤄지게 하면 충분하다. 이건 코드를 더 빠르고, 단순하고, 오류가 덜 나게 만든다. 
-**When something can be calculated from the existing props or state, don't put it in state. Instead, calculate it during rendering.** This makes your code faster (you avoid the extra "cascading" update), simper(you remove some code), and less error-prone (you avoid bugs caused by different state variables getting out of sync with each other.) If this approach feels new to you, Thinking in React has some guidance on what should go into state.
+- `props`나 `state`를 이용해 뭔가를 계산할 때 `state`를 만들어서 처리하지 말것. 일반적인 컨텍스트 변수 `const, let`을 이용해서 렌더링마다 재연산이 이뤄지게 하면 되지 않나. 이게 코드를 더 빠르고, 단순하고, 오류가 덜 나게 만든다. 만약 값비싼 연산이라면 `useMemo`에 묶어준다.
 
-When using `useMemo` hook, this tells React that you don't want the inner function to re-run unless either todos or filter have changed. React will remember the return value of getFilteredTodos() during the initial render. During the next renders, it will check if todos or filter are different. if they're the same as last time, `useMemo` will return the last result it has stored. But if they are different, React will call the wrapped function again (and store that result instead.)
-The function you wrap in `useMemo` runs during rendering, so this only works for pure calculations.
+- `useMemo` 훅을 쓴다면, 이건 의존성 배열이 업데이트 될 때만 그 안의 콜백을 실행해달라는 말이다. 리액트는 그 콜백의 `리턴값`을 기억한다. 다음 렌더 때, 의존성배열이 변화했는지 체크한다. 지난 렌더와 달라짐이 없다면 기존에 저장해놨던 리턴값을 내보낸다. 다르다면 콜백을 다시 실행하고 리턴되는 값을 저장한다.
+유즈메모로 감싼 콜백은 렌더링을 하는 동안 실행된다. 따라서 순수 함수여야 한다.
 
-When you write and read Effects, you should think from each individual Effect’s perspective (how to start and stop synchronization) rather than from the component’s perspective (how it mounts, updates, or unmounts).
-
+- effect를 사용할 땐 각각의 effect의 관점에서 생각해야지(동기화를 어떻게 시작하고 어떻게 멈출지) 컴퍼넌트의 관점에서 생각하면 안된다(마운트됐을 때, 업데이트됐을 때, 언마운트됐을 때 어떻게 할지).
+effect를 컴퍼넌트의 라이프사이클로부터 독립적으로 생각해야 한다.
+- 본능적으로, 컴퍼넌트가 마운트될 때 동기화가 시작되고 언마운트될 때 동기화가 끝날 거라 생각할 수 있다. 그게 다가 아닌데! 때때로 마운트가 돼있는 동안 여러 번의 동기화(=재구독)가 필요한 때가 있기 때문이다.
 
 > Try to think about each Effect independently from your component's lifecycle.
 >> Intuitively, you might think that React would start synchronzing when your component mounts and stop synchronizing when your componet unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to start and synchronzing multiple times while the component remains mounted.
