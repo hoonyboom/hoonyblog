@@ -34,7 +34,7 @@ module.exports = {
         waterMelon: "#ED4C6A",
         orange: "#ffa500",
         favBlue: "#0000b9",
-        sea: "#0984e3fe",
+        sea: "#48A7E4",
         icloud: "#3d84f7",
         paleBlue: "rgb(102, 153, 204)",
         lightGray: "#EDF1F2",

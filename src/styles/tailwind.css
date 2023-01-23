@@ -40,6 +40,9 @@
   ol {
     @apply list-decimal pt-1 pl-6;
   }
+  ul > li::marker {
+    @apply text-sea;
+  }
   button {
     @apply cursor-fancyHover;
   }
@@ -48,7 +51,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 py-px font-mono subpixel-antialiased text-base dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray px-1 py-px font-mono text-base subpixel-antialiased dark:bg-darkGray;
   }
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
@@ -116,7 +119,6 @@
   .ch-scrollycoding-static > p {
     @apply pt-7;
   }
-
 }
 
 @layer utilities {
@@ -309,7 +311,7 @@
   .bg-highlight-paleYellow {
     background-image: linear-gradient(
       transparent calc(50% - 8px),
-      #F7E596 calc(50% - 8px)
+      #f7e596 calc(50% - 8px)
     );
     background-size: 100% 220%;
   }
@@ -322,8 +324,8 @@
   }
 }
 
-
-.ch-codeblock, .ch-codegroup {
+.ch-codeblock,
+.ch-codegroup {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
 }
@@ -367,4 +369,3 @@
   font-weight: normal;
   font-display: block;
 }
-
