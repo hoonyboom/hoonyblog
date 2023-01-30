@@ -14,7 +14,7 @@ export default function Nav({ navShow }: { navShow: boolean }) {
         <Link href="/" className="mt-1">
           <Image
             priority
-            src="/images/profile.png"
+            src="/images/default/profile.png"
             className="rounded-full"
             height={40}
             width={40}

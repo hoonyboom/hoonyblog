@@ -9,7 +9,7 @@ export default function Profile({ initCategory }: { initCategory: boolean }) {
         <section className="mx-2 mt-10 flex sm:p-8 md:p-10">
           <Image
             priority
-            src="/images/profile.png"
+            src="/images/default/profile.png"
             className="select-none rounded-full ring-2 ring-indigo-900 ring-offset-1 sm:h-16 sm:w-16 md:h-20 md:w-20"
             height={80}
             width={80}
