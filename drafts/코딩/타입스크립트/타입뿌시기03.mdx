@@ -24,7 +24,7 @@ interface IconProps {
 ```
 ---
 - 타입을 확장하려 할 때, `string`이 다른 둘을 아우르기 때문에 그를 잡아먹게 된다.
-```ts index.ts
+```ts index.ts focus=1[17:36] mark=1[31:36]
 type IconSize = "sm" | "md" | string;
 
 interface IconProps {
