@@ -1,5 +1,5 @@
 import { getSortedPostsData } from "@/lib/posts";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
@@ -35,20 +35,24 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리
   const router = useRouter();
-  const isCategory = router.query.category;
   const [initCategory, setInitCategory] = useState(false);
   const [sortedDataByTag, setSortedDataByTag] = useState<string[]>();
-  const deleteOverlapCategories = uniqBy(allPostsData, "categories").sort(
-    ({ categories: a }, { categories: b }) => {
-      if (a > b) return 1;
-      else if (a < b) return -1;
-      else return 0;
-    },
+  const deleteOverlapCategories = useMemo(
+    () =>
+      uniqBy(allPostsData, "categories").sort(({ categories: a }, { categories: b }) => {
+        if (a > b) return 1;
+        else if (a < b) return -1;
+        else return 0;
+      }),
+    [allPostsData],
   );
+  const isCategory = router.query.category;
+
   // 페이지네이션
-  const [page] = useState(1);
-  const [limit] = useState(7);
+  const page = 1,
+    limit = 7;
   const offset = (page - 1) * limit;
+
   // 이달의 글
   const thisMonth =
     new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
@@ -61,6 +65,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       if (isCategory) return categories === isCategory;
       return categories === "coding";
     });
+
     const deleteOverlapTags = initData.reduce(
       (all: string[], each) =>
         typeof each.tags === "string"

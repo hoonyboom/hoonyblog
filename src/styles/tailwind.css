@@ -51,7 +51,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 py-px font-mono text-base subpixel-antialiased dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray px-1 py-px font-content text-base subpixel-antialiased dark:bg-darkGray;
   }
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
@@ -97,27 +97,6 @@
   }
   h3:hover .anchor-link {
     @apply opacity-100;
-  }
-
-  /* 
-  note: Code Hike
-  Scroll 전체화면 설정 */
-  .ch-code-browser-content > div,
-  .ch-code-browser-content > div > span {
-    @apply h-6 font-mono;
-  }
-  /* Scroll 제목&설명탭 설정 */
-  .ch-scrollycoding-step-content p {
-    @apply text-mono leading-6;
-  }
-  /* 기본화면 설정 */
-  .ch-code-scroll-content span,
-  .ch-inline-code span {
-    @apply font-mono text-mono;
-  }
-  /* Scroll 모바일 화면 */
-  .ch-scrollycoding-static > p {
-    @apply pt-7;
   }
 }
 
@@ -330,15 +309,42 @@
   -moz-osx-font-smoothing: auto;
 }
 
+/* 
+  note: Code Hike
+  Scroll 전체화면 설정 */
+.ch-code-browser-content > div,
+.ch-code-browser-content > div > span {
+  @apply h-6 font-mono;
+}
+.ch-spotlight {
+  @apply flex-row-reverse;
+}
+
+/* Scroll 제목&설명탭 설정 */
+.ch-scrollycoding-step-content p,
+.ch-spotlight-tab ul,
+.ch-spotlight-tab code {
+  @apply py-2 px-1 font-content text-mono leading-6;
+}
+.ch-spotlight-tab ul {
+  @apply ml-3;
+}
+.ch-spotlight-tab li > code {
+  @apply py-0;
+}
+/* 기본화면 설정 */
+.ch-code-scroll-content span,
+.ch-inline-code span {
+  @apply font-mono text-mono;
+}
+/* Scroll 모바일 화면 */
+.ch-scrollycoding-static > p {
+  @apply pt-7;
+}
+
 /*
 폰트설정:
 영어-한글-모노 */
-@font-face {
-  font-family: "Line";
-  src: url("/fonts/LINESeedKR-Rg.woff2") format("woff2");
-  font-weight: normal;
-  font-display: block;
-}
 @font-face {
   font-family: "Arita";
   src: url("/fonts/Arita.woff2") format("woff2");
@@ -358,8 +364,8 @@
   font-display: block;
 }
 @font-face {
-  font-family: "IBMPlexMono";
-  src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-family: "OperatorLig";
+  src: url("/fonts/OperatorMonoLig-Book.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }

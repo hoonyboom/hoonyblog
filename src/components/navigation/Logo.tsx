@@ -30,7 +30,7 @@ export default function Logo({ children }: LayoutProps) {
     <>
       <Link href="/">
         <Image
-          src="/images/snoopy.gif"
+          src="/images/default/snoopy.gif"
           alt="Home"
           width={214}
           height={224}
