@@ -85,10 +85,9 @@ const resolvers = {
         });
 
         return { success: true };
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },
@@ -158,7 +157,7 @@ export interface LoadComment {
 <Img src='/images/2022/autumm/스샷_프리즈마모델링.webp' />
 <figcaption>schema.prisma</figcaption>
 <br/>
-아무튼 스키마와 `typeDefs`는 거의 같은 작업이다. 그래서 사실 좀 재미는 없었고, 제일 재밌는 부분은 역시 실제 일을 수행하게 되는 `resolvers`였다. `prisma` 메써드는 이 안에서 활용된다. 어떤 기능들이 있는지만 알면 타입스크립트에 의해 자동완성 기능이 지원되기 때문에 크게 어려운 건 없을 것 같았다. 물론 그거랑 "아니 왜 안돼?"는 별개의 문제입니다.
+아무튼 스키마와 `typeDefs`는 거의 같은 작업이다. 그래서 사실 좀 재미는 없었고, 제일 재밌는 부분은 역시 실제 일을 수행하게 되는 `resolvers`였다. `prisma` 메써드는 이 안에서 활용된다. 어떤 기능들이 있는지만 알면 타입스크립트에 의해 자동완성 기능이 지원되기 때문에 크게 어려운 건 없을 것 같았다. 물론 그거랑 "아니 왜 안돼?"는 별개의 문제다...
 <br/>
 <br/>
 `resolvers`의 작성, 그리고 수행된 데이터의 `refetch` 같은 건 다음주에 계속
