@@ -52,9 +52,8 @@ export default function Comment({
         variables: { commentId: id, nickname },
       });
       refetch();
-    } catch (error) {
-      const err = error as ErrorEvent;
-      toast.error(err.message);
+    } catch (e) {
+      if (e instanceof Error) toast.error(e.message);
     }
   };
 
@@ -67,9 +66,8 @@ export default function Comment({
         variables: { commentId: id },
       });
       refetch();
-    } catch (error) {
-      const err = error as ErrorEvent;
-      toast.error(err.message);
+    } catch (e) {
+      if (e instanceof Error) toast.error(e.message);
     }
   };
 

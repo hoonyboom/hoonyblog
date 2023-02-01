@@ -46,23 +46,19 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       }),
     [allPostsData],
   );
-  const isCategory = router.query.category;
+  const whichCategory = router.query.category;
 
   // 페이지네이션
   const page = 1,
-    limit = 7;
-  const offset = (page - 1) * limit;
+    limit = 7,
+    offset = (page - 1) * limit;
 
   // 이달의 글
-  const thisMonth =
-    new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
-  const recentPosts = allPostsData.filter(({ date }) => {
-    return date.substring(0, 7) === thisMonth;
-  });
+  const recentPosts = useMemo(() => getThisMonth(allPostsData), [allPostsData]);
 
   useEffect(() => {
     const initData = allPostsData.filter(({ categories }) => {
-      if (isCategory) return categories === isCategory;
+      if (whichCategory) return categories === whichCategory;
       return categories === "coding";
     });
 
@@ -75,19 +71,19 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     );
     setInitCategory(false);
     setSortedDataByTag(deleteOverlapTags);
-  }, [isCategory, allPostsData]);
+  }, [whichCategory, allPostsData]);
+
   useEffect(() => {
     setInitCategory(true);
-    // setLimit(7);
-    // setPage(1);
   }, [sortedDataByTag]);
+
   useEffect(() => {
     if (sessionStorage.Page) sessionStorage.removeItem("Page");
     if (sessionStorage.watchedTab === "2")
       router.push({ query: { category: "reading" } });
     else if (sessionStorage.watchedTab === "1")
       router.push({ query: { category: "diarying" } });
-  }, []);
+  }, [router]);
 
   return (
     <Layout home siteTitle="혜조로그">
@@ -106,9 +102,9 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         {/* 태그 리스트 */}
         <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur dark:border-blue-900">
           <div className="flex basis-1/12 items-center justify-center pl-3">
-            {isCategory === "diarying" ? (
+            {whichCategory === "diarying" ? (
               <FcDislike className="h-6 w-6" />
-            ) : isCategory === "reading" ? (
+            ) : whichCategory === "reading" ? (
               <FcPuzzle className="h-6 w-6" />
             ) : (
               <FcWorkflow className="h-6 w-6" />
@@ -125,4 +121,16 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       </section>
     </Layout>
   );
+}
+
+function getThisMonth(allPostsData: PostsProps[]) {
+  const thisMonth =
+    new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
+  const lastMonth =
+    new Date().getFullYear() + "-" + String(new Date().getMonth()).padStart(2, "0");
+  const recentPosts = allPostsData.filter(({ date }) => {
+    return date.substring(0, 7) === thisMonth || date.substring(0, 7) === lastMonth;
+  });
+
+  return recentPosts;
 }

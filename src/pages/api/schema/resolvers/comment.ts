@@ -36,9 +36,8 @@ const resolvers = {
         });
 
         return loadComments;
-      } catch (error) {
-        const err = error as ErrorEvent;
-        throw new ApolloError(err.message);
+      } catch (e) {
+        throw new ApolloError((e as ErrorEvent).message);
       }
     },
   },
@@ -76,10 +75,9 @@ const resolvers = {
         });
 
         return { success: true };
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },
@@ -116,10 +114,9 @@ const resolvers = {
         });
 
         return { success: true };
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },
@@ -144,10 +141,9 @@ const resolvers = {
           },
         });
         return { success: true };
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },
@@ -173,10 +169,9 @@ const resolvers = {
           },
         });
         return { success: true };
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },
@@ -218,10 +213,9 @@ const resolvers = {
             .then(() => {
               return { success: true };
             });
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },

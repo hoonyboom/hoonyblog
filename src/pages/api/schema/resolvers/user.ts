@@ -36,10 +36,9 @@ const resolvers = {
         });
 
         return { success: true };
-      } catch (error) {
-        const err = error as ErrorEvent;
+      } catch (e) {
         return {
-          error: err.message,
+          error: (e as Error).message,
         };
       }
     },

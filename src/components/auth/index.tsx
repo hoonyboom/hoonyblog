@@ -35,9 +35,8 @@ export default function Auth({ session, reloadSession }: AuthProps) {
       toast.success(`${username}으로 로그인하셨습니다!`);
       setIsOpen(false);
       reloadSession();
-    } catch (error) {
-      const err = error as ErrorEvent;
-      toast.error(err.message);
+    } catch (e) {
+      if (e instanceof Error) toast.error(e.message);
     }
   };
 

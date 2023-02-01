@@ -65,9 +65,8 @@ export default function CommentForm({
         inputRef.current.value = "";
         setMessage("");
       }
-    } catch (error) {
-      const err = error as ErrorEvent;
-      toast.error(err.message);
+    } catch (e) {
+      if (e instanceof Error) toast.error(e.message);
     }
   };
 
@@ -81,9 +80,8 @@ export default function CommentForm({
         setMessage("");
         inputRef.current.value = "";
         refetch();
-      } catch (error) {
-        const err = error as ErrorEvent;
-        toast.error(err.message);
+      } catch (e) {
+        if (e instanceof Error) toast.error(e.message);
       }
   };
 
@@ -98,9 +96,8 @@ export default function CommentForm({
         setMessage("");
         inputRef.current.value = "";
         refetch();
-      } catch (error) {
-        const err = error as ErrorEvent;
-        toast.error(err.message);
+      } catch (e) {
+        if (e instanceof Error) toast.error(e.message);
       }
     }
   };
