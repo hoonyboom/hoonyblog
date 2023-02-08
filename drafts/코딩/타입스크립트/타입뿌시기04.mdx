@@ -1,0 +1,25 @@
+---
+title: 타입뿌시기 4편 - Signauture
+date: '2023-02-06'
+categories: coding
+tags: 타입스크립트
+description: signature
+---
+
+### 튜플의 모든 값을 가져오기
+
+알다시피 어레이의 인덱스는 숫자, 오브젝트의 인덱스는 문자(심볼인 경우를 제외하고)다.  
+아래 오브젝트 키 각각엔 배열이 배정되어 있다.    
+여기서 특정한 숫자를 주는 대신 `number`를 넣으면 모든 값을 불러온다.
+```ts type.ts mark=6[49:56]
+interface UserRoleConfig {
+  user: ["view", "create", "update"],
+  admin: ["view", "create", "update", "delete"]
+}
+
+type Role = UserRoleConfig[keyof UserRoleConfig][number]
+// type Role = "view", "create", "update", "delete"
+```
+
+`keyof`로 모든 키들에 접근하고, 후에  
+`[number]` 인덱스를 통해 모든 어레이 요소에 접근한다.

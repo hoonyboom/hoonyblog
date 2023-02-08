@@ -1,0 +1,94 @@
+---
+title: zod 복기
+date: '2023-02-06'
+categories: coding
+tags: 타입스크립트
+description: zod
+---
+<HeadingNavigator />
+
+지난 여름 `trcp`에서 잠깐 체험했던 `zod`를 다시 복기해보는 시간!  
+그때는 질질 끌려다녀서 이게 `validation` 툴인지도 모르고 썼으니 말 다했다.  
+<br/>
+그대로 뇌리에서 사라질 찰나 
+---
+
+### 왜 zod일까?
+
+
+### 설치
+선호하는 매니저로 설치한다.
+
+```terminal
+pnpm i zod
+```
+
+### 기본 사용
+```ts
+import { z } from "zod"
+
+const UserSchema = z.object({
+  username: z.string().min(2).max(10),
+  age: z.number().gt(0).optional(),
+  email: z.stirng().email(),
+  birthday: z.date(),nullish(),
+  isStudent: z.boolean().default(true),
+  func: z.void().or(z.any()),
+})
+
+type User = z.infer<typeof UserSchema>
+
+const user: User = { username: 1 }
+
+console.log(UserSchema.parse(user));
+```
+
+기본적으로 `required` 적용이다. 함수형 파이프라인을 이어서 데이터를 `파싱`한다. 얼추 예시로도 감이 오는데, 함수가 무섭게 생겨서 그렇지 결국 타입스크립트의 연장. 쓰다 보면 직관적이다.
+<br/>
+<br/>
+
+
+### 세부 쓰임새
+사실 [zod 공홈](https://zod.dev/) 한바닥 읽는 게 훨 나음.. 나도 요새 탭 하나에 걸어 놓고 심심할 때 읽어보고 있다.
+```ts documentation.ts
+.gt(): ~이상
+.lt(): ~이하
+.default(): 기본값
+.optional(): 선택값
+.nullish(): `null`과 같은 값들이 올 수 있는지
+.nullable(): `null`이 올 수 있는지
+z.url(): url 형식(`https://`) 검증
+z.email(): 이메일 형식(`@`) 검증
+
+z.enum([]): 타입스크립트 이넘이 아니라 유니언처럼 파싱됨
+z.union([])
+// mark
+z.discriminatedUnion()
+z.or()
+z.and()
+
+z.object.partial(): 오브젝트의 모든 값들을 옵셔널로 전환. 타입스크립트의 `Partial`과 같음.
+z.object.deepPartial(): nest한 영역까지 모두 옵셔널로 전환.
+z.object.pick(): 타입스크립트의 `pick`
+z.object.omit(): 타입스크립트의 `omit`
+z.object.extend(): 타입스크립트의 `extend`
+z.object.merge(): 타입스크립트의 `intersection`  
+
+z.array(z.string()).nonempty()
+z.tuple([z.number(), z.string(), z.number()].rest(z.number()))
+
+
+z.record()
+z.map()
+z.set()
+z.promise()
+
+// mark
+z.input()
+// mark
+z.infer()
+// mark
+.refine(): 세부 검증식 작성. `value => value.METHOD`
+// mark
+.transform(): 들여온 데이터를 내 구미에 맞게 변형/가공시킬 때 사용. `value => `
+```
