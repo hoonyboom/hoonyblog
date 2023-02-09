@@ -38,7 +38,7 @@ type DesiredShape = RemoveMapsFromObj<ApiData>;
 ```ts type.ts focus=1:4,11 mark=2[4:7],3[4:7]
 ```
 ---
-- 제네릭 타입의 모든 키에 대해 `RemoveMaps<T>` 타입을 적용한다. 모든 키 `K`가 속속들이 검증의 대상으로 오는데, 관건은 `${string}`이라고 퉁친 문자형 자리에 실제 원래의 값을 넣는 것이다. 어떻게 할까?
+- 그를 위해 제네릭 타입의 모든 키에 대해 `RemoveMaps<T>` 타입을 적용한다. 모든 키 `K`가 속속들이 검증의 대상으로 올 텐데, 관건은 `${string}`이라고 퉁친 문자형 자리에 원래의 값을 넣는 것이다. 어떻게 할까?
 ```ts type.ts focus=7,9 mark=9[40:45]
 ```
 ---

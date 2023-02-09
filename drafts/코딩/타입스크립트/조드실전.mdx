@@ -1,0 +1,158 @@
+---
+title: 조드의 데이터 가공
+date: '2023-02-09'
+categories: coding
+tags: 타입스크립트
+description: zod
+---
+<HeadingNavigator />
+
+비루한 나라도 코딩을 하다 보면 메이저 기술에도 종종 아쉬움을 느낀다.     
+기억되는 첫째는 `GraphQL` 때문이다. 서버 쪽에서 실컷 공들여 스키마를 짰는데, 이를 클라이언트에 통용하지 못하고 새로 타입 정의를 해야 했을 때 좀 짜증이 났다. 그 반향으로 이것저것 찾았고, `trpc`를 접한 것도 그때였다.  
+그렇게 보면 두번째도 같은 맥락이다. 타입스크립트의 소극성이라고 불러도 좋을까? 타입스크립트가 타입 체크만 하고 말 게 아니라, 파싱과 더 나아가 가공까지 할 수 있으면 좋겠다는 생각을 더러 했다.  
+<br/>
+`zod`의 존재는 그런 불만들과 맞닿아 있는 것 같다.
+
+---
+
+<CH.Spotlight>
+```ts vitest.test.ts
+import { expect, it } from "vitest";
+import { z } from "zod";
+
+const StarWarsPerson = z.object({
+  name: z.string(),
+});
+
+const StarWarsPeopleResults = z.object({
+  results: z.array(StarWarsPerson),
+});
+
+export const fetchStarWarsPeople = async () => {
+  const data = await fetch(
+    "https://www.totaltypescript.com/swapi/people.json",
+  ).then((res) => res.json());
+
+  const parsedData = StarWarsPeopleResults.parse(data);
+
+  return parsedData.results;
+};
+
+// TEST 🦖
+
+it("Should resolve the name and nameAsArray", async () => {
+  expect((await fetchStarWarsPeople())[0]).toEqual({
+    name: "Luke Skywalker",
+    nameAsArray: ["Luke", "Skywalker"],
+  });
+});
+```
+---
+- 데이터를 `fetch` 하려 한다.  
+구조를 새탭에서 미리 보면 이렇다
+<CH.Code>
+```ts vitest.test.ts focus=12:15
+```
+```json data.json
+{
+  "count": 82,
+  "next": "https://swapi.dev/api/people/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "name": "Luke Skywalker",
+      "height": "172",
+      "mass": "77",
+      "hair_color": "blond",
+      "skin_color": "fair",
+      "eye_color": "blue",
+      "birth_year": "19BBY",
+      "gender": "male",
+      "homeworld": "https://swapi.dev/api/planets/1/",
+      "films": [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/"
+      ],
+      "species": [],
+      "vehicles": [
+        "https://swapi.dev/api/vehicles/14/",
+        "https://swapi.dev/api/vehicles/30/"
+      ],
+      "starships": [
+        "https://swapi.dev/api/starships/12/",
+        "https://swapi.dev/api/starships/22/"
+      ],
+      "created": "2014-12-09T13:50:51.644000Z",
+      "edited": "2014-12-20T21:17:56.891000Z",
+      "url": "https://swapi.dev/api/people/1/"
+    },
+    {
+      "name": "C-3PO",
+      "height": "167",
+      "mass": "75",
+      "hair_color": "n/a",
+      "skin_color": "gold",
+      "eye_color": "yellow",
+      "birth_year": "112BBY",
+      "gender": "n/a",
+      "homeworld": "https://swapi.dev/api/planets/1/",
+      "films": [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+      ],
+      "species": [
+        "https://swapi.dev/api/species/2/"
+      ],
+      "vehicles": [],
+      "starships": [],
+      "created": "2014-12-10T15:10:51.357000Z",
+      "edited": "2014-12-20T21:17:50.309000Z",
+      "url": "https://swapi.dev/api/people/2/"
+    },
+    {
+      "name": "R2-D2",
+      "height": "96",
+      "mass": "32",
+      "hair_color": "n/a",
+      "skin_color": "white, blue",
+      "eye_color": "red",
+      "birth_year": "33BBY",
+      "gender": "n/a",
+      "homeworld": "https://swapi.dev/api/planets/8/",
+      "films": [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+      ],
+      "species": [
+       "https://swapi.dev/api/species/2/"
+      ],
+      "vehicles": [],
+      "starships": [],
+      "created": "2014-12-10T15:11:50.376000Z",
+      "edited": "2014-12-20T21:17:50.311000Z",
+      "url": "https://swapi.dev/api/people/3/"
+    },
+    ...계속
+  ]
+}    
+```
+</CH.Code>
+</CH.Spotlight>
+
+`zod`를 통해 원하는 데이터만 가져올 건데,
+
+단순히 데이터를 추출하는 것이 아니라, 새로운 데이터도 가공해 그 안에 포함시키고 싶을 수도 있다.
+`zod`는 `fetch` 단계에서 이 일을 한번에 가능하게 만든다. 멋지다. 어떻게 할까?
+
+여기에 필요한 건 `transform()` 파이프 라인이다. 인수로 함수를 넣는데, `transform(()=>void)`
+그 함수의 첫번째 인수로는 파이프라인으로 이었던 데이터가 들어온다. `transform((value)=> )`
