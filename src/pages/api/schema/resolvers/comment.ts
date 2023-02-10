@@ -184,7 +184,7 @@ const resolvers = {
       const { commentId } = args;
       const { session, prisma } = context;
 
-      if (!session?.user.id)
+      if (!session?.user?.id)
         return {
           error: "로그인이 필요합니다.",
         };

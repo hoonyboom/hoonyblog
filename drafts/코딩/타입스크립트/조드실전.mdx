@@ -1,5 +1,5 @@
 ---
-title: 조드의 데이터 가공
+title: zod와 데이터
 date: '2023-02-09'
 categories: coding
 tags: 타입스크립트
@@ -7,14 +7,88 @@ description: zod
 ---
 <HeadingNavigator />
 
-비루한 나라도 코딩을 하다 보면 메이저 기술에도 종종 아쉬움을 느낀다.     
-기억되는 첫째는 `GraphQL` 때문이다. 서버 쪽에서 실컷 공들여 스키마를 짰는데, 이를 클라이언트에 통용하지 못하고 새로 타입 정의를 해야 했을 때 좀 짜증이 났다. 그 반향으로 이것저것 찾았고, `trpc`를 접한 것도 그때였다.  
-그렇게 보면 두번째도 같은 맥락이다. 타입스크립트의 소극성이라고 불러도 좋을까? 타입스크립트가 타입 체크만 하고 말 게 아니라, 파싱과 더 나아가 가공까지 할 수 있으면 좋겠다는 생각을 더러 했다.  
+코딩할 때 메이저 기술이 아쉽게 느껴질 때도 있다.  
+비루한 내가 기억하는 첫째는 `GraphQL` 이다. 서버 쪽에서 실컷 공들여 스키마를 짰는데, 이를 클라이언트에 통용시키지 못하고 새로 타입 정의를 해야 할 때 짜증이 났다. 작업량이 두 배.. 그 반향으로 이것저것 찾았고, `trpc`를 접한 것도 그때였다.  
+그렇게 보면 두번째도 같은 맥락이다. 타입스크립트의 소극성이라고 불러도 될까? 타입스크립트가 방파제 역할만 할 게 아니라, 파싱, 나아가 가공까지 할 수 있으면 좋겠단 생각을 했다. 내가 기여한 바는 없지만.    
 <br/>
 `zod`의 존재는 그런 불만들과 맞닿아 있는 것 같다.
 
 ---
 
+
+### 문법
+<CH.Scrollycoding>
+- 기초  
+기본적으로 `required` 적용이다. 함수형 파이프라인을 이어서 데이터를 `파싱`한다.  
+예시만 봐도 타입스크립트의 형태가 얼추 읽히기 때문에 금방 눈에 익힐 수 있을 것 같다.
+```ts index1.ts
+import { z } from "zod"
+
+const UserSchema = z.object({
+  username: z.string().min(2).max(10),
+  age: z.number().gt(0).optional(),
+  email: z.stirng().email(),
+  birthday: z.date(),nullish(),
+  isStudent: z.boolean().default(true),
+  func: z.void().or(z.any()),
+})
+
+type User = z.infer<typeof UserSchema>
+
+const user: User = { username: 1 }
+
+console.log(UserSchema.parse(user));
+```
+---
+- 심화  
+대충 자주 쓸 것 같은 애들만 추렸다.    
+<Lnk text='zod 공홈' href='https://zod.dev/' /> 탭 하나에 걸어 놓고 심심할 때 읽어보고 있다.  
+```ts index2.ts
+.gt(): ~이상
+.lt(): ~이하
+.default(): 기본값
+.optional(): 선택값
+.nullish(): `null`과 같은 값들이 올 수 있는지
+.nullable(): `null`이 올 수 있는지
+z.url(): url 형식(`https://`) 검증
+z.email(): 이메일 형식(`@`) 검증
+
+z.enum([]): 타입스크립트 이넘이 아니라 유니언처럼 파싱됨
+z.union([])
+// mark
+z.discriminatedUnion()
+z.or()
+z.and()
+
+z.object.partial(): 오브젝트의 모든 값들을 옵셔널로 전환. 타입스크립트의 `Partial`과 같음.
+z.object.deepPartial(): nest한 영역까지 모두 옵셔널로 전환.
+z.object.pick(): 타입스크립트의 `pick`
+z.object.omit(): 타입스크립트의 `omit`
+z.object.extend(): 타입스크립트의 `extend`
+z.object.merge(): 타입스크립트의 `intersection`  
+
+z.array(z.string()).nonempty()
+z.tuple([z.number(), z.string(), z.number()].rest(z.number()))
+
+
+z.record()
+z.map()
+z.set()
+z.promise()
+
+// mark
+z.input()
+// mark
+z.infer()
+// mark
+.refine(): 세부 검증식 작성. `value => value.METHOD`
+// mark
+.transform(): 들여온 데이터를 내 구미에 맞게 변형/가공시킬 때 사용. `value => `
+```
+</CH.Scrollycoding>
+
+<br/>
+### 실전예제
 <CH.Spotlight>
 ```ts vitest.test.ts
 import { expect, it } from "vitest";
@@ -48,7 +122,7 @@ it("Should resolve the name and nameAsArray", async () => {
 });
 ```
 ---
-- 데이터를 `fetch` 하려 한다.  
+- 스타워즈 데이터를 `fetch` 하려 한다.  
 구조를 새탭에서 미리 보면 이렇다
 <CH.Code>
 ```ts vitest.test.ts focus=12:15
@@ -147,12 +221,62 @@ it("Should resolve the name and nameAsArray", async () => {
 }    
 ```
 </CH.Code>
+---
+- `results`에 해당하는 부분만 필요하므로 다음처럼 파싱을 준비한다.  
+이건 그큐엘에서 필요한 커리만 요청하는 것과 같다. 그 많은 예비설계 없이도.
+```ts vitest.test.ts focus=8:10,17
+```
+---
+- `results`에는 여러 인물들의 정보가 배열로 담겨 있고, 각 인물들의 정보는 똑같은 오브젝트 항목으로 구성돼 있다.  
+여기서는 최대한 간단하게 `name`만을 추출해보자. 그러면 각 인물들의 이름만 속속들이 `fetch` 될 거라 예상되는데,
+```ts vitest.test.ts focus=4:6,9[19:34]
+```
+---
+- 근데 `zod`는 여기서 멈추지 않는다. 데이터를 수동적으로 `fetch` 하는 걸 너머, 원 데이터에 없는 새로운 값을 가공하여 끼워넣을 수 있다.  
+가령 `nameAsArray`라는 항목으로 성과 이름을 분리시켜 받을 수 있다.
+```ts vitest.test.ts focus=22:29
+```
+---
+- `zod`의 `.transform( )` 파이프가 그런 기능을 담당한다.  
+함수를 받는데, 연결한 데이터의 내용이 첫번째 파라미터 안에 담겨온다. `spread operator`로 이를 복사하고 만들려는 데이터를 아래 추가하여 리턴했다.  
+
+```ts vitest.test.ts focus=4:9 mark=6[3:22],7[3:9],8[3:34],9[1:3]
+import { expect, it } from "vitest";
+import { z } from "zod";
+
+const StarWarsPerson = z.object({
+  name: z.string()
+}).transform(Obj => ({
+  ...Obj,
+  nameAsArray: Obj.name.split(" ")
+}))
+
+const StarWarsPeopleResults = z.object({
+  results: z.array(StarWarsPerson),
+});
+
+export const fetchStarWarsPeople = async () => {
+  const data = await fetch(
+    "https://www.totaltypescript.com/swapi/people.json",
+  ).then((res) => res.json());
+
+  const parsedData = StarWarsPeopleResults.parse(data);
+
+  return parsedData.results;
+};
+
+// TEST 🦖
+
+it("Should resolve the name and nameAsArray", async () => {
+  expect((await fetchStarWarsPeople())[0]).toEqual({
+    name: "Luke Skywalker",
+    nameAsArray: ["Luke", "Skywalker"],
+  });
+});
+```
 </CH.Spotlight>
 
-`zod`를 통해 원하는 데이터만 가져올 건데,
+### 결과
 
-단순히 데이터를 추출하는 것이 아니라, 새로운 데이터도 가공해 그 안에 포함시키고 싶을 수도 있다.
-`zod`는 `fetch` 단계에서 이 일을 한번에 가능하게 만든다. 멋지다. 어떻게 할까?
-
-여기에 필요한 건 `transform()` 파이프 라인이다. 인수로 함수를 넣는데, `transform(()=>void)`
-그 함수의 첫번째 인수로는 파이프라인으로 이었던 데이터가 들어온다. `transform((value)=> )`
+테스트 무사통과!!
+<Img src='/images/2023/typescript/ZodResult.webp' />

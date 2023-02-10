@@ -322,13 +322,17 @@
 
 /* Scroll 제목&설명탭 설정 */
 .ch-scrollycoding-step-content p,
+.ch-scrollycoding-content ul,
+.ch-scrollycoding-content code,
 .ch-spotlight-tab ul,
 .ch-spotlight-tab code {
   @apply py-2 px-1 font-content text-mono leading-6;
 }
+.ch-scrollycoding-content ul,
 .ch-spotlight-tab ul {
   @apply ml-3;
 }
+.ch-scrollycoding-content li > code,
 .ch-spotlight-tab li > code {
   @apply py-0;
 }
