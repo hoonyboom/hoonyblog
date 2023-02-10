@@ -39,10 +39,10 @@ type DesiredShape = RemoveMapsFromObj<ApiData>;
 ```
 ---
 - 그를 위해 제네릭 타입의 모든 키에 대해 `RemoveMaps<T>` 타입을 적용한다. 모든 키 `K`가 속속들이 검증의 대상으로 올 텐데, 관건은 `${string}`이라고 퉁친 문자형 자리에 원래의 값을 넣는 것이다. 어떻게 할까?
-```ts type.ts focus=7,9 mark=9[40:45]
+```ts type.ts focus=7,9 mark=7[17:32],9[40:45]
 ```
 ---
-- 그 값은 `infer`를 통해 유추되도록 한다. `infer`란 이렇다. 뭔지는 모르겠지만 거기 있는 값을 `U`라는 리터럴 타입으로 상정해 보자는 것이다. 이어 삼항연산자에서 그 값을 그대로 돌려받도록 한다.
+- 그 값은 `infer`를 통해 유추되도록 한다. `infer`란 이렇다. 뭔지는 모르겠지만 거기 있을 값을 `U`라는 리터럴 타입으로 상정해 보자는 것이다. 이어 삼항연산자에서 그 값을 그대로 돌려받는다.
 ```ts type.ts mark=9[40:46],9[52]
 interface ApiData {
   "maps:longitude": string;
