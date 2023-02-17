@@ -19,9 +19,9 @@ description: tailwind
 같은 목의 클래스가 겹치게 되면 앞쪽에 있는 클래스를 제거시켜준다.  
 ```tsx
 <Abc 
-  className={clsx("rounded-xl"), props.className}
+  className={clsx("rounded-xl", props.className)}
   // or
-  className={twMerge("rounded-xl"), props.className}
+  className={twMerge("rounded-xl", props.className)}
   {...props}
 />
 ```
