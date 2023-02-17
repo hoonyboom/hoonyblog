@@ -24,6 +24,7 @@
     "dotenv-cli": "^6.0.0",
     "graphql": "^16.6.0",
     "gray-matter": "^4.0.3",
+    "hyezo": "^1.4.0",
     "kbar": "^0.1.0-beta.39",
     "loader-utils": "^3.2.1",
     "lodash": "^4.17.21",

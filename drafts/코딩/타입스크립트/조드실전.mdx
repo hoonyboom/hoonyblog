@@ -8,16 +8,16 @@ description: zod
 <HeadingNavigator />
 
 코딩할 때 메이저 기술이 아쉽게 느껴질 때도 있다.  
-비루한 내가 기억하는 첫째는 `GraphQL` 이다. 서버 쪽에서 실컷 공들여 스키마를 짰는데, 이를 클라이언트에 통용시키지 못하고 새로 타입 정의를 해야 할 때 짜증이 났다. 작업량이 두 배.. 그 반향으로 이것저것 찾았고, `trpc`를 접한 것도 그때였다.  
-그렇게 보면 두번째도 같은 맥락이다. 타입스크립트의 소극성이라고 불러도 될까? 타입스크립트가 방파제 역할만 할 게 아니라, 파싱, 나아가 가공까지 할 수 있으면 좋겠단 생각을 종종 했다. 내가 기여한 바는 없지만 말이다.    
+비루한 내가 기억하는 첫째는 `GraphQL` 에서다. 서버 쪽에서 실컷 공들여 스키마를 짰는데, 이를 클라이언트에 통용시키지 못하고 새로 타입 정의를 해야 할 때 진짜 짜증났다ㅎㅎ 작업량이 두 배.. 그 반향으로 이것저것 찾았고, `trpc`를 접한 것도 그때였다.  
+그렇게 보면 두번째도 같은 맥락이다. 타입스크립트의 소극성이라고 불러도 될까? 그러니까 타입스크립트가 탱커 역할만 할 게 아니라, 파싱, 나아가 가공까지 딜 좀 넣을 수 있으면 좋겠단 생각을 했다. 거기에 내가 기여한 바는 없지만 말이다.    
 <br/>
 `zod`의 존재는 그런 불만들과 맞닿아 있는 것 같다.
 
 ---
 
 ### zod
-타입스크립트의 스키마 선언 그리고 검증을 도와주는 라이브러리다. 
-> Zod allows you to work around uncertainty by checking types at the <q>runtime</q> level as well at the type level. The goal is to eliminate duplicative type declarations. With Zod, you declare a validator once and Zod will automatically infer the static TypeScript type. It's easy to compose simpler types into complex data structures.
+타입스크립트의 스키마 파씽, 그리고 검증을 도와주는 라이브러리다. 
+> "Zod allows you to work around uncertainty by checking types at the <q>runtime</q> level as well at the type level. The goal is to eliminate duplicative type declarations. With Zod, you declare a validator once and Zod will automatically infer the static TypeScript type. It's easy to compose simpler types into complex data structures."
 <cite>- Matt Pocock</cite>
 
 ### 문법
@@ -227,12 +227,12 @@ it("Should resolve the name and nameAsArray", async () => {
 </CH.Code>
 ---
 - `results`에 해당하는 부분만 필요하므로 다음처럼 파싱을 준비한다.  
-이는 그큐엘에서 필요한 쿼리만 요청하는 것과 같다. 그 많은 예비설계 없이도.
+이는 그큐엘에서 필요한 쿼리만 요청하는 것과 같다. 그 많은 예비설계 없이도.!
 ```ts vitest.test.ts focus=8:10,17
 ```
 ---
 - `results`에는 여러 인물들의 정보가 배열로 담겨 있고, 각 인물들의 정보는 똑같은 오브젝트 항목으로 구성돼 있다.  
-여기서는 최대한 간단하게 `name`만을 추출해봤다. 그러면 각 인물들의 이름만 속속들이 `fetch` 될 거라 예상되는데,
+여기서는 최대한 간단하게 `name`만을 추출해봤다. 그러면 각 인물들의 이름만 속속들이 `fetch` 될 텐데,
 ```ts vitest.test.ts focus=4:6,9[19:34]
 ```
 ---

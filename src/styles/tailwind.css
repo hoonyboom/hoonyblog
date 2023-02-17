@@ -6,12 +6,9 @@
   *::-webkit-scrollbar {
     @apply hidden;
   }
-  ::selection {
-    @apply bg-sea text-white;
-  }
   html,
   body {
-    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content;
+    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content selection:bg-sea selection:text-white;
   }
   a {
     @apply cursor-fancyHover underline decoration-paleBlue decoration-solid underline-offset-8 hover:decoration-wavy;
