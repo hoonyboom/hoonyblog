@@ -188,7 +188,7 @@ export const HeadingNavigator = () => {
       <div className={`${isClick ? styles.notepad_heading : "bg-transparent"}`}>
         <Img
           onClick={() => setIsClick(!isClick)}
-          className="m-auto h-5 w-5 cursor-fancyHover transition hover:scale-110"
+          className="m-auto mt-0 h-5 w-5 cursor-fancyHover transition hover:scale-110"
           src={`/images/2022/pinColor/pin-${pinColor[pickColor]}@2x.png`}
           alt={"image"}
         />
