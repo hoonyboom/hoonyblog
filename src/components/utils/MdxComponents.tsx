@@ -38,7 +38,7 @@ export const Lnk = (props: LinkProps) => {
 // NextImage
 export const Img = ({ className, ...props }: ImageProps) => {
   return (
-    <div className="mb-16 flex items-center justify-center space-x-1">
+    <div className="flex items-center justify-center space-x-1">
       <Image
         width={1000}
         height={1000}

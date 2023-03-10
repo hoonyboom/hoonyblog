@@ -126,11 +126,5 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
 function getThisMonth(allPostsData: PostsProps[]) {
   const thisMonth =
     new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
-  const lastMonth =
-    new Date().getFullYear() + "-" + String(new Date().getMonth()).padStart(2, "0");
-  const recentPosts = allPostsData.filter(({ date }) => {
-    return date.substring(0, 7) === thisMonth || date.substring(0, 7) === lastMonth;
-  });
-
-  return recentPosts;
+  return allPostsData.filter(({ date }) => date.substring(0, 7) === thisMonth);
 }
