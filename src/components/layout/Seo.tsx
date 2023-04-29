@@ -7,11 +7,11 @@ export default function Seo({ siteTitle }: { siteTitle?: string }) {
       <link rel="icon" href="/images/2022/summer/heart.svg" />
       <link rel="apple-touch-icon" href="/images/2022/summer/heart.svg" />
       <link rel="mask-icon" href="/images/2022/summer/heart.svg" />
-      <link rel="canonical" href="https://hyezoprk.com" />
+      <link rel="canonical" href="https://hyezoblog.vercel.app" />
       <meta property="og:title" content="혜조로그" />
       <meta property="og:description" content="코딩과 일기가 뒤죽박죽 섞여 있어요" />
       <meta property="og:image" content="/images/2022/summer/heart.svg" />
-      <meta property="og:url" content="https://hyezoprk.com" />
+      <meta property="og:url" content="https://hyezoblog.vercel.app" />
       <meta property="og:locale" content="ko_KR" />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />

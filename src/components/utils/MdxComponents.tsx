@@ -1,4 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { RoughNotation, RoughNotationProps } from "react-rough-notation";
@@ -13,10 +20,7 @@ interface NotationProps extends Omit<RoughNotationProps, "children"> {
   className?: string;
   children?: React.ReactNode;
 }
-interface HeadersType {
-  isIntersecting?: boolean;
-  target: { id: string; element?: HTMLHeadingElement };
-}
+
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
   text: string;
   href: string;
@@ -115,67 +119,68 @@ export const H3 = ({ children }: { children?: React.ReactNode }) => {
   );
 };
 
+interface HeadersType {
+  isIntersecting?: boolean;
+  target: { id: string };
+}
+
+function useIntersectionObserver(setActiveId: Dispatch<SetStateAction<string>>) {
+  const headingElementsRef = useRef<Record<string, HeadersType>>({});
+
+  useEffect(() => {
+    const navigator = (entries: IntersectionObserverEntry[]) => {
+      headingElementsRef.current = entries.reduce(
+        (
+          map: Record<string, { target: { id: string } }>,
+          headingElement: { target: { id: string } },
+        ) => {
+          map[headingElement.target.id] = headingElement;
+          return map;
+        },
+        headingElementsRef.current,
+      );
+
+      const visibleHeadings: HeadersType[] = [];
+      Object.keys(headingElementsRef.current).forEach(key => {
+        const headingElement = headingElementsRef.current[key];
+        if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
+      });
+
+      const getIndexFromId = (id: string) =>
+        headingElements.findIndex(heading => heading.id === id);
+
+      if (visibleHeadings.length === 1) setActiveId(visibleHeadings[0].target.id);
+      else if (visibleHeadings.length > 1) {
+        const sortedVisibleHeadings = visibleHeadings.sort((a, b) => {
+          if (getIndexFromId(a.target.id) > getIndexFromId(b.target.id)) return 1;
+          else return 0;
+        });
+        setActiveId(sortedVisibleHeadings[0].target.id);
+      }
+    };
+
+    const observer = new IntersectionObserver(navigator, {
+      rootMargin: "-50px 0px -50%",
+    });
+
+    const headingElements = Array.from(document.querySelectorAll("h3"));
+    headingElements.forEach(element => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, [setActiveId]);
+}
+
 export const HeadingNavigator = () => {
-  const { Img } = MdxComponents;
   const [isClick, setIsClick] = useState(true);
   const [activeId, setActiveId] = useState("");
   const [headers] = useRecoilState(headerState);
+  useIntersectionObserver(setActiveId);
+  const { Img } = MdxComponents;
   const pinColor = ["blue", "green", "orange"];
   const pickColor = useMemo(
     () => Math.floor(Math.random() * pinColor.length),
     [pinColor.length],
   );
-
-  const useIntersectionObserver = (
-    setActiveId: React.Dispatch<React.SetStateAction<string>>,
-  ) => {
-    const headingElementsRef = useRef<{
-      [key: string]: HeadersType;
-    }>({});
-
-    useEffect(() => {
-      const navigator = <T extends IntersectionObserverEntry>(data: Array<T>) => {
-        headingElementsRef.current = data.reduce(
-          (
-            map: { [key: string]: { target: { id: string } } },
-            headingElement: { target: { id: string } },
-          ) => {
-            map[headingElement.target.id] = headingElement;
-            return map;
-          },
-          headingElementsRef.current,
-        );
-
-        const visibleHeadings: HeadersType[] = [];
-        Object.keys(headingElementsRef.current).forEach(key => {
-          const headingElement = headingElementsRef.current[key];
-          if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
-        });
-
-        const getIndexFromId = (id: string) =>
-          headingElements.findIndex(heading => heading.id === id);
-
-        if (visibleHeadings.length === 1) setActiveId(visibleHeadings[0].target.id);
-        else if (visibleHeadings.length > 1) {
-          const sortedVisibleHeadings = visibleHeadings.sort((a, b) => {
-            if (getIndexFromId(a.target.id) > getIndexFromId(b.target.id)) return 1;
-            else return 0;
-          });
-          setActiveId(sortedVisibleHeadings[0].target.id);
-        }
-      };
-
-      const observer = new IntersectionObserver(navigator, {
-        rootMargin: "-50px 0px -50%",
-      });
-      const headingElements = Array.from(document.querySelectorAll("h3"));
-      headingElements.forEach(element => observer.observe(element));
-      return () => {
-        observer.disconnect();
-      };
-    }, [setActiveId]);
-  };
-  useIntersectionObserver(setActiveId);
 
   return (
     <div

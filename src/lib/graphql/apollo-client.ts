@@ -3,7 +3,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 const httpLink = new HttpLink({
   uri: `${
     process.env.NODE_ENV === "production"
-      ? "https://hyezoprk.com/api/graphql"
+      ? "https:/hyezoblol.vercel.app/api/graphql"
       : "http://localhost:3000/api/graphql"
   }`,
   headers: {
