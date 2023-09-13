@@ -8,7 +8,7 @@ import useSound from "use-sound";
 export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[] }) {
   const [tabSound] = useSound("/sounds/tap.mp3", { volume: 0.6 });
   const [beepSound] = useSound("/sounds/beep.mp3", { volume: 0.6 });
-  const [isClick, setIsClick] = useState(false);
+  const [isClick, setIsClick] = useState(true);
   const [animation, setAnimation] = useState(false);
   const thisMonth = useRef<string>();
   const router = useRouter();
