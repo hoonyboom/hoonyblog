@@ -62,7 +62,7 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostsProps[]
                 <div>
                   {categories === "coding" ? (
                     <FcWorkflow className="h-5 w-5" />
-                  ) : categories === "diarying" ? (
+                  ) : categories === "project" ? (
                     <FcDislike className="h-5 w-5" />
                   ) : (
                     <FcPuzzle className="h-5 w-5" />

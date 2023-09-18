@@ -57,7 +57,7 @@ export default function BlogPost({ code, frontmatter, id }: MdxProps) {
         </div>
         <article
           className={`keep-all m-10  ${
-            frontmatter.categories === "diarying" || frontmatter.categories === "reading"
+            frontmatter.categories === "project" || frontmatter.categories === "reading"
               ? "word-arita font-content text-mono leading-6 tracking-tight"
               : "font-sans text-base2 antialiased sm:leading-7 md:leading-9"
           }`}

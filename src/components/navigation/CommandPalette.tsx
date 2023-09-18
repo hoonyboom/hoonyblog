@@ -45,18 +45,18 @@ export default function CommandPalette({ children }: LayoutProps) {
       icon: <FcWorkflow className="h-4 w-4" />,
     },
     {
-      id: "diarying",
-      name: "Diarying",
-      shortcut: ["d"],
-      keywords: "diarying",
+      id: "project",
+      name: "Project",
+      shortcut: ["p"],
+      keywords: "project",
       section: "_root",
       perform: () =>
         router.push(
           {
             pathname: "/",
-            query: { category: "diarying" },
+            query: { category: "project" },
           },
-          "/diarying",
+          "/project",
         ),
       icon: <FcDislike className="h-4 w-4" />,
     },

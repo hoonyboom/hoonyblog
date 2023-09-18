@@ -1,7 +1,7 @@
 import { getSortedPostsData } from "@/lib/posts";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
-import { uniqBy } from "lodash";
+import { set, uniqBy } from "lodash";
 import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
 import { Layout /* Pagination */ } from "@/components/utils";
 import {
@@ -35,6 +35,7 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   // 카테고리
   const router = useRouter();
+  const whichCategory = router.query.category;
   const [initCategory, setInitCategory] = useState(false);
   const [sortedDataByTag, setSortedDataByTag] = useState<string[]>();
   const deleteOverlapCategories = useMemo(
@@ -46,7 +47,6 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
       }),
     [allPostsData],
   );
-  const whichCategory = router.query.category;
 
   // 페이지네이션
   const page = 1,
@@ -59,7 +59,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   useEffect(() => {
     const initData = allPostsData.filter(({ categories }) => {
       if (whichCategory) return categories === whichCategory;
-      return categories === "coding";
+      else return categories === "coding";
     });
 
     const deleteOverlapTags = initData.reduce(
@@ -71,19 +71,12 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     );
     setInitCategory(false);
     setSortedDataByTag(deleteOverlapTags);
+    if (sessionStorage.Page) sessionStorage.removeItem("Page");
   }, [whichCategory, allPostsData]);
 
   useEffect(() => {
     setInitCategory(true);
   }, [sortedDataByTag]);
-
-  useEffect(() => {
-    if (sessionStorage.Page) sessionStorage.removeItem("Page");
-    if (sessionStorage.watchedTab === "2")
-      router.push({ query: { category: "reading" } });
-    else if (sessionStorage.watchedTab === "1")
-      router.push({ query: { category: "diarying" } });
-  }, [router]);
 
   return (
     <Layout home siteTitle="혜조로그">
@@ -102,7 +95,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         {/* 태그 리스트 */}
         <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur dark:border-blue-900">
           <div className="flex basis-1/12 items-center justify-center pl-3">
-            {whichCategory === "diarying" ? (
+            {whichCategory === "project" ? (
               <FcDislike className="h-6 w-6" />
             ) : whichCategory === "reading" ? (
               <FcPuzzle className="h-6 w-6" />

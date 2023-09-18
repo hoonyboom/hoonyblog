@@ -49,7 +49,7 @@ export default function Layout({
         className={`container mx-auto ${
           home
             ? "max-w-4xl"
-            : category === "diarying" || category === "reading"
+            : category === "project" || category === "reading"
             ? "max-w-xl"
             : "max-w-3xl"
         }`}
@@ -82,7 +82,22 @@ export default function Layout({
 
           {tag ? (
             <footer className="mt-16 ml-3 pb-20 text-base">
-              <a onClick={() => router.push("/")} className="no-underline">
+              <a
+                onClick={() => {
+                  switch (sessionStorage.watchedTab) {
+                    case "2":
+                      router.push({ pathname: "/", query: { category: "reading" } }, "/");
+                      break;
+                    case "1":
+                      router.push({ pathname: "/", query: { category: "project" } }, "/");
+                      break;
+                    default:
+                      router.push("/");
+                      break;
+                  }
+                }}
+                className="no-underline"
+              >
                 ← Previous
               </a>
             </footer>
