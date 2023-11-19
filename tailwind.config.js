@@ -82,6 +82,7 @@ module.exports = {
       mono: ["OperatorLig", "ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
       content: ["NunitoSans", "Arita"],
+      line: ["NunitoSans", "LINE"],
       grapeNuts: ["GrapeNuts"],
     },
     minHeight: {

@@ -59,7 +59,7 @@ export default function BlogPost({ code, frontmatter, id }: MdxProps) {
           className={`keep-all m-10  ${
             frontmatter.categories === "reading"
               ? "word-arita font-content text-mono leading-6 tracking-tight"
-              : "font-sans text-base2 antialiased sm:leading-7 md:leading-9"
+              : "font-line text-base2 antialiased sm:leading-7 md:leading-9"
           }`}
         >
           <Component components={{ h3: H3, ...MdxComponents }} />

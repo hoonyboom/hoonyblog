@@ -47,7 +47,7 @@ export const Img = ({ className, ...props }: ImageProps) => {
         width={1000}
         height={1000}
         quality={100}
-        className={`mt-8 mb-3 h-fit max-w-full rounded-xl drop-shadow-xl ${className}`}
+        className={`mt-5 mb-3 h-fit max-w-full rounded-xl drop-shadow-xl ${className}`}
         {...props}
         alt="이미지"
       />

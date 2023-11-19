@@ -23,7 +23,7 @@
     @apply mb-5 font-heading text-2xl;
   }
   h3 {
-    @apply relative py-4 font-heading text-lg font-bold sm:mt-12 sm:mb-px md:mt-20 md:mb-5;
+    @apply relative font-heading text-lg font-bold sm:mt-12 sm:mb-px sm:py-1 md:mt-20 md:py-4;
   }
   h4 {
     @apply pt-10 pb-2 font-heading text-md2 font-bold text-emerald-600;
@@ -32,13 +32,22 @@
     @apply text-base;
   }
   ul {
-    @apply list-disc pt-1 pl-6;
+    @apply list-disc sm:pl-4 sm:leading-7 md:pl-6 md:leading-8;
   }
   ol {
-    @apply list-decimal pt-1 pl-6;
+    @apply list-decimal pt-1 pl-4;
   }
   ul > li::marker {
-    @apply text-sea;
+    @apply text-sea sm:leading-10 md:leading-[3.3rem];
+  }
+  li:has(ul) {
+    @apply sm:leading-4 md:leading-5;
+  }
+  li:has(> b)::marker {
+    @apply animate-pulse text-red-600;
+  }
+  ul > li > ul {
+    @apply list-circle text-base leading-5 sm:pl-2 sm:pb-1 md:pl-3 md:pb-3;
   }
   button {
     @apply cursor-fancyHover;
@@ -53,6 +62,9 @@
   blockquote {
     @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
   }
+  b {
+    @apply bg-stripes-cyan mx-px px-1;
+  }
   q {
     @apply bg-highlight-paleYellow dark:bg-highlight-bora;
   }
@@ -63,7 +75,7 @@
     @apply flex justify-center text-mono;
   }
   small {
-    @apply flex justify-center text-mono;
+    @apply flex justify-start pl-px text-mono sm:-mt-2 md:-mt-5;
   }
   hr {
     @apply my-10 sm:my-6;
@@ -304,6 +316,7 @@
 .ch-codegroup {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
+  @apply !mt-1;
 }
 
 /* 
@@ -318,16 +331,24 @@
 }
 
 /* Scroll 제목&설명탭 설정 */
-.ch-scrollycoding-step-content p,
-.ch-scrollycoding-content ul,
-.ch-scrollycoding-content code,
 .ch-spotlight-tab ul,
+.ch-spotlight-tab ol,
 .ch-spotlight-tab code {
-  @apply py-2 px-1 font-content text-mono leading-6;
+  @apply py-2 px-1 text-mono leading-6;
+}
+.ch-scrollycoding-step-content p,
+.ch-scrollycoding-content li,
+.ch-scrollycoding-content code {
+  @apply px-1 text-mono leading-6;
 }
 .ch-scrollycoding-content ul,
-.ch-spotlight-tab ul {
+.ch-scrollycoding-content ol,
+.ch-spotlight-tab ul,
+.ch-spotlight-tab ol {
   @apply ml-3;
+}
+.ch-spotlight-tab li::marker {
+  @apply leading-none;
 }
 .ch-scrollycoding-content li > code,
 .ch-spotlight-tab li > code {
@@ -349,6 +370,12 @@
 @font-face {
   font-family: "Arita";
   src: url("/fonts/Arita.woff2") format("woff2");
+  font-weight: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "LINE";
+  src: url("/fonts/LINESeedKR-Rg.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
