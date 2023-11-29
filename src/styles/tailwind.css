@@ -8,13 +8,10 @@
   }
   html,
   body {
-    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content selection:bg-sea selection:text-white;
+    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content selection:bg-sea;
   }
   a {
     @apply cursor-fancyHover underline decoration-paleBlue decoration-solid underline-offset-8 hover:decoration-wavy;
-  }
-  em {
-    @apply not-italic text-sea;
   }
   h1 {
     @apply font-heading text-3xl;
@@ -31,23 +28,53 @@
   h5 {
     @apply text-base;
   }
+  p:not(blockquote p, ul p) {
+    @apply pt-4 sm:leading-6 md:leading-8;
+  }
+  blockquote p {
+    @apply sm:leading-5 md:leading-6;
+  }
+  blockquote label {
+    @apply inline-block rounded-2xl px-2 text-sm font-bold uppercase leading-6 tracking-wider text-white sm:mb-2 md:mb-3;
+  }
+  blockquote label.green {
+    @apply bg-emerald-600 before:content-['information'];
+  }
+  blockquote label.red {
+    @apply bg-red-500 before:content-['important'];
+  }
+  blockquote label.orange {
+    @apply bg-orange before:content-['의식의흐름으로끼적끼적'];
+  }
+  blockquote {
+    @apply my-4 rounded-md bg-smokeWhite text-mono dark:bg-smokeBlack sm:py-4 sm:px-4 sm:leading-6 md:py-5 md:px-5 md:leading-7;
+  }
+  p > br {
+    @apply block border-b-[0.7rem] border-transparent content-[''];
+  }
   ul {
-    @apply list-disc sm:pl-4 sm:leading-7 md:pl-6 md:leading-8;
+    @apply list-disc sm:pl-4 sm:leading-5 md:pl-6 md:leading-7;
   }
   ol {
     @apply list-decimal pt-1 pl-4;
   }
   ul > li::marker {
-    @apply text-sea sm:leading-10 md:leading-[3.3rem];
+    @apply text-paleBlue sm:leading-9 md:leading-10;
   }
-  li:has(ul) {
+  li:has(ul) ul {
     @apply sm:leading-4 md:leading-5;
   }
   li:has(> b)::marker {
     @apply animate-pulse text-red-600;
   }
-  ul > li > ul {
+  ul ul {
     @apply list-circle text-base leading-5 sm:pl-2 sm:pb-1 md:pl-3 md:pb-3;
+  }
+  ul ul code {
+    @apply text-mono;
+  }
+  ul ul ul {
+    @apply list-square pb-px text-base leading-5 sm:pl-2 md:pl-3;
   }
   button {
     @apply cursor-fancyHover;
@@ -57,10 +84,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 py-px font-content text-base subpixel-antialiased dark:bg-darkGray;
-  }
-  blockquote {
-    @apply my-6 rounded-l-md border-l-2 border-l-sea bg-smokeWhite px-6 py-5 text-mono dark:bg-smokeBlack sm:leading-6 md:leading-7;
+    @apply mx-px rounded-md bg-lightGray px-1 py-px align-top font-mono text-base2 subpixel-antialiased dark:bg-darkGray;
   }
   b {
     @apply bg-stripes-cyan mx-px px-1;
@@ -75,13 +99,10 @@
     @apply flex justify-center text-mono;
   }
   small {
-    @apply flex justify-start pl-px text-mono sm:-mt-2 md:-mt-5;
+    @apply flex justify-start pl-px text-mono sm:-mt-2 md:-mt-4;
   }
   hr {
     @apply my-10 sm:my-6;
-  }
-  br {
-    @apply leading-4;
   }
   details {
     @apply rounded-lg p-5 open:bg-white open:shadow-lg open:ring-1 open:ring-black/5 dark:open:bg-slate-900 dark:open:ring-white/10;
@@ -113,8 +134,8 @@
   .keep-all {
     word-break: keep-all;
   }
-  .align-text-10 {
-    vertical-align: -10%;
+  .align-text-20 {
+    vertical-align: -20%;
   }
   .align-text-17 {
     vertical-align: -17%;
@@ -316,7 +337,12 @@
 .ch-codegroup {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  @apply !mt-1;
+  @apply !mt-2;
+}
+
+.ch-codeblock:where(li li > div),
+.ch-codegroup:where(li li > div) {
+  @apply !mb-2 !mt-1 !shadow-lg !drop-shadow-lg;
 }
 
 /* 
@@ -324,22 +350,22 @@
   Scroll 전체화면 설정 */
 .ch-code-browser-content > div,
 .ch-code-browser-content > div > span {
-  @apply h-6 font-mono;
+  @apply h-6;
 }
 .ch-spotlight {
-  @apply flex-row-reverse;
+  @apply !mt-1 flex-row-reverse;
 }
 
 /* Scroll 제목&설명탭 설정 */
 .ch-spotlight-tab ul,
 .ch-spotlight-tab ol,
 .ch-spotlight-tab code {
-  @apply py-2 px-1 text-mono leading-6;
+  @apply py-2 px-1 leading-6;
 }
 .ch-scrollycoding-step-content p,
 .ch-scrollycoding-content li,
 .ch-scrollycoding-content code {
-  @apply px-1 text-mono leading-6;
+  @apply px-1 leading-6;
 }
 .ch-scrollycoding-content ul,
 .ch-scrollycoding-content ol,
@@ -355,9 +381,12 @@
   @apply py-0;
 }
 /* 기본화면 설정 */
+.ch-code-scroll-content {
+  @apply !w-[660px];
+}
 .ch-code-scroll-content span,
 .ch-inline-code span {
-  @apply font-mono text-mono;
+  @apply text-mono;
 }
 /* Scroll 모바일 화면 */
 .ch-scrollycoding-static > p {
@@ -392,8 +421,8 @@
   font-display: block;
 }
 @font-face {
-  font-family: "OperatorLig";
-  src: url("/fonts/OperatorMonoLig-Book.woff2") format("woff2");
+  font-family: "Inconsolata";
+  src: url("/fonts/Inconsolaa.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }

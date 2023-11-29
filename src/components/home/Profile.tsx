@@ -16,14 +16,14 @@ export default function Profile({ initCategory }: { initCategory: boolean }) {
             alt="프로필"
           />
           <div className="ml-8 flex flex-col justify-center space-y-1">
-            <p className="font-heading text-lg">Hyezolog</p>
-            <p className="text-base">공부일지</p>
+            <p className="pt-0 font-heading text-lg">Hyezolog</p>
+            <p className="pt-0 text-base">공부일지</p>
           </div>
         </section>
         <section className="mx-10 flex items-center">
-          <p className="font-content text-base sm:leading-6 md:leading-7">
+          <p className="pt-0 font-content text-base sm:leading-6 md:leading-7">
             안녕하세요. 처절한 코딩 생존기를 담은 사이트입니다.
-            <br />
+            <br className="border-b-0" />
             <Note
               show={initCategory}
               type="underline"

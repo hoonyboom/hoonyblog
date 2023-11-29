@@ -30,7 +30,7 @@ const getAllFiles = (dir: string): FileType[] => {
         ...allFiles,
         {
           id,
-          tags: matterResult.tags,
+          tags: matterResult.tags || "쪼가리",
           date: matterResult.date,
           fullpath,
           ...matterResult,

@@ -64,7 +64,7 @@ export default function Layout({
             <Twemoji
               options={{
                 className:
-                  "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-10 cursor-fancy",
+                  "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-20 cursor-fancy",
               }}
             >
               <article>{children}</article>

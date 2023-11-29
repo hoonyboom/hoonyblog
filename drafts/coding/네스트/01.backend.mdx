@@ -23,14 +23,13 @@ description: "01"
 <br/>
 그러면 JIT이란 뭘까?
 
-
 ### JIT 컴파일
 <Img src='/images/nest/jit.png' />
 <br/>
 <b>작동 흐름</b>
-- <Note children='소스코드' type='box' color='mediumSeaGreen' />는 사람이 특정 프로그래밍 문법 안에서 영어로 작성한 코드, 즉 <Note children='개발자들의 언어' color='mediumSeaGreen' />를 지칭한다.
+- <Note type='box' color='mediumSeaGreen'>소스코드</Note>는 사람이 특정 프로그래밍 문법 안에서 영어로 작성한 코드, 즉 <Note color='mediumSeaGreen'>개발자들의 언어</Note>를 지칭한다.
 - 컴퓨터가 이를 이해하기 위해서는 번역의 과정을 필요로 한다.
-- <Note children='머신코드' type='circle' color='salmon' />는 CPU가 바로 읽고 사용할 수 있는 바이너리 코드다.
+- <Note type='circle' color='salmon'>머신코드</Note>는 CPU가 바로 읽고 사용할 수 있는 바이너리 코드다.
 - 소스코드로부터 이를 생성하는 과정, 즉 번역하는 작업이 바로 컴파일이다.
 - 일반적으로 컴파일러는 실행되는 순간 문서 전체를 한번에 번역하고, 인터프리터는 실행되면서 한줄한줄 번역하는 특성을 지녔다.
 - 하지만 JIT은 빌드타임에 일회성으로 작동하고 마는 것이 아니라 런타임 내내 컴파일을 반복적으로 수행한다(Just In Time).  
@@ -59,14 +58,14 @@ description: "01"
 - Method: 요청의 종류
 - Header: 요청에 대한 메타 데이터들
 - Body: 요청에 싣는 실질적인 데이터
-
+<br/>
 1. <u>URL</u>  
 ex) `https://hyezoprk.com/posts?page=2` 
 - Scheme: https
 - Host: hyezoprk.com
 - Path: posts
 - Query: page=2
-
+<br/>
 2. <u>Method</u>
 - GET: 데이터를 조회할 때 사용
 - POST: 데이터를 생성할 때 사용
@@ -74,12 +73,14 @@ ex) `https://hyezoprk.com/posts?page=2`
 - PUT: 데이터를 수정하거나 추가할 때 사용
 - DELETE: 데이터를 삭제할 때 사용
 - HEAD/CONNECT/OPTIONS 등: 잘 사용하지 않음
+<br/>
 
 3. <u>Header</u>
 - 메타데이터를 정의한다.
 - 대표적으로 쿠키, 인증 토큰, 요청의 바이트 길이, 요청/응답을 보낸 Host, 요청하는 클라이언트 타입과 버전 등이 담긴다.
 - key, value 형태로 구성되고 모두 `String` 타입이다
 - 대부분 라이브러리, 프레임워크 등에 의해 자동으로 생성되는 경우가 많기 때문에 값을 변경하는 경우는 Body 보단 적다.
+<br/>
 
 4. <u>Body</u>
 - 요청에 실어 보내는 데이터를 담는다.

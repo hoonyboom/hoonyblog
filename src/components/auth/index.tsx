@@ -79,7 +79,7 @@ export default function Auth({ session, reloadSession }: AuthProps) {
         </Modal>
       ) : (
         <div className="flex place-items-center justify-end gap-3">
-          <p className="italic">Comment ?</p>
+          <p className="py-0 italic">Comment ?</p>
           <button className="btn" onClick={() => signIn("google")}>
             <SiGoogle />
           </button>

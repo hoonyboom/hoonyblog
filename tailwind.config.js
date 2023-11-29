@@ -34,7 +34,7 @@ module.exports = {
         waterMelon: "#ED4C6A",
         orange: "#ffa500",
         favBlue: "#0000b9",
-        sea: "#48A7E4",
+        sea: "#D8F4F9",
         icloud: "#3d84f7",
         paleBlue: "rgb(102, 153, 204)",
         lightGray: "#EDF1F2",
@@ -66,7 +66,7 @@ module.exports = {
     },
     fontSize: {
       sm: "clamp(0.67rem, calc(0.59rem + 0.22vw), 0.76rem);",
-      mono: "clamp(0.76rem, calc(0.64rem + 0.28vw), 0.86rem);",
+      mono: "clamp(0.78rem, calc(0.67rem + 0.31vw), 0.92rem);",
       base: "clamp(0.81rem, calc(0.69rem + 0.33vw), 0.97rem);",
       base2: "clamp(0.85rem, calc(0.74rem + 0.44vw), 1.05rem);",
       md: "clamp(0.9rem, calc(0.82rem + 0.55vw), 1.22rem);",
@@ -79,7 +79,7 @@ module.exports = {
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["OperatorLig", "ui-monospace", "SFMono-Regular"],
+      mono: ["Inconsolata", "ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
       content: ["NunitoSans", "Arita"],
       line: ["NunitoSans", "LINE"],
