@@ -35,7 +35,7 @@
     @apply sm:leading-5 md:leading-6;
   }
   blockquote label {
-    @apply inline-block rounded-2xl px-2 text-sm font-bold uppercase leading-6 tracking-wider text-white sm:mb-2 md:mb-3;
+    @apply mb-3 inline-block rounded-2xl px-2 text-sm font-bold uppercase leading-6 tracking-wider text-white;
   }
   blockquote label.green {
     @apply bg-emerald-600 before:content-['information'];
@@ -44,7 +44,7 @@
     @apply bg-red-500 before:content-['important'];
   }
   blockquote label.orange {
-    @apply bg-orange before:content-['의식의흐름으로끼적끼적'];
+    @apply bg-orange before:content-['끼적끼적'];
   }
   blockquote {
     @apply my-4 rounded-md bg-smokeWhite text-mono dark:bg-smokeBlack sm:py-4 sm:px-4 sm:leading-6 md:py-5 md:px-5 md:leading-7;
@@ -67,14 +67,16 @@
   li:has(> b)::marker {
     @apply animate-pulse text-red-600;
   }
-  ul ul {
+  ul ul:not(.ch-scrollycoding-step-content > ul) {
     @apply list-circle text-base leading-5 sm:pl-2 sm:pb-1 md:pl-3 md:pb-3;
   }
-  ul ul code {
+  ul ul code,
+  blockquote p code,
+  blockquote li code {
     @apply text-mono;
   }
-  ul ul ul {
-    @apply list-square pb-px text-base leading-5 sm:pl-2 md:pl-3;
+  ul ul ul li {
+    @apply list-square pb-px pl-1 text-base leading-5;
   }
   button {
     @apply cursor-fancyHover;
@@ -93,13 +95,13 @@
     @apply bg-highlight-paleYellow dark:bg-highlight-bora;
   }
   cite {
-    @apply flex justify-end not-italic;
+    @apply flex justify-end not-italic before:mr-1 before:content-['-'];
   }
   figcaption {
     @apply flex justify-center text-mono;
   }
   small {
-    @apply flex justify-start pl-px text-mono sm:-mt-2 md:-mt-4;
+    @apply flex justify-start pl-px text-mono capitalize before:mr-1 before:content-['-'] sm:-mt-2 md:-mt-4;
   }
   hr {
     @apply my-10 sm:my-6;
@@ -342,7 +344,7 @@
 
 .ch-codeblock:where(li li > div),
 .ch-codegroup:where(li li > div) {
-  @apply !mb-2 !mt-1 !shadow-lg !drop-shadow-lg;
+  @apply !mb-4 !mt-2 !shadow-lg !drop-shadow-lg;
 }
 
 /* 
@@ -352,41 +354,32 @@
 .ch-code-browser-content > div > span {
   @apply h-6;
 }
-.ch-spotlight {
+.ch-spotlight,
+.ch-scrollycoding {
   @apply !mt-1 flex-row-reverse;
+}
+.ch-scrollycoding-content {
+  @apply !flex-grow-0 !basis-1/4;
+}
+.ch-scrollycoding-sticker {
+  @apply !flex-grow;
+}
+.ch-scrollycoding-step-content {
+  @apply !px-px !py-2;
+}
+.ch-scrollycoding-step-content ul {
+  @apply pr-6;
 }
 
 /* Scroll 제목&설명탭 설정 */
-.ch-spotlight-tab ul,
-.ch-spotlight-tab ol,
-.ch-spotlight-tab code {
-  @apply py-2 px-1 leading-6;
-}
 .ch-scrollycoding-step-content p,
 .ch-scrollycoding-content li,
 .ch-scrollycoding-content code {
-  @apply px-1 leading-6;
-}
-.ch-scrollycoding-content ul,
-.ch-scrollycoding-content ol,
-.ch-spotlight-tab ul,
-.ch-spotlight-tab ol {
-  @apply ml-3;
-}
-.ch-spotlight-tab li::marker {
-  @apply leading-none;
-}
-.ch-scrollycoding-content li > code,
-.ch-spotlight-tab li > code {
-  @apply py-0;
+  @apply text-mono leading-6;
 }
 /* 기본화면 설정 */
 .ch-code-scroll-content {
   @apply !w-[660px];
-}
-.ch-code-scroll-content span,
-.ch-inline-code span {
-  @apply text-mono;
 }
 /* Scroll 모바일 화면 */
 .ch-scrollycoding-static > p {

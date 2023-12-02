@@ -1,5 +1,5 @@
 {
-  "name": "chorok",
+  "name": "hyezolog",
   "version": "2.0.0",
   "private": true,
   "scripts": {
@@ -77,6 +77,5 @@
       "eslint --ignore-path .gitignore --fix",
       "prettier --write"
     ]
-  },
-  "packageManager": "yarn@4.0.0-rc.18"
+  }
 }
