@@ -21,6 +21,8 @@ declare global {
     tags: string | string[];
     description: string;
     excerpt?: string;
+    pinned?: boolean;
+    series?: string;
     image: string;
   }
 }
@@ -55,7 +57,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
     offset = (page - 1) * limit;
 
   // 이달의 글
-  const recentPosts = useMemo(() => getThisMonth(allPostsData), [allPostsData]);
+  const recentPosts = useMemo(() => getPinnedPosts(allPostsData), [allPostsData]);
 
   useEffect(() => {
     const initData = allPostsData.filter(({ categories }) => {
@@ -117,8 +119,13 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   );
 }
 
-function getThisMonth(allPostsData: PostsProps[]) {
-  const thisMonth =
-    new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
-  return allPostsData.filter(({ date }) => date.substring(0, 7) === thisMonth);
+function getPinnedPosts(allPostsData: PostsProps[]) {
+  const pinnedPosts = allPostsData.filter(({ pinned }) => pinned);
+  return pinnedPosts;
 }
+
+// function getThisMonth(allPostsData: PostsProps[]) {
+//   const thisMonth =
+//     new Date().getFullYear() + "-" + String(new Date().getMonth() + 1).padStart(2, "0");
+//   return allPostsData.filter(({ date }) => date.substring(0, 7) === thisMonth);
+// }
