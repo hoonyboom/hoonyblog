@@ -50,18 +50,10 @@ export function getSortedPostsData(tag?: string) {
         ? post.tags === tag
         : post.tags.find(tagInArr => tagInArr === tag),
     );
-    return postsByTag.sort(({ date: a }, { date: b }) => {
-      if (a < b) return 1;
-      else if (a > b) return -1;
-      else return 0;
-    });
+    return postsByTag.sort(({ date: a }, { date: b }) => (a < b ? 1 : -1));
   }
 
-  return allPostsData.sort(({ date: a }, { date: b }) => {
-    if (a < b) return 1;
-    else if (a > b) return -1;
-    else return 0;
-  });
+  return allPostsData.sort(({ date: a }, { date: b }) => (a < b ? 1 : -1));
 }
 
 export function getAllPostIds() {
@@ -96,11 +88,13 @@ export function getAllPostTags() {
 
 export async function getPostData(id: string) {
   const allPostsData = getAllFiles(postsDirectory);
-  const path = allPostsData.find(post => {
+  const file = allPostsData.find(post => {
     return post.id === `${id}`;
   });
 
-  const source = fs.readFileSync(path!.fullpath, "utf8");
+  if (!file) throw new Error(`No such file: ${id}`);
+
+  const source = fs.readFileSync(file.fullpath, "utf8");
 
   const { code, frontmatter } = await bundleMDX({
     source,
@@ -123,9 +117,20 @@ export async function getPostData(id: string) {
     },
   });
 
+  const series = getSeriesList(frontmatter.series, allPostsData);
+
   return {
     id,
     code,
     frontmatter,
+    series,
+  };
+}
+
+function getSeriesList(series: string, allPostsData: FileType[]) {
+  const posts = allPostsData.filter(post => post.series === series);
+
+  return {
+    ids: posts.map(post => post.id),
   };
 }
