@@ -18,8 +18,9 @@ export interface MdxProps {
   };
   id: string;
   series: {
-    ids: string[];
-  };
+    id: string;
+    title: string;
+  }[];
 }
 
 export async function getStaticPaths() {
@@ -60,7 +61,7 @@ export default function BlogPost({ code, frontmatter, id, series }: MdxProps) {
           <Date dateString={frontmatter.date} />
         </div>
 
-        {series.ids.length > 0 && renderSeriesList(series.ids, id)}
+        {series && renderSeriesList({ series, id })}
 
         <article
           className={`keep-all my-10 mx-6 ${
@@ -78,7 +79,7 @@ export default function BlogPost({ code, frontmatter, id, series }: MdxProps) {
   );
 }
 
-const renderSeriesList = (series: string[], postId: string) => {
+const renderSeriesList = ({ series, id: postId }: Pick<MdxProps, "series" | "id">) => {
   return (
     <div className="flex rounded-lg border p-5 text-base leading-6 sm:mx-20 sm:mb-10 md:mx-24 md:mb-12">
       <div className="flex flex-col">
@@ -87,15 +88,15 @@ const renderSeriesList = (series: string[], postId: string) => {
           {series.map(each => (
             <li
               className={`${
-                postId !== each
+                postId !== each.id
                   ? "marker:text-black"
                   : "text-emerald-600 marker:text-emerald-600"
               }`}
-              key={each}
+              key={each.id}
             >
-              <Link className="no-underline" href={`/posts/${each}`}>
-                <Note type="highlight" color="#CAFC9D" show={postId === each}>
-                  {each.replace(/^\d+\./, "")}
+              <Link className="no-underline" href={`/posts/${each.id}`}>
+                <Note type="highlight" color="#CAFC9D" show={postId === each.id}>
+                  {each.title}
                 </Note>
               </Link>
             </li>

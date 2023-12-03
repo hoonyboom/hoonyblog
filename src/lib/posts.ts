@@ -117,7 +117,7 @@ export async function getPostData(id: string) {
     },
   });
 
-  const series = getSeriesList(frontmatter.series, allPostsData);
+  const series = getSeriesList(allPostsData, frontmatter.series);
 
   return {
     id,
@@ -127,10 +127,10 @@ export async function getPostData(id: string) {
   };
 }
 
-function getSeriesList(series: string, allPostsData: FileType[]) {
+function getSeriesList(allPostsData: FileType[], series?: string) {
+  if (!series) return null;
+
   const posts = allPostsData.filter(post => post.series === series);
 
-  return {
-    ids: posts.map(post => post.id),
-  };
+  return posts.map(post => ({ id: post.id, title: post.title }));
 }
