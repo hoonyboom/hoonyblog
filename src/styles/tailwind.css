@@ -370,11 +370,20 @@
 .ch-scrollycoding-step-content ul {
   @apply pr-6;
 }
+.ch-spotlight-tab li {
+  @apply py-3;
+}
+.ch-spotlight-tab li::marker {
+  @apply leading-none;
+}
 
 /* Scroll 제목&설명탭 설정 */
 .ch-scrollycoding-step-content p,
 .ch-scrollycoding-content li,
-.ch-scrollycoding-content code {
+.ch-scrollycoding-content code,
+.ch-spotlight-tab p,
+.ch-spotlight-tab li,
+.ch-spotlight-tab code {
   @apply text-mono leading-6;
 }
 /* 기본화면 설정 */

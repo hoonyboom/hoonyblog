@@ -1,21 +1,14 @@
 ---
-title: 타입뿌시기 2편 - keyof
+title: extends 키워드로 범위 좁히기
 date: '2023-01-29'
 categories: coding
 tags: 타입스크립트
-description: keyof
+description: feat
+series: "Total TS"
 ---
 <HeadingNavigator />
 
-### 제네릭에 extends 활용하기
-
-제네릭은 타입들의 관계를 만들어내는 곳이다.  
-원래라면 밋밋했던 타입들이 제네릭에서 새로운 관계가 규정되면서 유기적으로 엮이게 된다.  
-2D에서 3D로 넘어간듯 별세상을 맛볼 수 있다 🚀
-
-### 오늘의 상황
-오늘의 상황은 가령 이런 상황이다.
-<br/>
+### 상황
 함수 `getDeepValue(a, b, c)`는 세개의 파라미터를 받는다.  
 첫번째는 depth가 2인 오브젝트 자료고,  
 두번째는 그 오브젝트 자료의 윗층 키,  

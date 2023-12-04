@@ -130,7 +130,9 @@ export async function getPostData(id: string) {
 function getSeriesList(allPostsData: FileType[], series?: string) {
   if (!series) return null;
 
-  const posts = allPostsData.filter(post => post.series === series);
+  const posts = allPostsData
+    .filter(post => post.series === series)
+    .sort(({ date: a }, { date: b }) => (a > b ? 1 : -1));
 
   return posts.map(post => ({ id: post.id, title: post.title }));
 }

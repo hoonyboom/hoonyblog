@@ -1,17 +1,18 @@
 ---
-title: 타입뿌시기 5편 - extends
+title: extends를 이용한 변형
 date: '2023-02-08'
 categories: coding
 tags: 타입스크립트
-description: extends
+description: feat
+series: "Total TS"
 ---
 ### 유니언 타입에서 특정값을 없애거나 대체하기
 
 제목 그대로다. 유니언 타입에서 특정 값을 없애거나 대체할 필요가 있(을 수 있)다.  
-이때 쓰이는 게 제네릭과 `extends`인데, 누누이 말하지만 타입에서 `extends`는 `무엇무엇이면`으로 읽으면 좋다.  
+이때 쓰이는 것이 제네릭과 `extends`다.
 <br/>
 - 없애는 상황  
-: "제네릭으로 받는 타입에 `"c"`가 있으면 걔는 없는(`never`) 걸로 해주세요. 나머지는 그대로 주시고요" 
+"제네릭으로 받는 타입에 `"c"`가 있으면 걔는 없는(`never`) 걸로 해주세요. 나머지는 그대로 주시고요" 
 ```ts type.ts
 export type Letters = "a" | "b" | "c";
 
@@ -22,7 +23,7 @@ type Result = RemoveC<Letters>
 
 <br/>
 - 대체하는 상황  
-: "제네릭으로 받는 타입에 `"c"`가 있으면 걔는 `메롱`으로 주세요. 나머지는 그대로 주시고요" 
+"제네릭으로 받는 타입에 `"c"`가 있으면 걔는 `메롱`으로 주세요. 나머지는 그대로 주시고요" 
 ```ts type.ts
 export type Letters = "a" | "b" | "c";
 
