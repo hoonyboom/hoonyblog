@@ -89,7 +89,7 @@ const renderSeriesList = ({ series, id: postId }: Pick<MdxProps, "series" | "id"
             <li
               className={`${
                 postId !== each.id
-                  ? "marker:text-black"
+                  ? "marker:text-current"
                   : "text-emerald-600 marker:text-emerald-600"
               }`}
               key={each.id}

@@ -86,7 +86,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 py-px align-top font-mono text-base2 subpixel-antialiased dark:bg-darkGray;
+    @apply mx-px rounded-md bg-lightGray px-1 py-px align-top font-mono text-base2 subpixel-antialiased;
   }
   b {
     @apply bg-stripes-cyan mx-px px-1;
