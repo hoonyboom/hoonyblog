@@ -29,7 +29,7 @@
     @apply text-base;
   }
   p:not(blockquote p, ul p) {
-    @apply pt-4 sm:leading-6 md:leading-8;
+    @apply pt-4;
   }
   blockquote p {
     @apply sm:leading-5 md:leading-6;

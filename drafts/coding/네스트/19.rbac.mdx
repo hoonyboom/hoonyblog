@@ -125,7 +125,7 @@ providers: [
   ],
   ...
 ```
-이렇게 하면 어떤 API든 액세스토큰 가드의 검증 대상이 된다. 토큰을 확인할 수 없는 경우에는 에러를 낸다. 그리고 우리는 이런 완전한 폐쇄를 지양한다.   
+이렇게 하면 어떤 API든 액세스토큰 가드의 검증 대상이 되고, 토큰을 확인할 수 없으면 에러를 내게 된다. 그리고 우리는 이러한 완전한 폐쇄를 지양한다.   
 따라서 노출이 필요한 페이지(가령 메인 페이지나 로그인 페이지)는 추가적으로 `@Public()` 데코레이터를 만들어 토큰 검증을 무마시키도록 한다.  
 ```ts public.decorator.ts
 export const IS_PUBLIC_KEY = 'is_public';
@@ -133,8 +133,8 @@ export const IS_PUBLIC_KEY = 'is_public';
 export const isPublic = () => SetMetadata(IS_PUBLIC_KEY, true);
 ```
 
-메타데이터를 만드는 모습은 똑같다. 하지만 새로운 가드를 만드는 게 아니라 `BearerTokenGuard` 안에서 검증이 이루어지게 한다. 그 안에서 `isPublic`이 true로 확인되면 액세스 토큰 검증을 멈춘다.  
-똑같이 `Reflector`를 주입받고 그 값이 true일 경우 req에 그 값을 전달한다.
+메타데이터를 만드는 모습은 똑같다. 하지만 새로운 가드를 만드는 게 아니라 `BearerTokenGuard` 안에 그 정보를 심는다. 그 안에서 `isPublic`이 true로 확인되면 이를 `req`에 기록한다.  
+
 ```ts bearer-token.guard.ts
 @Injectable()
 export class BearerTokenGuard implements CanActivate {
@@ -171,7 +171,7 @@ export class BearerTokenGuard implements CanActivate {
 }
 ```
 
-그러면 이어지는 로직인 액세스 토큰 가드에서도 이 결과값을 확인할 수 있게 된다. 액세스 토큰 가드에서 `isRoutePublic`이 true로 확인되면 토큰 검증 없이, 그대로 통과시키는 로직을 추가한다.
+그러면 액세스 토큰 가드에서 `req`를 조회하고 이 값을 확인할 수 있게 된다. 만약 이 값이 true로 확인되면 토큰 검증 없이, 그대로 통과시키는 로직을 추가한다.
 ```ts access-token.guard.ts
 @Injectable()
 export class AccessTokenGuard extends BearerTokenGuard {
@@ -189,6 +189,10 @@ export class AccessTokenGuard extends BearerTokenGuard {
   }
 }
 ```
+<br />
+> <label className='green' />
+> 클라이언트에서 Request 요청이 들어오면 ➝ 해당 Endpoint에 대한 메타데이터(데코레이터)들이 읽히고 ➝ 미들웨어부터 가드까지의 훅들이 순차적으로 실행된다 ➝ 이 과정에서 탈이 없다면 그때 컨트롤러(메소드)가 나선다. 
+
 <br/>
 ---
 

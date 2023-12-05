@@ -3,8 +3,8 @@ import { Date, Layout, MdxComponents } from "@/components/utils";
 import { H3, Note } from "@/components/utils/MdxComponents";
 import { getAllPostIds, getPostData } from "@/lib/posts";
 import { getMDXComponent } from "mdx-bundler/client";
-import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 
 export interface IdProps {
   params: {
@@ -66,8 +66,8 @@ export default function BlogPost({ code, frontmatter, id, series }: MdxProps) {
         <article
           className={`keep-all my-10 mx-6 ${
             frontmatter.categories === "reading"
-              ? "word-arita font-content text-mono leading-6 tracking-tight"
-              : "font-line text-base2 antialiased sm:leading-7 md:leading-9"
+              ? "word-arita font-content text-sm2 leading-6 tracking-tight"
+              : "font-line text-base2 antialiased sm:leading-6 md:leading-8"
           }`}
         >
           <Component components={{ h3: H3, ...MdxComponents }} />

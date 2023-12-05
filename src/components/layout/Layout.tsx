@@ -47,11 +47,7 @@ export default function Layout({
     >
       <div
         className={`container mx-auto ${
-          home
-            ? "max-w-4xl"
-            : category === "project" || category === "reading"
-            ? "max-w-xl"
-            : "max-w-3xl"
+          home ? "max-w-4xl" : category === "reading" ? "max-w-xl" : "max-w-3xl"
         }`}
       >
         <header>

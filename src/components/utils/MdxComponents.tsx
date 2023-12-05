@@ -42,16 +42,14 @@ export const Lnk = (props: LinkProps) => {
 // NextImage
 export const Img = ({ className, ...props }: ImageProps) => {
   return (
-    <div className="flex items-center justify-center space-x-1">
-      <Image
-        width={1000}
-        height={1000}
-        quality={100}
-        className={`mt-5 mb-3 h-fit max-w-full rounded-xl drop-shadow-xl ${className}`}
-        {...props}
-        alt="이미지"
-      />
-    </div>
+    <Image
+      {...props}
+      width={props.width ?? 1000}
+      height={props.height ?? 1000}
+      quality={props.quality ?? 100}
+      alt={props.alt ?? "이미지"}
+      className={`mt-5 mb-3 h-auto max-w-full rounded-xl bg-cover bg-no-repeat align-middle italic drop-shadow-xl ${className}`}
+    />
   );
 };
 

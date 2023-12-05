@@ -66,6 +66,7 @@ module.exports = {
     },
     fontSize: {
       sm: "clamp(0.67rem, calc(0.59rem + 0.22vw), 0.76rem);",
+      sm2: "clamp(0.81rem, calc(0.68rem + 0.31vw), 0.88rem);",
       mono: "clamp(0.78rem, calc(0.67rem + 0.31vw), 0.92rem);",
       base: "clamp(0.81rem, calc(0.69rem + 0.33vw), 0.97rem);",
       base2: "clamp(0.85rem, calc(0.74rem + 0.44vw), 1.05rem);",
