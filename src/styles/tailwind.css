@@ -98,7 +98,10 @@
     @apply flex justify-end not-italic before:mr-1 before:content-['-'];
   }
   figcaption {
-    @apply flex justify-center text-mono;
+    @apply flex items-center justify-center text-mono;
+  }
+  sup > a {
+    @apply mx-px text-jadu no-underline hover:font-bold;
   }
   small {
     @apply flex justify-start pl-px text-mono capitalize before:mr-1 before:content-['-'] sm:-mt-2 md:-mt-4;
