@@ -68,7 +68,7 @@
     @apply animate-pulse text-red-600;
   }
   ul ul:not(.ch-scrollycoding-step-content > ul) {
-    @apply list-circle text-base leading-5 sm:pl-2 sm:pb-1 md:pl-3 md:pb-3;
+    @apply list-circle text-base sm:pl-2 sm:pb-1 sm:leading-5 md:pl-3 md:pb-3 md:leading-6;
   }
   ul ul code,
   blockquote p code,
