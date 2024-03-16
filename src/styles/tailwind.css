@@ -44,7 +44,7 @@
     @apply bg-red-500 before:content-['important'];
   }
   blockquote label.orange {
-    @apply bg-orange before:content-['끼적끼적'];
+    @apply bg-orange before:content-['tldr'];
   }
   blockquote {
     @apply my-4 rounded-md bg-smokeWhite text-mono dark:bg-smokeBlack sm:py-4 sm:px-4 sm:leading-6 md:py-5 md:px-5 md:leading-7;
