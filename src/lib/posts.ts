@@ -19,6 +19,8 @@ const postsDirectory = path.join(process.cwd(), "drafts");
 const getAllFiles = (dir: string): FileType[] => {
   const folderNames = fs.readdirSync(dir);
   const getAllFilesData = folderNames.reduce((allFiles: FileType[], file: string) => {
+    if (file === ".obsidian") return [];
+
     const fullpath = path.join(dir, file);
     const isDirectory = fs.statSync(fullpath).isDirectory();
     if (isDirectory) return [...allFiles, ...getAllFiles(fullpath)];
@@ -51,9 +53,7 @@ export function getSortedPostsData(tag?: string) {
         : post.tags.find(tagInArr => tagInArr === tag),
     );
     return postsByTag.sort(({ date: a }, { date: b }) => (a < b ? 1 : -1));
-  }
-
-  return allPostsData.sort(({ date: a }, { date: b }) => (a < b ? 1 : -1));
+  } else return allPostsData.sort(({ date: a }, { date: b }) => (a < b ? 1 : -1));
 }
 
 export function getAllPostIds() {
