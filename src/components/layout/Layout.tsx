@@ -1,4 +1,3 @@
-import Twemoji from "react-twemoji";
 import { Nav } from "@/components/navigation";
 import { Seo } from "@/components/layout";
 import { useEffect, useState, useRef, useMemo } from "react";
@@ -56,25 +55,7 @@ export default function Layout({
         </header>
 
         <section className="pt-10">
-          {category === "coding" ? (
-            <Twemoji
-              options={{
-                className:
-                  "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-20 cursor-fancy",
-              }}
-            >
-              <article>{children}</article>
-            </Twemoji>
-          ) : (
-            <Twemoji
-              options={{
-                className:
-                  "inline m-px md:w-5 md:h-5 sm:h-4 sm:w-4 align-text-17 cursor-fancy",
-              }}
-            >
-              <article>{children}</article>
-            </Twemoji>
-          )}
+          <article>{children}</article>
 
           {tag ? (
             <footer className="mt-16 ml-3 pb-20 text-base">
