@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
 import { remarkCodeHike } from "@code-hike/mdx";
 import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism/lib/src";
+import rehypePrism from "rehype-prism";
 import { theme } from "./theme/theme";
 
 interface FileType {

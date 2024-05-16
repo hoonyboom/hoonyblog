@@ -10,7 +10,6 @@ import Image, { ImageProps } from "next/image";
 import Link from "next/link";
 import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 import styles from "./[MdxComponents].module.css";
-import Twemoji from "react-twemoji";
 // recoil Import
 import { headerState } from "@/lib/atoms";
 import { useRecoilState } from "recoil";
@@ -48,7 +47,7 @@ export const Img = ({ className, ...props }: ImageProps) => {
       height={props.height ?? 1000}
       quality={props.quality ?? 100}
       alt={props.alt ?? "이미지"}
-      className={`mt-5 mb-3 h-auto max-w-full rounded-xl bg-cover bg-no-repeat align-middle italic drop-shadow-xl ${className}`}
+      className={`mb-3 mt-5 h-auto max-w-full rounded-xl bg-cover bg-no-repeat align-middle italic drop-shadow-xl ${className}`}
     />
   );
 };
@@ -58,7 +57,7 @@ export const Youtube = ({ src }: { src: string }) => {
   return (
     <div className="relative mb-8 pb-[76.25%] pt-6 md:w-screen md:max-w-3xl">
       <iframe
-        className="absolute top-0 left-0 h-full w-full rounded-2xl bg-black shadow-2xl shadow-black dark:shadow-red-900/30 "
+        className="absolute left-0 top-0 size-full rounded-2xl bg-black shadow-2xl shadow-black dark:shadow-red-900/30 "
         width="560"
         height="315"
         src={src}
@@ -102,17 +101,10 @@ export const H3 = ({ children }: { children?: React.ReactNode }) => {
 
   return (
     <h3 id={anchor}>
-      <Twemoji
-        options={{
-          className:
-            "inline cursor-fancyHover m-px sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 align-text-17",
-        }}
-      >
-        <a className="anchor-link no-underline" href={link}>
-          💡&nbsp;
-        </a>
-        {children}
-      </Twemoji>
+      <a className="anchor-link no-underline" href={link}>
+        💡&nbsp;
+      </a>
+      {children}
     </h3>
   );
 };
@@ -185,13 +177,13 @@ export const HeadingNavigator = () => {
       className={`fixed font-heading duration-500 ease-out sm:hidden lg:block ${
         isClick
           ? "top-1/4 w-48 opacity-100 lg:right-12 xl:right-[10%]"
-          : "top-0 right-0 w-5 opacity-30"
+          : "right-0 top-0 w-5 opacity-30"
       }`}
     >
       <div className={`${isClick ? styles.notepad_heading : "bg-transparent"}`}>
         <Img
           onClick={() => setIsClick(!isClick)}
-          className="m-auto mt-0 h-5 w-5 cursor-fancyHover transition hover:scale-110"
+          className="m-auto mt-0 size-5 cursor-fancyHover transition hover:scale-110"
           src={`/images/2022/pinColor/pin-${pinColor[pickColor]}@2x.png`}
           alt={"image"}
         />
