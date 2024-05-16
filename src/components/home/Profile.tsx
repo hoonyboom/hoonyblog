@@ -10,7 +10,7 @@ export default function Profile({ initCategory }: { initCategory: boolean }) {
           <Image
             priority
             src="/images/default/profile.png"
-            className="select-none rounded-full ring-2 ring-indigo-900 ring-offset-1 sm:h-16 sm:w-16 md:h-20 md:w-20"
+            className="select-none rounded-full ring-2 ring-indigo-900 ring-offset-1 sm:size-16 md:size-20"
             height={80}
             width={80}
             alt="프로필"

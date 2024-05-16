@@ -26,7 +26,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "home",
       section: "_root",
       perform: () => router.push("/"),
-      icon: <GiCircle className="h-4 w-4" />,
+      icon: <GiCircle className="size-4" />,
     },
     {
       id: "coding",
@@ -42,7 +42,7 @@ export default function CommandPalette({ children }: LayoutProps) {
           },
           "/coding",
         ),
-      icon: <FcWorkflow className="h-4 w-4" />,
+      icon: <FcWorkflow className="size-4" />,
     },
     {
       id: "project",
@@ -58,7 +58,7 @@ export default function CommandPalette({ children }: LayoutProps) {
           },
           "/project",
         ),
-      icon: <FcDislike className="h-4 w-4" />,
+      icon: <FcDislike className="size-4" />,
     },
     {
       id: "reading",
@@ -74,7 +74,7 @@ export default function CommandPalette({ children }: LayoutProps) {
           },
           "/reading",
         ),
-      icon: <FcPuzzle className="h-4 w-4" />,
+      icon: <FcPuzzle className="size-4" />,
     },
     {
       id: "github",
@@ -83,7 +83,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "github",
       section: "public",
       perform: () => window.open("https://github.com/10004ok", "_blank"),
-      icon: <VscGithubInverted className="h-4 w-4" />,
+      icon: <VscGithubInverted className="size-4" />,
     },
     {
       id: "twitter",
@@ -92,7 +92,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "twitter",
       section: "public",
       perform: () => window.open("https://twitter.com/", "_blank"),
-      icon: <VscTwitter className="h-4 w-4" fill="#1DA1F2" />,
+      icon: <VscTwitter className="size-4" fill="#1DA1F2" />,
     },
     {
       id: "about",
@@ -101,7 +101,7 @@ export default function CommandPalette({ children }: LayoutProps) {
       keywords: "about",
       section: "README.md",
       perform: () => router.push("/about"),
-      icon: <SiAboutdotme className="h-4 w-4" />,
+      icon: <SiAboutdotme className="size-4" />,
     },
     // {
     //   id: 'copy',
@@ -131,15 +131,15 @@ export default function CommandPalette({ children }: LayoutProps) {
             <div className="relative flex text-gray-600 focus-within:text-gray-400">
               <button
                 type="submit"
-                className="bg-white py-4 px-2 focus:shadow-md dark:bg-zinc-800"
+                className="bg-white px-2 py-4 focus:shadow-md dark:bg-zinc-800"
               >
                 <IoCloud
-                  className="h-6 w-6 bg-white focus:shadow-md dark:bg-zinc-800"
+                  className="size-6 bg-white focus:shadow-md dark:bg-zinc-800"
                   fill="skyblue"
                 />
               </button>
               <KBarSearch
-                className="w-full rounded-none border-4 border-white bg-white py-4 px-3 text-sm text-black caret-blue-500 outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white"
+                className="w-full rounded-none border-4 border-white bg-white px-3 py-4 text-sm text-black caret-blue-500 outline-none dark:border-zinc-800 dark:bg-zinc-800 dark:text-white"
                 defaultPlaceholder="첫글자는 단축키 &nbsp;🚀"
               />
             </div>

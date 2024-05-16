@@ -29,7 +29,7 @@ export default function Darkmode() {
             setTheme("light");
             setRotate(false);
           }}
-          className="h-6 w-6"
+          className="size-6"
           fill="gold"
         />
       ) : (
@@ -39,7 +39,7 @@ export default function Darkmode() {
             setTheme("dark");
             setRotate(true);
           }}
-          className="h-6 w-6"
+          className="size-6"
           fill="orange"
         />
       )}

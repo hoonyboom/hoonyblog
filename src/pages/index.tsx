@@ -99,11 +99,11 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
         <article className="flex flex-row border-y border-blue-800 py-px backdrop-blur dark:border-blue-900">
           <div className="flex basis-1/12 items-center justify-center pl-3">
             {whichCategory === "project" ? (
-              <FcDislike className="h-6 w-6" />
+              <FcDislike className="size-6" />
             ) : whichCategory === "reading" ? (
-              <FcPuzzle className="h-6 w-6" />
+              <FcPuzzle className="size-6" />
             ) : (
-              <FcWorkflow className="h-6 w-6" />
+              <FcWorkflow className="size-6" />
             )}
           </div>
           <div className="writing-vertical basis-11/12 pl-3">

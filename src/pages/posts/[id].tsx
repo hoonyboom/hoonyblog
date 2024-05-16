@@ -57,14 +57,14 @@ export default function BlogPost({ code, frontmatter, id, series }: MdxProps) {
         <h1 className="overflow-hidden text-ellipsis text-center text-3xl sm:mt-20 sm:px-3 md:mt-28">
           {frontmatter.title}
         </h1>
-        <div className="flex justify-center text-base leading-6 sm:mt-3 sm:mb-10 md:mt-5 md:mb-12">
+        <div className="flex justify-center text-base leading-6 sm:mb-10 sm:mt-3 md:mb-12 md:mt-5">
           <Date dateString={frontmatter.date} />
         </div>
 
         {series && renderSeriesList({ series, id })}
 
         <article
-          className={`keep-all my-10 mx-6 ${
+          className={`keep-all mx-6 my-10 ${
             frontmatter.categories === "reading"
               ? "word-arita font-content text-sm2 leading-6 tracking-tight"
               : "font-line text-base2 antialiased sm:leading-6 md:leading-8"

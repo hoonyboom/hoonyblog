@@ -66,8 +66,8 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
 
   return (
     <Layout tag siteTitle={`${tag} 〰 후니로그`}>
-      <h1 className="pt-16 pl-4">{tag}</h1>
-      <div className="flex justify-between pt-7 pl-3 pb-12">
+      <h1 className="pl-4 pt-16">{tag}</h1>
+      <div className="flex justify-between pb-12 pl-3 pt-7">
         <p className="keep-all text-base sm:basis-1/2 md:basis-2/5">
           {summary.reverse().map(({ excerpt }, i) => (
             <span key={i}>

@@ -73,9 +73,9 @@ export default function Comment({
 
   return (
     <>
-      <div className="mt-2 flex flex-col rounded-lg border-[1px] border-black/10 p-3 dark:border-white/10">
+      <div className="mt-2 flex flex-col rounded-lg border-DEFAULT border-black/10 p-3 dark:border-white/10">
         {isEditing ? (
-          <div className="mt-1 ml-3">
+          <div className="ml-3 mt-1">
             <CommentForm
               session={session}
               postId={postId}
@@ -138,7 +138,7 @@ export default function Comment({
         </div>
 
         {isReplying && (
-          <div className="mt-1 ml-3">
+          <div className="ml-3 mt-1">
             <CommentForm
               session={session}
               postId={postId}

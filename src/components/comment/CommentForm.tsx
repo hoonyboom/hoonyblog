@@ -123,12 +123,12 @@ export default function CommentForm({
           placeholder="💥 로그인 하셔야 합니당"
           ref={inputRef}
           onChange={e => debounceInput(e.target.value)}
-          className="h-20 basis-5/6 resize-none rounded-xl border-[1px] border-black/10 px-3 py-2 leading-5"
+          className="h-20 basis-5/6 resize-none rounded-xl border-DEFAULT border-black/10 px-3 py-2 leading-5"
         />
         <button
           onClick={parentId ? onReply : commentId ? onEdit : onCreate}
           disabled={!message || !session?.user.username}
-          className="disabled:bg-stripes-gray $ ml-2 basis-1/6 rounded-xl border-[1px] border-black/10 bg-icloud transition disabled:cursor-not-allowed"
+          className="disabled:bg-stripes-gray ml-2 basis-1/6 rounded-xl border-DEFAULT border-black/10 bg-icloud transition disabled:cursor-not-allowed"
         >
           {parentId ? "reply" : commentId ? "edit" : "post"}
         </button>

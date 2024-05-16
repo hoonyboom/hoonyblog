@@ -58,7 +58,7 @@ export default function Layout({
           <article>{children}</article>
 
           {tag ? (
-            <footer className="mt-16 ml-3 pb-20 text-base">
+            <footer className="ml-3 mt-16 pb-20 text-base">
               <a
                 onClick={() => {
                   switch (sessionStorage.watchedTab) {
@@ -80,7 +80,7 @@ export default function Layout({
             </footer>
           ) : (
             !home && (
-              <footer className="mt-16 ml-3 pb-20 text-base">
+              <footer className="ml-3 mt-16 pb-20 text-base">
                 <a
                   onClick={() =>
                     sessionStorage.path

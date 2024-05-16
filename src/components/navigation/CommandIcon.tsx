@@ -18,7 +18,7 @@ export default function CommandPaletteIcon() {
           // onMouseEnter={() => setHover(true)}
           // onMouseLeave={() => setHover(false)}
           onClick={query.toggle}
-          className="h-6 w-6"
+          className="size-6"
           fill="skyblue"
         />
         {/* {<MouseHoverPopup hover={hover} />} */}
