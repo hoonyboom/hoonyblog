@@ -80,10 +80,10 @@ module.exports = {
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui"],
       serif: ["ui-serif", "Georgia"],
-      mono: ["Inconsolata", "ui-monospace", "SFMono-Regular"],
+      mono: ["Agave", "ui-monospace", "SFMono-Regular"],
       heading: ["LeferiPointSpecial"],
       content: ["NunitoSans", "Arita"],
-      line: ["NunitoSans", "LINE"],
+      line: ["NunitoSans", "Pretendard"],
       grapeNuts: ["GrapeNuts"],
     },
     minHeight: {

@@ -8,7 +8,7 @@
   }
   html,
   body {
-    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content selection:bg-sea;
+    @apply h-full cursor-fancy scroll-p-8 scroll-pt-vmax scroll-smooth font-content selection:bg-sea dark:selection:text-black;
   }
   a {
     @apply cursor-fancyHover underline decoration-paleBlue decoration-solid underline-offset-8 hover:decoration-wavy;
@@ -350,7 +350,7 @@
   @apply !mb-4 !mt-2 !shadow-lg !drop-shadow-lg;
 }
 
-/* 
+/*
   note: Code Hike
   Scroll 전체화면 설정 */
 .ch-code-browser-content > div,
@@ -408,8 +408,8 @@
   font-display: block;
 }
 @font-face {
-  font-family: "LINE";
-  src: url("/fonts/LINESeedKR-Rg.woff2") format("woff2");
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Regular.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
@@ -426,8 +426,8 @@
   font-display: block;
 }
 @font-face {
-  font-family: "Inconsolata";
-  src: url("/fonts/Inconsolaa.woff2") format("woff2");
+  font-family: "Agave";
+  src: url("/fonts/Agave.woff2") format("woff2");
   font-weight: normal;
   font-display: block;
 }
