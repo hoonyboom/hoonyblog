@@ -29,7 +29,7 @@
     @apply text-base;
   }
   p:not(blockquote p, ul p) {
-    @apply pt-4;
+    @apply pt-2;
   }
   blockquote p {
     @apply sm:leading-5 md:leading-6;
@@ -56,13 +56,13 @@
     @apply list-disc sm:pl-4 sm:leading-5 md:pl-6 md:leading-7;
   }
   ol {
-    @apply list-decimal pt-1 pl-4;
+    @apply list-decimal pt-4 pl-4;
   }
   ul > li::marker {
-    @apply text-paleBlue sm:leading-9 md:leading-10;
+    @apply text-paleBlue sm:leading-7 md:leading-8;
   }
   li:has(ul) ul {
-    @apply sm:leading-4 md:leading-5;
+    @apply sm:leading-4 md:leading-6;
   }
   li:has(> b)::marker {
     @apply animate-pulse text-red-600;
@@ -86,7 +86,7 @@
   }
   p code,
   li code {
-    @apply mx-px rounded-md bg-lightGray px-1 py-px align-top font-mono text-base2 subpixel-antialiased;
+    @apply mx-px rounded-md bg-lightGray px-1 py-px align-top font-mono text-base;
   }
   b {
     @apply bg-stripes-cyan mx-px px-1;
@@ -104,7 +104,7 @@
     @apply mx-px text-jadu no-underline hover:font-bold;
   }
   small {
-    @apply flex justify-start pl-px text-mono capitalize before:mr-1 before:content-['-'] sm:-mt-2 md:-mt-4;
+    @apply flex justify-start pl-px text-mono capitalize before:mr-1 before:content-['-'] sm:-mt-2 sm:mb-2 md:-mt-4 md:mb-4;
   }
   hr {
     @apply my-10 sm:my-6;
