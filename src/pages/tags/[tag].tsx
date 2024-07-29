@@ -65,7 +65,7 @@ export default function PostsByTag({ allTagsData, tag }: DataProps) {
   const offset = page * limit;
 
   return (
-    <Layout tag siteTitle={`${tag} 〰 후니로그`}>
+    <Layout tag siteTitle={`${tag} 〰 혜조로그`}>
       <h1 className="pl-4 pt-16">{tag}</h1>
       <div className="flex justify-between pb-12 pl-3 pt-7">
         <p className="keep-all text-base sm:basis-1/2 md:basis-2/5">

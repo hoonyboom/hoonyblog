@@ -50,7 +50,7 @@ export default function BlogPost({ code, frontmatter, id, series }: MdxProps) {
 
   return (
     <Layout
-      siteTitle={`${frontmatter.title} 〰 후니로그`}
+      siteTitle={`${frontmatter.title} 〰 혜조로그`}
       category={frontmatter.categories}
     >
       <div className={`duration-1000 ${fade ? "opacity-100" : "opacity-0"}`}>

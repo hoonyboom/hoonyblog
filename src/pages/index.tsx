@@ -1,16 +1,16 @@
-import { getSortedPostsData } from "@/lib/posts";
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/router";
-import { set, uniqBy } from "lodash";
-import { FcWorkflow, FcDislike, FcPuzzle } from "react-icons/fc";
-import { Layout /* Pagination */ } from "@/components/utils";
 import {
+  CategoryTabs,
   Profile,
   RecentPosts,
   TabTracker,
-  CategoryTabs,
   TagList,
 } from "@/components/home";
+import { Layout /* Pagination */ } from "@/components/utils";
+import { getSortedPostsData } from "@/lib/posts";
+import { uniqBy } from "lodash";
+import { useRouter } from "next/router";
+import { useEffect, useMemo, useState } from "react";
+import { FcDislike, FcPuzzle, FcWorkflow } from "react-icons/fc";
 
 declare global {
   interface PostsProps {
@@ -82,7 +82,7 @@ export default function Home({ allPostsData }: { allPostsData: PostsProps[] }) {
   }, [sortedDataByTag]);
 
   return (
-    <Layout home siteTitle="후니로그">
+    <Layout home siteTitle="혜조로그">
       <Profile initCategory={initCategory} />
       <RecentPosts recentPosts={recentPosts} />
       <section className="pb-10 sm:mx-5 md:mx-10">

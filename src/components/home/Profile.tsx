@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { MdxComponents } from "@/components/utils";
+import Image from "next/image";
 
 export default function Profile({ initCategory }: { initCategory: boolean }) {
   const { Note } = MdxComponents;
@@ -16,7 +16,7 @@ export default function Profile({ initCategory }: { initCategory: boolean }) {
             alt="프로필"
           />
           <div className="ml-8 flex flex-col justify-center space-y-1">
-            <p className="pt-0 font-heading text-lg">hoonylog</p>
+            <p className="pt-0 font-heading text-lg">hyezolog</p>
             <p className="pt-0 text-base">공부일지</p>
           </div>
         </section>
