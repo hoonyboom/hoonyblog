@@ -2,7 +2,7 @@
 title: Nest.js에서 static asset에 접근할 수 없는 문제
 date: "2024-07-20"
 categories: project
-tags: 어푸
+tags: [어푸, 에러픽스]
 description: 백엔드
 ---
 <HeadingNavigator />
@@ -24,7 +24,9 @@ ServeStaticModule.forRoot({
 
 추측으로는 SPA 앱에서만 적용되는 방식이라는 것. Next.js를 이용하여 SSR을 전제로 한다면 에러가 날 수 있는 것 같았다.
 
-찾아보니 이런 방식이 있다.
+### 해결
+
+찾아보니 이런 대안이 있다.
 
 ```ts main.ts
 const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -34,12 +36,9 @@ const app = await NestFactory.create<NestExpressApplication>(AppModule);
   })
 ```
 
-### 해결
-
 `NestExpressApplication`을 제네릭으로 명시해주면(따로 설치할 필요 없이 불러와진다)
 `useStaticAssets`란 미들웨어가 오토힌트로 제공된다.
-  
-다행히 잘 작동한다.  
+   
 ServeStaticModule에 넣었던 것처럼 알맞은 경로를 셋팅하니 에러없이 이미지 경로를 찾아간다
 
 <br/>
