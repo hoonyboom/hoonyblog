@@ -28,11 +28,13 @@ addUtilities({
   },
 })
 ```
-특정한 색을 입히고 싶으면 `box-shadow`에 색을 주면 된다. 나처럼 단지 색을 없애고(`transparent`) 싶은 거라면 브라우저의 `background-color` 렌더링을 지연시키는 걸로 충분하다.
-
+특정한 색을 입히고 싶으면 `box-shadow`에 색을 주면 된다. 나처럼 단지 색을 없애고(`transparent`) 싶은 거라면 브라우저의 `background-color` 렌더링을 지연시키는 걸로 충분하다.  
+<br/>
+- <b>참고문서</b>
+  - <Lnk text='input 태그 자동완성 시 배경색 변경' href='https://velog.io/@docchi/input-%ED%83%9C%EA%B7%B8-%EC%9E%90%EB%8F%99%EC%99%84%EC%84%B1-%EC%8B%9C-%EB%B0%B0%EA%B2%BD%EC%83%89-%EB%B3%80%EA%B2%BD' />
 
 ### 2. 스크롤바 숨기기
-스크롤바를 숨기거나 얇게 만들고 싶을 때 사용한다. 다양한 커스터마이징이 가능하긴 한데, 사파리에서 스크롤바의 색이나 넓이를 지정하는 속성을 지원하지 않아 단순하게 가는 게 좋은 것 같다. 통일성 챙겨~
+스크롤바를 숨기거나 얇게 만들고 싶을 때 사용한다. 다양한 커스터마이징이 가능하긴 한데, 사파리에서 스크롤바의 색이나 넓이를 지정하는 속성을 지원하지 않아 단순하게 가는 게 좋은 것 같다. 통일성 챙겨 눈치 챙겨~
 
 ```ts tailwind.config.js
 addComponents({
@@ -53,6 +55,9 @@ addComponents({
   },
 })
 ```
+<br/>
+- <b>참고문서</b>
+  - <Lnk text='MDN 공식문서' href='https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width' />
 
 ### 3. Tailwind - Child 선택
 `[&_tag]`를 사용해서 해당 태그에 일괄 접근할 수 있다.
@@ -62,6 +67,10 @@ addComponents({
   <span>둘</span>
 </div>
 ```
+<br/>
+- <b>참고문서</b>
+  - <Lnk text='Tailwind 공식문서' href='https://tailwindcss.com/docs/hover-focus-and-other-states' />
+
 
 ### 4. Tailwind - 변수 활용
 tailwind에서 대괄호를 열고 임의의 값을 사용할 때(ex-`text-[#10FF11]`) 상태값이나 변수를 전달하고 싶을 때가 있다. 이때 백틱을 써서 변수를 전달하려 한 적 아마 한번쯤은 있을 것이다. 하지만 tailwind는 아무런 반응이 없다.  
@@ -84,3 +93,7 @@ tailwind에서 대괄호를 열고 임의의 값을 사용할 때(ex-`text-[#10F
 </SelectItem>
 ```
 그러면 className에서는 `unit-value`에 넘긴 값을 `attr`을 사용해 읽어들일 수 있다.
+
+<br/>
+- <b>참고문서</b>
+  - <Lnk text='how to pass dynamically text at pseudo class in tailwind css' href='https://stackoverflow.com/questions/75662277/how-to-pass-dynamically-text-at-pseudo-class-in-tailwind-css-aftercontent' />
