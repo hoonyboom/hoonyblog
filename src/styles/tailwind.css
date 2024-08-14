@@ -110,7 +110,7 @@
     @apply my-10 sm:my-6;
   }
   details {
-    @apply rounded-lg p-5 open:bg-white open:shadow-lg open:ring-1 open:ring-black/5 dark:open:bg-slate-900 dark:open:ring-white/10;
+    @apply rounded-lg p-5 open:bg-white open:shadow-md open:ring-1 open:ring-black/5 dark:open:bg-slate-900 dark:open:ring-white/10;
   }
 }
 
@@ -342,12 +342,12 @@
 .ch-codegroup {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  @apply !mt-2;
+  @apply !mt-2 !shadow-md !drop-shadow-md;
 }
 
 .ch-codeblock:where(li li > div),
 .ch-codegroup:where(li li > div) {
-  @apply !mb-4 !mt-2 !shadow-lg !drop-shadow-lg;
+  @apply !mb-4 !mt-2;
 }
 
 /*

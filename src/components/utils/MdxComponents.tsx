@@ -1,3 +1,5 @@
+import Image, { ImageProps } from "next/image";
+import Link from "next/link";
 import React, {
   Dispatch,
   SetStateAction,
@@ -6,8 +8,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import Image, { ImageProps } from "next/image";
-import Link from "next/link";
 import { RoughNotation, RoughNotationProps } from "react-rough-notation";
 import styles from "./[MdxComponents].module.css";
 // recoil Import
@@ -47,7 +47,7 @@ export const Img = ({ className, ...props }: ImageProps) => {
       height={props.height ?? 1000}
       quality={props.quality ?? 100}
       alt={props.alt ?? "이미지"}
-      className={`mb-3 mt-5 h-auto max-w-full rounded-xl bg-cover bg-no-repeat align-middle italic drop-shadow-xl ${className}`}
+      className={`mb-3 mt-5 h-auto max-w-full rounded-xl bg-cover bg-no-repeat align-middle ${className}`}
     />
   );
 };
@@ -57,7 +57,7 @@ export const Youtube = ({ src }: { src: string }) => {
   return (
     <div className="relative mb-8 pb-[76.25%] pt-6 md:w-screen md:max-w-3xl">
       <iframe
-        className="absolute left-0 top-0 size-full rounded-2xl bg-black shadow-2xl shadow-black dark:shadow-red-900/30 "
+        className="absolute left-0 top-0 size-full rounded-2xl bg-black shadow-lg shadow-black dark:shadow-red-900/30 "
         width="560"
         height="315"
         src={src}
